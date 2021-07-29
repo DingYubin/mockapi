@@ -2,10 +2,10 @@ package com.example.mock_api;
 
 import android.content.Context;
 
-import com.shanbay.mock.MockApiInterceptor;
-import com.shanbay.mock.MockApiSuite;
-import com.shanbay.mock.api.StandardMockApi;
-import com.shanbay.mock.constant.MockHttpMethod;
+import com.example.library.mock.MockApiInterceptor;
+import com.example.library.mock.MockApiSuite;
+import com.example.library.mock.api.StandardMockApi;
+import com.example.library.mock.constant.MockHttpMethod;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
@@ -13,11 +13,11 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
- * Create kang.zhou@shanbay.com on 16/8/18.
+ * Create yubin.ding@casstime.com on 21/7/18.
  */
 public class HttpClient {
 
-	public static String BASE_API_URL = "http://www.shanbay.com/";
+	public static String BASE_API_URL = "http://www.yubin.com/";
 
 	private static HttpClient sInstance;
 

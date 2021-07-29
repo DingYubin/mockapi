@@ -6,7 +6,7 @@ import retrofit2.http.GET;
 import io.reactivex.Observable;
 
 /**
- * Create kang.zhou@shanbay.com on 16/8/18.
+ * Create yubin.ding@casstime.com on 21/7/18.
  */
 public interface UserApi {
 

@@ -7,7 +7,7 @@ import com.example.mock_api.HttpClient;
 import com.example.mock_api.User;
 
 /**
- * Create kang.zhou@shanbay.com on 16/8/18.
+ * Create yubin.ding@casstime.com on 21/7/18.
  */
 public class UserApiService {
 
