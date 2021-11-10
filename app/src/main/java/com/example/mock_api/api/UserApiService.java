@@ -3,9 +3,9 @@ package com.example.mock_api.api;
 import android.content.Context;
 
 
-import com.example.mock_api.CECAdBatchListBean;
 import com.example.mock_api.HttpClient;
-import com.example.mock_api.User;
+import com.example.mock_api.bean.AdBatch;
+import com.example.mock_api.bean.User;
 
 /**
  * Create yubin.ding@casstime.com on 21/7/18.
@@ -31,7 +31,7 @@ public class UserApiService {
 		api.fetchUser().compose(new CTHttpTransformer<>()).subscribe(observer);
 	}
 
-	public void getAdBatch(BaseObserver<CECAdBatchListBean> observer) {
+	public void getAdBatch(BaseObserver<AdBatch> observer) {
 		api.getAdBatch().compose(new CTHttpTransformer<>()).subscribe(observer);
 	}
 }

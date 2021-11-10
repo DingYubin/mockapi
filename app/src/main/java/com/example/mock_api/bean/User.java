@@ -1,4 +1,4 @@
-package com.example.mock_api;
+package com.example.mock_api.bean;
 
 import com.google.gson.annotations.SerializedName;
 

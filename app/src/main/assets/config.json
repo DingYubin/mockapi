@@ -1,0 +1,17 @@
+{
+	"mocks": [
+		{
+			"name": "account",
+			"mock": [
+				{
+					"api": "/api/user",
+					"mockFile": "user.json"
+				},
+				{
+					"api": "/api/adv",
+					"mockFile": "adv.json"
+				}
+			]
+		}
+	]
+}

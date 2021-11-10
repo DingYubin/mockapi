@@ -1,7 +1,7 @@
 package com.example.mock_api.api;
 
-import com.example.mock_api.CECAdBatchListBean;
-import com.example.mock_api.User;
+import com.example.mock_api.bean.AdBatch;
+import com.example.mock_api.bean.User;
 
 import retrofit2.http.GET;
 import io.reactivex.Observable;
@@ -15,6 +15,6 @@ public interface UserApi {
 	Observable<BaseResponse<User>> fetchUser();
 
 	@GET("/api/adv")
-	Observable<BaseResponse<CECAdBatchListBean>> getAdBatch();
+	Observable<BaseResponse<AdBatch>> getAdBatch();
 
 }
