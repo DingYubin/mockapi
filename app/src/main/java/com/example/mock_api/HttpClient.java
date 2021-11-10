@@ -1,6 +1,7 @@
 package com.example.mock_api;
 
 import android.content.Context;
+import android.text.TextUtils;
 
 import com.example.library.mock.MockApiInterceptor;
 import com.example.library.mock.MockApiSuite;
@@ -16,7 +17,7 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
- * Create yubin.ding@casstime.com on 21/7/18.
+ * Create yubin.ding.com on 21/7/18.
  */
 public class HttpClient {
 
@@ -34,13 +35,15 @@ public class HttpClient {
 			MockApiInterceptor mockApiInterceptor = new MockApiInterceptor(context);
 
 			String mockJson = ToolUtils.stringFromAssets(context, "config.json");
-			MockConfig mockConfig = new Gson().fromJson(mockJson, MockConfig.class);
-			for (MockConfig.Mocks mocks : mockConfig.getMocks()) {
-				MockApiSuite suite = new MockApiSuite(mocks.getName()); // account为suite name
-				for (MockConfig.Mocks.Mock mock : mocks.getMock()) {
-					suite.addMockApi(new StandardMockApi(MockHttpMethod.GET, mock.getApi()).setSuccessDataFile(mock.getMockFile()));
+			if (!TextUtils.isEmpty(mockJson)){
+				MockConfig mockConfig = new Gson().fromJson(mockJson, MockConfig.class);
+				for (MockConfig.Mocks mocks : mockConfig.getMocks()) {
+					MockApiSuite suite = new MockApiSuite(mocks.getName()); // account为suite name
+					for (MockConfig.Mocks.Mock mock : mocks.getMock()) {
+						suite.addMockApi(new StandardMockApi(MockHttpMethod.GET, mock.getApi()).setSuccessDataFile(mock.getMockFile()));
+					}
+					mockApiInterceptor.addMockApiSuite(suite);
 				}
-				mockApiInterceptor.addMockApiSuite(suite);
 			}
 //			MockApiSuite suite = new MockApiSuite("account"); // account为suite name
 //			suite.addMockApi(new StandardMockApi(MockHttpMethod.GET, "/api/user").setSuccessDataFile("user.json"));

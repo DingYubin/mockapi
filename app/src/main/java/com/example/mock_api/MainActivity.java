@@ -10,7 +10,6 @@ import android.widget.TextView;
 import com.example.mock_api.api.BaseObserver;
 import com.example.mock_api.api.BaseResponse;
 import com.example.mock_api.api.UserApiService;
-import com.example.mock_api.bean.AdBatch;
 import com.example.mock_api.bean.User;
 
 public class MainActivity extends AppCompatActivity {

@@ -8,7 +8,7 @@ import com.example.mock_api.bean.AdBatch;
 import com.example.mock_api.bean.User;
 
 /**
- * Create yubin.ding@casstime.com on 21/7/18.
+ * Create yubin.ding on 21/7/18.
  */
 public class UserApiService {
 

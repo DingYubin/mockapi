@@ -7,7 +7,7 @@ import retrofit2.http.GET;
 import io.reactivex.Observable;
 
 /**
- * Create yubin.ding@casstime.com on 21/7/18.
+ * Create yubin.ding on 21/7/18.
  */
 public interface UserApi {
 
