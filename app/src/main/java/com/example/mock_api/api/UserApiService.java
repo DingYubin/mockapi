@@ -3,6 +3,7 @@ package com.example.mock_api.api;
 import android.content.Context;
 
 
+import com.example.mock_api.CECAdBatchListBean;
 import com.example.mock_api.HttpClient;
 import com.example.mock_api.User;
 
@@ -28,5 +29,9 @@ public class UserApiService {
 
 	public void fetchUser(BaseObserver<User> observer) {
 		api.fetchUser().compose(new CTHttpTransformer<>()).subscribe(observer);
+	}
+
+	public void getAdBatch(BaseObserver<CECAdBatchListBean> observer) {
+		api.getAdBatch().compose(new CTHttpTransformer<>()).subscribe(observer);
 	}
 }

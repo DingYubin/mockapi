@@ -1,5 +1,6 @@
 package com.example.mock_api.api;
 
+import com.example.mock_api.CECAdBatchListBean;
 import com.example.mock_api.User;
 
 import retrofit2.http.GET;
@@ -12,5 +13,8 @@ public interface UserApi {
 
 	@GET("/api/user")
 	Observable<BaseResponse<User>> fetchUser();
+
+	@GET("/api/adv")
+	Observable<BaseResponse<CECAdBatchListBean>> getAdBatch();
 
 }

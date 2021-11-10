@@ -29,6 +29,7 @@ public class HttpClient {
 
 			MockApiSuite suite = new MockApiSuite("account"); // account为suite name
 			suite.addMockApi(new StandardMockApi(MockHttpMethod.GET, "/api/user").setSuccessDataFile("user.json"));
+			suite.addMockApi(new StandardMockApi(MockHttpMethod.GET, "/api/adv").setSuccessDataFile("adv.json"));
 
 			// mock 数据默认存放在assets目录中，如果需要放到sdcard上，使用new MockApiInterceptor(context, true)
 			MockApiInterceptor mockApiInterceptor = new MockApiInterceptor(context);
