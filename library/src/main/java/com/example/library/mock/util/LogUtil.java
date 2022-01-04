@@ -3,7 +3,7 @@ package com.example.library.mock.util;
 import android.util.Log;
 
 /**
- * Create yubin.ding@casstime.com on 21/7/28.
+ * Create yubin.ding on 21/7/28.
  */
 public class LogUtil {
 
