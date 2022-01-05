@@ -90,7 +90,7 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok:1.18.22'
 
 
-    implementation project(':library')
+    implementation project(':mocklibrary')
 }
 repositories {
     mavenCentral()
