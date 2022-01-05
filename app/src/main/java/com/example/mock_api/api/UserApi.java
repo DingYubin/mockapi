@@ -2,6 +2,7 @@ package com.example.mock_api.api;
 
 import com.example.mock_api.bean.AdBatch;
 import com.example.mock_api.bean.User;
+import com.yubin.httplibrary.mock_api.BaseResponse;
 
 import retrofit2.http.GET;
 import io.reactivex.Observable;

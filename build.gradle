@@ -1,31 +1,45 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
     repositories {
-//        google()
-//        mavenCentral()
         maven {url 'https://maven.aliyun.com/repository/google/'}
         maven {url 'https://maven.aliyun.com/repository/public/'}
         maven {url 'https://maven.aliyun.com/repository/gradle-plugin/'}
     }
     dependencies {
         classpath "com.android.tools.build:gradle:4.2.2"
-        classpath 'org.projectlombok:lombok:1.18.0'
-//        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
+        classpath 'org.projectlombok:lombok:1.18.22'
     }
 }
 
 allprojects {
     repositories {
-//        google()
-//        mavenCentral()
-//        jcenter() // Warning: this repository is going to shut down soon
         maven {url 'https://maven.aliyun.com/repository/google/'}
         maven {url 'https://maven.aliyun.com/repository/public/'}
         maven {url 'https://maven.aliyun.com/repository/gradle-plugin/'}
     }
+}
+
+ext {
+    appVersionCode = 1
+    appVersionName = "1.0.0"
+
+    appJavaCompatibility = JavaVersion.VERSION_1_8
+    appMinSdkVersion = 26
+    appTargetSdkVersion = 30
+    appCompileSdkVersion = 31
+    appBuildToolsVersion = "30.0.3"
+
+    dependency = [
+            appcompat                  : "androidx.appcompat:appcompat:1.4.0",
+            material                   : "com.google.android.material:material:1.4.0",
+            constraintlayout           : "androidx.constraintlayout:constraintlayout:2.1.2",
+
+            gson                       : "com.google.code.gson:gson:2.8.9",
+            rxjava2                    : "io.reactivex.rxjava2:rxjava:2.2.21",
+            rxandroid2                 : "io.reactivex.rxjava2:rxandroid:2.1.1",
+            retrofit2                  : "com.squareup.retrofit2:retrofit:2.9.0",
+            retrofit2_converter_gson   : "com.squareup.retrofit2:converter-gson:2.9.0",
+            retrofit2_adapter_rxjava2  : "com.squareup.retrofit2:adapter-rxjava2:2.9.0"
+    ]
 }
 
 task clean(type: Delete) {

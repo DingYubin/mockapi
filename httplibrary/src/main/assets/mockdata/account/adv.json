@@ -1,0 +1,22 @@
+{
+	"errorCode": 0,
+	"data": {
+		"AdBatchList": [{
+			"position": "PROPAGANDA",
+			"list": [{
+				"id": "1708187754498011136",
+				"name": "当前迭代测试",
+				"positionCode": "APP_PROPAGANDA",
+				"positionNum": 1,
+				"positionAction": "POLLER",
+				"advType": "PLATFORM",
+				"positionSequence": 1,
+				"displayType": "PIC_AND_TEXT",
+				"status": "ONLINE",
+				"sponsorType": "PLATEFORM",
+				"displayContentlink": "",
+				"picLink": "app://route/rn/Tabs"
+			}]
+		}]
+	}
+}

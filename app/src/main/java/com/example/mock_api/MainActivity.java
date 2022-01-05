@@ -7,10 +7,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import com.example.mock_api.api.BaseObserver;
-import com.example.mock_api.api.BaseResponse;
 import com.example.mock_api.api.UserApiService;
 import com.example.mock_api.bean.User;
+import com.yubin.httplibrary.mock_api.BaseObserver;
+import com.yubin.httplibrary.mock_api.BaseResponse;
 
 public class MainActivity extends AppCompatActivity {
 
