@@ -21,6 +21,7 @@ public class MockConfig {
         @Data
         public static class Mock {
             private String api;
+            private String method;
             private String mockFile;
         }
     }

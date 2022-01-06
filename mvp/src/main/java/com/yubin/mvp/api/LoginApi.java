@@ -2,11 +2,9 @@ package com.yubin.mvp.api;
 
 import com.google.gson.JsonObject;
 import com.yubin.httplibrary.mock_api.BaseResponse;
-import com.yubin.httplibrary.mock_api.None;
 
 import io.reactivex.Observable;
 import retrofit2.http.Body;
-import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 /**
@@ -14,7 +12,7 @@ import retrofit2.http.POST;
  */
 public interface LoginApi {
 
-	@GET("/api/login")
-	Observable<BaseResponse<None>> login(@Body JsonObject body);
+	@POST("/api/login")
+	Observable<BaseResponse<Object>> login(@Body JsonObject body);
 
 }

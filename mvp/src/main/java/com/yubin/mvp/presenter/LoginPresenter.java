@@ -9,6 +9,7 @@ import com.yubin.httplibrary.mock_api.BaseObserver;
 import com.yubin.httplibrary.mock_api.BaseResponse;
 import com.yubin.httplibrary.mock_api.None;
 import com.yubin.mvp.api.LoginApiService;
+import com.yubin.mvp.bean.User;
 import com.yubin.mvp.interfaces.LoginInterface;
 
 public class LoginPresenter implements LoginInterface.Presenter {
@@ -22,9 +23,9 @@ public class LoginPresenter implements LoginInterface.Presenter {
 
     @Override
     public void login(String account, String password) {
-        LoginApiService.getInstance(context).login(account, password, new BaseObserver<None>(){
+        LoginApiService.getInstance(context).login(account, password, new BaseObserver<Object>(){
             @Override
-            public void onResponse(@NonNull BaseResponse<None> baseResponse, @Nullable None data) {
+            public void onResponse(@NonNull BaseResponse<Object> baseResponse, @Nullable Object data) {
                 if (baseResponse.isSuccessful(0)) {
                     view.onSuccess();
                 } else {
@@ -33,7 +34,7 @@ public class LoginPresenter implements LoginInterface.Presenter {
             }
 
             @Override
-            public void onFailure(@NonNull BaseResponse<None> baseResponse, int errorCode, @NonNull String message) {
+            public void onFailure(@NonNull BaseResponse<Object> baseResponse, int errorCode, @NonNull String message) {
                 view.onFailed();
             }
         });

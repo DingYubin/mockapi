@@ -40,7 +40,11 @@ public class HttpClient {
 				for (MockConfig.Mocks mocks : mockConfig.getMocks()) {
 					MockApiSuite suite = new MockApiSuite(mocks.getName()); // account为suite name
 					for (MockConfig.Mocks.Mock mock : mocks.getMock()) {
-						suite.addMockApi(new StandardMockApi(MockHttpMethod.GET, mock.getApi()).setSuccessDataFile(mock.getMockFile()));
+						if (mock.getMethod().equals("get")) {
+							suite.addMockApi(new StandardMockApi(MockHttpMethod.GET, mock.getApi()).setSuccessDataFile(mock.getMockFile()));
+						} else if (mock.getMethod().equals("post")) {
+							suite.addMockApi(new StandardMockApi(MockHttpMethod.POST, mock.getApi()).setSuccessDataFile(mock.getMockFile()));
+						}
 					}
 					mockApiInterceptor.addMockApiSuite(suite);
 				}

@@ -43,6 +43,5 @@ dependencies {
     implementation dependency.retrofit2_converter_gson
     implementation dependency.retrofit2_adapter_rxjava2
 
-    compileOnly 'org.projectlombok:lombok:1.18.22'
-    annotationProcessor 'org.projectlombok:lombok:1.18.22'
+    implementation project(':httplibrary')
 }
