@@ -5,7 +5,7 @@ buildscript {
         maven {url 'https://maven.aliyun.com/repository/gradle-plugin/'}
     }
     dependencies {
-        classpath "com.android.tools.build:gradle:4.2.2"
+        classpath "com.android.tools.build:gradle:7.0.3"
         classpath 'org.projectlombok:lombok:1.18.22'
     }
 }
@@ -20,13 +20,13 @@ allprojects {
 
 ext {
     appVersionCode = 1
-    appVersionName = "1.0.0"
+    appVersionName = '1.0.0'
 
     appJavaCompatibility = JavaVersion.VERSION_1_8
     appMinSdkVersion = 26
-    appTargetSdkVersion = 30
+    appTargetSdkVersion = 31
     appCompileSdkVersion = 31
-    appBuildToolsVersion = "30.0.3"
+    appBuildToolsVersion = '30.0.3'
 
     dependency = [
             appcompat                  : "androidx.appcompat:appcompat:1.4.0",

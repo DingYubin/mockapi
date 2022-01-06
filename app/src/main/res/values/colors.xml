@@ -1,10 +1,168 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <!-- standard common part -->
+    <color name="st_bg_common_master_red">#FF4A4A</color>
+    <color name="st_bg_common_master_green">#21CE99</color>
+    <color name="st_bg_common_master_blue">#499EF0</color>
+    <color name="st_bg_common_master_blue_pressed">#4D499EF0</color>
+    <color name="st_bg_common_bottom">#0D1015</color>
+    <color name="st_bg_common_normal">#11151B</color>
+    <color name="st_bg_common_pressed">#4D11151B</color>
+    <color name="st_bg_common_top">#F71A1E23</color>
+    <color name="st_bg_common_left">#4D1A1E23</color>
+    <color name="st_bg_div_common_bottom">#292C32</color>
+    <color name="st_bg_press_common_bottom">#4D292C32</color>
+    <color name="st_bg_common_toast_or_snack">#3C4048</color>
+    <color name="st_bg_common_snack">#F73C4048</color>
+    <color name="st_bg_no_network">#E38B44</color>
+    <color name="st_bg_common_minor_red">#4DFF4A4A</color>
+    <color name="st_bg_common_minor_green">#4D21CE99</color>
+    <color name="st_bg_common_minor_gray">#4D979797</color>
+    <color name="st_bg_common_stock_red">#10FF4A4A</color>
+    <color name="st_bg_common_stock_green">#101BBB9A</color>
+    <color name="st_bg_common_gray">#e62C3035</color>
+
+    <color name="st_text_gray">#888A8D</color>
+    <color name="st_text_master_common_white">#FFFFFF</color>
+    <color name="st_text_percentage_common_white">#ccFFFFFF</color>
+    <color name="st_text_minor_common_white">#80FFFFFF</color>
+    <color name="st_text_common_hint_white">#4DFFFFFF</color>
+    <color name="st_text_common_stock_red">#FF4A4A</color>
+    <color name="st_text_common_stock_end_red">#4DFF4A4A</color>
+    <color name="st_text_common_stock_begin_red">#00FF4A4A</color>
+    <color name="st_text_common_stock_green">#21CE99</color>
+    <color name="st_main_bottom_tab">#1aFFFFFF</color>
+    <color name="st_portfolio_switch_down_color">#1BBB9A</color>
+    <color name="st_portfolio_switch_down_end_blue">#4D1BBB9A</color>
+    <color name="st_portfolio_switch_down_begin_color">#001BBB9A</color>
+    <color name="st_snack_bar_red">#CDF54642</color>
+
+    <!-- standard trade part -->
+    <color name="st_text_excision">#2F2F2F</color>
+    <color name="st_text_hint_yellow">#F6A650</color>
+    <color name="st_text_bid_ask_white">#B0FFFFFF</color>
+    <color name="st_text_bid_ask_text">#66FFFFFF</color>
+    <color name="st_bg_div_border_normal">#1AFFFFFF</color>
+    <color name="st_text_minor_master_blue">#64499EF0</color>
+    <color name="st_bg_holding_main_item">#1F2228</color>
+    <color name="st_bg_holding_minor_item">#CC1F2228</color>
+    <color name="st_bg_trade_hint_top">#5A7B9C</color>
+    <color name="st_bg_trade_keyboard">#1A1E23</color>
+    <color name="st_bg_trade_black">#1A1E23</color>
+    <color name="st_bg_black_pressed">#15191F</color>
+    <color name="st_bg_trade_div_black">#404348</color>
+    <color name="view_animator_up">#29191F</color>
+    <color name="view_animator_down">#122727</color>
+    <!-- common part -->
+    <color name="bg_common_primary">#ffeeeeef</color>
+    <color name="bg_common_white">#ffffffff</color>
+    <color name="bg_common_white_pressed">#f5f6f6</color>
+    <color name="bg_common_transparent">#00000000</color>
+    <color name="bg_account_assert_number">#1affffff</color>
+    <color name="bg_common_item_normal">#e0ffffff</color>
+    <color name="bg_common_item_pressed">#ffd0d6dd</color>
+    <color name="bg_common_title">#ffffd032</color>
+    <color name="bg_common_top_title">#fffefefe</color>
+    <color name="bg_common_mask">#ffd9d9d9</color>
+    <color name="bg_common_keyboard_normal">#D1D5DA</color>
+    <color name="bg_common_stock_red">#f44542</color>
+    <color name="bg_common_stock_yellow">#F2B522</color>
+    <color name="bg_common_stock_green">#29b32e</color>
+    <color name="bg_common_stock_gray">#a1a1a1</color>
+    <color name="bg_common_stock_hint_red">#e13c39</color>
+    <color name="bg_common_stock_hint_green">#24a029</color>
+    <color name="bg_common_stock_hint_gray">#999999</color>
+    <color name="bg_common_stock_hint_white">#FEFEFE</color>
+    <color name="bg_common_transparency">#B4000000</color>
+    <color name="account_assert_number_color">#b3ffffff</color>
+    <color name="div_common_edge">#ffc3cdd4</color>
+    <color name="div_common_axis">#ffeeeff0</color>
+    <color name="div_common_dialog_tips">#DDDDDD</color>
+    <color name="div_common_tips">#1a282828</color>
+
+    <color name="text_common_black">#ff333333</color>
+    <color name="text_common_label_black">#ff000000</color>
+    <color name="text_common_index_black">#666666</color>
+    <color name="text_common_low_black">#ff999999</color>
+    <color name="text_common_tips">#ff868686</color>
+    <color name="text_common_gold">#ffa87733</color>
+    <color name="text_common_stock_red">#F54642</color>
+    <color name="text_common_stock_green">#29B32E</color>
+    <color name="text_common_stock_gray">#a1a1a1</color>
+    <color name="text_common_hint">#999</color>
+    <color name="text_common_edit">#282828</color>
+    <color name="text_common_open_account_failed">#ED6C44</color>
+    <color name="text_common_search_failed">#bbbbbb</color>
+
+    <!-- The portfolio part-->
+    <color name="bg_portfolio_graph">#f9f9f7</color>
+    <color name="bg_portfolio_half_transparency_polish">#222020</color>
+    <color name="text_portfolio_tock_detail">#b3b3b3</color>
+    <color name="text_portfolio_stock_detail_white">#fffbdc</color>
+
+
+    <!-- The trade part-->
+    <color name="bg_trade_btn_query_normal">#ffa87733</color>
+    <color name="bg_trade_btn_query_pressed">#ffd0d6dd</color>
+    <color name="bg_trade_middle_transparent">#b3000000</color>
+    <color name="bg_trade_sheet_item_blue">#037bff</color>
+    <color name="bg_trade_sheet_item_red">#fd4a2e</color>
+    <color name="bg_trade_sheet_item_yellow">#b88845</color>
+    <color name="bg_trade_sheet_item_black">#666666</color>
+    <color name="bg_trade_password_color">#6e6e6e</color>
+    <color name="bg_trade_btn_sale_pressed">#76a473</color>
+    <color name="bg_trade_btn_sale_normal">#638eab</color>
+    <color name="bg_trade_top_item_select">#e6e6e6</color>
+    <color name="div_trade_password_border">#ffdddddd</color>
+    <color name="div_trade_circle">#FE6270</color>
+    <color name="div_trade_triangle">#FCF3C1</color>
+    <color name="text_trade_order_sell">#76a4c3</color>
+    <color name="text_trade_gray_color">#868686</color>
+    <color name="text_trade_position_normal">#ff5a6a81</color>
+    <color name="text_trade_title_red">#fff55753</color>
+    <color name="text_trade_title_black">#ff282828</color>
+    <color name="text_trade_cn_bid_ask">#999999</color>
+    <color name="text_trade_bottom_hint">#909090</color>
+
+
+    <!-- The market part-->
+    <color name="bg_market_view_red">#19f34441</color>
+    <color name="bg_market_view_green">#1929b32e</color>
+    <color name="div_market_index_indicator_normal">#e0e0e0</color>
+    <color name="div_market_index_indicator_pressed">#fa8e2e</color>
+    <color name="text_market_cn_bid_ask">#999999</color>
+
+
+    <!-- The personal part-->
+    <color name="bg_personal_btn_exit_pressed">#d66363</color>
+    <color name="bg_personal_btn_exit_normal">#e96c6c</color>
+    <color name="bg_personal_open_account_progress_undo">#FF999999</color>
+    <color name="bg_personal_login_register_control_normal">#DDDDDD</color>
+    <color name="text_personal_success_notify">#282828</color>
+    <color name="text_personal_btn_login_out">#E96C6C</color>
+    <!-- OCR -->
+    <color name="bg_ocr_text_hint">#B2B88845</color>
+    <color name="bg_ocr_text_hint_error">#B2F54642</color>
+    <color name="bg_ocr_text_hint_dark">#FFB88845</color>
+    <color name="bg_ocr_text_hint_error_dark">#FFF54642</color>
+
+    <color name="keyboard_white_dark">#f7f7f7</color>
+    <color name="keyboard_white_light">#ffffffff</color>
+
+    <!-- COLOR CHANGE -->
+    <color name="MA20_color">#D667CD</color>
+    <color name="average_line">#F6A623</color>
+    <color name="blue_color_60">#99499EF0</color>
+    <color name="blue_path_line">#5EB9F5</color>
+    <color name="half_white">#7fFFFFFF</color>
+    <color name="white_color_32">#20FFFFFF</color>
+    <color name="white_color_40">#66FFFFFF</color>
+    <color name="white_color_00">#00FFFFFF</color>
+    <color name="white_pass_border">#ffdddddd</color>
+    <color name="yellow_text_hint_light">#33F6A650</color>
+    <color name="white_color_05">#0cFFFFFF</color>
+    <color name="white_color_20">#33FFFFFF</color>
+    <color name="color_purple">#E461D9</color>
+    <color name="color_yellow">#D0DB4C</color>
+    <color name="blue_25">#19499EF0</color>
 </resources>

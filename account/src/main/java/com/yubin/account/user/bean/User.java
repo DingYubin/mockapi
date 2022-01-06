@@ -1,4 +1,4 @@
-package com.example.mock_api.bean;
+package com.yubin.account.user.bean;
 
 import com.google.gson.annotations.SerializedName;
 

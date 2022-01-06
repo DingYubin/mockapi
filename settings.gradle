@@ -2,3 +2,4 @@ rootProject.name = "mock-api"
 include ':app'
 include ':mocklibrary'
 include ':httplibrary'
+include ':account'

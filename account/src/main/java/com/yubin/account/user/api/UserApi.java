@@ -1,7 +1,7 @@
-package com.example.mock_api.api;
+package com.yubin.account.user.api;
 
-import com.example.mock_api.bean.AdBatch;
-import com.example.mock_api.bean.User;
+import com.yubin.account.user.bean.AdBatch;
+import com.yubin.account.user.bean.User;
 import com.yubin.httplibrary.mock_api.BaseResponse;
 
 import retrofit2.http.GET;

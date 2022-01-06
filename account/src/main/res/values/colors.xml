@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="st_bg_common_normal">#11151B</color>
+    <color name="st_bg_hint_top">#5A7B9C</color>
+    <color name="st_text_master_common_white">#FFFFFF</color>
+    <color name="st_portfolio_switch_down_color">#1BBB9A</color>
+</resources>
