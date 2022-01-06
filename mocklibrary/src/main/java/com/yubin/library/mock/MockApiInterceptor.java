@@ -64,7 +64,6 @@ public class MockApiInterceptor implements Interceptor {
 					if (api instanceof PageMockApi) {
 						int page = queryPage(httpUrl.queryParameter("page"));
 						dataFile = ((PageMockApi) api).getDataFile(page);
-
 					} else {
 						dataFile = ((StandardMockApi) api).getDataFile();
 					}

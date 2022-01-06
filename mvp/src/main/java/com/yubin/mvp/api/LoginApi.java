@@ -6,6 +6,7 @@ import com.yubin.httplibrary.mock_api.None;
 
 import io.reactivex.Observable;
 import retrofit2.http.Body;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 /**
@@ -13,7 +14,10 @@ import retrofit2.http.POST;
  */
 public interface LoginApi {
 
-	@POST("/api/login")
-	Observable<BaseResponse<None>> login(@Body JsonObject body);
+//	@GET("/api/login")
+//	Observable<BaseResponse<None>> login(@Body JsonObject body);
+
+	@GET("/api/login")
+	Observable<BaseResponse<None>> login();
 
 }

@@ -45,9 +45,6 @@ public class HttpClient {
 					mockApiInterceptor.addMockApiSuite(suite);
 				}
 			}
-//			MockApiSuite suite = new MockApiSuite("account"); // account为suite name
-//			suite.addMockApi(new StandardMockApi(MockHttpMethod.GET, "/api/user").setSuccessDataFile("user.json"));
-//			suite.addMockApi(new StandardMockApi(MockHttpMethod.GET, "/api/adv").setSuccessDataFile("adv.json"));
 
 			// define client
 			OkHttpClient.Builder clientBuilder = new OkHttpClient.Builder().addInterceptor(mockApiInterceptor);
