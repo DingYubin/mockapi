@@ -29,11 +29,10 @@ public class LoginApiService {
 	}
 
 	public void login(String account, String password, BaseObserver<None> observer) {
-//		JsonObject jsonObject = new JsonObject();
-//		jsonObject.addProperty("userLoginName", account);
-//		jsonObject.addProperty("password", password);
-//		api.login(jsonObject).compose(new CTHttpTransformer<>()).subscribe(observer);
-		api.login().compose(new CTHttpTransformer<>()).subscribe(observer);
+		JsonObject jsonObject = new JsonObject();
+		jsonObject.addProperty("userLoginName", account);
+		jsonObject.addProperty("password", password);
+		api.login(jsonObject).compose(new CTHttpTransformer<>()).subscribe(observer);
 	}
 
 }

@@ -14,10 +14,7 @@ import retrofit2.http.POST;
  */
 public interface LoginApi {
 
-//	@GET("/api/login")
-//	Observable<BaseResponse<None>> login(@Body JsonObject body);
-
 	@GET("/api/login")
-	Observable<BaseResponse<None>> login();
+	Observable<BaseResponse<None>> login(@Body JsonObject body);
 
 }
