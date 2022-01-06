@@ -1,4 +1,4 @@
-rootProject.name = "mock-api"
+rootProject.name = "模版代码"
 include ':app'
 include ':mocklibrary'
 include ':httplibrary'
