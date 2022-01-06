@@ -12,6 +12,15 @@
 					"mockFile": "adv.json"
 				}
 			]
+		},
+		{
+			"name": "login",
+			"mock": [
+				{
+					"api": "/api/login",
+					"mockFile": "login.json"
+				}
+			]
 		}
 	]
 }

@@ -71,6 +71,7 @@ dependencies {
     }
 
     implementation project(':account')
+    implementation project(':mvp')
 }
 repositories {
     mavenCentral()

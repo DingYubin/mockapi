@@ -7,6 +7,7 @@ import android.os.Bundle;
 
 import com.example.mock_api.R;
 import com.yubin.account.user.ui.AccountActivity;
+import com.yubin.mvp.ui.LoginActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,6 +19,10 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.goto_user_page).setOnClickListener(view -> {
             Intent intent = new Intent(this, AccountActivity.class);
             startActivity(intent);
+        });
+
+        findViewById(R.id.mvp).setOnClickListener(view -> {
+            LoginActivity.openLoginActivity(this);
         });
     }
 }
