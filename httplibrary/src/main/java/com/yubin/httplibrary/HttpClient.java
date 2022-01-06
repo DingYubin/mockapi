@@ -3,10 +3,10 @@ package com.yubin.httplibrary;
 import android.content.Context;
 import android.text.TextUtils;
 
-import com.example.library.mock.MockApiInterceptor;
-import com.example.library.mock.MockApiSuite;
-import com.example.library.mock.api.StandardMockApi;
-import com.example.library.mock.constant.MockHttpMethod;
+import com.yubin.library.mock.MockApiInterceptor;
+import com.yubin.library.mock.MockApiSuite;
+import com.yubin.library.mock.api.StandardMockApi;
+import com.yubin.library.mock.constant.MockHttpMethod;
 import com.google.gson.Gson;
 import com.yubin.httplibrary.model.MockConfig;
 import com.yubin.httplibrary.util.ToolUtil;

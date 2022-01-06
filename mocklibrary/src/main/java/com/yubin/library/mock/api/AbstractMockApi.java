@@ -1,7 +1,7 @@
-package com.example.library.mock.api;
+package com.yubin.library.mock.api;
 
 
-import com.example.library.mock.constant.MockHttpMethod;
+import com.yubin.library.mock.constant.MockHttpMethod;
 
 import java.util.regex.Pattern;
 

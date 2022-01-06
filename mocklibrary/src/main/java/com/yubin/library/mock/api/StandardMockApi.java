@@ -1,8 +1,8 @@
-package com.example.library.mock.api;
+package com.yubin.library.mock.api;
 
 
-import com.example.library.mock.constant.MockHttpMethod;
-import com.example.library.mock.constant.MockState;
+import com.yubin.library.mock.constant.MockHttpMethod;
+import com.yubin.library.mock.constant.MockState;
 
 public class StandardMockApi extends AbstractMockApi {
 

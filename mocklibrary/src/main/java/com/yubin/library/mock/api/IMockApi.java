@@ -1,4 +1,4 @@
-package com.example.library.mock.api;
+package com.yubin.library.mock.api;
 
 public interface IMockApi {
 

@@ -1,4 +1,4 @@
-package com.example.library.mock.util;
+package com.yubin.library.mock.util;
 
 import android.util.Log;
 

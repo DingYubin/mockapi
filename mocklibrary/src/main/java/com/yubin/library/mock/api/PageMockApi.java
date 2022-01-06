@@ -1,7 +1,7 @@
-package com.example.library.mock.api;
+package com.yubin.library.mock.api;
 
-import com.example.library.mock.constant.MockHttpMethod;
-import com.example.library.mock.constant.PageMockState;
+import com.yubin.library.mock.constant.MockHttpMethod;
+import com.yubin.library.mock.constant.PageMockState;
 
 import java.util.ArrayList;
 import java.util.List;

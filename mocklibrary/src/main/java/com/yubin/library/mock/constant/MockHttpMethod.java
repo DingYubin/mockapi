@@ -1,4 +1,4 @@
-package com.example.library.mock.constant;
+package com.yubin.library.mock.constant;
 
 /**
  * Created by diaocow on 16/7/28.

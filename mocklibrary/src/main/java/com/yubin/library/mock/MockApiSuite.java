@@ -1,6 +1,6 @@
-package com.example.library.mock;
+package com.yubin.library.mock;
 
-import com.example.library.mock.api.AbstractMockApi;
+import com.yubin.library.mock.api.AbstractMockApi;
 
 import java.util.ArrayList;
 import java.util.List;

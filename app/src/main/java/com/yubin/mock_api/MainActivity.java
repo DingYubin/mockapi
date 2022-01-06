@@ -1,10 +1,11 @@
-package com.example.mock_api;
+package com.yubin.mock_api;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.mock_api.R;
 import com.yubin.account.user.ui.AccountActivity;
 
 public class MainActivity extends AppCompatActivity {

@@ -1,11 +1,11 @@
-package com.example.library.mock;
+package com.yubin.library.mock;
 
 import android.content.Context;
 import android.os.Environment;
 
-import com.example.library.mock.api.AbstractMockApi;
-import com.example.library.mock.api.PageMockApi;
-import com.example.library.mock.api.StandardMockApi;
+import com.yubin.library.mock.api.AbstractMockApi;
+import com.yubin.library.mock.api.PageMockApi;
+import com.yubin.library.mock.api.StandardMockApi;
 
 import java.io.BufferedReader;
 import java.io.File;
