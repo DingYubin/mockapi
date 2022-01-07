@@ -7,9 +7,7 @@ import androidx.annotation.Nullable;
 
 import com.yubin.httplibrary.mock_api.BaseObserver;
 import com.yubin.httplibrary.mock_api.BaseResponse;
-import com.yubin.httplibrary.mock_api.None;
 import com.yubin.mvp.api.LoginApiService;
-import com.yubin.mvp.bean.User;
 import com.yubin.mvp.interfaces.LoginInterface;
 
 public class LoginPresenter implements LoginInterface.Presenter {

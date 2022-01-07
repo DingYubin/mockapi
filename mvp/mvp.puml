@@ -1,0 +1,51 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+LoginInterface *--> View : 组合
+LoginInterface *--> Presenter : 组合
+LoginInterface.View -- LoginInterface.Presenter : 双向关联
+LoginInterface.Presenter ..> Model : 依赖
+LoginPresenter ..> LoginApiService
+LoginApiService o..> LoginApi : 聚合（net）
+LoginApiService o..> DbApi : 聚合（db）
+
+interface LoginInterface {
+    interface View
+    interface Presenter
+}
+
+interface View {
+    + onSuccess()
+    + onFailed()
+}
+
+interface Presenter {
+   + login()
+}
+
+interface LoginApi {
+   + login()
+}
+
+interface DbApi {
+   + add()
+   + delete()
+   + update()
+   + query()
+}
+
+class LoginActivity implements View {
+    Presenter presenter
+    + onSuccess()
+    + onFailed()
+
+}
+
+class LoginPresenter implements Presenter{
+    View view
+    + login()
+}
+
+class LoginApiService
+@enduml
+

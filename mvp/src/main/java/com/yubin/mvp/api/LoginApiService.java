@@ -6,8 +6,7 @@ import com.google.gson.JsonObject;
 import com.yubin.httplibrary.HttpClient;
 import com.yubin.httplibrary.mock_api.BaseObserver;
 import com.yubin.httplibrary.mock_api.CTHttpTransformer;
-import com.yubin.httplibrary.mock_api.None;
-import com.yubin.mvp.bean.User;
+
 
 /**
  * Create yubin.ding on 21/7/18.
