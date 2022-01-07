@@ -13,12 +13,12 @@ import java.util.concurrent.TimeUnit
  * Created by dingyubin at 2022-01-07 4:27 PM
  * Description ：OkhttpClient实例构造类
  */
-class CTOkHttpClient private constructor() {
+class NetOkHttpClient private constructor() {
 
     private object SingletonHolder {
 
         val holder: OkHttpClient by lazy {
-            CTOkHttpClient().generateOkHttpClient(config)
+            NetOkHttpClient().generateOkHttpClient(config)
         }
     }
 
@@ -42,7 +42,7 @@ class CTOkHttpClient private constructor() {
          * 新实例模式
          */
         fun newInstance(config: NetworkConfigInitHelper.Config): OkHttpClient {
-            return CTOkHttpClient().generateOkHttpClient(config)
+            return NetOkHttpClient().generateOkHttpClient(config)
         }
     }
 

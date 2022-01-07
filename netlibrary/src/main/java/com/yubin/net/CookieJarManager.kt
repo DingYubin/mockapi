@@ -3,6 +3,7 @@ package com.yubin.net
 import com.franmontiel.persistentcookiejar.PersistentCookieJar
 import com.franmontiel.persistentcookiejar.cache.SetCookieCache
 import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor
+import okhttp3.OkHttpClient
 import java.lang.IllegalArgumentException
 
 /**

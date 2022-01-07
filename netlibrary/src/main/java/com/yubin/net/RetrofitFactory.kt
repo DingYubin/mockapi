@@ -10,7 +10,7 @@ import java.lang.IllegalArgumentException
  *  Retrofit工厂，实例构造
  *
  */
-class CTRetrofitFactory private constructor() {
+class RetrofitFactory private constructor() {
 
     /*
         单例实现
@@ -20,7 +20,7 @@ class CTRetrofitFactory private constructor() {
         /**
          * 全局单例模式
          */
-        val instance: CTRetrofitFactory by lazy { CTRetrofitFactory() }
+        val instance: RetrofitFactory by lazy { RetrofitFactory() }
 
         /**
          * 构建新实例
@@ -36,7 +36,7 @@ class CTRetrofitFactory private constructor() {
             return Retrofit.Builder()
                 .baseUrl(baseUrl)
                 .apply {
-                    CTOkHttpClient.config?.let {
+                    NetOkHttpClient.config?.let {
                         for (factory in it.convertFactories) {
                             addConverterFactory(factory)
                         }
@@ -54,9 +54,9 @@ class CTRetrofitFactory private constructor() {
     //初始化
     init {
         //Retrofit实例化
-        val config = CTOkHttpClient.config
+        val config = NetOkHttpClient.config
             ?: throw IllegalArgumentException("CTOkHttpClient.Companion.init() never been called or the config is null")
-        retrofit = initRetrofit(config.baseUrl, CTOkHttpClient.instance)
+        retrofit = initRetrofit(config.baseUrl, NetOkHttpClient.instance)
     }
 
 
@@ -71,6 +71,6 @@ class CTRetrofitFactory private constructor() {
      * 使用自定义的Url实例化服务
      */
     fun <T> create(baseUrl: String, service: Class<T>): T {
-        return initRetrofit(baseUrl, CTOkHttpClient.instance).create(service)
+        return initRetrofit(baseUrl, NetOkHttpClient.instance).create(service)
     }
 }
