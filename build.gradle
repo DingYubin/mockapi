@@ -7,6 +7,7 @@ buildscript {
     dependencies {
         classpath "com.android.tools.build:gradle:7.0.3"
         classpath 'org.projectlombok:lombok:1.18.22'
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.20'
     }
 }
 
@@ -15,6 +16,9 @@ allprojects {
         maven {url 'https://maven.aliyun.com/repository/google/'}
         maven {url 'https://maven.aliyun.com/repository/public/'}
         maven {url 'https://maven.aliyun.com/repository/gradle-plugin/'}
+
+        //cookie持久化jar包 添加以下语句
+        maven { url "https://jitpack.io" }
     }
 }
 
