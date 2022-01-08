@@ -12,7 +12,7 @@ import androidx.lifecycle.ViewModelStore
 import androidx.lifecycle.ViewModelStoreOwner
 import java.util.*
 
-class BaseApplication : Application(), ViewModelStoreOwner {
+open class BaseApplication : Application(), ViewModelStoreOwner {
 
     private val appViewModelStore: ViewModelStore by lazy {
         ViewModelStore()

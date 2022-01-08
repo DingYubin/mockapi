@@ -1,4 +1,4 @@
-package com.yubin.mock_api;
+package com.yubin.mock_api.main;
 
 import androidx.appcompat.app.AppCompatActivity;
 
