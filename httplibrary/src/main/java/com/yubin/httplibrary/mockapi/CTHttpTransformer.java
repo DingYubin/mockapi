@@ -1,4 +1,4 @@
-package com.yubin.httplibrary.mock_api;
+package com.yubin.httplibrary.mockapi;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableSource;

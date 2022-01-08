@@ -26,7 +26,7 @@ ext {
     appVersionCode = 1
     appVersionName = '1.0.0'
 
-    appJavaCompatibility = JavaVersion.VERSION_1_8
+    appJavaCompatibility = JavaVersion.VERSION_11
     appMinSdkVersion = 26
     appTargetSdkVersion = 31
     appCompileSdkVersion = 31

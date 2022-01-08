@@ -1,12 +1,11 @@
-package com.yubin.httplibrary.mock_api;
+package com.yubin.httplibrary.mockapi;
 
 import android.text.TextUtils;
 import android.util.Log;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
 import io.reactivex.Observer;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.annotations.Nullable;
 import io.reactivex.disposables.Disposable;
 
 public class BaseObserver<E> implements Observer<BaseResponse<E>> {

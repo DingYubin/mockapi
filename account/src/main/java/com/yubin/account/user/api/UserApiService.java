@@ -5,8 +5,8 @@ import android.content.Context;
 import com.yubin.account.user.bean.AdBatch;
 import com.yubin.account.user.bean.User;
 import com.yubin.httplibrary.HttpClient;
-import com.yubin.httplibrary.mock_api.BaseObserver;
-import com.yubin.httplibrary.mock_api.CTHttpTransformer;
+import com.yubin.httplibrary.mockapi.BaseObserver;
+import com.yubin.httplibrary.mockapi.CTHttpTransformer;
 
 /**
  * Create yubin.ding on 21/7/18.

@@ -1,8 +1,6 @@
 package com.yubin.account.user.ui;
 
 import android.os.Bundle;
-import android.view.View;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,8 +12,8 @@ import com.yubin.account.R;
 import com.yubin.account.user.api.UserApiService;
 import com.yubin.account.user.bean.AdBatch;
 import com.yubin.account.user.bean.User;
-import com.yubin.httplibrary.mock_api.BaseObserver;
-import com.yubin.httplibrary.mock_api.BaseResponse;
+import com.yubin.httplibrary.mockapi.BaseObserver;
+import com.yubin.httplibrary.mockapi.BaseResponse;
 
 public class AccountActivity extends AppCompatActivity {
 

@@ -1,0 +1,18 @@
+<?xml version ="1.0" encoding ="utf-8"?>
+<paths>
+
+    <!-- root-path 对应目录：根目录/ -->
+    <!-- files-path 对应目录：/data/user/0/<package_name>/files 或者/data/data/<package_name>/files，这两个目录指向相同位置 -->
+    <!-- cache-path 对应目录：/data/user/0/<package_name>/cache 或者 /data/data/<package_name>/cache -->
+    <!-- external-path 对应目录/storage/emulated/0或者/sdcard/ -->
+    <!-- external-files-path 对应目录：/storage/emulated/0/Android/data/<package_name>/files 或者 /sdcard/Android/data/<package_name>/files -->
+    <!-- external-cache-path 对应目录：/storage/emulated/0/Android/data/<package_name>/cache 或者 /sdcard/Android/data/<package_name>/cache -->
+
+    <external-path
+        name="external_files_root"
+        path="Android/data/com.yubin.mockapi/" />
+
+    <external-path
+        name="external_storage_root"
+        path="." />
+</paths>

@@ -1,4 +1,4 @@
-package com.yubin.mock_api
+package com.yubin.mockapi
 
 import android.app.Application
 import android.content.Context
@@ -6,6 +6,7 @@ import androidx.multidex.MultiDex
 import com.yubin.baselibrary.appstart.AppStartInitializer
 import com.yubin.baselibrary.appstart.IAppStartCallback
 import com.yubin.baselibrary.core.BaseApplication
+import com.yubin.baselibrary.util.AutoSizeInitHelper
 
 class MainApplication : BaseApplication() {
 
@@ -23,15 +24,13 @@ class MainApplication : BaseApplication() {
         application = this
         AppStartInitializer.startUp(this, object : IAppStartCallback {
             override fun initInMainProcess(app: Application) {
-
+                AutoSizeInitHelper.init()
             }
 
             override fun initInMainProcessBackgroundThread(app: Application) {
-                TODO("Not yet implemented")
             }
 
             override fun initInOther(app: Application) {
-                TODO("Not yet implemented")
             }
 
         })

@@ -1,4 +1,4 @@
-package com.example.mock_api;
+package com.yubin.mockapi;
 
 import org.junit.Test;
 

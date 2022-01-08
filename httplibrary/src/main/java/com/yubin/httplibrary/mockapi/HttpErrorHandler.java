@@ -1,4 +1,4 @@
-package com.yubin.httplibrary.mock_api;
+package com.yubin.httplibrary.mockapi;
 
 import com.google.gson.Gson;
 

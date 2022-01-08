@@ -13,7 +13,7 @@ import java.lang.IllegalArgumentException
 class CookieJarManager private constructor() {
     private object SingletonHolder {
         val holder: PersistentCookieJar by lazy {
-            val config = (CTOkHttpClient.config
+            val config = (NetOkHttpClient.config
                 ?: throw IllegalArgumentException("CTOkHttpClient.Companion.init() never been called"))
             PersistentCookieJar(
                 SetCookieCache(),

@@ -2,7 +2,7 @@ package com.yubin.account.user.api;
 
 import com.yubin.account.user.bean.AdBatch;
 import com.yubin.account.user.bean.User;
-import com.yubin.httplibrary.mock_api.BaseResponse;
+import com.yubin.httplibrary.mockapi.BaseResponse;
 
 import retrofit2.http.GET;
 import io.reactivex.Observable;

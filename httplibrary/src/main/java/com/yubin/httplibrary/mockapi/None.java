@@ -1,4 +1,4 @@
-package com.yubin.httplibrary.mock_api;
+package com.yubin.httplibrary.mockapi;
 
 /**
  * Created by rex.wei on 2017/5/31.

@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
 
 android {
     signingConfigs {
@@ -10,40 +11,61 @@ android {
         }
     }
 
+    //关掉AndroidStudio对PNG图片的合法性检验
+    aaptOptions {
+        cruncherEnabled = false
+    }
+
     compileSdkVersion appCompileSdkVersion
     buildToolsVersion appBuildToolsVersion
 
     defaultConfig {
-        applicationId 'com.yubin.mock_api'
+        applicationId 'com.yubin.mockapi'
         minSdkVersion appMinSdkVersion
         targetSdkVersion appTargetSdkVersion
         versionCode appVersionCode
         versionName appVersionName
-
-        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+        multiDexEnabled true
         signingConfig signingConfigs.release
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+
+    }
+
+    //分包2
+    dexOptions {
+        javaMaxHeapSize "4g"
+        preDexLibraries = false
+        additionalParameters = ['--multi-dex', '--main-dex-list=' + project.rootDir.absolutePath + '/app/maindexlist.txt', '--minimal-main-dex',
+                                '--set-max-idx-number=1000']
     }
 
     buildTypes {
+        debug {
+            ndk {
+                abiFilters "armeabi-v7a", "x86"
+            }
+            buildConfigField "Boolean", "isDebug", "true"
+            minifyEnabled false
+            zipAlignEnabled false
+            shrinkResources false
+        }
+
         release {
+            ndk {
+                abiFilters "armeabi-v7a", "x86"
+            }
             buildConfigField "Boolean", "isDebug", "false"
             minifyEnabled true
             shrinkResources true
             zipAlignEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
-
-        debug {
-            buildConfigField "Boolean", "isDebug", "true"
-            minifyEnabled false
-            zipAlignEnabled false
-            shrinkResources false
-        }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility appJavaCompatibility
+        targetCompatibility appJavaCompatibility
     }
+
 
     applicationVariants.all { variant ->
         if (variant.buildType.name == 'release') {
@@ -51,6 +73,10 @@ android {
                 delete(fileTree(dir: variant.mergeAssets.outputDir, includes: ['*.json', '*.zip', 'mockdata/**/*']))
             }
         }
+    }
+
+    buildFeatures {
+        viewBinding true
     }
 }
 
@@ -63,6 +89,7 @@ dependencies {
     implementation project(':mvp')
     api project(':baselibrary')
 }
+
 repositories {
     mavenCentral()
 }

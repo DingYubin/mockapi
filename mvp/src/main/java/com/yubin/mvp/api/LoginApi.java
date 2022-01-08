@@ -1,7 +1,7 @@
 package com.yubin.mvp.api;
 
 import com.google.gson.JsonObject;
-import com.yubin.httplibrary.mock_api.BaseResponse;
+import com.yubin.httplibrary.mockapi.BaseResponse;
 
 import io.reactivex.Observable;
 import retrofit2.http.Body;

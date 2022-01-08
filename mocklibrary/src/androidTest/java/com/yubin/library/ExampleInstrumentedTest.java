@@ -1,4 +1,4 @@
-package com.example.mock_api;
+package com.yubin.library;
 
 import android.content.Context;
 
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("com.example.mock_api", appContext.getPackageName());
+        assertEquals("com.example.library", appContext.getPackageName());
     }
 }

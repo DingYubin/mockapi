@@ -4,8 +4,8 @@ import android.content.Context;
 
 import com.google.gson.JsonObject;
 import com.yubin.httplibrary.HttpClient;
-import com.yubin.httplibrary.mock_api.BaseObserver;
-import com.yubin.httplibrary.mock_api.CTHttpTransformer;
+import com.yubin.httplibrary.mockapi.BaseObserver;
+import com.yubin.httplibrary.mockapi.CTHttpTransformer;
 
 
 /**
