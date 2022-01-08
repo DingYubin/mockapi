@@ -26,9 +26,6 @@ android {
 }
 
 dependencies {
-    implementation dependency.appcompat
-    implementation dependency.material
-    implementation dependency.constraintlayout
 
     implementation 'com.squareup.okhttp3:okhttp:5.0.0-alpha.2'
     testImplementation 'junit:junit:4.13.2'

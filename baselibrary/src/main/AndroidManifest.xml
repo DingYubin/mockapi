@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.yubin.baselibrary">
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <application>
+        <provider
+            android:name=".provider.BasicsContentProvider"
+            android:authorities="${applicationId}.BasicsContent"
+            android:exported="false" />
+    </application>
+</manifest>

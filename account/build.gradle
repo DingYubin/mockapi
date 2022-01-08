@@ -3,13 +3,14 @@ plugins {
 }
 
 android {
-    compileSdkVersion 31
+    compileSdkVersion appCompileSdkVersion
+    buildToolsVersion appBuildToolsVersion
 
     defaultConfig {
-        minSdkVersion 26
-        targetSdkVersion 31
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion appMinSdkVersion
+        targetSdkVersion appTargetSdkVersion
+        versionCode appVersionCode
+        versionName appVersionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -29,12 +30,6 @@ android {
 
 dependencies {
 
-    implementation 'androidx.appcompat:appcompat:1.4.0'
-    implementation 'com.google.android.material:material:1.4.0'
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
-
     implementation dependency.gson
     implementation dependency.rxjava2
     implementation dependency.rxandroid2
@@ -42,9 +37,10 @@ dependencies {
     implementation dependency.retrofit2_converter_gson
     implementation dependency.retrofit2_adapter_rxjava2
 
-    compileOnly 'org.projectlombok:lombok:1.18.22'
-    annotationProcessor 'org.projectlombok:lombok:1.18.22'
+    compileOnly dependency.lombok
+    annotationProcessor dependency.lombok
 
 
     implementation project(':httplibrary')
+    api project(':baselibrary')
 }
