@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="姓名"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/tv_mobile"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:text="手机号"
+        android:gravity="center"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_name"
+        />
+
+    <TextView
+        android:id="@+id/tv_age"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="年龄"
+        android:gravity="center"
+        android:textSize="30sp"
+        app:layout_constraintHorizontal_weight="3"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tab0"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:background="@color/st_bg_common_master_blue"
+        android:gravity="center"
+        android:text="tab1"
+        android:textColor="@color/st_bg_common_normal"
+        android:textSize="20sp"
+        app:layout_constraintHorizontal_weight="2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/tab1" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tab1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:text="tab2"
+        android:textSize="20sp"
+        android:textColor="@color/st_bg_common_normal"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/tab0"
+        app:layout_constraintRight_toLeftOf="@+id/tab2"
+        app:layout_constraintTop_toTopOf="@+id/tab0" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tab2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/bg_common_red"
+        android:gravity="center"
+        android:text="tab3"
+        app:layout_constraintHorizontal_weight="1"
+        android:textColor="@color/st_bg_common_normal"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/tab1"
+        app:layout_constraintRight_toLeftOf="@id/tab3"
+        app:layout_constraintTop_toTopOf="@+id/tab0" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tab3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:text="tab4"
+        android:textSize="20sp"
+        android:textColor="@color/st_bg_common_normal"
+        app:layout_constraintHorizontal_weight="3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/tab2"
+        app:layout_constraintRight_toLeftOf="@+id/tab4"
+        app:layout_constraintTop_toTopOf="@+id/tab0" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        app:layout_constraintHorizontal_weight="1"
+        android:id="@+id/tab4"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/bg_common_red"
+        android:gravity="center"
+        android:text="tab5"
+        android:textColor="@color/st_bg_common_normal"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/tab3"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tab0" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
