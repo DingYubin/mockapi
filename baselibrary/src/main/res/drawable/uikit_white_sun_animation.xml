@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:oneshot="false">
+    <item
+        android:drawable="@drawable/uikit_icon_white_sun_00"
+        android:duration="40" />
+    <item
+        android:drawable="@drawable/uikit_icon_white_sun_01"
+        android:duration="40" />
+    <item
+        android:drawable="@drawable/uikit_icon_white_sun_02"
+        android:duration="40" />
+    <item
+        android:drawable="@drawable/uikit_icon_white_sun_03"
+        android:duration="40" />
+    <item
+        android:drawable="@drawable/uikit_icon_white_sun_04"
+        android:duration="40" />
+    <item
+        android:drawable="@drawable/uikit_icon_white_sun_05"
+        android:duration="40" />
+    <item
+        android:drawable="@drawable/uikit_icon_white_sun_06"
+        android:duration="40" />
+    <item
+        android:drawable="@drawable/uikit_icon_white_sun_07"
+        android:duration="40" />
+    <item
+        android:drawable="@drawable/uikit_icon_white_sun_08"
+        android:duration="40" />
+    <item
+        android:drawable="@drawable/uikit_icon_white_sun_09"
+        android:duration="40" />
+    <item
+        android:drawable="@drawable/uikit_icon_white_sun_10"
+        android:duration="40" />
+    <item
+        android:drawable="@drawable/uikit_icon_white_sun_11"
+        android:duration="40" />
+    <item
+        android:drawable="@drawable/uikit_icon_white_sun_12"
+        android:duration="40" />
+    <item
+        android:drawable="@drawable/uikit_icon_white_sun_13"
+        android:duration="40" />
+    <item
+        android:drawable="@drawable/uikit_icon_white_sun_14"
+        android:duration="40" />
+    <item
+        android:drawable="@drawable/uikit_icon_white_sun_15"
+        android:duration="40" />
+    <item
+        android:drawable="@drawable/uikit_icon_white_sun_16"
+        android:duration="40" />
+    <item
+        android:drawable="@drawable/uikit_icon_white_sun_17"
+        android:duration="40" />
+    <item
+        android:drawable="@drawable/uikit_icon_white_sun_18"
+        android:duration="40" />
+    <item
+        android:drawable="@drawable/uikit_icon_white_sun_19"
+        android:duration="40" />
+    <item
+        android:drawable="@drawable/uikit_icon_white_sun_20"
+        android:duration="40" />
+    <item
+        android:drawable="@drawable/uikit_icon_white_sun_21"
+        android:duration="40" />
+    <item
+        android:drawable="@drawable/uikit_icon_white_sun_22"
+        android:duration="40" />
+    <item
+        android:drawable="@drawable/uikit_icon_white_sun_23"
+        android:duration="40" />
+    <item
+        android:drawable="@drawable/uikit_icon_white_sun_24"
+        android:duration="40" />
+    <item
+        android:drawable="@drawable/uikit_icon_white_sun_25"
+        android:duration="40" />
+    <item
+        android:drawable="@drawable/uikit_icon_white_sun_26"
+        android:duration="40" />
+    <item
+        android:drawable="@drawable/uikit_icon_white_sun_27"
+        android:duration="40" />
+    <item
+        android:drawable="@drawable/uikit_icon_white_sun_28"
+        android:duration="40" />
+    <item
+        android:drawable="@drawable/uikit_icon_white_sun_29"
+        android:duration="40" />
+</animation-list>

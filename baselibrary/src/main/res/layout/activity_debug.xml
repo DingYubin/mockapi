@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <HorizontalScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <RadioGroup
+            android:id="@+id/rg_flavors"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal" />
+    </HorizontalScrollView>
+
+
+    <RadioGroup
+        android:id="@+id/rg_router"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/rb_router_rn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="RN" />
+
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/rb_router_native"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Native" />
+
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/rb_router_h5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="H5"
+            android:visibility="gone" />
+    </RadioGroup>
+
+    <EditText
+        android:id="@+id/et_router_module_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="模块名"
+        android:text="Home"
+        android:textColor="@color/color_cec_222222" />
+
+    <Button
+        android:id="@+id/btn_forward_to_page"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="跳转" />
+</LinearLayout>

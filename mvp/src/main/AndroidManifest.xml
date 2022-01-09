@@ -4,7 +4,7 @@
 
     <application>
         <activity
-            android:name=".ui.LoginActivity"
+            android:name=".ui.MvpLoginActivity"
             android:exported="true" />
     </application>
 </manifest>

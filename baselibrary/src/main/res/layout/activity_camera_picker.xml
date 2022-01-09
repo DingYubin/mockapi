@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_222222"
+    android:orientation="vertical">
+
+    <SurfaceView
+        android:id="@+id/activity_camera_picker_surface"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+
+    <RelativeLayout
+        android:id="@+id/activity_camera_top"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:background="@color/color_222222">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/activity_camera_picker_return"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="9dp"
+            android:padding="5dp"
+            android:src="@drawable/icon_white_return" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/activity_camera_picker_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="@color/color_FFFFFF"
+            android:textSize="17sp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/activity_camera_picker_photo"
+            android:layout_width="wrap_content"
+            android:layout_height="27dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="14dp"
+            android:background="@drawable/bg_camera_text"
+            android:gravity="center"
+            android:paddingStart="6.5dp"
+            android:paddingEnd="6.5dp"
+            android:text="@string/base_select_from_photo"
+            android:textColor="@color/color_FFFFFF"
+            android:textSize="14sp" />
+    </RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/activity_camera_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="83dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/color_222222">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/activity_camera_picker_capture"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:drawableTop="@drawable/icon_capture"
+            android:drawablePadding="10dp"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:text="@string/base_capture"
+            android:textColor="@color/color_FFFFFF"
+            android:textSize="12sp" />
+    </FrameLayout>
+
+
+</RelativeLayout>

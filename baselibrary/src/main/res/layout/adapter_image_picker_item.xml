@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="84dp"
+    android:layout_height="84dp"
+    tools:viewBindingIgnore="true">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/adapter_item_image"
+        android:layout_width="84dp"
+        android:layout_height="84dp"
+        android:scaleType="centerCrop"
+        app:actualImageScaleType="centerCrop"
+        app:placeholderImage="@drawable/uikit_icon_place_holder_square"
+        app:placeholderImageScaleType="centerCrop" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/adapter_item_select_state"
+        android:layout_width="21dp"
+        android:layout_height="21dp"
+        android:layout_gravity="end|top"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"
+        android:background="@drawable/icon_image_picker_unselect"
+        android:gravity="center"
+        android:textColor="@color/color_ffffff"
+        android:textSize="14sp" />
+
+    <View
+        android:id="@+id/adapter_item_layer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#99FFFFFF"
+        android:visibility="gone" />
+
+</FrameLayout>

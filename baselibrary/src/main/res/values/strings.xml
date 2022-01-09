@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="permission_message_dialog_default">授权失败，请前往系统权限管理界面授权</string>
+    <string name="uikit_login_again">重新登录</string>
+    <string name="platform_account_not_login">账号未登录，请先登录</string>
+    <string name="platform_login_outof">账号状态已过期，请重新登录</string>
+    <string name="platform_out_login_toast">已在其他设备登录，请重新登录</string>
+    <string name="platform_refresh_pull">继续下拉可刷新～</string>
+    <string name="platform_refresh_release_finger">释放即可刷新哟～</string>
+    <string name="platform_refresh_refreshing">正在刷新</string>
+    <string name="platform_refresh_success">刷新成功</string>
+
+    <string name="platform_preview">预览</string>
+    <string name="platform_send">发送</string>
+    <string name="ok_number">确定(%d)</string>
+    <string name="all_photo">所有照片</string>
+    <string name="image_picker_no_photo">您的相册什么都没有~</string>
+    <string name="image_picker_cancel">取消</string>
+    <string name="image_picker_photo">照片</string>
+    <string name="image_picker_image">图片</string>
+    <string name="image_picker_not_select_photo">您还未选择照片</string>
+    <string name="base_capture">拍照</string>
+    <string name="base_select_from_photo">从相册上传</string>
+    <string name="base_take_picture_fail">拍照失败</string>
+
+    <item name="statusbarutil_fake_status_bar_view" type="id" />
+    <item name="statusbarutil_translucent_view" type="id" />
+</resources>

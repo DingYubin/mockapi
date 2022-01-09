@@ -4,5 +4,7 @@ include ':mocklibrary'
 include ':httplibrary'
 include ':account'
 include ':mvp'
+include ':mvvm'
 include ':netlibrary'
 include ':baselibrary'
+

@@ -87,7 +87,8 @@ dependencies {
 
     implementation project(':account')
     implementation project(':mvp')
-    api project(':baselibrary')
+    implementation project(':mvvm')
+    implementation project(':baselibrary')
 }
 
 repositories {

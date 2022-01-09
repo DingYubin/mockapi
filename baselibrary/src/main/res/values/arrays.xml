@@ -1,0 +1,47 @@
+<resources>
+    <string-array name="remote_server_entries">
+        <item>关闭</item>
+        <item>dev</item>
+        <item>test</item>
+        <item>demo</item>
+        <item>backup</item>
+        <item>hwbeta</item>
+    </string-array>
+
+    <string-array name="remote_server_values">
+        <item>none</item>
+        <item>_dev</item>
+        <item>_test</item>
+        <item>demo</item>
+        <item>backup</item>
+        <item>hwbeta</item>
+    </string-array>
+
+    <string-array name="rong_app_key_entries">
+        <item>dev</item>
+        <item>test</item>
+        <item>demo</item>
+        <item>backup</item>
+        <item>hwbeta</item>
+    </string-array>
+
+    <string-array name="rong_app_key_values">
+        <item>8luwapkv84z3l</item>
+        <item>8luwapkv84z3l</item>
+        <item>8w7jv4qb77uzy</item>
+        <item>lmxuhwaglevrd</item>
+        <item>kj7swf8okaan2</item>
+    </string-array>
+
+    <string-array name="router_prefix_entries">
+        <item>RN</item>
+        <item>Native</item>
+        <item>H5</item>
+    </string-array>
+
+    <string-array name="router_prefix_values">
+        <item>rn</item>
+        <item>native</item>
+        <item>h5</item>
+    </string-array>
+</resources>

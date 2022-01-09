@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="color_theme_button_start">#FF0488FF</color>
+    <color name="color_theme_button_end">#FF4369FF</color>
+    <color name="color_222222">#222222</color>
+    <color name="color_FFFFFF">#FFFFFF</color>
+    <color name="color_4D000000">#4D000000</color>
+
+    <color name="color_446AFF">#FF446AFF</color>
+    <color name="color_ffffff">#ffffff</color>
+    <color name="color_33000000">#33000000</color>
+    <color name="color_e6000000">#e6000000</color>
+    <color name="color_cc000B36">#cc000B36</color>
+
+</resources>

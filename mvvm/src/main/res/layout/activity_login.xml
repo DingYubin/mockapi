@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/head"
+        android:layout_width="match_parent"
+        android:background="@color/bg_common_white"
+        android:layout_height="48dp">
+
+        <ImageView
+            android:id="@+id/return_button"
+            android:layout_width="48dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:clickable="true"
+            android:scaleType="centerInside"
+            android:src="@drawable/btn_backwards_black"
+            tools:ignore="RtlHardcoded" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:textColor="@color/st_bg_common_normal"
+            android:textSize="18sp"
+            android:text="@string/login"
+            tools:ignore="PrivateResource"
+            tools:text="@string/login" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:background="#e0e0e0" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/container_connection"
+        style="@style/login_register_rr_et_container"
+        android:layout_below="@+id/head"
+        android:layout_marginTop="20dp">
+
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/et_connection"
+            style="@style/login_register_edit"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:hint="@string/enter_account" />
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/container_password"
+        style="@style/login_register_rr_et_container"
+        android:layout_below="@id/container_connection">
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/et_password"
+            style="@style/login_register_edit"
+            android:hint="@string/enter_login_pass"
+            android:paddingEnd="65dp"
+            tools:ignore="RtlSymmetry" />
+
+    </RelativeLayout>
+
+
+    <TextView
+        android:id="@+id/login"
+        style="@style/login_register_btn"
+        android:layout_below="@+id/container_password"
+        android:text="@string/login_now" />
+
+
+    <TextView
+        android:id="@+id/tv_forget_pwd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/login"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:text="@string/nav_forget_login_pass"
+        android:textColor="@drawable/text_blue" />
+
+</RelativeLayout>

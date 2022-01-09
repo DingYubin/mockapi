@@ -7,7 +7,7 @@ import android.os.Bundle;
 
 import com.yubin.account.user.ui.AccountActivity;
 import com.yubin.mockapi.R;
-import com.yubin.mvp.ui.LoginActivity;
+import com.yubin.mvp.ui.MvpLoginActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         findViewById(R.id.mvp).setOnClickListener(view -> {
-            LoginActivity.openLoginActivity(this);
+            MvpLoginActivity.openLoginActivity(this);
         });
     }
 }

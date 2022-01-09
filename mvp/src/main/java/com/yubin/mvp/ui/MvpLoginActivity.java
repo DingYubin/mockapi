@@ -3,7 +3,6 @@ package com.yubin.mvp.ui;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.widget.TextView;
@@ -17,11 +16,11 @@ import com.yubin.mvp.R;
 import com.yubin.mvp.interfaces.LoginInterface;
 import com.yubin.mvp.presenter.LoginPresenter;
 
-public class LoginActivity extends AppCompatActivity implements LoginInterface.View {
+public class MvpLoginActivity extends AppCompatActivity implements LoginInterface.View {
     private LoginInterface.Presenter presenter;
 
     public static void openLoginActivity(Activity activity) {
-        Intent intent = new Intent(activity, LoginActivity.class);
+        Intent intent = new Intent(activity, MvpLoginActivity.class);
         activity.startActivity(intent);
     }
 

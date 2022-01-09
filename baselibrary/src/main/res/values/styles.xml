@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Uikit.Dialog.AlertDialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:backgroundDimAmount">0.6</item>
+    </style>
+
+    <style name="Uikit.Button.Borderless" parent="android:Widget.Button"></style>
+
+    <style name="Uikit.Button.Blue" parent="Uikit.Button.Borderless">
+        <item name="android:background">@drawable/uikit_shape_semi_buttun_blue</item>
+        <item name="android:textColor">@color/color_ffffff</item>
+        <item name="android:gravity">center_vertical|center_horizontal</item>
+    </style>
+
+    <style name="Uikit.Button.White" parent="Uikit.Button.Borderless">
+        <item name="android:background">@drawable/uikit_shape_semi_button_white_border</item>
+        <item name="android:textColor">@color/color_222222</item>
+        <item name="android:gravity">center_vertical|center_horizontal</item>
+    </style>
+
+    <style name="Uikit.Button.blueBorder" parent="Uikit.Button.Borderless">
+        <item name="android:background">@drawable/uikit_shape_semi_buttun_border_blue</item>
+        <item name="android:textColor">#FF4369FF</item>
+        <item name="android:gravity">center_vertical|center_horizontal</item>
+    </style>
+
+    <!--背景透明弹框风格-->
+    <style name="Uikit.Dialog.Transparent" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+
+</resources>

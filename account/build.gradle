@@ -42,5 +42,5 @@ dependencies {
 
 
     implementation project(':httplibrary')
-    api project(':baselibrary')
+    implementation project(':baselibrary')
 }

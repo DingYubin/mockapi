@@ -38,5 +38,5 @@ dependencies {
     implementation dependency.retrofit2_adapter_rxjava2
 
     implementation project(':httplibrary')
-    api project(':baselibrary')
+    implementation project(':baselibrary')
 }

@@ -1,0 +1,41 @@
+<resources>
+    <string name="app_name">DebugSetting</string>
+    <!-- Settings Activity Title -->
+    <string name="title_activity_debug_settings">Settings</string>
+
+    <!-- Preference Key -->
+    <string name="key_confirm_router_forward">confirm_router_forward</string>
+    <string name="key_router_module_name">router_module_name</string>
+    <string name="key_router_prefix">router_prefix</string>
+    <string name="key_server_confirm_restart">server_confirm_restart</string>
+    <string name="key_feedback_upload_log_files">feedback_upload_log_files</string>
+    <string name="key_remote_server_flavor">remote_server_flavor</string>
+    <string name="key_use_local_server">use_local_server</string>
+    <string name="key_local_server_base_url">local_server_base_url</string>
+    <string name="key_local_server_im_base_url">local_server_im_base_url</string>
+    <string name="key_local_server_rong_app_key">local_server_rong_app_key</string>
+
+
+    <!-- Preference Titles -->
+    <string name="server_header">服务器</string>
+    <string name="router_header">路由跳转</string>
+    <string name="feedback_header">用户反馈</string>
+
+    <!-- 服务器环境 -->
+    <string name="local_server_base_url_title">Base Url</string>
+    <string name="local_server_im_base_url_title">IM Base Url</string>
+    <string name="local_server_rong_app_key_title">Rong APP Key</string>
+    <string name="remote_server_title">指定远程服务器</string>
+    <string name="use_local_server_title">使用本地服务器</string>
+    <string name="server_confirm_restart_title">重启以生效</string>
+    <string name="server_confirm_restart_summary_text">需要重新登录</string>
+
+    <!-- 路由协议 -->
+    <string name="router_prefix_title">页面类型</string>
+    <string name="router_module_name_title">模块名</string>
+    <string name="router_confirm_title">确定</string>
+    <string name="router_confirm_summary_text">跳转到指定页面</string>
+    <string name="feedback_log_upload_title">日志上传</string>
+    <string name="feedback_log_upload_summary_text">上传日志到服务器</string>
+
+</resources>
