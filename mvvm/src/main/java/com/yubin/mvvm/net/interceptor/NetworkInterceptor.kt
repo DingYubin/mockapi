@@ -18,7 +18,7 @@ class NetworkInterceptor : Interceptor{
     }
 
     override fun intercept(chain: Interceptor.Chain): Response {
-        Log.d("CMNetworkInterceptor", "intercept() called with: chain = $chain")
+        Log.d("NetworkInterceptor", "intercept() called with: chain = $chain")
         val request = chain.request()
                 .newBuilder()
                 .addHeader("Content-Type", "application/json;charset=utf-8")

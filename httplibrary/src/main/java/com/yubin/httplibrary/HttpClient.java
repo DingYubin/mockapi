@@ -3,13 +3,13 @@ package com.yubin.httplibrary;
 import android.content.Context;
 import android.text.TextUtils;
 
+import com.yubin.httplibrary.util.MockUtil;
 import com.yubin.library.mock.MockApiInterceptor;
 import com.yubin.library.mock.MockApiSuite;
 import com.yubin.library.mock.api.StandardMockApi;
 import com.yubin.library.mock.constant.MockHttpMethod;
 import com.google.gson.Gson;
 import com.yubin.httplibrary.model.MockConfig;
-import com.yubin.httplibrary.util.ToolUtil;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
@@ -34,7 +34,7 @@ public class HttpClient {
 			// mock 数据默认存放在assets目录中，如果需要放到sdcard上，使用new MockApiInterceptor(context, true)
 			MockApiInterceptor mockApiInterceptor = new MockApiInterceptor(context);
 
-			String mockJson = ToolUtil.stringFromAssets(context, "config.json");
+			String mockJson = MockUtil.stringFromAssets(context, "config.json");
 			if (!TextUtils.isEmpty(mockJson)){
 				MockConfig mockConfig = new Gson().fromJson(mockJson, MockConfig.class);
 				for (MockConfig.Mocks mocks : mockConfig.getMocks()) {

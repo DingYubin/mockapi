@@ -2,6 +2,7 @@ package com.yubin.library.mock;
 
 import android.content.Context;
 import android.os.Environment;
+import android.util.Log;
 
 import com.yubin.library.mock.api.AbstractMockApi;
 import com.yubin.library.mock.api.PageMockApi;
@@ -47,6 +48,7 @@ public class MockApiInterceptor implements Interceptor {
 
 	@Override
 	public Response intercept(Chain chain) throws IOException {
+		Log.d("NetworkInterceptor", "intercept() called with: chain = $chain");
 		Request request = chain.request();
 		HttpUrl httpUrl = request.url();
 		String path = httpUrl.url().getPath();

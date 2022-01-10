@@ -1,0 +1,14 @@
+{
+	"mocks": [
+		{
+			"name": "login",
+			"mock": [
+				{
+					"api": "/api/login",
+					"method": "post",
+					"mockFile": "login.json"
+				}
+			]
+		}
+	]
+}

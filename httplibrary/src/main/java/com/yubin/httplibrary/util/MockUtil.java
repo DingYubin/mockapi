@@ -3,14 +3,13 @@ package com.yubin.httplibrary.util;
 import android.content.Context;
 import android.net.Uri;
 
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
 import io.reactivex.annotations.NonNull;
 
-public class ToolUtil {
+public class MockUtil {
     /**
      * 从asset中获取内容
      */

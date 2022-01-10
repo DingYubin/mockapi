@@ -11,7 +11,7 @@ import okhttp3.Response
 class ResponseInterceptor : Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response {
-        Log.d("CMResponseInterceptor", "intercept() called with: chain = $chain")
+        Log.d("ResponseInterceptor", "intercept() called with: chain = $chain")
         return chain.proceed(chain.request())
     }
 }

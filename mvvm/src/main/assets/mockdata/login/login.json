@@ -1,0 +1,10 @@
+{
+	"errorCode": 0,
+	"data": {
+		"accessToken": "1234567890",
+		"userLoginId": "nice007",
+		"isLogin": true
+	},
+	"message": "登陆成功",
+	"temCode": 1000
+}
