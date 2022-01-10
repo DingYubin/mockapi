@@ -1,7 +1,7 @@
 package com.yubin.mvvm.protocol
 
 import com.yubin.mvvm.bean.UserEntity
-import com.yubin.net.model.BaseResponse
+import com.yubin.mvvm.net.model.BaseResponse
 import okhttp3.RequestBody
 import retrofit2.http.Body
 import retrofit2.http.POST

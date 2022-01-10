@@ -7,6 +7,7 @@ import com.yubin.baselibrary.appstart.AppStartInitializer
 import com.yubin.baselibrary.appstart.IAppStartCallback
 import com.yubin.baselibrary.core.BaseApplication
 import com.yubin.baselibrary.util.AutoSizeInitHelper
+import com.yubin.mvvm.net.NetworkInitHelper
 
 class MainApplication : BaseApplication() {
 
@@ -25,6 +26,7 @@ class MainApplication : BaseApplication() {
         AppStartInitializer.startUp(this, object : IAppStartCallback {
             override fun initInMainProcess(app: Application) {
                 AutoSizeInitHelper.init()
+                NetworkInitHelper.initNetWork(app)
             }
 
             override fun initInMainProcessBackgroundThread(app: Application) {

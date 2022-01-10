@@ -1,4 +1,4 @@
-package com.yubin.net.model
+package com.yubin.mvvm.net.model
 
 import java.io.Serializable
 

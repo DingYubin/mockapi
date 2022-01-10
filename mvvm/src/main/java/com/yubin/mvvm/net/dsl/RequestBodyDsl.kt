@@ -1,4 +1,4 @@
-package com.yubin.net.dsl
+package com.yubin.mvvm.net.dsl
 
 import com.google.gson.Gson
 import com.google.gson.JsonArray

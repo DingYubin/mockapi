@@ -1,4 +1,4 @@
-package com.yubin.net.model
+package com.yubin.mvvm.net.model
 
 /**
  * Description: 网络请求错误时服务器返回的Response Body

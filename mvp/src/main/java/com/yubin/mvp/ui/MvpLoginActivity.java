@@ -27,7 +27,7 @@ public class MvpLoginActivity extends AppCompatActivity implements LoginInterfac
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.mvp_login);
         presenter = new LoginPresenter(this, this);
         initView();
     }
@@ -42,7 +42,7 @@ public class MvpLoginActivity extends AppCompatActivity implements LoginInterfac
 
         btnLogin.setOnClickListener(view -> {
 
-            Log.d("LoginActivity", "account : " + account.getText().toString() + ", password : " + password.getText().toString());
+            Log.d("MvpLoginActivity", "account : " + account.getText().toString() + ", password : " + password.getText().toString());
             presenter.login(account.getText().toString(), password.getText().toString());
         });
 

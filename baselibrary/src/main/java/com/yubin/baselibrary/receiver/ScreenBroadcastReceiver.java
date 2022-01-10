@@ -8,11 +8,11 @@ import android.text.TextUtils;
 /**
  * description: 息屏亮屏的广播接收器
  */
-public class CMScreenBroadcastReceiver extends BroadcastReceiver {
+public class ScreenBroadcastReceiver extends BroadcastReceiver {
 
-    private CMScreenStatus mScreenStatus;
+    private ScreenStatus mScreenStatus;
 
-    public CMScreenBroadcastReceiver(CMScreenStatus screenStatus) {
+    public ScreenBroadcastReceiver(ScreenStatus screenStatus) {
         this.mScreenStatus = screenStatus;
     }
 
@@ -23,11 +23,11 @@ public class CMScreenBroadcastReceiver extends BroadcastReceiver {
             return;
         }
         if (Intent.ACTION_SCREEN_ON.equals(action)) {
-            mScreenStatus.setScreenStatus(CMScreenStatus.ON);
+            mScreenStatus.setScreenStatus(ScreenStatus.ON);
         }
     }
 
-    public CMScreenStatus getScreenStatus() {
+    public ScreenStatus getScreenStatus() {
         return mScreenStatus;
     }
 }

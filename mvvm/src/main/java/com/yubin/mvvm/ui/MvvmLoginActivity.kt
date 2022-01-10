@@ -3,12 +3,13 @@ package com.yubin.mvvm.ui
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.yubin.baselibrary.extension.onViewClick
 import com.yubin.baselibrary.ui.NativeActivity
 import com.yubin.mvvm.databinding.ActivityLoginBinding
-import com.yubin.mvvm.model.MvvmLoginViewModel
+import com.yubin.mvvm.net.model.MvvmLoginViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.MainScope
 
@@ -16,11 +17,14 @@ class MvvmLoginActivity : NativeActivity<ActivityLoginBinding>(), CoroutineScope
 
     private lateinit var viewModel: MvvmLoginViewModel
 
-    fun openLoginActivity(activity: Activity) {
-        val intent = Intent(activity, MvvmLoginActivity::class.java)
-        activity.startActivity(intent)
+    companion object {
+        @JvmStatic
+        fun openLoginActivity(activity: Activity) {
+            val intent = Intent(activity, MvvmLoginActivity::class.java)
+            activity.startActivity(intent)
+        }
     }
-
+    
     override fun getViewBinding(): ActivityLoginBinding {
         return ActivityLoginBinding.inflate(layoutInflater)
     }
@@ -50,11 +54,17 @@ class MvvmLoginActivity : NativeActivity<ActivityLoginBinding>(), CoroutineScope
     }
 
     private fun initViewStateAndListener() {
-
+        binding.login.isEnabled = true
         binding.login.onViewClick{
             val account = binding.etConnection.text.toString()
             val password = binding.etPassword.text.toString()
+
+            Log.d("MvvmLoginActivity", "account : $account, password : $password")
             viewModel.login(account, password)
+        }
+
+        binding.returnButton.onViewClick{
+            finish()
         }
     }
 

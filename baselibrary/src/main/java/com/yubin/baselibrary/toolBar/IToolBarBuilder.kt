@@ -10,7 +10,7 @@ import androidx.appcompat.widget.Toolbar
  * description: toolBar的生成接口定义
  *
  */
-interface ICMToolBarBuilder {
+interface IToolBarBuilder {
     /**
      * toolBar的生成
      */

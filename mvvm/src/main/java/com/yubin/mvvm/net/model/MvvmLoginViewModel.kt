@@ -1,4 +1,4 @@
-package com.yubin.mvvm.model
+package com.yubin.mvvm.net.model
 
 import android.app.Application
 import androidx.lifecycle.MutableLiveData

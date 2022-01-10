@@ -9,7 +9,7 @@ import com.yubin.baselibrary.databinding.UikitWidgetToolBarBinding
 /**
  * description: 默认的toolBar的生成器
  */
-class CMToolBarBuilder(context: Context?) : ICMToolBarBuilder {
+class ToolBarBuilder(context: Context?) : IToolBarBuilder {
     private var binding: UikitWidgetToolBarBinding =
         UikitWidgetToolBarBinding.inflate(LayoutInflater.from(context), null, false)
 
