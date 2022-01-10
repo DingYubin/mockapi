@@ -42,7 +42,7 @@ class NetworkInterceptor : Interceptor{
     private fun generateUserAgent(): String {
         //由于header不允许出现中文，而brand和model都有可能为中文，所以需要encode
         val packageInfo = context.packageManager.getPackageInfo(context.packageName, 0)
-        return "cassstoreapp/${packageInfo.versionName}.$mHotUpdateVersion" +
+        return "storeapp/${packageInfo.versionName}.$mHotUpdateVersion" +
                 " Android/${android.os.Build.VERSION.RELEASE}" +
                 " ${Uri.encode(android.os.Build.BRAND.removeSpace())}/${Uri.encode(android.os.Build.MODEL.removeSpace())}"
     }
