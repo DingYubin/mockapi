@@ -3,6 +3,8 @@ plugins {
     id 'kotlin-android'
 }
 
+apply from: '../arouter.gradle'
+
 android {
     compileSdkVersion appCompileSdkVersion
     buildToolsVersion appBuildToolsVersion
@@ -67,6 +69,10 @@ dependencies {
 
     //**************第三方依赖库*自动适配屏幕**************//
     api 'me.jessyan:autosize:1.2.1'
+    //**************第三方依赖库*ARouter**************//
+    api("com.alibaba:arouter-api:1.5.0", {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
     //复杂布局adapter
     api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.34'
 

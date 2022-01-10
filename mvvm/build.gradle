@@ -2,6 +2,7 @@ plugins {
     id 'com.android.library'
     id 'kotlin-android'
 }
+apply from: '../arouter.gradle'
 
 android {
     compileSdk appCompileSdkVersion
@@ -42,6 +43,4 @@ dependencies {
     implementation project(':netlibrary')
     implementation project(':mocklibrary')
 
-    compileOnly dependency.lombok
-    annotationProcessor dependency.lombok
 }

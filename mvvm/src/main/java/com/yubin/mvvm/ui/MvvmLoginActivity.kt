@@ -6,13 +6,16 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.yubin.baselibrary.extension.onViewClick
+import com.yubin.baselibrary.router.path.RouterPath
 import com.yubin.baselibrary.ui.NativeActivity
 import com.yubin.mvvm.databinding.ActivityLoginBinding
 import com.yubin.mvvm.net.model.MvvmLoginViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.MainScope
 
+@Route(path = RouterPath.AccountPage.PATH_LOGIN)
 class MvvmLoginActivity : NativeActivity<ActivityLoginBinding>(), CoroutineScope by MainScope() {
 
     private lateinit var viewModel: MvvmLoginViewModel

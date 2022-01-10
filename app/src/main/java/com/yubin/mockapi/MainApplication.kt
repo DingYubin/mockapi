@@ -6,6 +6,7 @@ import androidx.multidex.MultiDex
 import com.yubin.baselibrary.appstart.AppStartInitializer
 import com.yubin.baselibrary.appstart.IAppStartCallback
 import com.yubin.baselibrary.core.BaseApplication
+import com.yubin.baselibrary.router.CTRouteInitHelper
 import com.yubin.baselibrary.util.AutoSizeInitHelper
 import com.yubin.mvvm.net.NetworkInitHelper
 
@@ -30,6 +31,7 @@ class MainApplication : BaseApplication() {
             }
 
             override fun initInMainProcessBackgroundThread(app: Application) {
+                initRouter(app)
             }
 
             override fun initInOther(app: Application) {
@@ -37,6 +39,11 @@ class MainApplication : BaseApplication() {
 
         })
 
+    }
+
+    private fun initRouter(application: Application) {
+        //路由
+        CTRouteInitHelper.initWithApplication(application, BuildConfig.DEBUG)
     }
 
 
