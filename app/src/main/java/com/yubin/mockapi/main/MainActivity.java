@@ -1,16 +1,15 @@
 package com.yubin.mockapi.main;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.yubin.account.user.ui.AccountActivity;
 import com.yubin.baselibrary.router.path.RouterPath;
 import com.yubin.mockapi.R;
 import com.yubin.mvp.ui.MvpLoginActivity;
-import com.yubin.mvvm.ui.MvvmLoginActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,7 +29,14 @@ public class MainActivity extends AppCompatActivity {
 
         findViewById(R.id.mvvm).setOnClickListener(view -> {
             ARouter.getInstance()
-                    .build(RouterPath.AccountPage.PATH_LOGIN)
+                    .build(RouterPath.AccountPage.PATH_MVVM_LOGIN)
+                    .navigation();
+        });
+
+        findViewById(R.id.mvx).setOnClickListener(view -> {
+
+            ARouter.getInstance()
+                    .build(RouterPath.AccountPage.PATH_MVX_LOGIN)
                     .navigation();
         });
     }

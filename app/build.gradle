@@ -88,6 +88,7 @@ dependencies {
     implementation project(':account')
     implementation project(':mvp')
     implementation project(':mvvm')
+    implementation project(':mvx')
     implementation project(':baselibrary')
 }
 

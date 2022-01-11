@@ -10,7 +10,12 @@ object RouterPath {
             /**
              * 登录页面
              */
-            const val PATH_LOGIN = "/account/login"
+            const val PATH_MVVM_LOGIN = "/mvvm/login"
+
+            /**
+             * 登录页面
+             */
+            const val PATH_MVX_LOGIN = "/mvx/login"
 
         }
     }

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="android.text.TextUtils" />
+
+        <variable
+            name="model"
+            type="com.yubin.mvx.mvvm.model.LoginViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/return_button"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:clickable="true"
+            android:scaleType="centerInside"
+            android:src="@drawable/btn_backwards_black"
+            android:elevation="1dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:gravity="center"
+            android:background="@color/bg_common_white"
+            android:textColor="@color/st_bg_common_normal"
+            android:textSize="18sp"
+            android:text="@string/mvx_login"
+            app:layout_constraintLeft_toLeftOf="@+id/return_button"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/mvx_login" />
+
+
+        <View
+            android:id="@+id/line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:background="#e0e0e0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/account"
+            style="@style/login_register_edit"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginTop="20dp"
+            android:text="@={model.name}"
+            android:hint="@string/enter_account"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/line" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/nameClearImg"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="end|center_vertical"
+            android:clickable="true"
+            android:onClick="@{() -> model.clearName()}"
+            android:scaleType="centerInside"
+            android:visibility="@{TextUtils.isEmpty(model.name) ? View.GONE : View.VISIBLE}"
+            app:layout_constraintRight_toRightOf="@+id/account"
+            app:layout_constraintTop_toTopOf="@+id/account"
+            app:srcCompat="@drawable/ic_svg_circle_delete" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/password"
+            style="@style/login_register_edit"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginTop="20dp"
+            android:text="@={model.name}"
+            android:hint="@string/enter_login_pass"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/account" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/login"
+            style="@style/login_register_btn"
+            android:text="@string/login_now"
+            android:enabled="true"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/password" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_forget_pwd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@={model.pwd}"
+            android:layout_marginTop="15dp"
+            android:textColor="@drawable/text_blue"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/login" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -37,9 +37,9 @@
                 android:text="@string/mvvm" />
 
             <TextView
-                android:id="@+id/mvi"
+                android:id="@+id/mvx"
                 style="@style/develop_setting_style"
-                android:text="@string/mvi" />
+                android:text="@string/mvx" />
 
         </LinearLayout>
     </ScrollView>

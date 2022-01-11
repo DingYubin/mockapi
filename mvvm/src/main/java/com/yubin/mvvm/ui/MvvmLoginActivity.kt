@@ -15,7 +15,7 @@ import com.yubin.mvvm.net.model.MvvmLoginViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.MainScope
 
-@Route(path = RouterPath.AccountPage.PATH_LOGIN)
+@Route(path = RouterPath.AccountPage.PATH_MVVM_LOGIN)
 class MvvmLoginActivity : NativeActivity<ActivityLoginBinding>(), CoroutineScope by MainScope() {
 
     private lateinit var viewModel: MvvmLoginViewModel
