@@ -1,4 +1,4 @@
-package com.yubin.mvx.mvvm.ui;
+package com.yubin.mvx.databinding.ui;
 
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
@@ -6,10 +6,10 @@ import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.yubin.baselibrary.router.path.RouterPath;
+import com.yubin.mvx.databinding.base.BaseActivity;
 import com.yubin.mvx.R;
-import com.yubin.mvx.base.BaseActivity;
 import com.yubin.mvx.databinding.ActivityLoginNewBinding;
-import com.yubin.mvx.mvvm.model.LoginViewModel;
+import com.yubin.mvx.databinding.model.LoginViewModel;
 
 @Route(path = RouterPath.AccountPage.PATH_MVX_LOGIN)
 public class LoginActivity extends BaseActivity<ActivityLoginNewBinding> {

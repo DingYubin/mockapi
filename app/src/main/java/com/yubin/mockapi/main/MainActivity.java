@@ -35,9 +35,9 @@ public class MainActivity extends AppCompatActivity {
 
         findViewById(R.id.mvx).setOnClickListener(view -> {
 
-            ARouter.getInstance()
-                    .build(RouterPath.AccountPage.PATH_MVX_LOGIN)
-                    .navigation();
+//            ARouter.getInstance()
+//                    .build(RouterPath.AccountPage.PATH_MVX_LOGIN)
+//                    .navigation();
         });
     }
 }

@@ -4,7 +4,7 @@
 
     <application>
         <activity
-            android:name=".mvvm.ui.LoginActivity"
+            android:name=".databinding.ui.LoginActivity"
             android:exported="true" />
     </application>
 </manifest>

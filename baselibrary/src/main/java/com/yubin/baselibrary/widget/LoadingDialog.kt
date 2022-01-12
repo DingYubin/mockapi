@@ -11,7 +11,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
 import com.yubin.baselibrary.R
 import com.yubin.baselibrary.databinding.DialogLoadingBinding
-import com.yubin.baselibrary.ui.BaseDialog
+import com.yubin.baselibrary.ui.basemvvm.BaseDialog
 import com.yubin.baselibrary.util.CMDisplayHelper.dp
 
 /**

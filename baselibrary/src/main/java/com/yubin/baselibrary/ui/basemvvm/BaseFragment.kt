@@ -1,4 +1,4 @@
-package com.yubin.baselibrary.ui
+package com.yubin.baselibrary.ui.basemvvm
 
 import android.os.Bundle
 import android.view.LayoutInflater

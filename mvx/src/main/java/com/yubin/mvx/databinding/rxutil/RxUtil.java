@@ -1,11 +1,11 @@
-package com.yubin.mvx.rx;
+package com.yubin.mvx.databinding.rxutil;
 
 
-import static com.yubin.mvx.util.ExecutorUtil.getSingleScheduler;
+import static com.yubin.mvx.databinding.util.ExecutorUtil.getSingleScheduler;
 
 import android.os.Build;
 
-import com.yubin.mvx.util.ExecutorUtil;
+import com.yubin.mvx.databinding.util.ExecutorUtil;
 
 import org.reactivestreams.Publisher;
 
@@ -31,8 +31,6 @@ import io.reactivex.schedulers.Schedulers;
 
 /**
  * <pre>
- *     @author : xiaoqing
- *     e-mail : qing.xiao@getech.cn
  *     time   : 2017/08/01
  *     desc   : RXJava工具类
  *     version: 1.0

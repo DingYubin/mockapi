@@ -1,4 +1,4 @@
-package com.yubin.mvx.util;
+package com.yubin.mvx.databinding.util;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;

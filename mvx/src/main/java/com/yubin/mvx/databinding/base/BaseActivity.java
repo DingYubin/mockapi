@@ -1,4 +1,4 @@
-package com.yubin.mvx.base;
+package com.yubin.mvx.databinding.base;
 
 import android.os.Bundle;
 
@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.inject.Inject;
 
 
 /**
@@ -25,6 +26,8 @@ import java.util.Set;
 
 public abstract class BaseActivity<SV extends ViewDataBinding> extends AppCompatActivity {
 
+    @Inject
+    ViewModelProvider.Factory viewModelFactory;
 
     /**
      * 布局
@@ -53,7 +56,7 @@ public abstract class BaseActivity<SV extends ViewDataBinding> extends AppCompat
 
     protected <T extends BaseViewModel> T getViewModel(Class<T> tClass) {
 
-        T baseViewModel = new ViewModelProvider(this).get(tClass);
+        T baseViewModel = new ViewModelProvider(this, viewModelFactory).get(tClass);
         addViewModel(baseViewModel);
         return baseViewModel;
     }

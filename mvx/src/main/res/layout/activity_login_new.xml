@@ -11,7 +11,7 @@
 
         <variable
             name="model"
-            type="com.yubin.mvx.mvvm.model.LoginViewModel" />
+            type="com.yubin.mvx.databinding.model.LoginViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

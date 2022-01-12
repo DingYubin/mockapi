@@ -1,23 +1,17 @@
-package com.yubin.baselibrary.ui
+package com.yubin.baselibrary.ui.basemvvm
 
 import android.app.Dialog
 import android.content.Intent
 import android.content.IntentFilter
-import android.graphics.Color
 import android.os.Bundle
 import android.view.View
-import android.view.ViewGroup
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
-import com.yubin.baselibrary.viewmodel.ApplicationViewModelProvider
-import com.yubin.baselibrary.toolBar.ToolBarBuilder
-import com.yubin.baselibrary.toolBar.IToolBarBuilder
-import com.yubin.baselibrary.R
 import com.yubin.baselibrary.receiver.ScreenBroadcastReceiver
 import com.yubin.baselibrary.receiver.ScreenStatus
-import com.yubin.baselibrary.util.CMStatusBarUtil
-import com.yubin.baselibrary.util.CMUnitHelper
+import com.yubin.baselibrary.toolBar.IToolBarBuilder
+import com.yubin.baselibrary.viewmodel.ApplicationViewModelProvider
 import com.yubin.baselibrary.widget.LoadingDialog
 
 

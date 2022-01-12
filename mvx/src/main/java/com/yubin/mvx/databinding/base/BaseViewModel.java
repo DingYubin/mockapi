@@ -1,11 +1,11 @@
-package com.yubin.mvx.base;
+package com.yubin.mvx.databinding.base;
 
 import android.app.Application;
 import android.content.Context;
 
 import androidx.lifecycle.AndroidViewModel;
 
-import com.yubin.mvx.rx.ISubScription;
+import com.yubin.mvx.databinding.rxutil.ISubScription;
 
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
@@ -47,8 +47,4 @@ public class BaseViewModel extends AndroidViewModel implements ISubScription {
         }
     }
 
-    @Override
-    protected void onCleared() {
-        super.onCleared();
-    }
 }
