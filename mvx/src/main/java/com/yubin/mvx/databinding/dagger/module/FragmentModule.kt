@@ -12,5 +12,5 @@ import dagger.Module
 @Module
 interface FragmentModule {
 //    @ContributesAndroidInjector
-//    fun contributeContactFragment(): ContactFragment?
+//    fun contributeContactFragment(): ContactFragment
 }

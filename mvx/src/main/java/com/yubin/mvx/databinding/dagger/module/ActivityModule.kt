@@ -14,7 +14,8 @@ import dagger.android.ContributesAndroidInjector
 @Module
 interface ActivityModule {
     @ContributesAndroidInjector
-    fun contributeLoginActivity(): LoginActivity? //    @ContributesAndroidInjector
+    fun contributeLoginActivity(): LoginActivity
+
     //    SplashActivity contributeSplashActivity();
     //
     //    @ContributesAndroidInjector(modules = di.FragmentModule.class)

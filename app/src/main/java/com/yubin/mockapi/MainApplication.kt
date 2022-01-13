@@ -12,6 +12,7 @@ import com.yubin.mvvm.net.NetworkInitHelper
 
 class MainApplication : BaseApplication() {
 
+
     companion object {
         lateinit var application: MainApplication
     }
@@ -46,6 +47,5 @@ class MainApplication : BaseApplication() {
         //路由
         CTRouteInitHelper.initWithApplication(application, BuildConfig.DEBUG)
     }
-
 
 }

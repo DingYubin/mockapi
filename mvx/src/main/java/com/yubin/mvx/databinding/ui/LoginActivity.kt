@@ -2,7 +2,6 @@ package com.yubin.mvx.databinding.ui
 
 import android.text.method.PasswordTransformationMethod
 import android.util.Log
-import android.view.View
 import android.widget.Toast
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.yubin.baselibrary.router.path.RouterPath
@@ -14,6 +13,7 @@ import com.yubin.mvx.databinding.model.LoginViewModel
 @Route(path = RouterPath.AccountPage.PATH_MVX_LOGIN)
 class LoginActivity : BaseActivity<ActivityLoginNewBinding?>() {
     private var loginViewModel: LoginViewModel? = null
+
     override fun getLayoutId(): Int {
         return R.layout.activity_login_new
     }
@@ -25,13 +25,13 @@ class LoginActivity : BaseActivity<ActivityLoginNewBinding?>() {
 
     override fun init() {
         bindingView!!.password.transformationMethod = PasswordTransformationMethod.getInstance()
-        bindingView!!.login.setOnClickListener { view: View? ->
+        bindingView!!.login.setOnClickListener {
             Log.d(
                 "MvpLoginActivity",
                 "account : " + bindingView!!.account.text.toString() + ", password : " + bindingView!!.password.text.toString()
             )
         }
-        bindingView!!.returnButton.setOnClickListener { view: View? -> finish() }
+        bindingView!!.returnButton.setOnClickListener { finish() }
     }
 
     private fun showMsg(msg: String) {
