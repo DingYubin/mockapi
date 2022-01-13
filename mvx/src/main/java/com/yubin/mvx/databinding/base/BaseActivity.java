@@ -4,7 +4,6 @@ import android.os.Bundle;
 
 import androidx.annotation.LayoutRes;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
 import androidx.lifecycle.ViewModelProvider;
@@ -13,6 +12,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.inject.Inject;
+
+import dagger.android.support.DaggerAppCompatActivity;
 
 
 /**
@@ -24,7 +25,7 @@ import javax.inject.Inject;
  * </pre>
  */
 
-public abstract class BaseActivity<SV extends ViewDataBinding> extends AppCompatActivity {
+public abstract class BaseActivity<SV extends ViewDataBinding> extends DaggerAppCompatActivity {
 
     @Inject
     ViewModelProvider.Factory viewModelFactory;
@@ -70,11 +71,6 @@ public abstract class BaseActivity<SV extends ViewDataBinding> extends AppCompat
         init();
 
     }
-
-    public void setCustomTheme() {
-
-    }
-
 
     protected void addViewModel(BaseViewModel baseViewModel) {
         addViewModel(baseViewModel, true);

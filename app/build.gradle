@@ -31,14 +31,6 @@ android {
 
     }
 
-    //分包2
-    dexOptions {
-        javaMaxHeapSize "4g"
-        preDexLibraries = false
-        additionalParameters = ['--multi-dex', '--main-dex-list=' + project.rootDir.absolutePath + '/app/maindexlist.txt', '--minimal-main-dex',
-                                '--set-max-idx-number=1000']
-    }
-
     buildTypes {
         debug {
             ndk {
@@ -67,13 +59,13 @@ android {
     }
 
 
-    applicationVariants.all { variant ->
-        if (variant.buildType.name == 'release') {
-            variant.mergeAssets.doLast {
-                delete(fileTree(dir: variant.mergeAssets.outputDir, includes: ['*.json', '*.zip', 'mockdata/**/*']))
-            }
-        }
-    }
+//    applicationVariants.all { variant ->
+//        if (variant.buildType.name == 'release') {
+//            variant.mergeAssets.doLast {
+//                delete(fileTree(dir: variant.mergeAssets.outputDir, includes: ['*.json', '*.zip', 'mockdata/**/*']))
+//            }
+//        }
+//    }
 
     buildFeatures {
         viewBinding true

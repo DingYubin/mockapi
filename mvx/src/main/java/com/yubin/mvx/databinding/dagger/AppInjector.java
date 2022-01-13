@@ -19,6 +19,7 @@ public class AppInjector {
     }
 
     public static void init(Application app) {
+//        DaggerAppCompaonent
         appComponent.inject(app);
     }
 }
