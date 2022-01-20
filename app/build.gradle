@@ -17,6 +17,14 @@ android {
         cruncherEnabled = false
     }
 
+    //调试
+    if(rootProject.hasProperty('devBuild')){
+        splits.abi.enable = false
+        splits.density.enable = false
+        //禁用PNG压缩
+        aaptOptions.cruncherEnabled = false
+    }
+
     compileSdkVersion rootProject.ext.android.compileSdkVersion
     buildToolsVersion rootProject.ext.android.buildToolsVersion
 
@@ -30,6 +38,8 @@ android {
         signingConfig signingConfigs.release
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
 
+        //调试
+        resConfigs("zh","xxhdpi")
     }
 
     buildTypes {
