@@ -12,8 +12,10 @@ import dagger.android.ContributesAndroidInjector
 </pre> *
  */
 @Module
-interface ActivityModule {
-    @ContributesAndroidInjector
+interface ActivityBindingModule {
+
+    @ActivityScoped
+    @ContributesAndroidInjector(modules = [])
     fun contributeLoginActivity(): LoginActivity
 
     //    SplashActivity contributeSplashActivity();

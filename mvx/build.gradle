@@ -7,13 +7,14 @@ plugins {
 apply from: '../arouter.gradle'
 
 android {
-    compileSdk appCompileSdkVersion
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
 
     defaultConfig {
-        minSdkVersion appMinSdkVersion
-        targetSdkVersion appTargetSdkVersion
-        versionCode appVersionCode
-        versionName appVersionName
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -27,8 +28,8 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility appJavaCompatibility
-        targetCompatibility appJavaCompatibility
+        sourceCompatibility rootProject.ext.android.javaCompatibility
+        targetCompatibility rootProject.ext.android.javaCompatibility
     }
 
     dataBinding {

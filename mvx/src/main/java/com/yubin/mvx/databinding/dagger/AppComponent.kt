@@ -3,7 +3,7 @@ package com.yubin.mvx.databinding.dagger
 import android.app.Application
 import com.yubin.mvx.databinding.dagger.data.DbModule
 import com.yubin.mvx.databinding.dagger.data.RepositoryModule
-import com.yubin.mvx.databinding.dagger.module.ActivityModule
+import com.yubin.mvx.databinding.dagger.module.ActivityBindingModule
 import com.yubin.mvx.databinding.dagger.module.ApplicationModule
 import com.yubin.mvx.databinding.dagger.module.ServiceModule
 import dagger.BindsInstance
@@ -22,7 +22,7 @@ import javax.inject.Singleton
 @Component(modules = [ApplicationModule::class,
     RepositoryModule::class,
     DbModule::class,
-    ActivityModule::class,
+    ActivityBindingModule::class,
     ServiceModule::class,
     AndroidSupportInjectionModule::class])
 interface AppComponent {
