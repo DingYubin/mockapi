@@ -80,5 +80,6 @@ dependencies {
     //复杂布局adapter
     api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.34'
 
+
     //**************本地依赖库**************//
 }

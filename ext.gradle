@@ -21,4 +21,13 @@ ext {
             retrofit2_converter_gson   : "com.squareup.retrofit2:converter-gson:2.9.0",
             retrofit2_adapter_rxjava2  : "com.squareup.retrofit2:adapter-rxjava2:2.9.0"
     ]
+
+    database = [
+            guava                      : '27.0.1-android'
+    ]
+
+    baselib = [
+            arach                      : '1.1.1',
+            logger                     : '2.1.1'
+    ]
 }

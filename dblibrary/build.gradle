@@ -3,8 +3,7 @@ plugins {
 }
 
 android {
-    compileSdkVersion rootProject.ext.android.compileSdkVersion
-    buildToolsVersion rootProject.ext.android.buildToolsVersion
+    compileSdk rootProject.ext.android.compileSdkVersion
 
     defaultConfig {
         minSdkVersion rootProject.ext.android.minSdkVersion
@@ -30,14 +29,20 @@ android {
 
 dependencies {
 
-    implementation dependency.gson
-    implementation dependency.rxjava2
-    implementation dependency.rxandroid2
-    implementation dependency.retrofit2
-    implementation dependency.retrofit2_converter_gson
-    implementation dependency.retrofit2_adapter_rxjava2
+    implementation 'androidx.appcompat:appcompat:1.4.1'
+    implementation 'com.google.android.material:material:1.5.0'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
-    implementation project(':httplibrary')
-    implementation project(':baselibrary')
-    implementation project(':dblibrary')
+    compileOnly project(':baselibrary')
+    api project(':imdatabase')
+
+    implementation dependency.rxandroid2
+
+    def baselib = rootProject.ext.baselib
+    api "android.arch.lifecycle:extensions:${baselib.arach}"
+    annotationProcessor "android.arch.persistence.room:compiler:${baselib.arach}"
+    //noinspection LifecycleAnnotationProcessorWithJava8
+    annotationProcessor "android.arch.lifecycle:compiler:${baselib.arach}"
 }
