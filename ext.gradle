@@ -1,3 +1,6 @@
+import java.util.regex.Matcher
+import java.util.regex.Pattern
+
 ext {
     //Android 配置
     android = [
@@ -30,4 +33,35 @@ ext {
             arach                      : '1.1.1',
             logger                     : '2.1.1'
     ]
+
+    //热更版本号
+    tinkerId = "1"
+    tinkerEnabled = isRelease()
+}
+
+/**
+ *
+ * @return 是否为release
+ */
+def isRelease() {
+    Gradle gradle = getGradle()
+    String tskReqStr = gradle.getStartParameter().getTaskRequests().toString()
+
+    Pattern pattern
+    if (tskReqStr.contains("assemble")) {
+        println tskReqStr
+        pattern = Pattern.compile("assemble(\\w*)(Release|Debug)")
+    } else {
+        pattern = Pattern.compile("generate(\\w*)(Release|Debug)")
+    }
+    Matcher matcher = pattern.matcher(tskReqStr)
+
+    if (matcher.find()) {
+        String task = matcher.group(0).toLowerCase()
+        println("[BuildType] Current task: " + task)
+        return task.contains("release")
+    } else {
+        println "[BuildType] NO MATCH FOUND"
+        return false
+    }
 }

@@ -8,6 +8,7 @@ import com.yubin.baselibrary.appstart.IAppStartCallback
 import com.yubin.baselibrary.core.BaseApplication
 import com.yubin.baselibrary.router.CTRouteInitHelper
 import com.yubin.baselibrary.util.AutoSizeInitHelper
+import com.yubin.mockapi.common.ToolsInitUtils
 import com.yubin.mvvm.net.NetworkInitHelper
 
 class MainApplication : BaseApplication() {
@@ -30,6 +31,7 @@ class MainApplication : BaseApplication() {
             override fun initInMainProcess(app: Application) {
                 AutoSizeInitHelper.init()
                 NetworkInitHelper.initNetWork(app)
+                ToolsInitUtils.initBugly(app)
             }
 
             override fun initInMainProcessBackgroundThread(app: Application) {
