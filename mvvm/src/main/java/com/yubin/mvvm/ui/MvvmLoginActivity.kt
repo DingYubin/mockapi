@@ -11,11 +11,11 @@ import com.yubin.baselibrary.extension.onViewClick
 import com.yubin.baselibrary.router.path.RouterPath
 import com.yubin.baselibrary.ui.basemvvm.NativeActivity
 import com.yubin.mvvm.databinding.ActivityLoginBinding
-import com.yubin.mvvm.net.model.MvvmLoginViewModel
+import com.yubin.mvvm.model.MvvmLoginViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.MainScope
 
-@Route(path = RouterPath.AccountPage.PATH_MVVM_LOGIN)
+@Route(path = RouterPath.MvvmPage.PATH_MVVM_LOGIN)
 class MvvmLoginActivity : NativeActivity<ActivityLoginBinding>(), CoroutineScope by MainScope() {
 
     private lateinit var viewModel: MvvmLoginViewModel

@@ -3,6 +3,7 @@
     <string name="mvp">mvp架构</string>
     <string name="mvvm">mvvm架构</string>
     <string name="mvx">mvx架构</string>
+    <string name="im">IM沟通</string>
     <string name="environment_settings">环境设置</string>
     <string name="goto_user_page">跳转用户页面</string>
 </resources>

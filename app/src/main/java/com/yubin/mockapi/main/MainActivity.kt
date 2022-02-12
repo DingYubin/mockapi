@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
 
         findViewById<View>(R.id.mvvm).setOnClickListener {
             ARouter.getInstance()
-                .build(RouterPath.AccountPage.PATH_MVVM_LOGIN)
+                .build(RouterPath.MvvmPage.PATH_MVVM_LOGIN)
                 .navigation()
         }
 
@@ -38,6 +38,12 @@ class MainActivity : AppCompatActivity() {
 //            ARouter.getInstance()
 //                .build(RouterPath.AccountPage.PATH_MVX_LOGIN)
 //                .navigation()
+        }
+
+        findViewById<View>(R.id.im).setOnClickListener {
+            ARouter.getInstance()
+                .build(RouterPath.ImPage.PATH_IM_CONVERSATION)
+                .navigation()
         }
     }
 }

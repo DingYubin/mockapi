@@ -3,6 +3,7 @@ package com.yubin.baselibrary.ui.basemvvm
 import android.app.Dialog
 import android.content.Intent
 import android.content.IntentFilter
+import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import androidx.annotation.StringRes
@@ -11,6 +12,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import com.yubin.baselibrary.receiver.ScreenBroadcastReceiver
 import com.yubin.baselibrary.receiver.ScreenStatus
 import com.yubin.baselibrary.toolBar.IToolBarBuilder
+import com.yubin.baselibrary.util.CMStatusBarUtil
 import com.yubin.baselibrary.viewmodel.ApplicationViewModelProvider
 import com.yubin.baselibrary.widget.LoadingDialog
 
@@ -32,7 +34,7 @@ abstract class BaseActivity : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 //        mToolBarBuilder = ToolBarBuilder(this)
-//        CMStatusBarUtil.setStatusColor(this, false, true, Color.WHITE)
+        CMStatusBarUtil.setStatusColor(this, false, true, Color.WHITE)
 //        super.setContentView(R.layout.activity_base_layout)
 //        mBaseLayout = findViewById(R.id.base_content)
         registerScreenBroadcastReceiver()

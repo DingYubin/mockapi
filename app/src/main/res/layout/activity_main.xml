@@ -41,6 +41,10 @@
                 style="@style/develop_setting_style"
                 android:text="@string/mvx" />
 
+            <TextView
+                android:id="@+id/im"
+                style="@style/develop_setting_style"
+                android:text="@string/im" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

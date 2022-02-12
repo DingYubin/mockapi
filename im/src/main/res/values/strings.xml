@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="mvvm_im">沟通</string>
+    <string name="tv_bad_network_try_later_again">网络不给力,请稍后再试!</string>
+    <string name="tv_refresh">刷新</string>
+    <string name="tv_empty_data">没有数据哦~</string>
+    <string name="tv_empty_chat_history">暂时没有消息记录哦</string>
+    <string name="tv_empty_group">您还没有加入任何群组~</string>
+    <string name="tv_loading">正在加载...</string>
+    <string name="tv_empty_start_search_contacts">输入联系人信息开始搜索吧!</string>
+    <string name="tv_search">搜索</string>
+    <string name="tv_strip">条</string>
+    <string name="no_read">未读消息数</string>
+    <string name="zero">0</string>
+</resources>
