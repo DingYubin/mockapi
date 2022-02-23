@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="mvvm_login">mvvm登陆</string>
+    <string name="is_useful_char">!#$%\'\"()*+,-./0123456789:;=?~@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_、abcdefghijklmnopqrstuvwxyz{|}&amp;&lt;&gt;&quot;</string>
+    <string name="enter_account">请输入账户</string>
+    <string name="enter_login_pass">请输入密码</string>
+    <string name="login_now">登陆</string>
+    <string name="nav_forget_login_pass">忘记登陆密码</string>
+    <string name="take_photo">拍照</string>
+    <string name="retake">重拍</string>
+    <string name="send">发送</string>
+
+    <string name="permission_message_calendar">是否允许开思汽配访问您的日历</string>
+    <string name="permission_message_camera">是否允许开思汽配访问您的摄像头</string>
+    <string name="permission_message_contacts">是否允许开思汽配访问您的通讯录</string>
+    <string name="permission_message_location">是否允许开思汽配访问您的位置信息</string>
+    <string name="permission_message_microphone">是否允许开思汽配访问您的麦克风</string>
+    <string name="permission_message_phone">是否允许开思汽配访问您的手机信息</string>
+    <string name="permission_message_sensors">是否允许开思汽配访问您的运动传感器</string>
+    <string name="permission_message_sms">是否允许开思汽配访问您的短信</string>
+    <string name="permission_message_strorage">是否允许开思汽配访问您的存储空间</string>
+    <string name="permission_message_dialog_default">授权失败，请前往系统权限管理界面授权</string>
+    <string name="permission_message_record">是否允许开思汽配录制视频</string>
+</resources>

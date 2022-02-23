@@ -45,6 +45,11 @@
                 android:id="@+id/im"
                 style="@style/develop_setting_style"
                 android:text="@string/im" />
+
+            <TextView
+                android:id="@+id/camera"
+                style="@style/develop_setting_style"
+                android:text="@string/camera" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

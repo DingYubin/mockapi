@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000">
+
+    <SurfaceView
+        android:id="@+id/cameraSurface"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/cameraClose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="40dp"
+        android:padding="6dp"
+        android:src="@drawable/icon_camera_close"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/cameraSwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="8dp"
+        android:padding="6dp"
+        android:src="@drawable/icon_camera_switch"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.yubin.medialibrary.camera.RadiusImageView
+        android:id="@+id/goPhotoAlbum"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginBottom="44dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/icon_default_album"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:radius="6dp" />
+
+<!--    <com.facebook.drawee.view.SimpleDraweeView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent" />-->
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/takePhoto"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="40dp"
+        android:src="@drawable/shape_take_photo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/takePhotoText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="12dp"
+        android:text="@string/take_photo"
+        android:textColor="@color/bg_common_white"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toTopOf="@id/takePhoto"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/takeGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        app:constraint_referenced_ids="goPhotoAlbum,takePhoto,cameraSwitch,takePhotoText" />
+
+    <View
+        android:id="@+id/reTakeBg"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:background="@color/cc000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/reTakePhoto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:padding="9dp"
+        android:text="@string/retake"
+        android:textColor="@color/bg_common_white"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@id/reTakeBg"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/reTakeBg" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/sendPhoto"
+        android:layout_width="64dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="14dp"
+        android:gravity="center"
+        android:text="@string/send"
+        android:textColor="@color/bg_common_white"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@id/reTakeBg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/reTakeBg" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/reTakeGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:constraint_referenced_ids="reTakeBg,reTakePhoto,sendPhoto" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

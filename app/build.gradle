@@ -113,7 +113,9 @@ dependencies {
     implementation project(':mvp')
     implementation project(':mvvm')
     implementation project(':mvx')
+    implementation project(':medialibrary')
     implementation project(':baselibrary')
+
 
     //**************崩溃报告**************//
     implementation 'com.tencent.bugly:crashreport_upgrade:1.5.23'

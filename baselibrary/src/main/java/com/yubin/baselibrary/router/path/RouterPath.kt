@@ -32,4 +32,13 @@ object RouterPath {
             const val PATH_IM_CONVERSATION = "/im/conversation"
         }
     }
+
+    class MediaPage {
+        companion object {
+            /**
+             * im页面
+             */
+            const val PATH_MEDIA_CAMERA = "/media/camera"
+        }
+    }
 }
