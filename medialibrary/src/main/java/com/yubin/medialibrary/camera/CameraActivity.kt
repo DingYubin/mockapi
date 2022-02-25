@@ -150,7 +150,11 @@ class CameraActivity : NativeActivity<ActivityCameraBinding>(),
          * 重新拍摄
          */
         binding.reTakePhoto.onViewClick {
-            mCameraHelper!!.startPreview()
+            if (mCameraHelper?.getCamera() == null) {
+                mCameraHelper?.restartCamera()
+            } else {
+                mCameraHelper!!.startPreview()
+            }
             binding.reTakeGroup.visibility = View.GONE
             binding.takeGroup.visibility = View.VISIBLE
             binding.cameraFlash.visibility = View.VISIBLE
@@ -339,8 +343,13 @@ class CameraActivity : NativeActivity<ActivityCameraBinding>(),
                     MediaManager.instance.toast.invoke("拍照失败", this@CameraActivity)
                     return@withContext
                 }
-                mCameraHelper!!.closeFlash()
-//                mCameraHelper!!.stopPreview()
+
+                if (isOpenFlash) {
+                    mCameraHelper!!.releaseCamera()
+                    isOpenFlash = false
+                } else {
+                    mCameraHelper!!.stopPreview()
+                }
                 binding.reTakeGroup.visibility = View.VISIBLE
                 binding.takeGroup.visibility = View.GONE
                 binding.cameraFlash.visibility = View.GONE
@@ -373,20 +382,6 @@ class CameraActivity : NativeActivity<ActivityCameraBinding>(),
                 )
         }
 
-    }
-
-    // 将移动，缩放以及旋转后的图层保存为新图片
-    // 本例中沒有用到該方法，需要保存圖片的可以參考
-    fun createCropBitmap(width : Int, height : Int, bitmap : Bitmap?, x:Int?, y:Int?): Bitmap? {
-        if (bitmap == null || x == null || y == null) return null
-
-        return Bitmap.createBitmap(
-            bitmap,
-            x,
-            y,
-            width,
-            height
-        )
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
