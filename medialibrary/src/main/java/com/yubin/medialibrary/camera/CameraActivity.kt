@@ -325,7 +325,6 @@ class CameraActivity : NativeActivity<ActivityCameraBinding>(),
 
     private var mPictureCallback = PictureCallback { data, _ ->
         launch {
-            mCameraHelper!!.getCamera()
             bitmap = BitmapCompressUtil.compressData2Bitmap(
                 data,
                 mCameraHelper!!.getDisplayOrientation()
