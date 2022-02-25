@@ -12,4 +12,5 @@
     <color name="bg_personal_login_register_control_normal">#DDDDDD</color>
     <color name="text_common_hint">#999</color>
     <color name="text_common_stock_red">#F54642</color>
+    <color name="transparent">#00000000</color>
 </resources>

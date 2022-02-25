@@ -21,4 +21,6 @@
     <string name="permission_message_strorage">是否允许开思汽配访问您的存储空间</string>
     <string name="permission_message_dialog_default">授权失败，请前往系统权限管理界面授权</string>
     <string name="permission_message_record">是否允许开思汽配录制视频</string>
+    <string name="compress_image_fail">压缩图片失败</string>
+    <string name="scan_toast_flash">当前设备不支持闪光灯</string>
 </resources>

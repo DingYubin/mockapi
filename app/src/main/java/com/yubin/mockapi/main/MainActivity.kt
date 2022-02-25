@@ -4,8 +4,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import com.alibaba.android.arouter.launcher.ARouter
+import com.bumptech.glide.Glide
 import com.yubin.account.user.ui.AccountActivity
 import com.yubin.baselibrary.core.BaseApplication.Companion.context
 import com.yubin.baselibrary.router.path.RouterPath
@@ -64,15 +66,25 @@ class MainActivity : AppCompatActivity() {
             CMMediaUtil.startCamera(
                 CameraStrategy(
                 isShowVideo0 = false,
-                maxCount0 = 1
+                maxCount0 = 1,
             ).apply {
                 selectedBtnText = "确定"
             }, context,
                 object : IMediaCallBack {
                     override fun result(medias: ArrayList<MediaInfo>) {
-                        Log.d("camera", "url: $medias[0].uri")
+                        Log.d("camera", "url: ${medias[0].uri}")
+                        showView(medias[0].uri)
                     }
                 })
         }
+    }
+
+    private fun showView(uri: String) {
+        val imageView = findViewById<ImageView>(R.id.my_img)
+
+        // 从网络上拉取网络图片
+        Glide.with(context)
+            .load(uri)
+            .into(imageView)
     }
 }

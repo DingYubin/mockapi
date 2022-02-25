@@ -15,6 +15,11 @@ import androidx.viewbinding.ViewBinding
  */
 abstract class NativeActivity<VB : ViewBinding> : BaseActivity() {
 
+    companion object {
+        @JvmStatic
+        var lastClickTime: Long = 0
+    }
+
     private var _binding: VB? = null
     val binding get() = _binding!!
 

@@ -281,6 +281,28 @@ class CameraHelper(activity: Activity, surfaceView: SurfaceView) {
         }
     }
 
+    fun isOpenFlash(): Boolean {
+
+        return if (mCamera == null) {
+            false
+        } else {
+            val parameters = mCamera!!.parameters
+            when {
+                parameters == null -> {
+                    false
+                }
+                mActivity.packageManager
+                    .hasSystemFeature("android.hardware.camera.flash") -> {
+                    Camera.Parameters.FLASH_MODE_TORCH == parameters.flashMode || Camera.Parameters.FLASH_MODE_ON == parameters.flashMode
+                }
+                else -> {
+                    false
+                }
+            }
+        }
+
+    }
+
 
     fun findBestPreviewSizeValue(width: Int, height: Int, parameters: Camera.Parameters): Point? {
         Log.d(TAG, "target preview size : width = $width, height = $height")
