@@ -11,7 +11,10 @@ import com.bumptech.glide.Glide
 import com.yubin.account.user.ui.AccountActivity
 import com.yubin.baselibrary.core.BaseApplication.Companion.context
 import com.yubin.baselibrary.router.path.RouterPath
+import com.yubin.baselibrary.util.CECDeviceHelper
+import com.yubin.baselibrary.util.CMDisplayHelper.dp
 import com.yubin.medialibrary.camera.MediaManager
+import com.yubin.medialibrary.manager.CameraFinder
 import com.yubin.medialibrary.manager.CameraStrategy
 import com.yubin.medialibrary.manager.IMediaCallBack
 import com.yubin.medialibrary.manager.MediaInfo
@@ -21,10 +24,23 @@ import com.yubin.mvp.ui.MvpLoginActivity
 
 class MainActivity : AppCompatActivity() {
 
+    /**
+     * 相机宽度
+     */
+    var w = 0
+
+    /**
+     * 相机高度
+     */
+    var h = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_main)
+
+        w = CECDeviceHelper.screenWidthWithContext(context) - 28.dp
+        h = 200.dp
 
         val config: MediaManager.Config = MediaManager.Config()
         MediaManager.Companion.init(config)
@@ -65,8 +81,9 @@ class MainActivity : AppCompatActivity() {
 
             CMMediaUtil.startCamera(
                 CameraStrategy(
-                isShowVideo0 = false,
-                maxCount0 = 1,
+                    isShowVideo0 = false,
+                    maxCount0 = 1,
+                    cameraFinder = CameraFinder(true, w, h)
             ).apply {
                 selectedBtnText = "确定"
             }, context,

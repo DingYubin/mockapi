@@ -16,6 +16,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <com.yubin.medialibrary.widget.CameraFinderView
+        android:id="@+id/cameraFinderView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/cameraClose"
         android:layout_width="wrap_content"
@@ -51,10 +61,10 @@
         app:radius="6dp" />
 
     <ImageButton
-        android:id="@+id/flash"
+        android:id="@+id/cameraFlash"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/scan_etop"
+        android:background="@drawable/icon_scan_stop_open"
         tools:ignore="MissingConstraints"
         android:layout_marginEnd="14dp"
         android:layout_marginBottom="46dp"

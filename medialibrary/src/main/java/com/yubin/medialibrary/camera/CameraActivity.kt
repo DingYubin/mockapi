@@ -4,7 +4,6 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.content.ContentResolver
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.hardware.Camera.PictureCallback
 import android.os.Build
@@ -12,16 +11,15 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.view.View
 import android.view.WindowManager
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.yubin.baselibrary.extension.onViewClick
 import com.yubin.baselibrary.router.path.RouterPath
 import com.yubin.baselibrary.ui.basemvvm.NativeActivity
-import com.yubin.baselibrary.widget.ToastUtil
 import com.yubin.medialibrary.R
 import com.yubin.medialibrary.databinding.ActivityCameraBinding
+import com.yubin.medialibrary.manager.CameraFinder
 import com.yubin.medialibrary.manager.CameraStrategy
 import com.yubin.medialibrary.manager.MediaInfo
 import com.yubin.medialibrary.util.BitmapCompressUtil
@@ -57,6 +55,9 @@ class CameraActivity : NativeActivity<ActivityCameraBinding>(),
     private lateinit var strategy: CameraStrategy
     private var resolver: ContentResolver? = null
     private var cameraViewModel: CameraViewModel? = null
+
+    private var isOpenFlash = false
+
 
     /**
      * 当前拍照bitmap
@@ -106,6 +107,7 @@ class CameraActivity : NativeActivity<ActivityCameraBinding>(),
          * 关闭界面
          */
         binding.cameraClose.onViewClick {
+            this.smartCloseFlash()
             this.finish()
         }
         /**
@@ -115,6 +117,7 @@ class CameraActivity : NativeActivity<ActivityCameraBinding>(),
             if (null == mCameraHelper || null == mCameraHelper!!.getCamera()) {
                 return@onViewClick
             }
+            this.smartCloseFlash()
             mCameraHelper!!.exchangeCamera()
         }
         /**
@@ -135,14 +138,6 @@ class CameraActivity : NativeActivity<ActivityCameraBinding>(),
             }
         }
 
-        binding.flash.onViewClick {
-            if (null == mCameraHelper || null == mCameraHelper!!.getCamera()) {
-                return@onViewClick
-            }
-
-            switchFlash()
-        }
-
         /**
          * 跳转相册
          */
@@ -158,6 +153,19 @@ class CameraActivity : NativeActivity<ActivityCameraBinding>(),
             mCameraHelper!!.startPreview()
             binding.reTakeGroup.visibility = View.GONE
             binding.takeGroup.visibility = View.VISIBLE
+            binding.cameraFlash.visibility = View.VISIBLE
+        }
+
+        binding.cameraFlash.onViewClick {
+            if (isOpenFlash) {
+                binding.cameraFlash.setBackgroundResource(R.drawable.icon_scan_stop_open)
+                mCameraHelper?.closeFlash()
+            } else {
+                binding.cameraFlash.setBackgroundResource(R.drawable.icon_scan_stop_close)
+                mCameraHelper?.openFlash()
+            }
+            isOpenFlash = !isOpenFlash
+
         }
         /**
          * 发送照片
@@ -208,6 +216,7 @@ class CameraActivity : NativeActivity<ActivityCameraBinding>(),
 
     override fun onPause() {
         super.onPause()
+        this.smartCloseFlash()
         if (null != mCameraHelper) {
             mCameraHelper!!.stopPreview()
         }
@@ -294,6 +303,24 @@ class CameraActivity : NativeActivity<ActivityCameraBinding>(),
             binding.sendPhoto.setBackgroundResource(it.sendTextBg)
             binding.sendPhoto.text = strategy.selectedBtnText
         }
+
+        strategy.cameraFinder?.let {
+            if (it.needFinder) {
+                binding.cameraFinderView.visibility = View.VISIBLE
+                binding.cameraFinderView.setFinderSize(it.width.toFloat(), it.height.toFloat())
+            }
+        }
+    }
+
+    /**
+     *当切换摄像头，拍摄照片等等情况时，如果已经打开需要关闭
+     */
+    private fun smartCloseFlash() {
+        if (isOpenFlash) {
+            binding.cameraFlash.setBackgroundResource(R.drawable.icon_scan_stop_open)
+            mCameraHelper?.closeFlash()
+            isOpenFlash = false
+        }
     }
 
     private var mPictureCallback = PictureCallback { data, _ ->
@@ -303,6 +330,11 @@ class CameraActivity : NativeActivity<ActivityCameraBinding>(),
                 data,
                 mCameraHelper!!.getDisplayOrientation()
             )
+            strategy.cameraFinder?.let {
+                if (it.needFinder) {
+                    clipCameraBitmap(bitmap, it)
+                }
+            }
             withContext(Dispatchers.Main) {
                 if (bitmap == null) {
                     MediaManager.instance.toast.invoke("拍照失败", this@CameraActivity)
@@ -312,9 +344,36 @@ class CameraActivity : NativeActivity<ActivityCameraBinding>(),
 //                mCameraHelper!!.stopPreview()
                 binding.reTakeGroup.visibility = View.VISIBLE
                 binding.takeGroup.visibility = View.GONE
+                binding.cameraFlash.visibility = View.GONE
             }
             safeToTakePicture = true
         }
+    }
+
+    private fun clipCameraBitmap(originBitmap: Bitmap?, cameraFinder: CameraFinder) {
+        originBitmap?.let {
+            val sw: Float = binding.cameraSurface.width.toFloat()
+            val sh: Float = binding.cameraSurface.height.toFloat()
+            val bw = it.width
+            val bh = it.height
+            val w = cameraFinder.width
+            val h = cameraFinder.height
+            val outW = (w * bw) / sw
+            val outH = (h * bh) / sh
+
+            val left = (bw - outW) / 2
+            val top = (bh - outH) / 2
+
+            bitmap =
+                Bitmap.createBitmap(
+                    it,
+                    left.toInt(),
+                    top.toInt(),
+                    outW.toInt(),
+                    outH.toInt()
+                )
+        }
+
     }
 
     // 将移动，缩放以及旋转后的图层保存为新图片
@@ -335,23 +394,6 @@ class CameraActivity : NativeActivity<ActivityCameraBinding>(),
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == RESULT_OK && requestCode == REQUEST_CODE) {
             finish()
-        }
-    }
-
-    /**
-     * 开闭闪光灯
-     */
-    private fun switchFlash() {
-        if (!packageManager.hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH)) {
-            val mess = resources.getString(R.string.scan_toast_flash)
-            ToastUtil.showToast(mess, Toast.LENGTH_SHORT)
-            return
-        }
-
-        if (mCameraHelper?.isOpenFlash() == true) {
-            mCameraHelper?.closeFlash()
-        } else {
-            mCameraHelper?.openFlash()
         }
     }
 
