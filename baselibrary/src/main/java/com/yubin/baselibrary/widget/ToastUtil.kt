@@ -7,12 +7,10 @@ import android.text.TextUtils
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import com.yubin.baselibrary.R
 import com.yubin.baselibrary.provider.BasicsContentProvider
-import com.yubin.baselibrary.viewmodel.NetworkState
 
 object ToastUtil {
 
@@ -95,7 +93,7 @@ object ToastUtil {
         val v: View = inflate.inflate(R.layout.toast_custom_view, null)
         //设置图标ivMessage
         apply(v, text)
-        toast!!.setView(v)
+        toast!!.view = v
         toast!!.duration = duration
         toast!!.setGravity(Gravity.CENTER, 0, 0)
     }

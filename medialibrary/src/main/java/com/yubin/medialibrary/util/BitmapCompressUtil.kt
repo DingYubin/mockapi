@@ -10,7 +10,7 @@ import kotlin.math.roundToInt
 /**
  * description 文件压缩工具
  *
- * @author laiwei
+ * @author yubin
  * @date create at 2019-07-17 14:49
  */
 object BitmapCompressUtil {

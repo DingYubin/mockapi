@@ -4,10 +4,12 @@ import android.content.Context
 import android.content.Intent
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.yubin.medialibrary.manager.IMediaCallBack
-import com.yubin.medialibrary.manager.MediaStrategy
-import com.yubin.medialibrary.manager.MediaStyle
+import com.yubin.medialibrary.album.ImagePickerActivity
+import com.yubin.medialibrary.manager.*
+import com.yubin.medialibrary.picture.ClipPictureActivity
 import com.yubin.medialibrary.util.ClipPictureStrategy
+import com.yubin.medialibrary.video.VideoPlayActivity
+import com.yubin.medialibrary.video.VideoRecordActivity
 
 /**
  *description
@@ -53,39 +55,39 @@ class MediaManager private constructor(mConfig: Config) {
             }
             //打开相册
             MediaStrategy.TYPE_OPEN_ALBUM -> {
-//                val intent = Intent()
-//                intent.setClass(context, ImagePickerActivity::class.java)
-//                intent.putExtra("strategy", strategy)
-//                context.startActivity(intent)
+                val intent = Intent()
+                intent.setClass(context, ImagePickerActivity::class.java)
+                intent.putExtra("strategy", strategy)
+                context.startActivity(intent)
             }
             //播放视频
             MediaStrategy.TYPE_PLAY_VIDEO -> {
-//                val intent = Intent()
-//                intent.setClass(context, VideoPlayActivity::class.java)
-//                strategy as VideoStrategy
-//                intent.putExtra("url", strategy.url)
-//                intent.putExtra("isMute", strategy.isMute)
-//                context.startActivity(intent)
+                val intent = Intent()
+                intent.setClass(context, VideoPlayActivity::class.java)
+                strategy as VideoStrategy
+                intent.putExtra("url", strategy.url)
+                intent.putExtra("isMute", strategy.isMute)
+                context.startActivity(intent)
             }
             //录制视频
             MediaStrategy.TYPE_RECORD_VIDEO -> {
-//                val intent = Intent()
-//                intent.setClass(context, VideoRecordActivity::class.java)
-//                strategy as RecordStrategy
-//                intent.putExtra("seconds", strategy.seconds)
-//                context.startActivity(intent)
+                val intent = Intent()
+                intent.setClass(context, VideoRecordActivity::class.java)
+                strategy as RecordStrategy
+                intent.putExtra("seconds", strategy.seconds)
+                context.startActivity(intent)
             }
         }
     }
     fun startClipPicture(context: AppCompatActivity, imagePath: String, strategy: ClipPictureStrategy, requestCode:Int) {
         //进入二维码扫描界面
-//        val intent = Intent()
-//        intent.setClass(context, ClipPictureActivity::class.java)
-//        intent.putExtra("imagePath", imagePath)
-//        intent.putExtra("clipmsg", strategy.clipmsg)
-//        intent.putExtra("screenHeightFloat", strategy.screenHeightFloat)
-//        intent.putExtra("screenWidthFloat", strategy.screenWidthFloat)
-//        context.startActivityForResult(intent,requestCode)
+        val intent = Intent()
+        intent.setClass(context, ClipPictureActivity::class.java)
+        intent.putExtra("imagePath", imagePath)
+        intent.putExtra("clipmsg", strategy.clipmsg)
+        intent.putExtra("screenHeightFloat", strategy.screenHeightFloat)
+        intent.putExtra("screenWidthFloat", strategy.screenWidthFloat)
+        context.startActivityForResult(intent,requestCode)
     }
 
     private object SingletonHolder {

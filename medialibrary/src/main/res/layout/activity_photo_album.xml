@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/common_white">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="44dp"
+        android:layout_marginEnd="10dp"
+        android:gravity="center"
+        android:paddingStart="4dp"
+        android:paddingEnd="4dp"
+        android:text="@string/cancel"
+        android:textColor="@color/color_e6000000"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="RtlSymmetry" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/albumTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableEnd="@drawable/icon_album_bottom"
+        android:drawablePadding="5dp"
+        android:text="@string/all_photo"
+        android:textColor="@color/color_e6000000"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@id/cancel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/cancel"
+        tools:ignore="RtlSymmetry"
+        tools:text="最近项目" />
+
+    <View
+        android:id="@+id/bottomBg"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:background="@color/ccffffff"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/selectPreview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:padding="4dp"
+        android:text="@string/preview"
+        android:textColor="@color/color_e6000000"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@id/bottomBg"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/bottomBg" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/sendPhoto"
+        android:layout_width="102dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="14dp"
+        android:gravity="center"
+        android:textColor="@color/common_white"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@id/bottomBg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/bottomBg" />
+
+    <com.yubin.medialibrary.album.ImagePickerView
+        android:id="@+id/imagePickerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/bottomBg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cancel" />
+
+    <FrameLayout
+        android:id="@+id/activity_cec_image_picker_folder"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cancel" />
+
+    <ViewStub
+        android:id="@+id/imagePickerNoPhoto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout="@layout/image_picker_widget_no_photo_view" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

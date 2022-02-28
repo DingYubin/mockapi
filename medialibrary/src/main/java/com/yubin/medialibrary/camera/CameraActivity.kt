@@ -18,6 +18,7 @@ import com.yubin.baselibrary.extension.onViewClick
 import com.yubin.baselibrary.router.path.RouterPath
 import com.yubin.baselibrary.ui.basemvvm.NativeActivity
 import com.yubin.medialibrary.R
+import com.yubin.medialibrary.album.ImagePickerActivity
 import com.yubin.medialibrary.databinding.ActivityCameraBinding
 import com.yubin.medialibrary.manager.CameraFinder
 import com.yubin.medialibrary.manager.CameraStrategy
@@ -142,9 +143,9 @@ class CameraActivity : NativeActivity<ActivityCameraBinding>(),
          * 跳转相册
          */
         binding.goPhotoAlbum.onViewClick {
-//            val intent = Intent(this, ImagePickerActivity::class.java)
-//            intent.putExtra("strategy", strategy)
-//            startActivityForResult(intent, REQUEST_CODE)
+            val intent = Intent(this, ImagePickerActivity::class.java)
+            intent.putExtra("strategy", strategy)
+            startActivityForResult(intent, REQUEST_CODE)
         }
         /**
          * 重新拍摄

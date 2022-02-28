@@ -19,5 +19,29 @@
 
         <activity
             android:name=".permissionHelper.PermissionActivity" />
+
+        <activity
+            android:name=".album.ImagePickerActivity"
+            android:configChanges="fontScale"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".photoPreview.PickerPreviewActivity"
+            android:configChanges="fontScale"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".video.VideoPlayActivity"
+            android:configChanges="fontScale"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Activity.Translucent.FullScreen" />
+        <activity
+            android:name=".video.VideoRecordActivity"
+            android:configChanges="fontScale"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Activity.Translucent.FullScreen" />
+        <activity
+            android:name=".picture.ClipPictureActivity"
+            android:configChanges="fontScale"
+            android:screenOrientation="portrait"
+            />
     </application>
 </manifest>

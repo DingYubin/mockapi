@@ -8,9 +8,26 @@
     <color name="st_text_master_common_white">#FFFFFF</color>
     <color name="st_portfolio_switch_down_color">#1BBB9A</color>
     <color name="bg_common_white">#ffffffff</color>
+    <color name="common_white">#ffffffff</color>
     <color name="cc000000">#cc000000</color>
     <color name="bg_personal_login_register_control_normal">#DDDDDD</color>
     <color name="text_common_hint">#999</color>
     <color name="text_common_stock_red">#F54642</color>
     <color name="transparent">#00000000</color>
+    <color name="color_e6000000">#e6000000</color>
+    <color name="color_999999">#999999</color>
+    <color name="color_4d000000">#4d000000</color>
+    <color name="color_222222">#222222</color>
+    <color name="ccffffff">#ccffffff</color>
+    <color name="e8e8e8">#e8e8e8</color>
+    <color name="color_e8e8e8">#e8e8e8</color>
+    <color name="color_f1f2f3">#f1f2f3</color>
+    <color name="colorPrimary">#4369FF</color>
+    <color name="color_6600000">#66000000</color>
+    <color name="color_7f00000">#7f000000</color>
+    <color name="color_ff000000">#ff000000</color>
+    <color name="color_66ffffff">#66ffffff</color>
+    <color name="color_cc000000">#cc000000</color>
+    <color name="color_80ffffff">#80ffffff</color>
+    <color name="color_ccffffff">#ccffffff</color>
 </resources>

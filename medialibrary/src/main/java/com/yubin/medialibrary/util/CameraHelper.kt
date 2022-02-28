@@ -15,7 +15,7 @@ import java.io.IOException
 /**
  *description
  *
- *@author laiwei
+ *@author yubin
  *@date create at 4/24/21 8:58 AM
  */
 class CameraHelper(activity: Activity, surfaceView: SurfaceView) {

@@ -14,6 +14,8 @@
     <string name="platform_send">发送</string>
     <string name="ok_number">确定(%d)</string>
     <string name="all_photo">所有照片</string>
+    <string name="video">视频</string>
+    <string name="other">其它</string>
     <string name="image_picker_no_photo">您的相册什么都没有~</string>
     <string name="image_picker_cancel">取消</string>
     <string name="image_picker_photo">照片</string>

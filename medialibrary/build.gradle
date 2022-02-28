@@ -38,6 +38,7 @@ android {
 }
 
 dependencies {
+    implementation 'com.squareup.okhttp3:okhttp:4.9.0'
 
     implementation project(':baselibrary')
 
@@ -46,9 +47,10 @@ dependencies {
     //图片滑出页面效果
     implementation 'com.komi.slider:slider:0.4.0'
     //fresco的依赖
-    api("com.facebook.fresco:fresco:2.0.0", {
-        exclude group: 'com.facebook.soloader', module: 'soloader'
-    })
+    api("com.facebook.fresco:fresco:2.0.0")
     implementation 'com.google.android.exoplayer:exoplayer-core:2.16.1'
     implementation 'com.google.android.exoplayer:exoplayer-ui:2.16.1'
+
+
+    debugApi 'com.squareup.okio:okio:2.9.0'
 }

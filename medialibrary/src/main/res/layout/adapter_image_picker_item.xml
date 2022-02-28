@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="91dp"
+    android:layout_height="91dp">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/adapter_item_image"
+        android:layout_width="91dp"
+        android:layout_height="91dp"
+        android:scaleType="centerCrop"
+        app:actualImageScaleType="centerCrop"
+        app:placeholderImage="@drawable/icon_album_top"
+        app:placeholderImageScaleType="centerCrop" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/adapter_item_select_state"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:layout_gravity="end|top"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:gravity="center"
+        android:textColor="@color/common_white"
+        android:textSize="14sp" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/adapter_video_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|start"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="5dp"
+        android:drawableStart="@drawable/icon_vedio"
+        android:drawablePadding="2dp"
+        android:gravity="center_vertical"
+        android:textColor="@color/common_white"
+        android:textSize="12sp" />
+
+    <View
+        android:id="@+id/adapter_item_layer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#99FFFFFF"
+        android:visibility="gone" />
+
+</FrameLayout>
