@@ -18,11 +18,6 @@ android {
         }
     }
 
-    //关掉AndroidStudio对PNG图片的合法性检验
-    aaptOptions {
-        cruncherEnabled = false
-    }
-
     //调试
     if(rootProject.hasProperty('devBuild')){
         splits.abi.enable = false
@@ -49,6 +44,7 @@ android {
                 arguments += ["room.schemaLocation": "$projectDir/schemas".toString()]
             }
         }
+        resConfigs 'zh', 'xxhdpi'
 //        javaCompileOptions {
 //            annotationProcessorOptions {
 //                arguments = [moduleName           : project.getName(),
@@ -58,7 +54,6 @@ android {
 //        }
 
         //调试
-        resConfigs("zh","xxhdpi")
     }
 
     buildTypes {
