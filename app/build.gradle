@@ -101,6 +101,7 @@ dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
 
     implementation 'androidx.multidex:multidex:2.0.1'
+    implementation project(':baselibrary')
 
     implementation project(':account')
     implementation project(':im')
@@ -109,7 +110,7 @@ dependencies {
     implementation project(':mvvm')
     implementation project(':mvx')
     implementation project(':medialibrary')
-    implementation project(':baselibrary')
+    implementation project(':draw')
 
 
     //**************崩溃报告**************//

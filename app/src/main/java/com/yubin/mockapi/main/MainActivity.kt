@@ -74,6 +74,13 @@ class MainActivity : AppCompatActivity() {
                 .navigation()
         }
 
+        findViewById<View>(R.id.draw).setOnClickListener {
+//            UiActivity.openUiActivity(this)
+            ARouter.getInstance()
+                .build(RouterPath.UiPage.PATH_UI_DRAW)
+                .navigation()
+        }
+
         findViewById<View>(R.id.camera).setOnClickListener {
 //            ARouter.getInstance()
 //                .build(RouterPath.MediaPage.PATH_MEDIA_CAMERA)

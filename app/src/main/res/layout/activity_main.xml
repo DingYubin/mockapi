@@ -51,10 +51,16 @@
                 style="@style/develop_setting_style"
                 android:text="@string/camera" />
 
+            <TextView
+                android:id="@+id/draw"
+                style="@style/develop_setting_style"
+                android:text="@string/draw" />
+
             <ImageView
                 android:id="@+id/my_img"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
+
 
         </LinearLayout>
     </ScrollView>

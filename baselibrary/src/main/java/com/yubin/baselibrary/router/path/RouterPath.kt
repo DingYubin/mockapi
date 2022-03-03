@@ -36,9 +36,18 @@ object RouterPath {
     class MediaPage {
         companion object {
             /**
-             * im页面
+             * camera页面
              */
             const val PATH_MEDIA_CAMERA = "/media/camera"
+        }
+    }
+
+    class UiPage {
+        companion object {
+            /**
+             * draw页面
+             */
+            const val PATH_UI_DRAW = "/ui/draw"
         }
     }
 }
