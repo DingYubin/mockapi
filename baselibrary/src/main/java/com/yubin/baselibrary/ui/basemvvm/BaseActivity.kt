@@ -9,6 +9,7 @@ import android.view.View
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
+import com.yubin.baselibrary.common.Constants
 import com.yubin.baselibrary.receiver.ScreenBroadcastReceiver
 import com.yubin.baselibrary.receiver.ScreenStatus
 import com.yubin.baselibrary.toolBar.IToolBarBuilder
@@ -128,5 +129,10 @@ abstract class BaseActivity : AppCompatActivity(){
         if (mReceiver != null) {
             unregisterReceiver(mReceiver)
         }
+    }
+
+    //用于定义页面黑白风格的参数
+    open fun getSkinStyle(): Int {
+        return Constants.BLACK_STYLE
     }
 }

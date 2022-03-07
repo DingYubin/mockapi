@@ -1,0 +1,400 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <!-- common part -->
+    <dimen name="common_btn_item_height">55.0dp</dimen>
+    <dimen name="common_btn_item_small_height">50dp</dimen>
+    <dimen name="common_container_height">55.0dp</dimen>
+    <dimen name="common_container_small_height">50dp</dimen>
+    <dimen name="common_message_small_height">51dp</dimen>
+    <dimen name="common_key_height">60dp</dimen>
+    <dimen name="common_top_bar_height">44dp</dimen><!--顶部标题栏高度-->
+    <dimen name="common_top_tab_bar_height">40dp</dimen><!--顶部TAB栏高度-->
+    <dimen name="common_title_normal_height">36dp</dimen><!--标题默认高度-->
+    <dimen name="common_bottom_bar_height">53dp</dimen><!--底部button高度-->
+    <dimen name="common_icon_normal_size">19dp</dimen><!--一般小图标大小-->
+    <dimen name="common_index_select_item_height">48dp</dimen><!--指数编辑选项高度-->
+    <dimen name="common_graphic_title_height">30dp</dimen><!--分时K线标题栏高度-->
+    <dimen name="common_checkbox_normal_size">24dp</dimen>
+    <dimen name="common_tiny_small_margin">8dp</dimen>
+    <dimen name="common_small_margin">12dp</dimen>
+    <dimen name="common_normal_margin">16dp</dimen>
+    <dimen name="common_small_normal_margin">15dp</dimen>
+    <dimen name="common_middle_normal_margin">18dp</dimen>
+    <dimen name="common_high_normal_margin">7dp</dimen>
+    <dimen name="common_high_normal_margin_10px">10dp</dimen>
+    <dimen name="common_high_normal_margin_8px">8dp</dimen>
+    <dimen name="common_title_normal_margin">17dp</dimen>
+    <dimen name="common_small_text_size">12sp</dimen>
+    <dimen name="common_title_text_size">16sp</dimen>
+    <dimen name="common_hint_text_size">12sp</dimen>
+    <dimen name="choose_dialog_width">300dp</dimen>
+    <dimen name="common_loading_pb_size">24dp</dimen>
+    <dimen name="common_dialog_width">270dp</dimen>
+    <dimen name="choose_dialog_title_height">50dp</dimen>
+    <dimen name="choose_dialog_item_height">56dp</dimen>
+    <dimen name="choose_dialog_item_text_size">18sp</dimen>
+    <dimen name="clear_width">20dp</dimen>
+    <dimen name="clear_margin_right">15dp</dimen>
+    <dimen name="normal_btn_margin_top">30dp</dimen>
+    <!--对话框-->
+    <dimen name="notify_dialog_close_icon_size">40dp</dimen>
+    <dimen name="notify_dialog_notify_icon_size">55dp</dimen>
+    <dimen name="notify_dialog_notify_icon_margin_top">5dp</dimen>
+    <dimen name="notify_dialog_notify_title_text_size">15sp</dimen>
+    <dimen name="notify_dialog_notify_title_margin_top">10dp</dimen>
+    <dimen name="notify_dialog_notify_title_black_margin_top">20dp</dimen>
+    <dimen name="notify_dialog_button_text_size">15sp</dimen>
+    <dimen name="notify_dialog_button_height">55dp</dimen>
+    <dimen name="notify_dialog_button_container_width">250dp</dimen>
+    <dimen name="notify_dialog_description_margin_top">16dp</dimen>
+    <dimen name="notify_dialog_description_text_size">13sp</dimen>
+    <dimen name="notify_dialog_divider_margin_top">25dp</dimen>
+    <!-- 顶部按钮栏高度 -->
+    <dimen name="pick_view_top_bar_height">44dp</dimen>
+    <!-- 顶部按钮padding -->
+    <dimen name="pick_view_top_bar_padding">20dp</dimen>
+    <!-- 顶部按钮文字大小 -->
+    <dimen name="pick_view_top_bar_btn_text_size">17sp</dimen>
+    <dimen name="pick_view_top_bar_title_text_size">18sp</dimen>
+    <!-- 选项文字大小 需要配合 bools.xml 的 pickerview_customTextSize 为 true 才有效果-->
+    <dimen name="pickerview_textsize">20sp</dimen>
+    <!--条目为空的页面-->
+    <dimen name="empty_hint_icon_margin_top">120dp</dimen>
+    <dimen name="empty_hint_text_margin_top">18dp</dimen>
+    <dimen name="common_top_bar_text_size">18sp</dimen><!--顶部标题栏字体大小-->
+    <dimen name="common_top_tab_bar_text_size">16sp</dimen><!--顶部TAB栏字体大小-->
+    <dimen name="common_title_normal_text">16sp</dimen><!--标题默认字体大小-->
+    <dimen name="common_button_text_size">18sp</dimen>
+    <dimen name="common_font_size_1080p_60px">20.0sp</dimen>
+    <dimen name="common_font_size_34px">17.0sp</dimen>
+    <dimen name="common_font_size_51px">20.17sp</dimen>
+    <dimen name="common_font_size_24px">12.0sp</dimen>
+    <dimen name="common_font_size_32px">16.0sp</dimen>
+    <dimen name="common_font_size_1080p_42px">14sp</dimen>
+    <dimen name="common_font_size_25px">15.0sp</dimen>
+
+    <dimen name="common_divider_large_height">1dp</dimen>
+    <dimen name="common_divider_height">1px</dimen>
+    <dimen name="common_item_margin_bottom">13dp</dimen>
+    <dimen name="common_function_text_text_size">14sp</dimen>
+    <dimen name="common_down_notify_text_margin_top">10dp</dimen>
+    <dimen name="common_down_notify_text_size">12sp</dimen>
+
+    <!--消息中心-->
+    <dimen name="message_margin_width_height">26dp</dimen>
+    <dimen name="message_margin_padding">2dp</dimen>
+    <dimen name="message_center_button_Height">65dp</dimen>
+    <dimen name="message_center_icon_Height_width">42dp</dimen>
+
+    <!--蒙层指导-->
+    <dimen name="mask_margin_right">26dp</dimen>
+    <dimen name="mask_icon_height">125dp</dimen>
+    <dimen name="mask_icon_width">114dp</dimen>
+    <dimen name="mask_view_twice_height">30dp</dimen>
+    <dimen name="mask_default_view_width">1dp</dimen>
+    <dimen name="mask_textView_width">135dp</dimen>
+    <dimen name="mask_textView_height">42dp</dimen>
+    <dimen name="mask_textView_size">16sp</dimen>
+
+    <!-- The portfolio part-->
+    <dimen name="portfolio_small_view_normal_width">48dp</dimen>
+    <dimen name="portfolio_small_view_twice_normal_width">96dp</dimen>
+    <dimen name="portfolio_stock_list_item_height">60dp</dimen>
+    <dimen name="portfolio_search_text_size">12sp</dimen>
+    <dimen name="portfolio_search_item_title_text_size">14sp</dimen>
+    <dimen name="portfolio_stock_detail_item_height">70dp</dimen>
+    <dimen name="portfolio_stock_detail_item_margin">10dp</dimen>
+    <dimen name="portfolio_stock_detail_item_margin_bottom">5dp</dimen>
+    <dimen name="portfolio_stock_detail_item_time_margin_right">15dp</dimen>
+    <dimen name="portfolio_exchange_index_height">94dp</dimen>
+    <dimen name="portfolio_exchange_item_index_height">60dp</dimen>
+    <dimen name="portfolio_exchange_index_name_size">12sp</dimen>
+    <dimen name="portfolio_exchange_index_change_size">12sp</dimen>
+    <dimen name="portfolio_exchange_index_value_size">18sp</dimen>
+    <dimen name="portfolio_exchange_margin">3dp</dimen>
+    <dimen name="portfolio_exchange_state_text_size">10sp</dimen>
+    <dimen name="portfolio_exchange_region_padding_top">12dp</dimen>
+    <dimen name="portfolio_exchange_region_text_size">12sp</dimen>
+    <dimen name="portfolio_stock_list_value_text_size">18sp</dimen>
+    <dimen name="portfolio_stock_list_change_text_size">16sp</dimen>
+    <dimen name="portfolio_stock_list_change_text_height">32dp</dimen>
+    <dimen name="portfolio_stock_list_change_text_width">84dp</dimen>
+    <dimen name="portfolio_stock_list_name_height">30dp</dimen>
+    <dimen name="portfolio_stock_list_name_text_size">16sp</dimen>
+    <dimen name="portfolio_stock_list_name_min_size">12sp</dimen>
+    <dimen name="portfolio_stock_list_info_container_height">16dp</dimen>
+    <dimen name="portfolio_stock_list_symbol_text_size">14sp</dimen>
+    <dimen name="portfolio_stock_list_info_margin_left">3dp</dimen>
+    <dimen name="portfolio_stock_foot_hint_add_view_margin_top">100dp</dimen>
+    <dimen name="portfolio_stock_foot_hint_add_text_margin_top">18dp</dimen>
+
+    <dimen name="portfolio_stock_edit_stock_check_box_width">40dp</dimen>
+    <!--edit portfolio-->
+    <dimen name="portfolio_edit_header_text_size">14sp</dimen>
+    <dimen name="portfolio_edit_header_name_margin_left">55dp</dimen>
+    <dimen name="portfolio_edit_no_stock_text_size">18sp</dimen>
+    <dimen name="portfolio_search_clear_text_margin_top">22dp</dimen>
+    <dimen name="portfolio_search_history_margin_top_bottom">15dp</dimen>
+    <dimen name="portfolio_search_history_text_size">12sp</dimen>
+    <dimen name="status_hint_view_padding_top">4dp</dimen>
+    <dimen name="status_hint_view_padding_bottom">15dp</dimen>
+    <!-- The trade part-->
+    <dimen name="trade_btn_item_height">43.3dp</dimen>
+    <dimen name="trade_top_item_height">72dp</dimen>
+    <dimen name="trade_item_icon_width">38.0dp</dimen>
+    <dimen name="trade_item_marginLeft">19.0dp</dimen>
+    <dimen name="trade_list_item_height">48.0dp</dimen>
+    <dimen name="trade_holding_normal_margin">10dp</dimen>
+    <dimen name="trade_holding_pad_right_margin">31dp</dimen>
+    <dimen name="trade_holding_top_margin">14dp</dimen>
+    <dimen name="trade_default_ev_border_width">45dp</dimen>
+    <dimen name="trade_default_ev_password_width">7dp</dimen>
+    <dimen name="trade_default_bid_ask_height">7dp</dimen>
+    <dimen name="trade_default_small_top_margin">7dp</dimen>
+    <dimen name="trade_default_small_margin">6dp</dimen>
+    <dimen name="trade_default_bid_ask_width">9dp</dimen>
+    <dimen name="trade_default_explanation_width">9dp</dimen>
+    <dimen name="trade_between_widget_width">5dp</dimen>
+    <dimen name="trade_between_text_width">6.7dp</dimen>
+    <dimen name="trade_title_normal_text">9.3sp</dimen>
+    <dimen name="trade_small_normal_margin">10dp</dimen>
+    <dimen name="trade_type_item_width">120dp</dimen>
+    <dimen name="trade_bottom_text_size">10sp</dimen>
+    <dimen name="trade_default_tv_text_size">12sp</dimen>
+    <dimen name="trade_change_order_top_margin">18dp</dimen>
+    <dimen name="trade_tv_text_size">13sp</dimen>
+    <dimen name="trade_holding_tv_text_size">14sp</dimen>
+    <dimen name="trade_debt_tv_text_size">11sp</dimen>
+    <dimen name="trade_holding_val_text_size">24dp</dimen>
+    <dimen name="trade_default_et_border_width">23.3dp</dimen>
+    <dimen name="trade_default_iv_line_height">1dp</dimen>
+    <dimen name="trade_top_bar_height">29.3dp</dimen>
+    <dimen name="trade_item_margin">5dp</dimen>
+    <dimen name="trade_item_margin_left">5dp</dimen>
+    <dimen name="trade_text_margin">4dp</dimen>
+    <dimen name="trade_item_margin_top">12dp</dimen>
+    <dimen name="trade_item_margin_bottom">2dp</dimen>
+    <dimen name="trade_item_bottom_height">60dp</dimen>
+    <dimen name="trade_holding_bottom_text_margin">100dp</dimen>
+    <dimen name="trade_btn_contact_width">175dp</dimen>
+    <dimen name="trade_btn_contact_height">40dp</dimen>
+    <dimen name="trade_order_top_item_height">85dp</dimen>
+    <dimen name="trade_order_history_icon_width">85dp</dimen>
+    <dimen name="trade_order_default_top_margin">8dp</dimen>
+    <dimen name="trade_order_obvious_height">21dp</dimen>
+
+    <!-- The market part-->
+
+
+    <!-- The personal part-->
+    <dimen name="personal_itemTitle_marginLeft">10dp</dimen>
+    <dimen name="personal_item_divider_height">20.0dp</dimen>
+    <dimen name="personal_item_switcher_height">26.0dp</dimen>
+    <dimen name="personal_circle_newSubjectRemind_width">18.0dp</dimen>
+    <dimen name="personal_itemTitle_size">17.0sp</dimen>
+    <dimen name="navigation_bar_height">39.0dp</dimen>
+    <dimen name="setting_block_item_height">50.0dp</dimen>
+    <dimen name="hk_background_height">210dp</dimen>
+    <dimen name="personal_setting_icon_weight_height">20dp</dimen>
+    <dimen name="personal_item_margin">16dp</dimen>
+    <dimen name="personal_settings_red_dot_margin_right">16dp</dimen>
+    <dimen name="personal_app_icon_scale">120dp</dimen>
+    <dimen name="personal_app_icon_margin_top">20dp</dimen>
+    <dimen name="personal_button_group_width">325dp</dimen>
+    <dimen name="personal_button_group_margin_bottom">15dp</dimen>
+    <dimen name="personal_account_detail_margin_title">15dp</dimen>
+    <dimen name="personal_button_width">150dp</dimen>
+    <dimen name="personal_button_height">50dp</dimen>
+    <dimen name="personal_button_text_size">18sp</dimen>
+    <dimen name="use_base_data_container">100dp</dimen>
+    <dimen name="personal_name_text_size">14sp</dimen>
+    <dimen name="account_id_text_size">12sp</dimen>
+    <dimen name="personal_cover_user_photo_size">60dp</dimen>
+    <dimen name="personal_has_account_view_height">150dp</dimen>
+    <dimen name="personal_has_account_view_title_height">40dp</dimen>
+    <dimen name="personal_has_account_view_icon_container_margin_bottom">9dp</dimen>
+    <dimen name="personal_has_account_view_title_margin_top">5dp</dimen>
+    <dimen name="open_trade_account_view_height">146dp</dimen>
+    <dimen name="open_trade_account_view_init_height">136dp</dimen>
+    <dimen name="open_trade_account_view_progress_iv_container_padding">20dp</dimen>
+    <dimen name="open_trade_account_view_progress_iv_container_margin">15dp</dimen>
+    <dimen name="open_trade_account_circle_size">12dp</dimen>
+    <dimen name="setting_pwd_text_size">13sp</dimen>
+    <dimen name="open_trade_account_iv_line_width">80dp</dimen>
+
+    <dimen name="open_trade_account_hk_iv_line_width">58dp</dimen>
+    <dimen name="open_trade_account_iv_line_height">1dp</dimen>
+    <dimen name="open_trade_account_iv_line_margin">3dp</dimen>
+
+    <dimen name="open_trade_account_tv_text_size">12sp</dimen>
+    <dimen name="open_trade_account_tv_marginLeft">75dp</dimen>
+    <dimen name="open_trade_account_first_tv_marginLeft">14dp</dimen>
+    <dimen name="hk_open_trade_account_first_tv_marginLeft">10dp</dimen>
+    <dimen name="open_trade_account_tv_container_width">345dp</dimen>
+    <dimen name="open_trade_account_tv_container_height">15dp</dimen>
+
+    <dimen name="hk_open_trade_account_tv_marginLeft">52dp</dimen>
+    <dimen name="open_trade_account_tv_container_margin_top">10dp</dimen>
+    <dimen name="open_trade_account_btn_width">190dp</dimen>
+    <dimen name="open_trade_account_btn_height">35dp</dimen>
+    <dimen name="open_trade_account_btn_margin_bottom">20dp</dimen>
+    <dimen name="open_trade_account_btn_margin_text_size">12sp</dimen>
+    <dimen name="personal_center_my_text_size">18sp</dimen>
+    <dimen name="welcome_to_app_margin_top">216dp</dimen>
+    <dimen name="use_app_has_smart_margin_top">246dp</dimen>
+    <dimen name="whale_fish_margin_top">25dp</dimen>
+    <dimen name="no_login_setting_container_margin_bottom">30dp</dimen>
+    <dimen name="no_login_setting_container_divider_height">12dp</dimen>
+    <dimen name="no_login_setting_container_divider_margin">8dp</dimen>
+    <dimen name="account_id_margin_top">10dp</dimen>
+    <dimen name="common_setting_name_padding_top">30dp</dimen>
+    <dimen name="common_setting_name_height">58dp</dimen>
+    <dimen name="common_setting_name_text_size">12sp</dimen>
+    <dimen name="common_setting_content_height">50dp</dimen>
+    <dimen name="personal_assert_text_size">12sp</dimen>
+    <dimen name="personal_assert_text_padding_top">15dp</dimen>
+    <dimen name="personal_assert_currency_type_margin_bottom">22dp</dimen>
+    <dimen name="personal_assert_currency_type_text_size">11sp</dimen>
+    <dimen name="personal_assert_container">315dp</dimen>
+
+    <dimen name="personal_function_text_size">12sp</dimen>
+    <dimen name="personal_function_text_margin_top">5dp</dimen>
+    <dimen name="personal_portrait_container_height">90dp</dimen>
+    <dimen name="personal_setting_left_text_margin_left">10dp</dimen>
+    <dimen name="edit_name_hint_margin_top">8dp</dimen>
+    <dimen name="normal_edit_layout_height">50dp</dimen>
+
+    <dimen name="noun_account_text_name_size">12sp</dimen>
+    <dimen name="noun_account_text_value_size">14sp</dimen>
+    <dimen name="noun_account_text_value_margin_top">5dp</dimen>
+    <dimen name="account_detail_title_icon_margin_left">10dp</dimen>
+    <dimen name="account_detail_title_text_margin_left">5dp</dimen>
+    <dimen name="modify_trade_pwd_btn_margin_left_right">30dp</dimen>
+    <dimen name="modify_trade_pwd_btn_margin_top">30dp</dimen>
+    <dimen name="open_account_status_height">170dp</dimen>
+    <dimen name="open_account_status_notify_margin_top">12dp</dimen>
+    <dimen name="open_account_status_btn_width">188dp</dimen>
+    <dimen name="open_account_status_btn_height">36dp</dimen>
+    <dimen name="open_account_status_btn_margin_top">24dp</dimen>
+    <dimen name="open_account_status_btn_margin_bottom">20dp</dimen>
+    <dimen name="open_account_status_first_title_margin_top">45dp</dimen>
+    <dimen name="open_account_status_second_title_margin_top">35dp</dimen>
+    <dimen name="open_account_status_btn_text_size">14sp</dimen>
+    <dimen name="trade_account_lock_status_btn_margin_top">15dp</dimen>
+    <dimen name="trade_account_lock_status_title_margin_top">30dp</dimen>
+    <dimen name="trade_account_lock_status_notify_margin_top">12dp</dimen>
+    <dimen name="modify_trade_pwd_forget_pwd_margin_top">80dp</dimen>
+    <dimen name="personal_disclaimer_margin">15dp</dimen>
+    <!--login register -->
+
+    <dimen name="login_register_normal_edit_layout_height">30dp</dimen>
+    <dimen name="login_register_normal_edit_layout_padding_bottom">2dp</dimen>
+    <dimen name="login_register_normal_edit_paddingTop">3dp</dimen>
+    <dimen name="login_register_normal_edit_textSize">15sp</dimen>
+    <dimen name="login_register_layout_marginLeft">15dp</dimen>
+    <dimen name="login_register_layout_marginRight">15dp</dimen>
+    <dimen name="login_register_container_layout_marginTop">20dp</dimen>
+    <dimen name="login_register_et_container_layout_marginTop">20dp</dimen>
+    <dimen name="login_register_btn_layout_height">45dp</dimen>
+    <dimen name="login_register_btn_layout_textSize">20sp</dimen>
+    <dimen name="login_register_progress_bar_size">80dp</dimen>
+    <dimen name="login_register_iv_clear_layout_height">28dp</dimen>
+    <dimen name="login_register_tv_layout_height">20dp</dimen>
+    <dimen name="login_register_tv_text_size">15sp</dimen>
+
+    <dimen name="registers_checkbox_size">22dp</dimen>
+    <dimen name="registers_checkbox_size_layout_marginRight">8dp</dimen>
+    <dimen name="rl_choose_phoneNumber_belong_layout_height">45dp</dimen>
+    <dimen name="rl_choose_phoneNumber_belong_layout_marginTop">10dp</dimen>
+    <dimen name="login_register_clear_cover_paddingRight">30dp</dimen>
+    <dimen name="tv_other_register_layout_marginBottom">40dp</dimen>
+    <dimen name="verify_code_connection_margin_top">12dp</dimen>
+    <dimen name="verify_code_connection_text_size">18sp</dimen>
+
+    <dimen name="container_verification_code_margin_top">30dp</dimen>
+    <dimen name="verify_code_et_code_padding_right">120dp</dimen>
+    <dimen name="verify_code_resend_container_width">125dp</dimen>
+    <dimen name="normal_verify_code_resend_container_width">133dp</dimen>
+    <dimen name="register_cover_padding_bottom">1dp</dimen>
+    <dimen name="tv_send_msg_again_width">85dp</dimen>
+    <dimen name="tv_send_msg_again_text_size">16sp</dimen>
+    <dimen name="least_vertical_divider_width">1dp</dimen>
+    <dimen name="verify_code_resend_container_divider_height">20dp</dimen>
+
+    <dimen name="verify_code_resend_container_divider_margin_left_right">5dp</dimen>
+
+    <dimen name="et_password_padding_left">65dp</dimen>
+    <dimen name="et_password_cover_container">60dp</dimen>
+    <dimen name="tv_forget_pwd_margin_top">15dp</dimen>
+    <dimen name="super_toast_radius">4dp</dimen>
+    <dimen name="super_toast_padding">15dp</dimen>
+    <dimen name="fail_load_data_top_margin">130dp</dimen>
+    <dimen name="personal_base_left_text">14sp</dimen>
+
+    <dimen name="login_register_button_width">320dp</dimen>
+    <dimen name="login_register_button_height">40dp</dimen>
+    <dimen name="login_register_button_margin_bottom">17dp</dimen>
+
+    <!--accitivy send invite code -->
+    <dimen name="activity_send_invite_code_icon_scale">70dp</dimen>
+    <dimen name="activity_send_invite_code_icon_margin_top">75dp</dimen>
+    <dimen name="activity_send_invite_code_title_text_size">20sp</dimen>
+    <dimen name="activity_send_invite_code_title_margin_top">15dp</dimen>
+    <dimen name="activity_send_invite_code_et_margin">15dp</dimen>
+    <dimen name="activity_send_invite_code_et_margin_top">30dp</dimen>
+    <!--hkStockNoticeHintView-->
+    hk_stock_notic_hint_height
+    <dimen name="hk_stock_notice_hint_margin_top">5dp</dimen>
+    <dimen name="hk_stock_notice_hint_margin_bottom">10dp</dimen>
+    <dimen name="hk_stock_notice_hint_margin_left_right">10dp</dimen>
+    <dimen name="hk_stock_notice_hint_text_size">10sp</dimen>
+    <!--guide -->
+    <dimen name="guide_viewpager_height">420dp</dimen>
+    <dimen name="guide_viewpager_width">275dp</dimen>
+    <!-- face++ -->
+    <dimen name="ocr_text_left_padding">5dp</dimen>
+    <dimen name="ocr_text_top_margin">29dp</dimen>
+    <dimen name="live_time_top_margin">5dp</dimen>
+    <dimen name="live_time_text_size">24sp</dimen>
+    <dimen name="live_step_text_size">26sp</dimen>
+    <dimen name="live_step_top_margin">50dp</dimen>
+    <dimen name="live_voice_bottom_margin">60dp</dimen>
+    <dimen name="live_voice_text_size">12sp</dimen>
+    <dimen name="live_voice_drawable_padding">9dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="drawable_padding">6dp</dimen>
+    <dimen name="setting_left_result_margin">117dp</dimen>
+    <dimen name="bottom_padding">13dp</dimen>
+    <dimen name="left_or_right_padding">13dp</dimen>
+    <dimen name="status_top_margin">25dp</dimen>
+    <dimen name="not_login_icon_size">73.5dp</dimen>
+    <dimen name="not_login_margin">62dp</dimen>
+    <dimen name="keyboard_key_height">48dp</dimen>
+    <dimen name="back_width">54dp</dimen>
+    <dimen name="indicator_margin">76dp</dimen>
+    <dimen name="rich_text_size">34sp</dimen>
+    <dimen name="rich_key_text_size">25sp</dimen>
+    <dimen name="trade_status_item_height">103dp</dimen>
+
+
+    <!-- Market -->
+    <dimen name="market_line_height">0.5dp</dimen>
+    <dimen name="market_shadow_height">1dp</dimen>
+
+
+    <dimen name="market_hint_small">10sp</dimen>
+    <dimen name="market_hint_mid">12sp</dimen>
+    <dimen name="market_hint_big">13sp</dimen>
+    <dimen name="market_tip_small">14sp</dimen>
+    <dimen name="market_tip_mid">15sp</dimen>
+    <dimen name="market_tip_big">16sp</dimen>
+    <dimen name="market_text_small">18sp</dimen>
+    <dimen name="market_text_mid">20sp</dimen>
+    <dimen name="market_text_big">32sp</dimen>
+
+    <dimen name="mask_width">256dp</dimen>
+    <dimen name="mask_height">395dp</dimen>
+    <!-- Market -->
+</resources>

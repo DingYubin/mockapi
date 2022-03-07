@@ -6,5 +6,9 @@
     <string name="enter_login_pass">请输入密码</string>
     <string name="login_now">登陆</string>
     <string name="draw">绘制页面</string>
+    <string name="snack_bar">状态框</string>
     <string name="nav_forget_login_pass">忘记登陆密码</string>
+    <string name="error_msg">错误</string>
+    <string name="title_msg">让汽配采购更放心</string>
+    <string name="time">现在</string>
 </resources>

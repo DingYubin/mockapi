@@ -11,4 +11,11 @@
     <color name="bg_personal_login_register_control_normal">#DDDDDD</color>
     <color name="text_common_hint">#999</color>
     <color name="text_common_stock_red">#F54642</color>
+    <color name="st_snack_bar_red">#CDF54642</color>
+    <color name="st_snack_bar">#3dffffff</color>
+    <color name="st_bg_common_snack">#F73C4048</color>
+    <color name="st_bg_div_common_bottom">#292C32</color>
+    <color name="st_text_common_stock_back">#E6000000</color>
+    <color name="st_text_stock_back">#FF2A2A2B</color>
+
 </resources>

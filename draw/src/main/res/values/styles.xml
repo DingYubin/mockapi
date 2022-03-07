@@ -43,4 +43,22 @@
         <item name="android:textColor">@color/st_text_master_common_white</item>
         <item name="android:textSize">20sp</item>
     </style>
+
+    <style name="develop_setting_style" parent="@style/setting_text_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:height">50dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:clickable">true</item>
+        <item name="android:background">@drawable/view_bg_color_selector</item>
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/st_text_master_common_white</item>
+    </style>
+
+    <style name="setting_text_style">
+        <item name="android:textSize">20.5sp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerVertical">true</item>
+    </style>
 </resources>
