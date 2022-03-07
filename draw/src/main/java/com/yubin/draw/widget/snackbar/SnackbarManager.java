@@ -68,7 +68,7 @@ class SnackbarManager {
             }
 
             if (mCurrentSnackbar != null && cancelSnackbarLocked(mCurrentSnackbar,
-                    TSnackbar.Callback.DISMISS_EVENT_CONSECUTIVE)) {
+                    SnackBar.Callback.DISMISS_EVENT_CONSECUTIVE)) {
                 // If we currently have a TSnackbar, try and cancel it and wait in line
                 return;
             } else {
@@ -193,7 +193,7 @@ class SnackbarManager {
     }
 
     private void scheduleTimeoutLocked(SnackbarRecord r) {
-        if (r.duration == TSnackbar.LENGTH_INDEFINITE) {
+        if (r.duration == SnackBar.LENGTH_INDEFINITE) {
             // If we're set to indefinite, we don't want to set a timeout
             return;
         }
@@ -201,7 +201,7 @@ class SnackbarManager {
         int durationMs = LONG_DURATION_MS;
         if (r.duration > 0) {
             durationMs = r.duration;
-        } else if (r.duration == TSnackbar.LENGTH_SHORT) {
+        } else if (r.duration == SnackBar.LENGTH_SHORT) {
             durationMs = SHORT_DURATION_MS;
         }
         mHandler.removeCallbacksAndMessages(r);
@@ -211,7 +211,7 @@ class SnackbarManager {
     private void handleTimeout(SnackbarRecord record) {
         synchronized (mLock) {
             if (mCurrentSnackbar == record || mNextSnackbar == record) {
-                cancelSnackbarLocked(record, TSnackbar.Callback.DISMISS_EVENT_TIMEOUT);
+                cancelSnackbarLocked(record, SnackBar.Callback.DISMISS_EVENT_TIMEOUT);
             }
         }
     }

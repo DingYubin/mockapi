@@ -48,7 +48,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 
-public final class TSnackbar {
+public final class SnackBar {
 
 
     private CharSequence title;
@@ -75,12 +75,12 @@ public final class TSnackbar {
         }
 
 
-        public void onDismissed(TSnackbar snackbar, @DismissEvent int event) {
+        public void onDismissed(SnackBar snackbar, @DismissEvent int event) {
 
         }
 
 
-        public void onShown(TSnackbar snackbar) {
+        public void onShown(SnackBar snackbar) {
 
         }
     }
@@ -113,10 +113,10 @@ public final class TSnackbar {
             public boolean handleMessage(Message message) {
                 switch (message.what) {
                     case MSG_SHOW:
-                        ((TSnackbar) message.obj).showView();
+                        ((SnackBar) message.obj).showView();
                         return true;
                     case MSG_DISMISS:
-                        ((TSnackbar) message.obj).hideView(message.arg1);
+                        ((SnackBar) message.obj).hideView(message.arg1);
                         return true;
                 }
                 return false;
@@ -131,7 +131,7 @@ public final class TSnackbar {
     private int mDuration;
     private Callback mCallback;
 
-    private TSnackbar(ViewGroup parent, Activity activity) {
+    private SnackBar(ViewGroup parent, Activity activity) {
         mParent = parent;
         mContext = parent.getContext();
         this.activity = activity;
@@ -141,18 +141,18 @@ public final class TSnackbar {
 
 
     @NonNull
-    public static TSnackbar make(Activity activity, @NonNull CharSequence text,
-                                 @Duration int duration) {
-        TSnackbar snackbar = new TSnackbar(findSuitableParent(activity.findViewById(android.R.id.content)), activity);
+    public static SnackBar make(Activity activity, @NonNull CharSequence text,
+                                @Duration int duration) {
+        SnackBar snackbar = new SnackBar(findSuitableParent(activity.findViewById(android.R.id.content)), activity);
         snackbar.setText(text);
         snackbar.setDuration(duration);
         return snackbar;
     }
 
     @NonNull
-    public static TSnackbar make(Activity activity, @NonNull CharSequence text, CharSequence title,
-                                 @Duration int duration) {
-        TSnackbar snackbar = new TSnackbar(findSuitableParent(activity.findViewById(android.R.id.content)), activity);
+    public static SnackBar make(Activity activity, @NonNull CharSequence text, CharSequence title,
+                                @Duration int duration) {
+        SnackBar snackbar = new SnackBar(findSuitableParent(activity.findViewById(android.R.id.content)), activity);
         snackbar.setText(text);
         snackbar.setTitle(title);
         snackbar.setDuration(duration);
@@ -205,7 +205,6 @@ public final class TSnackbar {
     }
 
     public void showNotification() {
-        mView.setBackgroundResource(R.drawable.notice_bg);
         TextView tvMsg = mView.findViewById(R.id.snackbar_text);
         tvMsg.setTextColor(mContext.getColor(R.color.st_text_stock_back));
         LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) tvMsg.getLayoutParams();
@@ -219,14 +218,18 @@ public final class TSnackbar {
         show();
     }
 
-    public TSnackbar setIconPadding(int padding) {
+    public SnackBar setBackground(@DrawableRes int drawableRes) {
+        mView.setBackgroundResource(drawableRes);
+        return this;
+    }
+
+    public SnackBar setIconPadding(int padding) {
         final TextView tv = mView.getTitle();
         tv.setCompoundDrawablePadding(padding);
         return this;
     }
 
-
-    public TSnackbar setIconLeft(@DrawableRes int drawableRes, float sizeDp) {
+    public SnackBar setIconLeft(@DrawableRes int drawableRes, float sizeDp) {
         final TextView tv = mView.getTitle();
         Drawable drawable = ContextCompat.getDrawable(mContext, drawableRes);
         if (drawable != null) {
@@ -240,7 +243,7 @@ public final class TSnackbar {
     }
 
 
-    public TSnackbar setIconRight(@DrawableRes int drawableRes, float sizeDp) {
+    public SnackBar setIconRight(@DrawableRes int drawableRes, float sizeDp) {
         final TextView tv = mView.getTitle();
         Drawable drawable = ContextCompat.getDrawable(mContext, drawableRes);
         if (drawable != null) {
@@ -253,7 +256,7 @@ public final class TSnackbar {
         return this;
     }
 
-    public TSnackbar setMaxWidth(int maxWidth) {
+    public SnackBar setMaxWidth(int maxWidth) {
         mView.mMaxWidth = maxWidth;
         return this;
     }
@@ -302,7 +305,7 @@ public final class TSnackbar {
     }
 
     @NonNull
-    public TSnackbar setText(@NonNull CharSequence message) {
+    public SnackBar setText(@NonNull CharSequence message) {
         final TextView tv = mView.getMessageView();
         tv.setText(message);
         return this;
@@ -310,13 +313,13 @@ public final class TSnackbar {
 
 
     @NonNull
-    public TSnackbar setText(@StringRes int resId) {
+    public SnackBar setText(@StringRes int resId) {
         return setText(mContext.getText(resId));
     }
 
 
     @NonNull
-    public TSnackbar setDuration(@Duration int duration) {
+    public SnackBar setDuration(@Duration int duration) {
         mDuration = duration;
         return this;
     }
@@ -351,7 +354,7 @@ public final class TSnackbar {
 
 
     @NonNull
-    public TSnackbar setCallback(Callback callback) {
+    public SnackBar setCallback(Callback callback) {
         mCallback = callback;
         return this;
     }
@@ -371,12 +374,12 @@ public final class TSnackbar {
     private final SnackbarManager.Callback mManagerCallback = new SnackbarManager.Callback() {
         @Override
         public void show() {
-            sHandler.sendMessage(sHandler.obtainMessage(MSG_SHOW, TSnackbar.this));
+            sHandler.sendMessage(sHandler.obtainMessage(MSG_SHOW, SnackBar.this));
         }
 
         @Override
         public void dismiss(int event) {
-            sHandler.sendMessage(sHandler.obtainMessage(MSG_DISMISS, event, 0, TSnackbar.this));
+            sHandler.sendMessage(sHandler.obtainMessage(MSG_DISMISS, event, 0, SnackBar.this));
         }
     };
 
@@ -471,7 +474,7 @@ public final class TSnackbar {
                         @Override
                         public void onAnimationEnd(View view) {
                             if (mCallback != null) {
-                                mCallback.onShown(TSnackbar.this);
+                                mCallback.onShown(SnackBar.this);
                             }
                             SnackbarManager.getInstance()
                                     .onShown(mManagerCallback);
@@ -487,7 +490,7 @@ public final class TSnackbar {
                 @Override
                 public void onAnimationEnd(Animation animation) {
                     if (mCallback != null) {
-                        mCallback.onShown(TSnackbar.this);
+                        mCallback.onShown(SnackBar.this);
                     }
                     SnackbarManager.getInstance()
                             .onShown(mManagerCallback);

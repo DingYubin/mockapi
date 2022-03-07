@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <view xmlns:android="http://schemas.android.com/apk/res/android"
-    class="com.yubin.draw.widget.snackbar.TSnackbar$SnackbarLayout"
+    class="com.yubin.draw.widget.snackbar.SnackBar$SnackbarLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="top"
