@@ -218,6 +218,12 @@ public final class SnackBar {
         show();
     }
 
+    public SnackBar setTimes(String times) {
+        final TextView tv = mView.getTime();
+        tv.setText(times);
+        return this;
+    }
+
     public SnackBar setBackground(@DrawableRes int drawableRes) {
         mView.setBackgroundResource(drawableRes);
         return this;
@@ -591,6 +597,7 @@ public final class SnackBar {
     public static class SnackbarLayout extends LinearLayout {
         private TextView mMessageView;
         private TextView title;
+        private TextView time;
         private View container;
         private int mMaxWidth;
         private int mMaxInlineActionWidth;
@@ -639,6 +646,7 @@ public final class SnackBar {
             super.onFinishInflate();
             mMessageView = findViewById(R.id.snackbar_text);
             title = findViewById(R.id.snack_bar_text_title);
+            time = findViewById(R.id.snack_bar_time);
             container = findViewById(R.id.container);
         }
 
@@ -648,6 +656,10 @@ public final class SnackBar {
 
         TextView getTitle() {
             return title;
+        }
+
+        TextView getTime() {
+            return time;
         }
 
         @Override

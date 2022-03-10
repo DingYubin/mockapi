@@ -44,14 +44,23 @@ class UiActivity : NativeActivity<ActivityUiBinding>() {
 
     private fun initView() {
         binding.snackBar.setOnClickListener {
-            val bar = SnackBar.make(this as BaseActivity, "询价单B00000001，客户补充了旧件图/零件号，请及时调整报价", "让汽配采购更放心", SnackBar.LENGTH_LONG)
-                .setIconLeft(R.drawable.notice_icon, 33.0f)
-                .setBackground(R.drawable.notice_bg)
-                .setIconPadding(1)
-            bar.showNotification()
-            bar.view.setOnClickListener {
-                bar.dismiss()
-            }
+            showNotification()
+        }
+    }
+
+    private fun showNotification() {
+        val bar = SnackBar.make(
+            this as BaseActivity,
+            "询价单B00000001，客户补充了旧件图/零件号，请及时调整报价",
+            "让汽配采购更放心",
+            SnackBar.LENGTH_LONG
+        )   .setTimes("未来")
+            .setIconLeft(R.drawable.notice_icon, 33.0f)
+            .setBackground(R.drawable.notice_bg)
+            .setIconPadding(1)
+        bar.showNotification()
+        bar.view.setOnClickListener {
+            bar.dismiss()
         }
     }
 }
