@@ -1,4 +1,4 @@
-rootProject.name = "模版代码"
+rootProject.name = "阿尔登法环"
 include ':app'
 include ':mocklibrary'
 include ':httplibrary'

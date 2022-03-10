@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">模版app</string>
+    <string name="app_name">EldenRing</string>
     <string name="mvp">mvp架构</string>
     <string name="mvvm">mvvm架构</string>
     <string name="mvx">mvx架构</string>
