@@ -160,7 +160,7 @@ public class RecyclerViewHeader extends RelativeLayout {
 
     private int tempHeight;
 
-    public void updataHeight(final RecyclerView recycler) {
+    public void updateHeight(final RecyclerView recycler) {
         RecyclerViewHeader.this.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {

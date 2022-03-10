@@ -65,16 +65,16 @@ public class LoadStatusView extends FrameLayout {
     private void initView(Context context, AttributeSet attrs, int defStyleAttr) {
         View root = LayoutInflater.from(context).inflate(R.layout.layout_load_status_view, this, true);
         llLoading =  root.findViewById(R.id.ll_loading);
-        ivLoading = (ImageView) root.findViewById(R.id.iv_loading);
+        ivLoading = root.findViewById(R.id.iv_loading);
         loadingDrawable = (AnimationDrawable) ivLoading.getDrawable();
-        tvLoading = (TextView) root.findViewById(R.id.tv_loading);
-        llLoadFail = (RelativeLayout) root.findViewById(R.id.ll_load_fail);
-        ivLoadFail = (ImageView) root.findViewById(R.id.iv_load_fail);
-        tvLoadFail = (TextView) root.findViewById(R.id.tv_load_fail);
-        llLoadEmpty = (LinearLayout) root.findViewById(R.id.ll_load_empty);
-        ivLoadEmpty = (ImageView) root.findViewById(R.id.iv_load_empty);
-        tvLoadEmpty = (TextView) root.findViewById(R.id.tv_load_empty);
-        btnRefresh = (Button) root.findViewById(R.id.btn_refresh);
+        tvLoading = root.findViewById(R.id.tv_loading);
+        llLoadFail = root.findViewById(R.id.ll_load_fail);
+        ivLoadFail = root.findViewById(R.id.iv_load_fail);
+        tvLoadFail = root.findViewById(R.id.tv_load_fail);
+        llLoadEmpty =  root.findViewById(R.id.ll_load_empty);
+        ivLoadEmpty = root.findViewById(R.id.iv_load_empty);
+        tvLoadEmpty = root.findViewById(R.id.tv_load_empty);
+        btnRefresh = root.findViewById(R.id.btn_refresh);
         if (attrs != null) {
             TypedArray typedArray =
                     context.obtainStyledAttributes(attrs, R.styleable.LoadStatusView, defStyleAttr, 0);
