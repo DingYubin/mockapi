@@ -34,7 +34,7 @@
                 android:layout_height="156dp"
                 android:background="@color/st_bg_common_master_blue"
                 android:text="@string/snack_bar"
-                android:textColor="@color/st_text_master_common_white" />
+                android:textColor="@color/tab_selector_color" />
 
         </LinearLayout>
     </ScrollView>

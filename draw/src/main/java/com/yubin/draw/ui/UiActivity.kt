@@ -49,6 +49,7 @@ class UiActivity : NativeActivity<ActivityUiBinding>() {
     }
 
     private fun showNotification() {
+        binding.snackBar.isEnabled = false
         val bar = SnackBar.make(
             this as BaseActivity,
             "询价单B00000001，客户补充了旧件图/零件号，请及时调整报价",
@@ -61,6 +62,7 @@ class UiActivity : NativeActivity<ActivityUiBinding>() {
         bar.showNotification()
         bar.view.setOnClickListener {
             bar.dismiss()
+            binding.snackBar.isEnabled = true
         }
     }
 }
