@@ -1,0 +1,146 @@
+{
+    "errorCode": 0,
+    "data": {
+        "isFromPlatForm": false,
+        "stores": [
+            {
+                "storeId": "SZXHY001",
+                "products": [
+                    {
+                        "productId": "15743285968777070002",
+                        "productName": "倍耐力 225/45R18 91W P7C 防爆 2020上半年",
+                        "price": "29.00",
+                        "imageUri": "https://cass-upload.oss-cn-shenzhen.aliyuncs.com/prod/merchant/2019-11-22/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20191122115210_1dq8ju5v0_vd.png"
+                    },
+                    {
+                        "productId": "15743285968777070006",
+                        "productName": "倍耐力 245/45R18 100Y P7Cr-f *、MOE",
+                        "price": "66.00",
+                        "imageUri": "https://cass-upload.oss-cn-shenzhen.aliyuncs.com/prod/merchant/2019-11-22/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20191122115210_1dq8ju5v0_vd.png"
+                    },
+                    {
+                        "productId": "15743285968777070010",
+                        "productName": "倍耐力 245/45R18 96Y P7Cr-f *",
+                        "price": "16.00",
+                        "imageUri": "https://cass-upload.oss-cn-shenzhen.aliyuncs.com/prod/merchant/2019-11-22/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20191122115210_1dq8ju5v0_vd.png"
+                    }
+                ],
+                "facilityName": "",
+                "storeName": "信恒誉轮胎专卖店",
+                "keywords": "",
+                "storyImageUri": ""
+            },
+            {
+                "storeId": "GZDAL001",
+                "products": [
+                    {
+                        "productId": "15599815614616290139",
+                        "productName": "米其林轮胎 295/40R20 106Y LATITUDE SPORT 3 N0 适配：保时捷MACAN 后轮 产地咨询客服 2018上半年 2954020",
+                        "price": "79.00",
+                        "imageUri": "https://pic-market.cassmall.com/store/prod/store/1560495182609_wFQDseTdjBA5cS2JpZaYRRYZkk4GRNSK.jpg"
+                    }
+                ],
+                "facilityName": "",
+                "storeName": "达安轮轮胎专营店",
+                "keywords": "达安轮轮胎,米其林,马牌,倍耐力,普利司通",
+                "storyImageUri": "https://pic-market.cassmall.com/mall/prod/store/1560574966434_keFxCXBJwsP6QWSWdX8CNdb8yPsDw6Zp.png"
+            },
+            {
+                "storeId": "GZXHDY01",
+                "products": [
+                    {
+                        "productId": "15674980552957920004",
+                        "productName": "普利司通轮胎 185/55R15 82H TECHNO 中国 2019上半年 1855515",
+                        "price": "61.00",
+                        "imageUri": "https://pic-market.cassmall.com/store/prod/store/1567682502859_cHZ5aby2ByjBZHe4PSYyBYfd4sMah4Sw.png"
+                    },
+                    {
+                        "productId": "15674980552957920010",
+                        "productName": "普利司通轮胎 195/50R16 84V EP150 起亚K2 福特嘉年华 中国 2019上半年 1955016",
+                        "price": "67.00",
+                        "imageUri": "https://pic-market.cassmall.com/store/prod/store/1567681981770_6b2YF3XMdWaaD5WQhFWHkWFDWy86Aa78.png"
+                    },
+                    {
+                        "productId": "15674980552957920013",
+                        "productName": "普利司通轮胎 195/55R16 87V ER300 RFT ★ RFT RFT 宝马 MINI 日本 2019上半年 1955516",
+                        "price": "97.00",
+                        "imageUri": "https://pic-market.cassmall.com/store/prod/store/1567682169942_wwcPJeKJXj4DXMzriBCxnt4JndpG44wx.png"
+                    }
+                ],
+                "facilityName": "",
+                "storeName": "东源轮胎经营部",
+                "keywords": "米其林,普利司通,马牌,倍耐力",
+                "storyImageUri": ""
+            },
+            {
+                "storeId": "SZBRC001",
+                "products": [
+                    {
+                        "productId": "15748247283526540000",
+                        "productName": "倍耐力（Pirelli）轮胎/汽车轮胎 185/65R15  88H 新P6 中国 原配东风标致207/适配现代悦动/日产阳光/轩逸  深圳地区当天送达",
+                        "price": "66.00",
+                        "imageUri": "https://cass-upload.oss-cn-shenzhen.aliyuncs.com/prod/merchant/2019-11-27/P6C_1dqlmihr4_5l9.png"
+                    },
+                    {
+                        "productId": "15748247283526540005",
+                        "productName": "倍耐力（Pirelli）轮胎/汽车轮胎  195/60R16  89H 新P1 中国 适配日产轩逸/骐达/斯柯达野帝/凌致V5等 深圳地区当天送达",
+                        "price": "27.00",
+                        "imageUri": "https://cass-upload.oss-cn-shenzhen.aliyuncs.com/prod/merchant/2019-11-27/P1C_1dqlqqa63_5tv.png"
+                    },
+                    {
+                        "productId": "15748247283526540006",
+                        "productName": "倍耐力P1Cr-f 195/55R16 * 195551610",
+                        "price": "4.00",
+                        "imageUri": "https://cass-upload.oss-cn-shenzhen.aliyuncs.com/prod/merchant/2019-11-27/P1_1dqlra6nr_5p0.png"
+                    },
+                    {
+                        "productId": "15748247283526540007",
+                        "productName": "米其林(Michelin)轮胎/汽车轮胎 195/60R16   89H ENERGY XM2 中国 适配风S500/景逸S50/日产蓝鸟/骐达等  深圳地区当天送达",
+                        "price": "53.00",
+                        "imageUri": "https://cass-upload.oss-cn-shenzhen.aliyuncs.com/prod/merchant/2019-11-27/XM2_1dqlqtvit_2vq.png"
+                    },
+                    {
+                        "productId": "15748247283526540008",
+                        "productName": "倍耐力（Pirelli）轮胎/汽车轮胎  205/65R16  95H 新P1 中国 适配起亚K5/日产天籁/马自达8/起亚KX3/现代IX25等 深圳地区当天送达",
+                        "price": "16.00",
+                        "imageUri": "https://cass-upload.oss-cn-shenzhen.aliyuncs.com/prod/merchant/2019-11-27/P1C_1dqlqqa63_5tv.png"
+                    },
+                    {
+                        "productId": "15748247283526540010",
+                        "productName": "倍耐力（Pirelli）轮胎/汽车轮胎  205/55R16  91V  新P7 中国 适配宝马/奔驰/奥迪A级/大众速腾/朗逸/高尔夫/马自达3等  深圳地区当天送达",
+                        "price": "60.00",
+                        "imageUri": "https://cass-upload.oss-cn-shenzhen.aliyuncs.com/prod/merchant/2019-11-27/P7_1dqlfoom5_8a8.png"
+                    },
+                    {
+                        "productId": "15748247283526540011",
+                        "productName": "倍耐力（Pirelli）轮胎/汽车轮胎  205/45R16  83W  PZER0 NERO  土耳其进口  原配奔驰A级/适配POLO晶锐等  深圳地区当天送达",
+                        "price": "63.00",
+                        "imageUri": "https://cass-upload.oss-cn-shenzhen.aliyuncs.com/prod/merchant/2019-11-27/PZERO_1dqlu97l0_3d4.png"
+                    },
+                    {
+                        "productId": "15748247283526540012",
+                        "productName": "米其林(Michelin)轮胎/汽车轮胎 205/55R16 91V ENERGY XM2 韧悦 中国 适配高尔夫7/风行S500/景逸LV等  深圳地区当天送达",
+                        "price": "23.00",
+                        "imageUri": "https://cass-upload.oss-cn-shenzhen.aliyuncs.com/prod/merchant/2019-11-27/XM2_1dqlqtvit_2vq.png"
+                    },
+                    {
+                        "productId": "15748247283526540013",
+                        "productName": "倍耐力（Pirelli）轮胎/汽车轮胎  215/65R16  98V  SC-Verde  A-S(Veas四季) 中国 适配大众途观/逍客/现代途胜/狮跑等   深圳地区当天送达",
+                        "price": "73.00",
+                        "imageUri": "https://cass-upload.oss-cn-shenzhen.aliyuncs.com/prod/merchant/2019-11-27/SC-Veas_1dqlfi1ho_7fj.png"
+                    },
+                    {
+                        "productId": "15748247283526540016",
+                        "productName": "米其林(Michelin)轮胎/汽车轮胎  215/55R16  97W  PRIMACY 3ST  中国  适配迈腾/标志308S/沃尔沃S60等  深圳地区当天送达",
+                        "price": "92.00",
+                        "imageUri": "https://cass-upload.oss-cn-shenzhen.aliyuncs.com/prod/merchant/2019-11-27/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20191127134556_1dqlmatc4_3ih.png"
+                    }
+                ],
+                "facilityName": "",
+                "storeName": "宝瑞驰轮胎专营店",
+                "keywords": "",
+                "storyImageUri": ""
+            }
+        ]
+    }
+}
