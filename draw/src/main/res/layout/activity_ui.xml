@@ -86,7 +86,7 @@
                         android:text="@string/more"
                         android:textSize="10sp"
                         android:textColor="@color/color_cec_grey_646566"
-                        app:drawableEndCompat="@drawable/backwards_normal_go"
+                        app:drawableEndCompat="@drawable/ic_round_arrow_forward"
                         android:visibility="gone"
                         tools:ignore="RtlSymmetry,SmallSp" />
                 </LinearLayout>
