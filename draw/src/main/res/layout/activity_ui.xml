@@ -1,26 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-<!--    <TextView-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:textSize="16sp"-->
-<!--        android:textColor="@color/cardview_dark_background"-->
-<!--        android:text="@string/draw"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent" />-->
-
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:ignore="ScrollViewCount">
 
         <LinearLayout
             android:id="@+id/container"
@@ -28,7 +20,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/snack_bar"
                 style="@style/develop_setting_style"
                 android:layout_height="156dp"
@@ -36,7 +28,71 @@
                 android:text="@string/snack_bar"
                 android:textColor="@color/tab_selector_color" />
 
+            <HorizontalScrollView
+                android:id="@+id/horizontal_scroll_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:id="@+id/stored_scroll"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="11dp"
+                    android:orientation="horizontal">
+
+                    <include
+                        android:id="@+id/goods_item1"
+                        layout="@layout/product_store_goods_item_layout" />
+
+                    <include
+                        android:id="@+id/goods_item2"
+                        layout="@layout/product_store_goods_item_layout" />
+
+                    <include
+                        android:id="@+id/goods_item3"
+                        layout="@layout/product_store_goods_item_layout" />
+
+                    <include
+                        android:id="@+id/goods_item4"
+                        layout="@layout/product_store_goods_item_layout" />
+
+                    <include
+                        android:id="@+id/goods_item5"
+                        layout="@layout/product_store_goods_item_layout" />
+
+                    <include
+                        android:id="@+id/goods_item6"
+                        layout="@layout/product_store_goods_item_layout" />
+
+                    <include
+                        android:id="@+id/goods_item7"
+                        layout="@layout/product_store_goods_item_layout" />
+
+                    <include
+                        android:id="@+id/goods_item8"
+                        layout="@layout/product_store_goods_item_layout" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/more"
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:singleLine="false"
+                        android:layout_marginEnd="12dp"
+                        android:paddingEnd="20dp"
+                        android:background="@color/bg_common_white"
+                        android:text="@string/more"
+                        android:textSize="10sp"
+                        android:textColor="@color/color_cec_grey_646566"
+                        app:drawableEndCompat="@drawable/backwards_normal_go"
+                        android:visibility="gone"
+                        tools:ignore="RtlSymmetry,SmallSp" />
+                </LinearLayout>
+            </HorizontalScrollView>
         </LinearLayout>
-    </ScrollView>
+
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

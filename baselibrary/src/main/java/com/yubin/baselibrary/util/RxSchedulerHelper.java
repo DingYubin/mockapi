@@ -1,4 +1,4 @@
-package com.casstime.base.util;
+package com.yubin.baselibrary.util;
 
 import androidx.annotation.NonNull;
 

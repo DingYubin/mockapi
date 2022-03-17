@@ -18,4 +18,7 @@
     <color name="st_text_common_stock_back">#E6000000</color>
     <color name="st_text_stock_back">#FF2A2A2B</color>
 
+    <color name="color_cec_red_ff4e33">#ff4e33</color>
+    <color name="color_cec_grey_646566">#FF646566</color>
+    <color name="color_cec_white_f8f8f8">#fff8f8f8</color>
 </resources>

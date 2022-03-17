@@ -11,4 +11,6 @@
     <string name="error_msg">错误</string>
     <string name="title_msg">让汽配采购更放心</string>
     <string name="time">现在</string>
+    <string name="more">进店更多</string>
+    <string name="product_visible_after_certification">(认证后可见)</string>
 </resources>

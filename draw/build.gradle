@@ -37,4 +37,6 @@ android {
 dependencies {
 
     implementation project(':baselibrary')
+    implementation 'androidx.core:core:1.7.0'
+    implementation dependency.gson
 }

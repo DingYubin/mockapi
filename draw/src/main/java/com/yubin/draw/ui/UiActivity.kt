@@ -1,15 +1,27 @@
 package com.yubin.draw.ui
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
+import android.view.MotionEvent
+import android.view.View
+import android.widget.HorizontalScrollView
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.google.gson.Gson
+import com.yubin.baselibrary.core.BaseApplication.Companion.context
 import com.yubin.baselibrary.router.path.RouterPath
 import com.yubin.baselibrary.ui.basemvvm.BaseActivity
 import com.yubin.baselibrary.ui.basemvvm.NativeActivity
+import com.yubin.baselibrary.util.EmptyUtil
+import com.yubin.baselibrary.util.MockUtil
 import com.yubin.draw.R
+import com.yubin.draw.bean.StoreList
 import com.yubin.draw.databinding.ActivityUiBinding
 import com.yubin.draw.widget.snackbar.SnackBar
+import com.yubin.draw.widget.view.GoodsItemView
+
 
 /**
  * <pre>
@@ -22,6 +34,8 @@ import com.yubin.draw.widget.snackbar.SnackBar
  */
 @Route(path = RouterPath.UiPage.PATH_UI_DRAW)
 class UiActivity : NativeActivity<ActivityUiBinding>() {
+
+    private var goodsItemViews: List<GoodsItemView>? = null
 
     companion object {
         @JvmStatic
@@ -40,11 +54,66 @@ class UiActivity : NativeActivity<ActivityUiBinding>() {
         }
 
         initView()
+        bindData()
+        addListener()
+    }
+
+    @SuppressLint("ClickableViewAccessibility")
+    private fun addListener() {
+        binding.snackBar.setOnClickListener {
+            showNotification()
+        }
+
+        binding.horizontalScrollView.setOnTouchListener { v, event ->
+            when (event.action) {
+
+                MotionEvent.ACTION_UP -> {
+                    val firstView = (v as HorizontalScrollView).getChildAt(0)
+                    if (firstView.measuredWidth <= v.getScrollX() + v.getWidth()) {
+                        //加载数据代码
+                        Log.d("TagX", "========   到最右边")
+                    }
+                }
+            }
+            false
+        }
     }
 
     private fun initView() {
-        binding.snackBar.setOnClickListener {
-            showNotification()
+
+        goodsItemViews = arrayListOf(
+            GoodsItemView(findViewById(R.id.goods_item1)),
+            GoodsItemView(findViewById(R.id.goods_item2)),
+            GoodsItemView(findViewById(R.id.goods_item3)),
+            GoodsItemView(findViewById(R.id.goods_item4)),
+            GoodsItemView(findViewById(R.id.goods_item5)),
+            GoodsItemView(findViewById(R.id.goods_item6)),
+            GoodsItemView(findViewById(R.id.goods_item7)),
+            GoodsItemView(findViewById(R.id.goods_item8))
+        )
+
+    }
+
+    private fun bindData() {
+        //mock 数据
+        val mockJson: String = MockUtil.stringFromAssets(context, "goods.json")
+        val data: StoreList = Gson().fromJson(mockJson, StoreList::class.java)
+        val stores = data.stores
+        for (store in stores) {
+            if (EmptyUtil.isCollectionNotEmpty(store.products)) {
+                val viewSize = goodsItemViews?.size
+                val productSize = store.products.size
+                binding.more.visibility = if (productSize < 8) View.GONE else View.VISIBLE
+
+                for (i in 0 until viewSize!!) {
+                    val goodsItemHolder = goodsItemViews?.get(i)
+                    if (i < productSize) {
+                        goodsItemHolder?.setData(store.products[i], 2)
+                    } else {
+                        goodsItemHolder?.setData(null, 1)
+                    }
+                }
+            }
         }
     }
 

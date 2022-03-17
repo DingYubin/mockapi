@@ -1,77 +1,6 @@
 {
-    "errorCode": 0,
-    "data": {
         "isFromPlatForm": false,
         "stores": [
-            {
-                "storeId": "SZXHY001",
-                "products": [
-                    {
-                        "productId": "15743285968777070002",
-                        "productName": "倍耐力 225/45R18 91W P7C 防爆 2020上半年",
-                        "price": "29.00",
-                        "imageUri": "https://cass-upload.oss-cn-shenzhen.aliyuncs.com/prod/merchant/2019-11-22/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20191122115210_1dq8ju5v0_vd.png"
-                    },
-                    {
-                        "productId": "15743285968777070006",
-                        "productName": "倍耐力 245/45R18 100Y P7Cr-f *、MOE",
-                        "price": "66.00",
-                        "imageUri": "https://cass-upload.oss-cn-shenzhen.aliyuncs.com/prod/merchant/2019-11-22/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20191122115210_1dq8ju5v0_vd.png"
-                    },
-                    {
-                        "productId": "15743285968777070010",
-                        "productName": "倍耐力 245/45R18 96Y P7Cr-f *",
-                        "price": "16.00",
-                        "imageUri": "https://cass-upload.oss-cn-shenzhen.aliyuncs.com/prod/merchant/2019-11-22/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20191122115210_1dq8ju5v0_vd.png"
-                    }
-                ],
-                "facilityName": "",
-                "storeName": "信恒誉轮胎专卖店",
-                "keywords": "",
-                "storyImageUri": ""
-            },
-            {
-                "storeId": "GZDAL001",
-                "products": [
-                    {
-                        "productId": "15599815614616290139",
-                        "productName": "米其林轮胎 295/40R20 106Y LATITUDE SPORT 3 N0 适配：保时捷MACAN 后轮 产地咨询客服 2018上半年 2954020",
-                        "price": "79.00",
-                        "imageUri": "https://pic-market.cassmall.com/store/prod/store/1560495182609_wFQDseTdjBA5cS2JpZaYRRYZkk4GRNSK.jpg"
-                    }
-                ],
-                "facilityName": "",
-                "storeName": "达安轮轮胎专营店",
-                "keywords": "达安轮轮胎,米其林,马牌,倍耐力,普利司通",
-                "storyImageUri": "https://pic-market.cassmall.com/mall/prod/store/1560574966434_keFxCXBJwsP6QWSWdX8CNdb8yPsDw6Zp.png"
-            },
-            {
-                "storeId": "GZXHDY01",
-                "products": [
-                    {
-                        "productId": "15674980552957920004",
-                        "productName": "普利司通轮胎 185/55R15 82H TECHNO 中国 2019上半年 1855515",
-                        "price": "61.00",
-                        "imageUri": "https://pic-market.cassmall.com/store/prod/store/1567682502859_cHZ5aby2ByjBZHe4PSYyBYfd4sMah4Sw.png"
-                    },
-                    {
-                        "productId": "15674980552957920010",
-                        "productName": "普利司通轮胎 195/50R16 84V EP150 起亚K2 福特嘉年华 中国 2019上半年 1955016",
-                        "price": "67.00",
-                        "imageUri": "https://pic-market.cassmall.com/store/prod/store/1567681981770_6b2YF3XMdWaaD5WQhFWHkWFDWy86Aa78.png"
-                    },
-                    {
-                        "productId": "15674980552957920013",
-                        "productName": "普利司通轮胎 195/55R16 87V ER300 RFT ★ RFT RFT 宝马 MINI 日本 2019上半年 1955516",
-                        "price": "97.00",
-                        "imageUri": "https://pic-market.cassmall.com/store/prod/store/1567682169942_wwcPJeKJXj4DXMzriBCxnt4JndpG44wx.png"
-                    }
-                ],
-                "facilityName": "",
-                "storeName": "东源轮胎经营部",
-                "keywords": "米其林,普利司通,马牌,倍耐力",
-                "storyImageUri": ""
-            },
             {
                 "storeId": "SZBRC001",
                 "products": [
@@ -142,5 +71,4 @@
                 "storyImageUri": ""
             }
         ]
-    }
 }

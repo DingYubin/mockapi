@@ -1,4 +1,4 @@
-package com.yubin.medialibrary.util;
+package com.yubin.baselibrary.util;
 
 
 import android.util.Log;

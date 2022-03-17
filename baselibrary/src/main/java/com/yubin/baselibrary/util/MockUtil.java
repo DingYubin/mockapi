@@ -1,4 +1,4 @@
-package com.yubin.httplibrary.util;
+package com.yubin.baselibrary.util;
 
 import android.content.Context;
 import android.net.Uri;

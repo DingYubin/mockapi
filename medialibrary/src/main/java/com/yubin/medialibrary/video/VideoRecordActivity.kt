@@ -26,7 +26,7 @@ import com.yubin.medialibrary.camera.MediaManager
 import com.yubin.medialibrary.databinding.ActivityVideoRecordBinding
 import com.yubin.medialibrary.manager.MediaInfo
 import com.yubin.medialibrary.util.FileUtil
-import com.yubin.medialibrary.util.LogUtil
+import com.yubin.baselibrary.util.LogUtil
 import com.yubin.medialibrary.util.MediaUtil
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope

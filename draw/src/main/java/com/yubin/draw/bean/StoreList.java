@@ -1,19 +1,12 @@
-package com.casstime.product.search.store.bean;
-
-import android.os.Bundle;
-
-import com.casstime.uikit.recyclerView.adapter.protocol.ICECDiffData;
+package com.yubin.draw.bean;
 
 import java.io.Serializable;
 import java.util.List;
 
 /**
  * 搜索店铺bean
- *
- * @Author wangbin
- * @Date 2019-06-13 19:24
  */
-public class CECStoreList implements Serializable {
+public class StoreList implements Serializable {
 
 
     /**
@@ -41,7 +34,7 @@ public class CECStoreList implements Serializable {
         this.stores = stores;
     }
 
-    public static class StoreListBean implements Serializable, ICECDiffData {
+    public static class StoreListBean implements Serializable{
         /**
          * 店铺id
          */
@@ -145,16 +138,6 @@ public class CECStoreList implements Serializable {
 
         public void setViewType(int viewType) {
             this.viewType = viewType;
-        }
-
-        @Override
-        public String getItemSameId() {
-            return null;
-        }
-
-        @Override
-        public Bundle getChangePayload(ICECDiffData other) {
-            return null;
         }
 
         public static class ProductsBean implements Serializable {

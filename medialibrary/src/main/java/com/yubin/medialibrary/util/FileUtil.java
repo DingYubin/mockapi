@@ -3,6 +3,8 @@ package com.yubin.medialibrary.util;
 import android.content.Context;
 import android.os.Environment;
 
+import com.yubin.baselibrary.util.LogUtil;
+
 import java.io.File;
 
 /**
