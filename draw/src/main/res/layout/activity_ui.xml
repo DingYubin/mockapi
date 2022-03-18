@@ -28,6 +28,22 @@
                 android:text="@string/snack_bar"
                 android:textColor="@color/tab_selector_color" />
 
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="32dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:singleLine="false"
+                android:background="@color/bg_common_white"
+                android:ems="1"
+                android:text="@string/more"
+                android:textSize="10sp"
+                android:layout_marginEnd="12dp"
+                android:paddingEnd="12dp"
+                android:textColor="@color/color_cec_grey_646566"
+                app:drawableEndCompat="@drawable/ic_forward"
+                tools:ignore="RtlSymmetry,SmallSp" />
+
             <HorizontalScrollView
                 android:id="@+id/horizontal_scroll_view"
                 android:layout_width="wrap_content"
@@ -76,18 +92,18 @@
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/more"
-                        android:layout_width="60dp"
+                        android:layout_width="32dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:singleLine="false"
-                        android:layout_marginEnd="12dp"
-                        android:paddingEnd="20dp"
                         android:background="@color/bg_common_white"
+                        android:ems="1"
                         android:text="@string/more"
                         android:textSize="10sp"
+                        android:paddingEnd="12dp"
+                        android:layout_marginEnd="12dp"
                         android:textColor="@color/color_cec_grey_646566"
-                        app:drawableEndCompat="@drawable/ic_round_arrow_forward"
-                        android:visibility="gone"
+                        app:drawableEndCompat="@drawable/ic_forward"
                         tools:ignore="RtlSymmetry,SmallSp" />
                 </LinearLayout>
             </HorizontalScrollView>
