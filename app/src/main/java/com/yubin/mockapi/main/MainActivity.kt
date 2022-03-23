@@ -5,12 +5,12 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
-import androidx.appcompat.app.AppCompatActivity
 import com.alibaba.android.arouter.launcher.ARouter
 import com.bumptech.glide.Glide
 import com.yubin.account.user.ui.AccountActivity
 import com.yubin.baselibrary.core.BaseApplication.Companion.context
 import com.yubin.baselibrary.router.path.RouterPath
+import com.yubin.baselibrary.ui.basemvvm.NativeActivity
 import com.yubin.baselibrary.util.CECDeviceHelper
 import com.yubin.baselibrary.util.CMDisplayHelper.dp
 import com.yubin.medialibrary.camera.MediaManager
@@ -20,9 +20,10 @@ import com.yubin.medialibrary.manager.IMediaCallBack
 import com.yubin.medialibrary.manager.MediaInfo
 import com.yubin.medialibrary.util.CMMediaUtil
 import com.yubin.mockapi.R
+import com.yubin.mockapi.databinding.ActivityMainBinding
 import com.yubin.mvp.ui.MvpLoginActivity
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : NativeActivity<ActivityMainBinding>() {
 
     /**
      * 相机宽度
@@ -34,10 +35,17 @@ class MainActivity : AppCompatActivity() {
      */
     var h = 0
 
+
+    override fun getViewBinding(): ActivityMainBinding {
+        return ActivityMainBinding.inflate(layoutInflater)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentView(R.layout.activity_main)
+        if (this.supportActionBar != null) {
+            this.supportActionBar!!.hide()
+        }
 
         w = CECDeviceHelper.screenWidthWithContext(context) - 28.dp
         h = 200.dp
@@ -111,4 +119,5 @@ class MainActivity : AppCompatActivity() {
             .load(uri)
             .into(imageView)
     }
+
 }

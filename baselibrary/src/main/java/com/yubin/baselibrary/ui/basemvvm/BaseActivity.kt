@@ -6,14 +6,18 @@ import android.content.IntentFilter
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
+import android.view.ViewGroup
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
+import com.yubin.baselibrary.R
 import com.yubin.baselibrary.common.Constants
 import com.yubin.baselibrary.receiver.ScreenBroadcastReceiver
 import com.yubin.baselibrary.receiver.ScreenStatus
 import com.yubin.baselibrary.toolBar.IToolBarBuilder
+import com.yubin.baselibrary.toolBar.ToolBarBuilder
 import com.yubin.baselibrary.util.CMStatusBarUtil
+import com.yubin.baselibrary.util.CMUnitHelper
 import com.yubin.baselibrary.viewmodel.ApplicationViewModelProvider
 import com.yubin.baselibrary.widget.LoadingDialog
 
@@ -34,11 +38,77 @@ abstract class BaseActivity : AppCompatActivity(){
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        mToolBarBuilder = ToolBarBuilder(this)
+        mToolBarBuilder = ToolBarBuilder(this)
         CMStatusBarUtil.setStatusColor(this, false, true, Color.WHITE)
-//        super.setContentView(R.layout.activity_base_layout)
-//        mBaseLayout = findViewById(R.id.base_content)
+        super.setContentView(R.layout.activity_base_layout)
+        mBaseLayout = findViewById(R.id.base_content)
         registerScreenBroadcastReceiver()
+        setUpToolBarWhenCreated()
+    }
+
+    /**
+     * 设置toolBar
+     */
+    private fun setUpToolBarWhenCreated() {
+        val toolBar = mToolBarBuilder.buildToolBar()
+        toolBar?.id = R.id.id_toolbar
+
+        val params: ConstraintLayout.LayoutParams = ConstraintLayout.LayoutParams(
+            0, CMUnitHelper.dp2px( 44f).toInt()
+        )
+        params.topToTop = R.id.base_content
+        params.startToStart = R.id.base_content
+        params.endToEnd = R.id.base_content
+        toolBar?.layoutParams = params
+        mBaseLayout.addView(toolBar)
+        this.setSupportActionBar(mToolBarBuilder.buildToolBar())
+        if (this.supportActionBar != null) {
+            this.supportActionBar!!.setDisplayShowTitleEnabled(false)
+        }
+        mToolBarBuilder.buildToolBar()?.setContentInsetsRelative(0, 0)
+        mToolBarBuilder.buildToolBar()?.setNavigationOnClickListener { onBackPressed() }
+        mToolBarBuilder.buildToolBar()?.contentInsetStartWithNavigation = 0
+    }
+
+    override fun setContentView(view: View?) {
+        mBaseLayout.removeView(mContentView)
+        mContentView = view
+        if (null == view) {
+            return
+        }
+        val params: ConstraintLayout.LayoutParams = ConstraintLayout.LayoutParams(
+            0, 0
+        )
+        params.topToBottom = R.id.id_toolbar
+        params.bottomToBottom = R.id.base_content
+        params.startToStart = R.id.base_content
+        params.endToEnd = R.id.base_content
+        view.layoutParams = params
+        mBaseLayout.addView(view)
+    }
+
+    override fun setContentView(layoutResID: Int) {
+        mBaseLayout.removeView(mContentView)
+        val view = layoutInflater.inflate(layoutResID, null)
+        mContentView = view
+        if (null == view) {
+            return
+        }
+        val params: ConstraintLayout.LayoutParams = ConstraintLayout.LayoutParams(
+            0, 0
+        )
+        params.topToBottom = R.id.base_content
+        params.bottomToBottom = R.id.base_content
+        params.startToStart = R.id.base_content
+        params.endToEnd = R.id.base_content
+        view.layoutParams = params
+        mBaseLayout.addView(view)
+    }
+
+    override fun setContentView(view: View?, params: ViewGroup.LayoutParams?) {
+        mBaseLayout.removeView(mContentView)
+        mContentView = view
+        mBaseLayout.addView(view, params)
     }
 
     open fun getContentView(): View? {

@@ -18,4 +18,7 @@
     <string name="inquiry_quality">品质</string>
     <string name="inquiry_quality_all">按整单选</string>
     <string name="inquiry_quality_single">按单个配件选</string>
+
+    <string name="go_callback_activity">回调页面事例，几种写法，这里都有</string>
+    <string name="callback_title">回调样例</string>
 </resources>

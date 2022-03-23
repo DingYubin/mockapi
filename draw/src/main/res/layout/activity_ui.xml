@@ -202,8 +202,21 @@
                         android:textColor="@color/color_cec_black_222222"
                         android:textSize="13sp" />
                 </LinearLayout>
-
             </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/callback_activity"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@color/st_portfolio_switch_down_color"
+                android:gravity="center_vertical"
+                android:paddingStart="15dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/go_callback_activity"
+                android:textColor="@color/color_cec_black_222222"
+                android:textSize="14sp"
+                tools:ignore="RtlSymmetry" />
+
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 

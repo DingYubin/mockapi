@@ -48,6 +48,11 @@ object RouterPath {
              * draw页面
              */
             const val PATH_UI_DRAW = "/ui/draw"
+
+            /**
+             * 回调事例页面
+             */
+            const val PATH_UI_CALLBACK = "/ui/callback"
         }
     }
 }

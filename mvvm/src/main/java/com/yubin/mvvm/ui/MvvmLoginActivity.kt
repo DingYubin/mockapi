@@ -34,6 +34,9 @@ class MvvmLoginActivity : NativeActivity<ActivityLoginBinding>(), CoroutineScope
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        if (this.supportActionBar != null) {
+            this.supportActionBar!!.hide()
+        }
         this.initLiveDataObserver()
         this.initViewStateAndListener()
     }

@@ -9,6 +9,7 @@ import android.view.MotionEvent
 import android.view.View
 import android.widget.HorizontalScrollView
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.alibaba.android.arouter.launcher.ARouter
 import com.google.gson.Gson
 import com.yubin.baselibrary.core.BaseApplication.Companion.context
 import com.yubin.baselibrary.router.path.RouterPath
@@ -69,6 +70,7 @@ class UiActivity : NativeActivity<ActivityUiBinding>() {
             val dialog = GuideDialog()
             dialog.show(this, binding.quality)
         }
+
         binding.horizontalScrollView.setOnTouchListener { v, event ->
             when (event.action) {
 
@@ -81,6 +83,12 @@ class UiActivity : NativeActivity<ActivityUiBinding>() {
                 }
             }
             false
+        }
+
+        binding.callbackActivity.setOnClickListener {
+            ARouter.getInstance()
+                .build(RouterPath.UiPage.PATH_UI_CALLBACK)
+                .navigation()
         }
     }
 
