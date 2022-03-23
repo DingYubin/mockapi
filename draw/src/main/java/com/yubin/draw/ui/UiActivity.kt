@@ -19,6 +19,7 @@ import com.yubin.baselibrary.util.MockUtil
 import com.yubin.draw.R
 import com.yubin.draw.bean.StoreList
 import com.yubin.draw.databinding.ActivityUiBinding
+import com.yubin.draw.widget.dialog.GuideDialog
 import com.yubin.draw.widget.snackbar.SnackBar
 import com.yubin.draw.widget.view.GoodsItemView
 
@@ -64,6 +65,10 @@ class UiActivity : NativeActivity<ActivityUiBinding>() {
             showNotification()
         }
 
+        binding.guide.setOnClickListener {
+            val dialog = GuideDialog()
+            dialog.show(this, binding.quality)
+        }
         binding.horizontalScrollView.setOnTouchListener { v, event ->
             when (event.action) {
 
@@ -91,7 +96,6 @@ class UiActivity : NativeActivity<ActivityUiBinding>() {
             GoodsItemView(findViewById(R.id.goods_item7)),
             GoodsItemView(findViewById(R.id.goods_item8))
         )
-
     }
 
     private fun bindData() {
@@ -115,6 +119,8 @@ class UiActivity : NativeActivity<ActivityUiBinding>() {
                 }
             }
         }
+
+
     }
 
     private fun showNotification() {

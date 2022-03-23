@@ -12,5 +12,10 @@
     <string name="title_msg">让汽配采购更放心</string>
     <string name="time">现在</string>
     <string name="more">进店更多</string>
+    <string name="guide">指导提醒</string>
     <string name="product_visible_after_certification">(认证后可见)</string>
+
+    <string name="inquiry_quality">品质</string>
+    <string name="inquiry_quality_all">按整单选</string>
+    <string name="inquiry_quality_single">按单个配件选</string>
 </resources>

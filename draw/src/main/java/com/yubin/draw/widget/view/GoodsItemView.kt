@@ -37,7 +37,7 @@ class GoodsItemView internal constructor(itemView: View) {
      * 商品头图容器宽度
      */
     private val goodsPicItemH: Int =
-        (CECDeviceHelper.screenWidthWithContext(itemView.context) - dp2px(itemView.context, 10f)
+        (CECDeviceHelper.screenWidthWithContext(itemView.context) - dp2px(10f)
             .toInt() * 4) / 3
     private var showPriceFlag = 0
 

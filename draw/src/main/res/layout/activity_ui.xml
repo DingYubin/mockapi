@@ -30,13 +30,14 @@
 
 
             <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/guide"
                 android:layout_width="32dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:singleLine="false"
                 android:background="@color/bg_common_white"
                 android:ems="1"
-                android:text="@string/more"
+                android:text="@string/guide"
                 android:textSize="10sp"
                 android:layout_marginEnd="12dp"
                 android:paddingEnd="12dp"
@@ -107,8 +108,103 @@
                         tools:ignore="RtlSymmetry,SmallSp" />
                 </LinearLayout>
             </HorizontalScrollView>
-        </LinearLayout>
 
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/quality"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/bg_common_white">
+
+                <TextView
+                    android:id="@+id/inquiry_other_requirements_quality"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="14dp"
+                    android:layout_marginTop="8dp"
+                    android:paddingBottom="8dp"
+                    android:text="@string/inquiry_quality"
+                    android:textColor="@color/color_cec_black_222222"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/inquiry_other_requirements_quality_detail_img"
+                    android:layout_width="21dp"
+                    android:layout_height="25dp"
+                    android:layout_marginTop="5dp"
+                    android:paddingStart="2dp"
+                    android:paddingTop="5dp"
+                    android:paddingEnd="4dp"
+                    android:paddingBottom="5dp"
+                    android:src="@drawable/inquiry_icon_question_mark"
+                    android:visibility="visible"
+                    app:layout_constraintStart_toEndOf="@+id/inquiry_other_requirements_quality"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:visibility="visible" />
+
+                <LinearLayout
+                    android:id="@+id/inquiry_ll_other_requirements_quality_check_all"
+                    android:layout_width="97dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="37dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingTop="8dp"
+                    android:visibility="visible"
+                    app:layout_constraintStart_toEndOf="@+id/inquiry_other_requirements_quality_detail_img"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:visibility="visible">
+
+                    <ImageView
+                        android:id="@+id/inquiry_iv_other_requirements_quality_check_all"
+                        android:layout_width="wrap_content"
+                        android:layout_height="15dp"
+                        android:src="@drawable/inquiry_icon_invoice_checked" />
+
+                    <TextView
+                        android:id="@+id/inquiry_tv_other_requirements_quality_all"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="6dp"
+                        android:text="@string/inquiry_quality_all"
+                        android:textColor="@color/color_cec_black_222222"
+                        android:textSize="13sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/inquiry_ll_other_requirements_quality_check_single"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_marginStart="37dp"
+                    android:orientation="horizontal"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:visibility="visible"
+                    app:layout_constraintStart_toEndOf="@+id/inquiry_other_requirements_quality_detail_img"
+                    app:layout_constraintTop_toBottomOf="@+id/inquiry_ll_other_requirements_quality_check_all"
+                    tools:visibility="visible">
+
+                    <ImageView
+                        android:id="@+id/inquiry_iv_other_requirements_quality_check_with_single"
+                        android:layout_width="wrap_content"
+                        android:layout_height="15dp"
+                        android:src="@drawable/inquiry_icon_invoice_unchecked" />
+
+                    <TextView
+                        android:id="@+id/inquiry_tv_other_requirements_with_quality_single"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="6dp"
+                        android:text="@string/inquiry_quality_single"
+                        android:textColor="@color/color_cec_black_222222"
+                        android:textSize="13sp" />
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
