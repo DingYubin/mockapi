@@ -11,7 +11,7 @@
     <string name="error_msg">错误</string>
     <string name="title_msg">让汽配采购更放心</string>
     <string name="time">现在</string>
-    <string name="more">进店更多</string>
+    <string name="store_more">进店更多</string>
     <string name="guide">指导提醒</string>
     <string name="product_visible_after_certification">(认证后可见)</string>
 
@@ -21,4 +21,15 @@
 
     <string name="go_callback_activity">回调页面事例，几种写法，这里都有</string>
     <string name="callback_title">回调样例</string>
+    <string name="callback_for_java">java回调样例</string>
+    <string name="callback_for_kotlin">kotlin回调样例</string>
+    <string name="callback_for_kotlin_callback">kotlin-callback回调样例</string>
+    <string name="callback_for_kotlin_callback_simple">kotlin-callback-simple回调样例</string>
+    <string name="callback_for_kotlin_ds">kotlin-dsl回调样例</string>
+    <string name="callback_for_kotlin_livedata">kotlin-livedata回调样例</string>
+    <string name="delete">删除</string>
+    <string name="top">置顶</string>
+    <string name="more">更多</string>
+    <string name="callback_for_kotlin_internal">kotlin-internal回调样例</string>
+
 </resources>

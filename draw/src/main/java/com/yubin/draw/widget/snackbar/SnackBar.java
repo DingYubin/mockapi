@@ -1,5 +1,6 @@
 package com.yubin.draw.widget.snackbar;
 
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
@@ -619,15 +620,16 @@ public final class SnackBar {
             this(context, null);
         }
 
+        @SuppressLint("PrivateResource")
         public SnackbarLayout(Context context, AttributeSet attrs) {
             super(context, attrs);
-            TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.SnackbarLayout);
-            mMaxWidth = a.getDimensionPixelSize(R.styleable.SnackbarLayout_android_maxWidth, -1);
+            @SuppressLint("CustomViewStyleable") TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.SnackBarLayout);
+            mMaxWidth = a.getDimensionPixelSize(R.styleable.SnackBarLayout_maxWidth, -1);
             mMaxInlineActionWidth = a.getDimensionPixelSize(
-                    R.styleable.SnackbarLayout_maxActionInlineWidth, -1);
-            if (a.hasValue(R.styleable.SnackbarLayout_elevation)) {
+                    R.styleable.SnackBarLayout_maxActionInlineWidth, -1);
+            if (a.hasValue(R.styleable.SnackBarLayout_elevation)) {
                 ViewCompat.setElevation(this, a.getDimensionPixelSize(
-                        R.styleable.SnackbarLayout_elevation, 0));
+                        R.styleable.SnackBarLayout_elevation, 0));
             }
             a.recycle();
 
@@ -672,9 +674,9 @@ public final class SnackBar {
             }
 
             final int multiLineVPadding = getResources().getDimensionPixelSize(
-                    R.dimen.design_snackbar_padding_vertical_2lines);
+                    R.dimen.design_snack_bar_padding_vertical_2lines);
             final int singleLineVPadding = getResources().getDimensionPixelSize(
-                    R.dimen.design_snackbar_padding_vertical);
+                    R.dimen.design_snack_bar_padding_vertical);
             final boolean isMultiLine = mMessageView.getLayout()
                     .getLineCount() > 1;
 

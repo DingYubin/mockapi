@@ -115,7 +115,7 @@ class UiActivity : NativeActivity<ActivityUiBinding>() {
             if (EmptyUtil.isCollectionNotEmpty(store.products)) {
                 val viewSize = goodsItemViews?.size
                 val productSize = store.products.size
-                binding.more.visibility = if (productSize < 8) View.GONE else View.VISIBLE
+                binding.storeMore.visibility = if (productSize < 8) View.GONE else View.VISIBLE
 
                 for (i in 0 until viewSize!!) {
                     val goodsItemHolder = goodsItemViews?.get(i)

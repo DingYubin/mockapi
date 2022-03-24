@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:divider="@drawable/horizontal_divider_normal"
+    android:orientation="horizontal"
+    android:showDividers="middle">
+
+    <TextView
+        android:id="@+id/delete"
+        android:layout_width="@dimen/portfolio_stock_list_item_height"
+        android:layout_height="@dimen/portfolio_stock_list_name_height"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="@string/delete"
+        android:textColor="@color/st_text_master_common_white"
+        android:textSize="@dimen/common_down_notify_text_size" />
+
+    <TextView
+        android:id="@+id/top"
+        android:layout_width="@dimen/portfolio_stock_list_item_height"
+        android:layout_height="@dimen/portfolio_stock_list_name_height"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="@string/top"
+        android:textColor="@color/st_text_master_common_white"
+        android:textSize="@dimen/common_down_notify_text_size" />
+
+
+    <TextView
+        android:id="@+id/more"
+        android:layout_width="@dimen/portfolio_stock_list_item_height"
+        android:layout_height="@dimen/portfolio_stock_list_name_height"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="@string/more"
+        android:textColor="@color/st_text_master_common_white"
+        android:textSize="@dimen/common_down_notify_text_size" />
+
+</LinearLayout>

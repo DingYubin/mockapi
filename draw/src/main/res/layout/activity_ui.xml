@@ -92,14 +92,14 @@
                         layout="@layout/product_store_goods_item_layout" />
 
                     <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/more"
+                        android:id="@+id/store_more"
                         android:layout_width="32dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:singleLine="false"
                         android:background="@color/bg_common_white"
                         android:ems="1"
-                        android:text="@string/more"
+                        android:text="@string/store_more"
                         android:textSize="10sp"
                         android:paddingEnd="12dp"
                         android:layout_marginEnd="12dp"

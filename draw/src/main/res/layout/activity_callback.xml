@@ -1,8 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/callback_for_java"
+        style="@style/develop_setting_style"
+        android:layout_height="56dp"
+        android:background="@color/st_bg_common_master_blue"
+        android:text="@string/callback_for_java"
+        android:textColor="@color/tab_selector_color"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent" />
 
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/callback_for_kotlin"
+        style="@style/develop_setting_style"
+        android:layout_height="56dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/st_bg_common_master_blue"
+        android:text="@string/callback_for_kotlin"
+        android:textColor="@color/tab_selector_color"
+        app:layout_constraintTop_toBottomOf="@+id/callback_for_java"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/callback_for_kotlin_callback"
+        style="@style/develop_setting_style"
+        android:layout_height="56dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/st_bg_common_master_blue"
+        android:text="@string/callback_for_kotlin_callback"
+        android:textColor="@color/tab_selector_color"
+        app:layout_constraintTop_toBottomOf="@+id/callback_for_kotlin"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/callback_for_kotlin_callback_simple"
+        style="@style/develop_setting_style"
+        android:layout_height="56dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/st_bg_common_master_blue"
+        android:text="@string/callback_for_kotlin_callback_simple"
+        android:textColor="@color/tab_selector_color"
+        app:layout_constraintTop_toBottomOf="@+id/callback_for_kotlin_callback"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/callback_for_kotlin_ds"
+        style="@style/develop_setting_style"
+        android:layout_height="56dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/st_bg_common_master_blue"
+        android:text="@string/callback_for_kotlin_ds"
+        android:textColor="@color/tab_selector_color"
+        app:layout_constraintTop_toBottomOf="@+id/callback_for_kotlin_callback_simple"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/callback_for_kotlin_livedata"
+        style="@style/develop_setting_style"
+        android:layout_height="56dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/st_bg_common_master_blue"
+        android:text="@string/callback_for_kotlin_livedata"
+        android:textColor="@color/tab_selector_color"
+        app:layout_constraintTop_toBottomOf="@+id/callback_for_kotlin_ds"
+        app:layout_constraintLeft_toLeftOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

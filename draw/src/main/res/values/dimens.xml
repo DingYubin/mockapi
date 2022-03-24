@@ -396,5 +396,8 @@
 
     <dimen name="mask_width">256dp</dimen>
     <dimen name="mask_height">395dp</dimen>
+
+    <dimen name="design_snack_bar_padding_vertical_2lines">24dp</dimen>
+    <dimen name="design_snack_bar_padding_vertical">14dp</dimen>
     <!-- Market -->
 </resources>

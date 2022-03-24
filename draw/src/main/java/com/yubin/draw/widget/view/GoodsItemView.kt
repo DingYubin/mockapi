@@ -24,6 +24,7 @@ import java.util.*
  * time    : 2022/03/16
  * desc    : 会话
  * version : 1.0
+ * internal 关键字限制了跨 module 的方法的使用
 </pre> *
  */
 class GoodsItemView internal constructor(itemView: View) {

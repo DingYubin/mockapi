@@ -6,6 +6,8 @@
     <color name="st_bg_common_master_blue">#499EF0</color>
     <color name="st_text_minor_master_blue">#64499EF0</color>
     <color name="st_text_master_common_white">#FFFFFF</color>
+    <color name="st_text_common_hint_white">#4DFFFFFF</color>
+    <color name="st_main_bottom_tab">#1aFFFFFF</color>
     <color name="st_portfolio_switch_down_color">#1BBB9A</color>
     <color name="bg_common_white">#ffffffff</color>
     <color name="bg_personal_login_register_control_normal">#DDDDDD</color>
