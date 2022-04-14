@@ -53,6 +53,11 @@ object RouterPath {
              * 回调事例页面
              */
             const val PATH_UI_CALLBACK = "/ui/callback"
+
+            /**
+             * 曝光页面
+             */
+            const val PATH_UI_EXPOSURE = "/ui/exposure"
         }
     }
 }

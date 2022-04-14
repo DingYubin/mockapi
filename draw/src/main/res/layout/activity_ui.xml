@@ -232,6 +232,19 @@
                 android:textSize="14sp"
                 tools:ignore="RtlSymmetry" />
 
+            <TextView
+                android:id="@+id/exposure_activity"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@color/color_cec_red_ff4e33"
+                android:gravity="center_vertical"
+                android:paddingStart="15dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/exposure"
+                android:textColor="@color/color_cec_black_222222"
+                android:textSize="14sp"
+                tools:ignore="RtlSymmetry" />
+
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 

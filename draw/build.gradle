@@ -39,4 +39,5 @@ dependencies {
     implementation project(':baselibrary')
     implementation 'androidx.core:core:1.7.0'
     implementation dependency.gson
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
 }

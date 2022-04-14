@@ -90,6 +90,12 @@ class UiActivity : NativeActivity<ActivityUiBinding>() {
                 .build(RouterPath.UiPage.PATH_UI_CALLBACK)
                 .navigation()
         }
+
+        binding.exposureActivity.setOnClickListener {
+            ARouter.getInstance()
+                .build(RouterPath.UiPage.PATH_UI_EXPOSURE)
+                .navigation()
+        }
     }
 
     private fun initView() {

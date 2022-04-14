@@ -9,5 +9,9 @@
         <activity
             android:name=".ui.CallBackActivity"
             android:exported="true" />
+
+        <activity
+            android:name=".ui.ExposureActivity"
+            android:exported="true" />
     </application>
 </manifest>

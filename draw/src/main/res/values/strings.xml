@@ -33,4 +33,6 @@
     <string name="callback_for_kotlin_internal">kotlin-internal回调样例</string>
     <string name="inquiry_quality_other">其他</string>
 
+    <string name="exposure">曝光</string>
+
 </resources>
