@@ -78,7 +78,9 @@ dependencies {
     //复杂布局adapter
     api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.34'
 
+    //图片库
     api 'com.github.bumptech.glide:glide:4.12.0'
+    api 'io.coil-kt:coil:2.0.0-rc02'
     //**************本地依赖库**************//
 
     implementation dependency.rxjava2
