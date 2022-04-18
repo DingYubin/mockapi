@@ -1,4 +1,4 @@
-package com.yubin.draw.widget.ViewGroup.Bubble;
+package com.yubin.draw.widget.viewGroup.Bubble;
 
 import android.content.Context;
 import android.util.AttributeSet;

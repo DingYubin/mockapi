@@ -1,4 +1,4 @@
-package com.yubin.draw.widget.ViewGroup.Bubble;
+package com.yubin.draw.widget.viewGroup.Bubble;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

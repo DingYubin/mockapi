@@ -6,12 +6,17 @@ import androidx.appcompat.widget.AppCompatTextView
 import com.yubin.draw.R
 import com.yubin.draw.bean.QualityBean
 import com.yubin.draw.widget.recyclerView.adapter.CECViewHolder
+import com.yubin.draw.widget.viewGroup.exposure.ExposureLayout
 
 class QualityViewHolder(itemView: View) : CECViewHolder<QualityBean>(itemView) {
 
+    //在布局文件中使用ExposureLayout作为父布局
+    val exposureLayout: ExposureLayout = itemView.findViewById(R.id.layout_exposure)
+
+    val num: AppCompatTextView = itemView.findViewById(R.id.num)
+
     override fun bindDataFully(data: QualityBean, position: Int, count: Int) {
 
-        val num : AppCompatTextView = itemView.findViewById(R.id.num)
         num.text = data.index.toString()
 
         when {
@@ -26,7 +31,6 @@ class QualityViewHolder(itemView: View) : CECViewHolder<QualityBean>(itemView) {
             }
         }
     }
-
 
 
     override fun bindDiffData(data: QualityBean, payload: Bundle, position: Int, count: Int) {

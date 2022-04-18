@@ -7,7 +7,7 @@ import com.yubin.baselibrary.ui.basemvvm.NativeActivity
 import com.yubin.baselibrary.util.LogUtil
 import com.yubin.draw.R
 import com.yubin.draw.databinding.ActivityCallbackBinding
-import com.yubin.draw.widget.ViewGroup.Bubble.*
+import com.yubin.draw.widget.viewGroup.Bubble.*
 
 /**
  * 1、回调java 通过接口形式

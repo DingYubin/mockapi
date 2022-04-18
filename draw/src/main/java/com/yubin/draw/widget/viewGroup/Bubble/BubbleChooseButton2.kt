@@ -1,4 +1,4 @@
-package com.yubin.draw.widget.ViewGroup.Bubble
+package com.yubin.draw.widget.viewGroup.Bubble
 
 import android.content.Context
 import android.util.AttributeSet
@@ -12,50 +12,52 @@ import com.yubin.draw.R
  * Created by yubin.ding on 2017/5/26.
  * 多方法回调
  */
-class BubbleChooseButton1 (context: Context?, attrs: AttributeSet? = null) : LinearLayout(context, attrs) {
+class BubbleChooseButton2(context: Context?, attrs: AttributeSet? = null) :
+    LinearLayout(context, attrs) {
 
     private val centerWindow: BubblePopupWindow = BubblePopupWindow(context)
 
-    private var listener: OnTextViewListener? = null
+    private var delete : (() -> Unit)? = null
+    private var top : ((str : String) -> Unit)? = null
+    private var more  : (() -> Unit)? = null
 
-    fun setViewAndCallback(view: View, listener: OnTextViewListener?) {
-        this.listener = listener
+    fun delete(listener : ()->Unit) {
+        delete = listener
+    }
+
+    fun top(listener : (str : String) -> Unit){
+        top = listener
+    }
+
+    fun more(listener : ()->Unit) {
+        more = listener
+    }
+
+    fun setView(view: View) {
         initView(view)
     }
 
-    private fun initView(longView: View) {
+    private fun initView(view: View) {
         val bubbleView = inflate(context, R.layout.top_layout_popup_view, null)
         val deleteTv = bubbleView.findViewById<TextView>(R.id.delete)
         deleteTv.setOnClickListener {
-            if (null != listener) {
-                listener!!.delete()
-                closePopupWindow()
-            }
+            delete?.invoke()
+            closePopupWindow()
         }
         bubbleView.findViewById<View>(R.id.top).setOnClickListener {
-            if (null != listener) {
-                listener!!.top()
-                closePopupWindow()
-            }
+            top?.invoke("置顶")
+            closePopupWindow()
         }
         bubbleView.findViewById<View>(R.id.more).setOnClickListener {
-            if (null != listener) {
-                listener!!.more()
-                closePopupWindow()
-            }
+            more?.invoke()
+            closePopupWindow()
         }
         centerWindow.setBubbleView(bubbleView)
-        centerWindow.show(longView, Gravity.TOP, 30f)
+        centerWindow.show(view, Gravity.TOP, 30f)
     }
 
     private fun closePopupWindow() {
         if (centerWindow.isShowing) centerWindow.dismiss()
-    }
-
-    interface OnTextViewListener {
-        fun delete()
-        fun top()
-        fun more()
     }
 
 }
