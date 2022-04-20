@@ -9,6 +9,7 @@ import com.yubin.draw.R
 import com.yubin.draw.adapter.QualityAdapter
 import com.yubin.draw.bean.QualityBean
 import com.yubin.draw.databinding.ActivityExposureBinding
+import com.yubin.draw.widget.viewGroup.exposure.ExposureTracker
 
 /**
  * <pre>
@@ -22,6 +23,7 @@ import com.yubin.draw.databinding.ActivityExposureBinding
 @Route(path = RouterPath.UiPage.PATH_UI_EXPOSURE)
 class ExposureActivity : NativeActivity<ActivityExposureBinding>() {
     private lateinit var mAdapter: QualityAdapter
+    private lateinit var tracker: ExposureTracker
     private val qualities = ArrayList<QualityBean>()
     private var num : Int = 0
 
@@ -32,17 +34,22 @@ class ExposureActivity : NativeActivity<ActivityExposureBinding>() {
         super.onCreate(savedInstanceState)
         setTitleWithinToolBar(R.string.exposure)
         initView()
+        initExposure()
+    }
+
+    private fun initExposure() {
+        tracker = ExposureTracker("exposure_activity")
+        tracker.startTask()
     }
 
     private fun initView() {
         binding.myRecycler.layoutManager = LinearLayoutManager(this)
         mAdapter = QualityAdapter()
         binding.myRecycler.adapter = mAdapter
-
         updateQualities()
 
         binding.srl.setOnRefreshListener {
-
+            tracker.resetTask()
             updateQualities()
         }
     }
@@ -54,6 +61,12 @@ class ExposureActivity : NativeActivity<ActivityExposureBinding>() {
         }
         mAdapter.submitList(qualities)
         binding.srl.isRefreshing = false
+    }
+
+
+    override fun onNewDestroy() {
+        super.onNewDestroy()
+        tracker.release()
     }
 
 }

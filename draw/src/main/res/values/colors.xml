@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="st_bg_common_normal">#11151B</color>
+    <color name="exposure_common_normal">#00F0F0F0</color>
     <color name="st_bg_hint_top">#5A7B9C</color>
     <color name="text_common_edit">#282828</color>
     <color name="st_bg_common_master_blue">#499EF0</color>

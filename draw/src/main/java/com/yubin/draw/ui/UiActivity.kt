@@ -16,6 +16,7 @@ import com.yubin.baselibrary.router.path.RouterPath
 import com.yubin.baselibrary.ui.basemvvm.BaseActivity
 import com.yubin.baselibrary.ui.basemvvm.NativeActivity
 import com.yubin.baselibrary.util.EmptyUtil
+import com.yubin.baselibrary.util.HandlerHelper
 import com.yubin.baselibrary.util.MockUtil
 import com.yubin.draw.R
 import com.yubin.draw.bean.StoreList
@@ -38,6 +39,7 @@ import com.yubin.draw.widget.view.GoodsItemView
 class UiActivity : NativeActivity<ActivityUiBinding>() {
 
     private var goodsItemViews: List<GoodsItemView>? = null
+    private val handlerHelper: HandlerHelper? = null
 
     companion object {
         @JvmStatic
@@ -58,6 +60,12 @@ class UiActivity : NativeActivity<ActivityUiBinding>() {
         initView()
         bindData()
         addListener()
+
+        testHandler()
+    }
+
+    private fun testHandler() {
+
     }
 
     @SuppressLint("ClickableViewAccessibility")

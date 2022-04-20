@@ -10,6 +10,7 @@
         android:id="@+id/layout_exposure"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/exposure_common_normal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -17,6 +18,7 @@
             android:id="@+id/num"
             android:layout_width="match_parent"
             android:layout_height="100dp"
+            android:layout_margin="10dp"
             android:background="@color/st_bg_common_master_blue"
             android:gravity="center"
             android:textColor="@color/st_text_master_common_white"
