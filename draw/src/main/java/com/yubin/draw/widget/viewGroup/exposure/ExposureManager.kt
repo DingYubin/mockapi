@@ -1,7 +1,6 @@
 package com.yubin.draw.widget.viewGroup.exposure
 
 import androidx.collection.ArrayMap
-import com.yubin.baselibrary.util.LogUtil
 import com.yubin.draw.bean.ExposureViewTraceBean
 
 class ExposureManager private constructor(){
@@ -28,8 +27,6 @@ class ExposureManager private constructor(){
                 return
             }
         }
-
-        LogUtil.i("添加视图 : ${bean.eventId} ")
         exposures.add(bean)
         map[pageName] = exposures
     }

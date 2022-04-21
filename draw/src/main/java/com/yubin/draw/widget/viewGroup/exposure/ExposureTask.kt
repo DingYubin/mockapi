@@ -2,7 +2,6 @@ package com.yubin.draw.widget.viewGroup.exposure
 
 import android.graphics.Rect
 import android.os.Handler
-import com.yubin.baselibrary.util.LogUtil
 import com.yubin.draw.bean.ExposureViewTraceBean
 import com.yubin.draw.widget.viewGroup.exposure.ExposureTracker.Companion.EXPOSURE_DATA
 
@@ -44,7 +43,6 @@ class ExposureTask(private val handler: Handler, private val page: String) : Run
                     it.time = (it.time + 500)
                 } else {
                     //曝光条件满足，执行曝光任务
-                    LogUtil.i("线程: ${Thread.currentThread().name} 满足曝光条件: 可以进行曝光")
                     handler.obtainMessage(EXPOSURE_DATA, it.view).sendToTarget()
                     it.exposed = true
                 }

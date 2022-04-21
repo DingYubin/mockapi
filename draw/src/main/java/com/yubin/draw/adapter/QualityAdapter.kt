@@ -18,7 +18,6 @@ class QualityAdapter : CECAdapter<QualityBean, QualityViewHolder>() {
             val map = ArrayMap<String, String>()
             map["eventId"] = "exposure_$position"
             bindViewData(map)
-
         }
     }
 

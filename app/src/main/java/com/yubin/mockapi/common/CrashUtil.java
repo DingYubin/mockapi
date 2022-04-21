@@ -19,7 +19,6 @@ public class CrashUtil {
 
             if (t.getName().equals("FinalizerWatchdogDaemon") && e instanceof TimeoutException) {
                 //ignore it
-//                LogUtil.i("ignore TimeoutException in thread named 'FinalizerWatchdogDaemon'  ");
             } else {
                  defaultUncaughtExceptionHandler.uncaughtException(t, e);
             }

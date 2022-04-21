@@ -1,7 +1,6 @@
 package com.yubin.draw.widget.viewGroup.exposure
 
 import com.yubin.baselibrary.util.HandlerHelper
-import com.yubin.baselibrary.util.LogUtil
 
 /**
  * 曝光控制器
@@ -12,12 +11,9 @@ class ExposureTracker(private val page: String) {
     }
 
     private val handlerHelper = HandlerHelper { msg ->
-        LogUtil.i("线程: ${Thread.currentThread().name} handle message --> ${msg.what}")
         when (msg.what) {
             EXPOSURE_DATA -> {
-                LogUtil.i("线程: ${Thread.currentThread().name} 进行曝光操作")
                 val view = msg.obj as ExposureLayout
-                view.exposePara.forEach { (key, value) -> LogUtil.i("曝光数据 --> $key: $value") }
                 view.exposure()
             }
         }
