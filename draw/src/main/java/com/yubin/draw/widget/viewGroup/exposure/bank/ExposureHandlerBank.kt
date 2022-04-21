@@ -121,7 +121,7 @@ class ExposureHandlerBank(private val view: View) : ViewTreeObserver.OnPreDrawLi
             mStartExposureTime = System.currentTimeMillis() //曝光开始时间
             if (mTimeLimit == 0) {
                 LogUtil.d("尝试曝光，回调 mExposureCallback?.show()")
-                mExposureCallback?.exposure() //回调开始曝光
+//                mExposureCallback?.exposure() //回调开始曝光
             }
         }
     }
@@ -135,7 +135,7 @@ class ExposureHandlerBank(private val view: View) : ViewTreeObserver.OnPreDrawLi
             if (mTimeLimit > 0 && System.currentTimeMillis() - mStartExposureTime > mTimeLimit) {
                 //满足时长限制曝光
                 LogUtil.d("尝试取消曝光，回调 mExposureCallback?.show()")
-                mExposureCallback?.exposure()
+//                mExposureCallback?.exposure()
             }
         }
     }

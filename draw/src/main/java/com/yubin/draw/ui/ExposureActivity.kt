@@ -7,6 +7,8 @@ import com.yubin.baselibrary.router.path.RouterPath
 import com.yubin.baselibrary.ui.basemvvm.NativeActivity
 import com.yubin.draw.R
 import com.yubin.draw.adapter.QualityAdapter
+import com.yubin.draw.adapter.QualityAdapter.Companion.VIEW_TYPE_CONTENT
+import com.yubin.draw.adapter.QualityAdapter.Companion.VIEW_TYPE_MAIN
 import com.yubin.draw.bean.QualityBean
 import com.yubin.draw.databinding.ActivityExposureBinding
 import com.yubin.draw.widget.viewGroup.exposure.ExposureTracker
@@ -47,7 +49,6 @@ class ExposureActivity : NativeActivity<ActivityExposureBinding>() {
         mAdapter = QualityAdapter()
         binding.myRecycler.adapter = mAdapter
         updateQualities()
-
         binding.srl.setOnRefreshListener {
             tracker.resetTask()
             updateQualities()
@@ -56,7 +57,12 @@ class ExposureActivity : NativeActivity<ActivityExposureBinding>() {
 
     private fun updateQualities() {
         for (i in 0 until 10) {
-            val bean = QualityBean(num++)
+            val bean = if (i == 0){
+                QualityBean(num++,VIEW_TYPE_MAIN)
+            } else {
+                QualityBean(num++,VIEW_TYPE_CONTENT)
+            }
+
             qualities.add(bean)
         }
         mAdapter.submitList(qualities)

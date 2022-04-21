@@ -11,7 +11,7 @@ import com.yubin.draw.bean.ExposureViewTraceBean
  * 曝光操作
  */
 class ExposureHandler(private val view: View) {
-    lateinit var exposePara: ArrayMap<String, String>
+    private var exposePara: ArrayMap<String, String>? = null
 
     private var mAttachedToWindow = false //添加到视图中的状态
     private var mHasWindowFocus = true // 视图获取到焦点的状态 ，默认为true，避免某些场景不被调用
@@ -26,15 +26,21 @@ class ExposureHandler(private val view: View) {
      */
     fun onAttachedToWindow() {
         mAttachedToWindow = true
-        val eventId = exposePara["eventId"]
+        val eventId = exposePara?.get("eventId")
+        LogUtil.d("添加到视图时添加 eventId : $eventId")
         page?.let {
-            ExposureManager.instance.add(
-                it,
-                ExposureViewTraceBean(eventId!!, view, 0, mShowRatio, mTimeLimit, false)
-            )
+            if (eventId.equals("exposure_price")){
+                ExposureManager.instance.add(
+                    it,
+                    ExposureViewTraceBean(eventId!!, view, 0, mShowRatio, mTimeLimit, false)
+                )
+            } else {
+                ExposureManager.instance.add(
+                    it,
+                    ExposureViewTraceBean(eventId!!, view, 0, mShowRatio, mTimeLimit, true)
+                )
+            }
         }
-        LogUtil.d("添加到视图时添加 eventId : $eventId 进入屏幕")
-
     }
 
     /**
@@ -43,8 +49,10 @@ class ExposureHandler(private val view: View) {
      */
     fun onDetachedFromWindow() {
         mAttachedToWindow = false
-        val eventId = exposePara["eventId"]
-        LogUtil.d("从视图中移除时去掉 eventId : $eventId 移除屏幕")
+        val eventId = exposePara?.get("eventId")
+        eventId?.let{
+            LogUtil.d("从视图中移除时去掉 eventId : $eventId 移除屏幕 view: ${view.hashCode()}")
+        }
     }
 
     /**
@@ -68,12 +76,12 @@ class ExposureHandler(private val view: View) {
      * 回调给主界面进行上报数据
      */
     fun exposure() {
-        LogUtil.i("曝光操作: ${Thread.currentThread().name} 线程操作")
-        exposePara.forEach { (key, value) -> LogUtil.i("曝光数据 --> $key: $value") }
+//        LogUtil.i("曝光操作: ${Thread.currentThread().name} 线程操作")
+//        exposePara?.forEach { (key, value) -> LogUtil.i("曝光数据 --> $key: $value") }
 
         val rxTimer = RxTimer()
         rxTimer.interval(0, 500) { number ->
-            LogUtil.i("曝光操作: ${Thread.currentThread().name} 第 $number 次")
+//            LogUtil.i("曝光操作: ${Thread.currentThread().name} 第 $number 次")
             if (number % 2 == 0L) {
                 view.setBackgroundColor(Color.parseColor("#00ff00"))
             } else {
