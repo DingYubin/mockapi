@@ -4,10 +4,13 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.collection.ArrayMap
+import com.alibaba.android.arouter.launcher.ARouter
+import com.yubin.baselibrary.router.path.RouterPath
 import com.yubin.baselibrary.util.LogUtil
 import com.yubin.draw.R
 import com.yubin.draw.bean.QualityBean
 import com.yubin.draw.widget.viewGroup.exposure.ExposureLayout
+import com.yubin.draw.widget.viewGroup.exposure.ExposureManager
 
 class QualityViewHolder(itemView: View) : BaseQuotationViewHolder(itemView) {
 
@@ -19,22 +22,22 @@ class QualityViewHolder(itemView: View) : BaseQuotationViewHolder(itemView) {
     override fun bindDataFully(data: QualityBean, position: Int, count: Int) {
 
         num.text = data.index.toString()
-        LogUtil.d("ExposureHandler position = $position" )
+        LogUtil.d("ExposureHandler position = $position")
         exposureLayout.run {
-            if(position == 4) {
-                setPage("exposure_activity")
-                setShowRatio(0.5f) //需要暴露大于50%才能曝光
-                setTimeLimit(2000) //曝光的时间2000
-                val map = ArrayMap<String, String>()
-                map["eventId"] = "exposure_price"
-                bindViewData(map)
-            } else {
-                setPage("exposure_activity")
-                setShowRatio(0.5f) //需要暴露大于50%才能曝光
-                setTimeLimit(2000) //曝光的时间2000
-                val map = ArrayMap<String, String>()
-                map["eventId"] = "exposure"
-                bindViewData(map)
+            setPage("exposure_activity")
+            setShowRatio(0.5f) //需要暴露大于50%才能曝光
+            setTimeLimit(2000) //曝光的时间2000
+            val map = ArrayMap<String, Any>()
+            map["eventId"] = if (position == 4) "exposure_price" else "exposure"
+            map["isExpose"] = position == 4
+            bindViewData(map)
+        }
+        if (position == 4) {
+            ExposureManager.instance.addEvent("exposure_price")
+            num.setOnClickListener {
+                ARouter.getInstance()
+                    .build(RouterPath.UiPage.PATH_UI_CALLBACK)
+                    .navigation()
             }
         }
 

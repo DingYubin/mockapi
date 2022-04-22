@@ -11,7 +11,7 @@ import com.yubin.draw.bean.ExposureViewTraceBean
  * 曝光操作
  */
 class ExposureHandler(private val view: View) {
-    private var exposePara: ArrayMap<String, String>? = null
+    private var exposePara: ArrayMap<String, Any>? = null
 
     private var mAttachedToWindow = false //添加到视图中的状态
     private var mHasWindowFocus = true // 视图获取到焦点的状态 ，默认为true，避免某些场景不被调用
@@ -26,20 +26,14 @@ class ExposureHandler(private val view: View) {
      */
     fun onAttachedToWindow() {
         mAttachedToWindow = true
-        val eventId = exposePara?.get("eventId")
-        LogUtil.d("添加到视图时添加 eventId : $eventId")
         page?.let {
-            if (eventId.equals("exposure_price")){
-                ExposureManager.instance.add(
-                    it,
-                    ExposureViewTraceBean(eventId!!, view, 0, mShowRatio, mTimeLimit, false)
-                )
-            } else {
-                ExposureManager.instance.add(
-                    it,
-                    ExposureViewTraceBean(eventId!!, view, 0, mShowRatio, mTimeLimit, true)
-                )
-            }
+            val isExpose = exposePara?.get("isExpose") as Boolean
+            val eventId = exposePara?.get("eventId") as String
+            LogUtil.d("添加到视图时添加 eventId : $eventId, isExpose : $isExpose")
+            ExposureManager.instance.add(
+                it,
+                ExposureViewTraceBean(eventId, view, 0, mShowRatio, mTimeLimit, isExpose)
+            )
         }
     }
 
@@ -49,10 +43,10 @@ class ExposureHandler(private val view: View) {
      */
     fun onDetachedFromWindow() {
         mAttachedToWindow = false
-        val eventId = exposePara?.get("eventId")
-        eventId?.let{
-            LogUtil.d("从视图中移除时去掉 eventId : $eventId 移除屏幕 view: ${view.hashCode()}")
-        }
+//        val eventId = exposePara?.get("eventId")
+//        eventId?.let{
+//            LogUtil.d("从视图中移除时去掉 eventId : $eventId 移除屏幕 view: ${view.hashCode()}")
+//        }
     }
 
     /**
@@ -120,7 +114,7 @@ class ExposureHandler(private val view: View) {
     /**
      * 设置曝光时间限制条件
      */
-    fun bindViewData(map: ArrayMap<String, String>) {
+    fun bindViewData(map: ArrayMap<String, Any>) {
         this.exposePara = map
     }
 

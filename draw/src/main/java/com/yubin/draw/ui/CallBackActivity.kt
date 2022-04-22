@@ -8,6 +8,7 @@ import com.yubin.baselibrary.util.LogUtil
 import com.yubin.draw.R
 import com.yubin.draw.databinding.ActivityCallbackBinding
 import com.yubin.draw.widget.viewGroup.Bubble.*
+import com.yubin.draw.widget.viewGroup.exposure.ExposureManager
 
 /**
  * 1、回调java 通过接口形式
@@ -124,6 +125,11 @@ class CallBackActivity : NativeActivity<ActivityCallbackBinding>(){
         binding.callbackForKotlinLivedata.setOnClickListener {
 
         }
+    }
+
+    override fun onNewDestroy() {
+        super.onNewDestroy()
+        ExposureManager.instance.reset("exposure_activity")
     }
 
 

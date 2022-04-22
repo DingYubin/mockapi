@@ -199,6 +199,7 @@ abstract class BaseActivity : AppCompatActivity(){
         if (mReceiver != null) {
             unregisterReceiver(mReceiver)
         }
+
     }
 
     //用于定义页面黑白风格的参数

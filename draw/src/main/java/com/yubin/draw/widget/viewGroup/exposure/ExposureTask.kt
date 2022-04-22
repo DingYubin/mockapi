@@ -35,7 +35,7 @@ class ExposureTask(private val handler: Handler, private val page: String) : Run
      * 对于没有曝光的数据，在面积区域内，则进行数据更新操作，否则步长(time)重新开始计算
      */
     private fun exposureView(it: ExposureViewTraceBean) {
-        if (!it.exposed) {
+        if (it.isExpose) {
             //在面积区域内，则进行数据更新操作，否则步长重新开始计算
             if (isExposureArea(it)) {
                 //不满足条件的，更新数据
@@ -44,7 +44,7 @@ class ExposureTask(private val handler: Handler, private val page: String) : Run
                 } else {
                     //曝光条件满足，执行曝光任务
                     handler.obtainMessage(EXPOSURE_DATA, it.view).sendToTarget()
-                    it.exposed = true
+                    it.isExpose = false
                 }
             } else {
                 it.time = 0

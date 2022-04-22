@@ -12,7 +12,7 @@ data class ExposureViewTraceBean(
     var time: Int,
     val area: Float,
     val mTimeLimit: Int,
-    var exposed: Boolean
+    var isExpose: Boolean = true //默认需要曝光
 ) : Serializable, ICECDiffData {
 
     override fun getItemSameId(): String {

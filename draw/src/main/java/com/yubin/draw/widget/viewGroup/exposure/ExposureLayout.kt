@@ -82,7 +82,7 @@ class ExposureLayout : FrameLayout {
     /**
      * 绑定数据
      */
-    fun bindViewData(map: ArrayMap<String, String>) {
+    fun bindViewData(map: ArrayMap<String, Any>) {
         mExposureHandler.bindViewData(map)
     }
 

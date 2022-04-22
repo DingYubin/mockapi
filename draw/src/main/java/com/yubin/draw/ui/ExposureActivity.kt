@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.yubin.baselibrary.router.path.RouterPath
 import com.yubin.baselibrary.ui.basemvvm.NativeActivity
+import com.yubin.baselibrary.util.LogUtil
 import com.yubin.draw.R
 import com.yubin.draw.adapter.QualityAdapter
 import com.yubin.draw.adapter.QualityAdapter.Companion.VIEW_TYPE_CONTENT
@@ -39,9 +40,20 @@ class ExposureActivity : NativeActivity<ActivityExposureBinding>() {
         initExposure()
     }
 
+    override fun onStart() {
+        tracker.startTask()
+        LogUtil.d("onStart() ")
+        super.onStart()
+    }
+
+    override fun onStop() {
+        tracker.clearTask()
+        LogUtil.d("onStop() ")
+        super.onStop()
+    }
+
     private fun initExposure() {
         tracker = ExposureTracker("exposure_activity")
-        tracker.startTask()
     }
 
     private fun initView() {
@@ -50,7 +62,7 @@ class ExposureActivity : NativeActivity<ActivityExposureBinding>() {
         binding.myRecycler.adapter = mAdapter
         updateQualities()
         binding.srl.setOnRefreshListener {
-            tracker.resetTask()
+            tracker.refresh()
             updateQualities()
         }
     }

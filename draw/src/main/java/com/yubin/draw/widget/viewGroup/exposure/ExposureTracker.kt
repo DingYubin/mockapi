@@ -32,13 +32,19 @@ class ExposureTracker(private val page: String) {
      */
     fun clearTask() {
         handlerHelper.clear()
-        ExposureManager.instance.remove(page)
     }
 
     /**
-     * 重置任务
+     * 重置
      */
-    fun resetTask() {
+    fun reset() {
+        ExposureManager.instance.reset(page)
+    }
+
+    /**
+     * 对应页面的曝光组件
+     */
+    fun refresh() {
         ExposureManager.instance.remove(page)
     }
 
