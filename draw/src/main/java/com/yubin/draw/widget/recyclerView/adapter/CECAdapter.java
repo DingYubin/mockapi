@@ -70,6 +70,20 @@ public abstract class CECAdapter<T extends ICECDiffData, VH extends CECViewHolde
         this.notifyDataSetChanged();
     }
 
+    public void addList(List<T> listData) {
+        if (listData == null) {
+            return;
+        }
+        if (mList == null) {
+            mList = listData;
+            this.notifyDataSetChanged();
+        } else if (!listData.isEmpty()) {
+            int startPosition = mList.size();
+            mList.addAll(listData);
+            this.notifyItemRangeChanged(startPosition, mList.size() - 1);
+        }
+    }
+
     /**
      * 获取适配器的数据
      *

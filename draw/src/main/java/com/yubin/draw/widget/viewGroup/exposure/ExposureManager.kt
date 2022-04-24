@@ -5,7 +5,7 @@ import com.yubin.draw.bean.ExposureViewTraceBean
 
 class ExposureManager private constructor() {
 
-    private val map: MutableMap<String, MutableList<ExposureViewTraceBean>> = ArrayMap()
+    private val exposeMap: MutableMap<String, MutableList<ExposureViewTraceBean>> = ArrayMap()
     private val event: MutableSet<String> = HashSet()
 
     companion object {
@@ -29,7 +29,7 @@ class ExposureManager private constructor() {
             }
         }
         exposures.add(bean)
-        map[pageName] = exposures
+        exposeMap[pageName] = exposures
     }
 
     /**
@@ -39,7 +39,7 @@ class ExposureManager private constructor() {
     fun remove(pageName: String) {
         val exposures = query(pageName)
         if (exposures.isNotEmpty()) {
-            map.remove(pageName)
+            exposeMap.remove(pageName)
         }
     }
 
@@ -78,7 +78,7 @@ class ExposureManager private constructor() {
      */
     fun query(pageName: String): MutableList<ExposureViewTraceBean> {
 
-        return map[pageName] ?: mutableListOf()
+        return exposeMap[pageName] ?: mutableListOf()
     }
 
     /**
@@ -99,18 +99,15 @@ class ExposureManager private constructor() {
     /**
      * 重置某个页面
      */
-    fun resetAll(pages: Array<String>) {
-        if (pages.isNullOrEmpty()) return
-
-        pages.map {
-            query(it)
-        }.filter {
-            it.isNotEmpty()
-        }.flatten().filter { event.contains(it.eventId)}
+    fun resetAll() {
+        if (exposeMap.isEmpty()) return
+        exposeMap.map {
+            it.value
+        }.flatten().filter { event.contains(it.eventId) }
             .forEach {
-            it.time = 0
-            it.isExpose = true
-        }
+                it.time = 0
+                it.isExpose = true
+            }
     }
 
     /**

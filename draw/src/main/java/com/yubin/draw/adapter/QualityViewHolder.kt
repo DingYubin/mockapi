@@ -19,21 +19,24 @@ class QualityViewHolder(itemView: View) : BaseQuotationViewHolder(itemView) {
 
     private val num: AppCompatTextView = itemView.findViewById(R.id.num)
 
+
     override fun bindDataFully(data: QualityBean, position: Int, count: Int) {
 
         num.text = data.index.toString()
-        LogUtil.d("ExposureHandler position = $position")
-        exposureLayout.run {
-            setPage("exposure_activity")
-            setShowRatio(0.5f) //需要暴露大于50%才能曝光
-            setTimeLimit(2000) //曝光的时间2000
-            val map = ArrayMap<String, Any>()
-            map["eventId"] = if (position == 4) "exposure_price" else "exposure"
-            map["isExpose"] = position == 4
-            bindViewData(map)
-        }
-        if (position == 4) {
-            ExposureManager.instance.addEvent("exposure_price")
+
+        if (data.dataId == "event_15") {
+            LogUtil.d("ExposureHandler position = $position, num = ${data.index}, dataId = ${data.dataId}")
+            exposureLayout.run {
+                setPage("exposure_activity")
+                setShowRatio(0.5f) //需要暴露大于50%才能曝光
+                setTimeLimit(2000) //曝光的时间2000
+                val map = ArrayMap<String, Any>()
+                map["eventId"] = data.dataId
+                map["isExpose"] = true
+                bindViewData(map)
+            }
+
+            ExposureManager.instance.addEvent(data.dataId)
             num.setOnClickListener {
                 ARouter.getInstance()
                     .build(RouterPath.UiPage.PATH_UI_CALLBACK)

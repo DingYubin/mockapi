@@ -7,6 +7,7 @@ import java.io.Serializable
 
 data class QualityBean(
     val index: Int,
+    val dataId: String,
     val itemViewType: Int,
 ) : Serializable, ICECDiffData {
 

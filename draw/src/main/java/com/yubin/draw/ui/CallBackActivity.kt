@@ -129,7 +129,7 @@ class CallBackActivity : NativeActivity<ActivityCallbackBinding>(){
 
     override fun onNewDestroy() {
         super.onNewDestroy()
-        ExposureManager.instance.reset("exposure_activity")
+        ExposureManager.instance.resetAll()
     }
 
 

@@ -70,7 +70,7 @@ class ExposureHandler(private val view: View) {
      * 回调给主界面进行上报数据
      */
     fun exposure() {
-//        LogUtil.i("曝光操作: ${Thread.currentThread().name} 线程操作")
+        LogUtil.i("曝光操作: ${Thread.currentThread().name} 线程操作")
 //        exposePara?.forEach { (key, value) -> LogUtil.i("曝光数据 --> $key: $value") }
 
         val rxTimer = RxTimer()

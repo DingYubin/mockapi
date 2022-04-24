@@ -27,7 +27,6 @@ import com.yubin.draw.widget.viewGroup.exposure.ExposureTracker
 class ExposureActivity : NativeActivity<ActivityExposureBinding>() {
     private lateinit var mAdapter: QualityAdapter
     private lateinit var tracker: ExposureTracker
-    private val qualities = ArrayList<QualityBean>()
     private var num : Int = 0
 
     override fun getViewBinding(): ActivityExposureBinding =
@@ -60,25 +59,37 @@ class ExposureActivity : NativeActivity<ActivityExposureBinding>() {
         binding.myRecycler.layoutManager = LinearLayoutManager(this)
         mAdapter = QualityAdapter()
         binding.myRecycler.adapter = mAdapter
-        updateQualities()
+        updateQualities(false)
         binding.srl.setOnRefreshListener {
-            tracker.refresh()
-            updateQualities()
+            tracker.reset()
+//            tracker.refresh()
+            updateQualities(true)
         }
     }
 
-    private fun updateQualities() {
-        for (i in 0 until 10) {
-            val bean = if (i == 0){
-                QualityBean(num++,VIEW_TYPE_MAIN)
-            } else {
-                QualityBean(num++,VIEW_TYPE_CONTENT)
-            }
+    private fun updateQualities(isRefresh : Boolean) {
+        val qualities : MutableList<QualityBean> = ArrayList()
+        if (!isRefresh) {
+            updateData(qualities)
+            mAdapter.submitList(qualities)
+        } else {
+            updateData(qualities)
+            mAdapter.addList(qualities)
+            binding.srl.isRefreshing = false
+        }
+    }
 
+    private fun updateData(qualities: MutableList<QualityBean>) {
+        for (i in 0 until 20) {
+            val bean = if (i == 0) {
+                QualityBean(num, "event_${num}", VIEW_TYPE_MAIN)
+            } else {
+                QualityBean(num, "event_${num}", VIEW_TYPE_CONTENT)
+            }
+            num++
             qualities.add(bean)
         }
-        mAdapter.submitList(qualities)
-        binding.srl.isRefreshing = false
+        LogUtil.d("ExposureHandler position = $qualities,")
     }
 
 
