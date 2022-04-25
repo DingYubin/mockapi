@@ -61,8 +61,8 @@ class ExposureActivity : NativeActivity<ActivityExposureBinding>() {
         binding.myRecycler.adapter = mAdapter
         updateQualities(false)
         binding.srl.setOnRefreshListener {
-            tracker.reset()
-//            tracker.refresh()
+//            tracker.reset()
+            tracker.refresh()
             updateQualities(true)
         }
     }

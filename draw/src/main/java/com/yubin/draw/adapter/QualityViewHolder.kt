@@ -10,7 +10,6 @@ import com.yubin.baselibrary.util.LogUtil
 import com.yubin.draw.R
 import com.yubin.draw.bean.QualityBean
 import com.yubin.draw.widget.viewGroup.exposure.ExposureLayout
-import com.yubin.draw.widget.viewGroup.exposure.ExposureManager
 
 class QualityViewHolder(itemView: View) : BaseQuotationViewHolder(itemView) {
 
@@ -33,15 +32,15 @@ class QualityViewHolder(itemView: View) : BaseQuotationViewHolder(itemView) {
                 val map = ArrayMap<String, Any>()
                 map["eventId"] = data.dataId
                 map["isExpose"] = true
-                bindViewData(map)
+                bindViewData(map, true)
             }
 
-            ExposureManager.instance.addEvent(data.dataId)
             num.setOnClickListener {
                 ARouter.getInstance()
                     .build(RouterPath.UiPage.PATH_UI_CALLBACK)
                     .navigation()
             }
+
         }
 
         when {

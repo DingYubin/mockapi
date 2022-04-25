@@ -35,6 +35,7 @@ class ExposureTask(private val handler: Handler, private val page: String) : Run
      * 对于没有曝光的数据，在面积区域内，则进行数据更新操作，否则步长(time)重新开始计算
      */
     private fun exposureView(it: ExposureViewTraceBean) {
+
         if (it.isExpose) {
             //在面积区域内，则进行数据更新操作，否则步长重新开始计算
             if (isExposureArea(it)) {
@@ -55,8 +56,10 @@ class ExposureTask(private val handler: Handler, private val page: String) : Run
 
     /**
      * 判断是否在曝光区域内
+     * 检查曝光数据是否还存在
      */
     private fun isExposureArea(bean: ExposureViewTraceBean): Boolean {
+
         val mRect = Rect()
         val view = bean.view
         val mShowRatio = bean.area

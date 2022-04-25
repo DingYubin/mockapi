@@ -33,7 +33,6 @@ class ExposureLayout : FrameLayout {
         mExposureHandler.onAttachedToWindow()
     }
 
-
     /**
      * 从视图中移除
      */
@@ -82,8 +81,8 @@ class ExposureLayout : FrameLayout {
     /**
      * 绑定数据
      */
-    fun bindViewData(map: ArrayMap<String, Any>) {
-        mExposureHandler.bindViewData(map)
+    fun bindViewData(map: ArrayMap<String, Any>, isRecyclerView: Boolean) {
+        mExposureHandler.bindViewData(map, isRecyclerView)
     }
 
     /**

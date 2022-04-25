@@ -1,11 +1,12 @@
 package com.yubin.draw.widget.viewGroup.exposure
 
-import androidx.collection.ArrayMap
+import com.yubin.baselibrary.util.LogUtil
 import com.yubin.draw.bean.ExposureViewTraceBean
+import java.util.concurrent.ConcurrentHashMap
 
 class ExposureManager private constructor() {
 
-    private val exposeMap: MutableMap<String, MutableList<ExposureViewTraceBean>> = ArrayMap()
+    private val exposeMap: MutableMap<String, MutableList<ExposureViewTraceBean>> = ConcurrentHashMap()
     private val event: MutableSet<String> = HashSet()
 
     companion object {
@@ -30,6 +31,7 @@ class ExposureManager private constructor() {
         }
         exposures.add(bean)
         exposeMap[pageName] = exposures
+        LogUtil.i("线程${Thread.currentThread().name} ---- add : $exposeMap")
     }
 
     /**
@@ -41,18 +43,26 @@ class ExposureManager private constructor() {
         if (exposures.isNotEmpty()) {
             exposeMap.remove(pageName)
         }
+        LogUtil.i("线程${Thread.currentThread().name} ----  remove1 : $exposeMap")
     }
+
 
     /**
      * 删除对应页面的曝光组件的某个元素
      * @param pageName 曝光页面
-     * @param bean 曝光数据源
+     * @param eventId 曝光数据源id
      */
-    fun remove(pageName: String, bean: ExposureViewTraceBean) {
+    fun remove(pageName: String, eventId: String) {
         val exposures = query(pageName)
         if (exposures.isNotEmpty()) {
-            exposures.remove(bean)
+            exposures.find {
+                it.eventId == eventId
+            }.let {
+                exposures.remove(it)
+            }
         }
+
+        LogUtil.i("线程${Thread.currentThread().name} ----  remove2 : $exposeMap")
     }
 
     /**
@@ -70,6 +80,23 @@ class ExposureManager private constructor() {
                 it?.isExpose = bean.isExpose
             }
         }
+        LogUtil.i("线程${Thread.currentThread().name} ----  update : $exposeMap")
+    }
+
+    /**
+     * 查询是否已经曝光过
+     */
+    fun isExposed(pageName: String, eventId: String): Boolean? {
+        val exposures = query(pageName)
+        if (exposures.isNotEmpty()) {
+            exposures.find {
+                it.eventId == eventId
+            }.let {
+                return it?.isExpose
+            }
+        }
+
+        return true
     }
 
     /**
@@ -94,6 +121,7 @@ class ExposureManager private constructor() {
                 it.isExpose = true
             }
         }
+        LogUtil.i("线程${Thread.currentThread().name} ----  reset : $exposeMap")
     }
 
     /**
@@ -115,6 +143,21 @@ class ExposureManager private constructor() {
      */
     fun addEvent(eventId: String) {
         event.add(eventId)
+    }
+
+    /**
+     * 删除需要曝光的事件
+     */
+    fun removeEvent(eventId: String) {
+        event.remove(eventId)
+    }
+
+    /**
+     * 判断是否存在曝光数据
+     */
+    fun isExistExposureId(bean: ExposureViewTraceBean) : Boolean{
+
+        return event.contains(bean.eventId)
     }
 
     /**
