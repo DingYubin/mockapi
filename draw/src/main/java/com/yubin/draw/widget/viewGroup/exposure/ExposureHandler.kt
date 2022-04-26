@@ -6,6 +6,7 @@ import androidx.collection.ArrayMap
 import com.yubin.baselibrary.util.LogUtil
 import com.yubin.baselibrary.util.RxTimer
 import com.yubin.draw.bean.ExposureViewTraceBean
+import java.util.concurrent.atomic.AtomicBoolean
 
 /**
  * 曝光操作
@@ -20,6 +21,7 @@ class ExposureHandler(private val view: View) {
     private var page: String? = null//曝光页面
     private var mExposureCallback: IExposureCallback? = null //曝光回调
     private var isRecyclerView: Boolean = false//判断是否是recyclerView
+    private val isExposed : AtomicBoolean = AtomicBoolean(true)//是否曝光过
 
     /**
      * 添加到视图时添加OnPreDrawListener
@@ -41,7 +43,7 @@ class ExposureHandler(private val view: View) {
             LogUtil.d("添加到视图时添加 eventId : $eventId, isExpose : $isExpose")
             ExposureManager.instance.add(
                 page!!,
-                ExposureViewTraceBean(eventId, view, 0, mShowRatio, mTimeLimit, isExpose!!)
+                ExposureViewTraceBean(page!!,eventId, view, 0, mShowRatio, mTimeLimit, isExpose!!)
             )
             if (isExpose) {
                 ExposureManager.instance.addEvent(eventId)
@@ -55,7 +57,7 @@ class ExposureHandler(private val view: View) {
             LogUtil.d("添加到视图时添加 eventId : $eventId, isExpose : $isExpose")
             ExposureManager.instance.add(
                 it,
-                ExposureViewTraceBean(eventId, view, 0, mShowRatio, mTimeLimit, isExpose)
+                ExposureViewTraceBean(page!!, eventId, view, 0, mShowRatio, mTimeLimit, isExpose)
             )
 
             if (isExpose) {
@@ -75,7 +77,7 @@ class ExposureHandler(private val view: View) {
             val isExposed = ExposureManager.instance.isExposed(page!!, eventId)
             LogUtil.d("删除到视图时添加 eventId : $eventId, isExpose : $isExposed")
 
-            if (isExposed == false && isRecyclerView) {//判断是否曝光过，若果没有曝光过，并且是 recyclerView, 进行解绑操作
+            if (isExposed == true && isRecyclerView) {//判断是否曝光过，若果没有曝光过，并且是 recyclerView, 进行解绑操作
                 exposePara?.clear()
             }
         }
@@ -103,15 +105,15 @@ class ExposureHandler(private val view: View) {
      * 回调给主界面进行上报数据
      * 如果是recyclerView 需要判断该数据是否还在绑定的view上面
      */
-    fun exposure() {
-        LogUtil.i("曝光操作: ${Thread.currentThread().name} 线程操作")
-//        ExposureManager.instance.isExposed
-//        exposePara?.forEach { (key, value) -> LogUtil.i("曝光数据 --> $key: $value") }
+    fun exposure(page: String, eventId: String) {
 
-        if (isRecyclerView && isBindView() == false) {
+        if (isRecyclerView && isBindView() == false && !isExposed.get()) {
+            LogUtil.d("重置操作 page : $page, eventId : $eventId")
+            ExposureManager.instance.resetEvent(page, eventId)
             return
         }
 
+        LogUtil.i("曝光操作: ${Thread.currentThread().name} 曝光完成")
         val rxTimer = RxTimer()
         rxTimer.interval(0, 500) { number ->
 //            LogUtil.i("曝光操作: ${Thread.currentThread().name} 第 $number 次")
@@ -127,6 +129,7 @@ class ExposureHandler(private val view: View) {
         }
 
         mExposureCallback?.exposure()
+        isExposed.set(true)
     }
 
     /**
@@ -156,6 +159,7 @@ class ExposureHandler(private val view: View) {
     fun bindViewData(map: ArrayMap<String, Any>, isRecyclerView: Boolean) {
         this.isRecyclerView = isRecyclerView
         this.exposePara = map
+        isExposed.set(false)
     }
 
     /**

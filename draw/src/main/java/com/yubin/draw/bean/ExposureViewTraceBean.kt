@@ -7,6 +7,7 @@ import com.yubin.draw.widget.recyclerView.adapter.protocol.ICECDiffData
 import java.io.Serializable
 
 data class ExposureViewTraceBean(
+    val page: String,
     val eventId: String,
     val view: View,
     var time: Int,

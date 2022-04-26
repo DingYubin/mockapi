@@ -1,6 +1,7 @@
 package com.yubin.draw.widget.viewGroup.exposure
 
 import com.yubin.baselibrary.util.HandlerHelper
+import com.yubin.draw.bean.ExposureViewTraceBean
 
 
 /**
@@ -14,8 +15,11 @@ class ExposureTracker(private val page: String) {
     private val handlerHelper = HandlerHelper { msg ->
         when (msg.what) {
             EXPOSURE_DATA -> {
-                val view = msg.obj as ExposureLayout
-                view.exposure()
+                if (msg.obj is ExposureViewTraceBean) {
+                    val exposure = msg.obj as ExposureViewTraceBean
+                    val view = exposure.view as ExposureLayout
+                    view.exposure(exposure.page, exposure.eventId)
+                }
             }
         }
         false

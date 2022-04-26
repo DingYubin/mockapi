@@ -88,8 +88,8 @@ class ExposureLayout : FrameLayout {
     /**
      * 曝光操作
      */
-    fun exposure(){
-        mExposureHandler.exposure()
+    fun exposure(page: String, eventId: String){
+        mExposureHandler.exposure(page, eventId)
     }
 
     /**

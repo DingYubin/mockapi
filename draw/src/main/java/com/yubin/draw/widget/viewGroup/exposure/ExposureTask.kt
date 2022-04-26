@@ -44,7 +44,7 @@ class ExposureTask(private val handler: Handler, private val page: String) : Run
                     it.time = (it.time + 500)
                 } else {
                     //曝光条件满足，执行曝光任务
-                    handler.obtainMessage(EXPOSURE_DATA, it.view).sendToTarget()
+                    handler.obtainMessage(EXPOSURE_DATA, it).sendToTarget()
                     it.isExpose = false
                 }
             } else {

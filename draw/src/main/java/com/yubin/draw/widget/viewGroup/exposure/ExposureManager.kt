@@ -6,7 +6,8 @@ import java.util.concurrent.ConcurrentHashMap
 
 class ExposureManager private constructor() {
 
-    private val exposeMap: MutableMap<String, MutableList<ExposureViewTraceBean>> = ConcurrentHashMap()
+    private val exposeMap: MutableMap<String, MutableList<ExposureViewTraceBean>> =
+        ConcurrentHashMap()
     private val event: MutableSet<String> = HashSet()
 
     companion object {
@@ -125,6 +126,22 @@ class ExposureManager private constructor() {
     }
 
     /**
+     * 重置某个事件
+     */
+    fun resetEvent(pageName: String, eventId: String) {
+        val exposures = query(pageName)
+        if (exposures.isNotEmpty()) {
+            exposures.find {
+                it.eventId == eventId
+            }.let {
+                it?.time = 0
+                it?.isExpose = true
+            }
+        }
+        LogUtil.i("线程${Thread.currentThread().name} ----  resetEvent : $exposeMap")
+    }
+
+    /**
      * 重置某个页面
      */
     fun resetAll() {
@@ -155,7 +172,7 @@ class ExposureManager private constructor() {
     /**
      * 判断是否存在曝光数据
      */
-    fun isExistExposureId(bean: ExposureViewTraceBean) : Boolean{
+    fun isExistExposureId(bean: ExposureViewTraceBean): Boolean {
 
         return event.contains(bean.eventId)
     }
