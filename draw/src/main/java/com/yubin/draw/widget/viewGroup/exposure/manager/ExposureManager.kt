@@ -87,13 +87,13 @@ class ExposureManager private constructor() {
     /**
      * 查询是否已经曝光过
      */
-    fun isExposed(pageName: String, eventId: String): Boolean? {
+    fun isExposed(pageName: String, eventId: String): Boolean {
         val exposures = query(pageName)
         if (exposures.isNotEmpty()) {
             exposures.find {
                 it.eventId == eventId
             }.let {
-                return it?.isExpose
+                return it?.isExpose ?: true
             }
         }
 

@@ -77,7 +77,7 @@ class ExposureHandler(private val view: View) {
             val isExposed = ExposureManager.instance.isExposed(page!!, eventId)
             LogUtil.d("删除到视图时添加 eventId : $eventId, isExpose : $isExposed")
 
-            if (isExposed == true && isRecyclerView) {//判断是否曝光过，若果没有曝光过，并且是 recyclerView, 进行解绑操作
+            if (isExposed && isRecyclerView) {//判断是否曝光过，若果没有曝光过，并且是 recyclerView, 进行解绑操作
                 exposePara?.clear()
             }
         }

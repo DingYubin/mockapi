@@ -16,7 +16,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="4dp"
-            android:background="@color/color_cec_red_ff4e33"
             android:fastScrollEnabled="true"
             android:overScrollMode="never"
             android:scrollbars="none" />
@@ -24,6 +23,7 @@
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/bottom"
         android:layout_width="match_parent"
         android:layout_height="65dp"
         android:background="@color/st_bg_common_normal"

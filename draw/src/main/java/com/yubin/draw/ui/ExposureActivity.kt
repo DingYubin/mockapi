@@ -1,6 +1,8 @@
 package com.yubin.draw.ui
 
+import android.graphics.Rect
 import android.os.Bundle
+import android.view.ViewTreeObserver
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.yubin.baselibrary.router.path.RouterPath
@@ -13,6 +15,7 @@ import com.yubin.draw.adapter.QualityAdapter.Companion.VIEW_TYPE_MAIN
 import com.yubin.draw.bean.QualityBean
 import com.yubin.draw.databinding.ActivityExposureBinding
 import com.yubin.draw.widget.viewGroup.exposure.ExposureTracker
+import com.yubin.draw.widget.viewGroup.exposure.utils.ExposureHelper
 import com.yubin.draw.widget.viewGroup.exposure.utils.HomePageExposeUtil
 
 /**
@@ -28,7 +31,7 @@ import com.yubin.draw.widget.viewGroup.exposure.utils.HomePageExposeUtil
 class ExposureActivity : NativeActivity<ActivityExposureBinding>() {
     private lateinit var mAdapter: QualityAdapter
     private lateinit var tracker: ExposureTracker
-    private var num : Int = 0
+    private var num: Int = 0
 
     override fun getViewBinding(): ActivityExposureBinding =
         ActivityExposureBinding.inflate(layoutInflater)
@@ -42,9 +45,10 @@ class ExposureActivity : NativeActivity<ActivityExposureBinding>() {
     }
 
     private fun addExposureListener() {
-        val exposure =  HomePageExposeUtil()
-        exposure.setRecyclerItemExposeListener(binding.myRecycler
-        ) { visible, position -> LogUtil.d("屏幕内 第$position 位置，可见状态 ：$visible" )}
+        val exposure = HomePageExposeUtil()
+        exposure.setRecyclerItemExposeListener(
+            binding.myRecycler
+        ) { visible, position -> LogUtil.d("屏幕内 第$position 位置，可见状态 ：$visible") }
     }
 
     override fun onStart() {
@@ -61,6 +65,41 @@ class ExposureActivity : NativeActivity<ActivityExposureBinding>() {
 
     private fun initExposure() {
         tracker = ExposureTracker("exposure_activity")
+        binding.bottom.viewTreeObserver.addOnGlobalLayoutListener(object :
+            ViewTreeObserver.OnGlobalLayoutListener {
+            override fun onGlobalLayout() {
+                getMeasure()
+                binding.bottom.viewTreeObserver?.removeOnGlobalLayoutListener(this)
+            }
+        })
+    }
+
+    private fun getMeasure() {
+        val view = binding.bottom
+        LogUtil.i("width = ${view.width}, height = ${view.height}")
+        LogUtil.i("MeasuredWidth = ${view.measuredWidth}, MeasuredHeight = ${view.measuredHeight}")
+        //相对window 位置
+        val location = IntArray(2)
+        view.getLocationInWindow(location)
+        LogUtil.i("x = ${location[0]}, y = ${location[1]}")
+
+        //相对屏幕的绝对位置
+        val location2 = IntArray(2)
+        view.getLocationOnScreen(location2)
+        LogUtil.i("x = ${location2[0]}, y = ${location2[1]}")
+
+        //相对父控件位置而言
+        LogUtil.i("left = ${view.left}, top = ${view.top}, right = ${view.right}, bottom = ${view.bottom}" )
+
+        //view可见部分 相对于 屏幕的坐标
+        val globalRect = Rect()
+        view.getGlobalVisibleRect(globalRect)
+        LogUtil.i("left = ${globalRect.left}, top = ${globalRect.top}, right = ${globalRect.right}, bottom = ${globalRect.bottom}" )
+        LogUtil.i("rect.width = ${globalRect.width()}, rect.height = ${globalRect.height()}" )
+
+
+        ExposureHelper.exposureTopHigh = location2[1]
+//        ExposureHelper.exposureLeftWidth = location2[0]
     }
 
     private fun initView() {
@@ -75,8 +114,8 @@ class ExposureActivity : NativeActivity<ActivityExposureBinding>() {
         }
     }
 
-    private fun updateQualities(isRefresh : Boolean) {
-        val qualities : MutableList<QualityBean> = ArrayList()
+    private fun updateQualities(isRefresh: Boolean) {
+        val qualities: MutableList<QualityBean> = ArrayList()
         if (!isRefresh) {
             updateData(qualities)
             mAdapter.submitList(qualities)
