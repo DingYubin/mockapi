@@ -2,6 +2,7 @@ package com.yubin.draw.widget.viewGroup.exposure
 
 import android.graphics.Rect
 import android.os.Handler
+import com.yubin.baselibrary.util.LogUtil
 import com.yubin.draw.bean.ExposureViewTraceBean
 import com.yubin.draw.widget.viewGroup.exposure.ExposureTracker.Companion.EXPOSURE_DATA
 
@@ -72,6 +73,7 @@ class ExposureTask(private val handler: Handler, private val page: String) : Run
             if (kotlin.math.abs(mRect.bottom - mRect.top) > view.height * mShowRatio
                 && kotlin.math.abs(mRect.right - mRect.left) > view.width * mShowRatio
             ) {
+                LogUtil.i("线程${Thread.currentThread().name} --曝光--  bean : $bean")
                 return true
             }
         }

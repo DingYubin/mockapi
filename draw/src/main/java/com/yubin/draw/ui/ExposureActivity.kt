@@ -13,6 +13,7 @@ import com.yubin.draw.adapter.QualityAdapter.Companion.VIEW_TYPE_MAIN
 import com.yubin.draw.bean.QualityBean
 import com.yubin.draw.databinding.ActivityExposureBinding
 import com.yubin.draw.widget.viewGroup.exposure.ExposureTracker
+import com.yubin.draw.widget.viewGroup.exposure.utils.HomePageExposeUtil
 
 /**
  * <pre>
@@ -37,6 +38,13 @@ class ExposureActivity : NativeActivity<ActivityExposureBinding>() {
         setTitleWithinToolBar(R.string.exposure)
         initView()
         initExposure()
+//        addExposureListener()
+    }
+
+    private fun addExposureListener() {
+        val exposure =  HomePageExposeUtil()
+        exposure.setRecyclerItemExposeListener(binding.myRecycler
+        ) { visible, position -> LogUtil.d("屏幕内 第$position 位置，可见状态 ：$visible" )}
     }
 
     override fun onStart() {
@@ -89,7 +97,6 @@ class ExposureActivity : NativeActivity<ActivityExposureBinding>() {
             num++
             qualities.add(bean)
         }
-        LogUtil.d("ExposureHandler position = $qualities,")
     }
 
 

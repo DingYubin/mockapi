@@ -23,7 +23,7 @@ class QualityViewHolder(itemView: View) : BaseQuotationViewHolder(itemView) {
 
         num.text = data.index.toString()
 
-        if (data.dataId == "event_15") {
+        if (data.dataId == "event_7") {
             LogUtil.d("ExposureHandler position = $position, num = ${data.index}, dataId = ${data.dataId}")
             exposureLayout.run {
                 setPage("exposure_activity")
