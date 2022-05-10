@@ -5,7 +5,8 @@ import android.view.View
 import androidx.collection.ArrayMap
 import com.yubin.baselibrary.util.LogUtil
 import com.yubin.baselibrary.util.RxTimer
-import com.yubin.draw.bean.ExposureViewTraceBean
+import com.yubin.draw.BuildConfig
+import com.yubin.draw.widget.viewGroup.exposure.bean.ExposureTraceBean
 import com.yubin.draw.widget.viewGroup.exposure.manager.ExposureManager
 import com.yubin.draw.widget.viewGroup.exposure.protocol.IExposureCallback
 import java.util.concurrent.atomic.AtomicBoolean
@@ -15,18 +16,33 @@ import java.util.concurrent.atomic.AtomicBoolean
  */
 class ExposureHandler(private val view: View) {
     private var exposePara: ArrayMap<String, Any>? = null
-
-    private var mHasWindowFocus = true // 视图获取到焦点的状态 ，默认为true，避免某些场景不被调用
-    private var mVisibilityAggregated = true //可见性的状态 ，默认为true，避免某些场景不被调用
-    private var mShowRatio: Float = 0f //曝光条件超过多大面积 0~1f
-    private var mTimeLimit: Int = 0 //曝光条件超过多久才算曝光，例如2秒(2000)
-    private var page: String? = null//曝光页面
+    private var mShowRatio: Float = 0.5f //曝光条件超过多大面积 0~1f
     private var mExposureCallback: IExposureCallback? = null //曝光回调
     private var isRecyclerView: Boolean = false//判断是否是recyclerView
-    private val isExposed : AtomicBoolean = AtomicBoolean(true)//是否曝光过
+    private val isExposed: AtomicBoolean = AtomicBoolean(true)//是否曝光过
+    private var mTimeLimit: Int = 2000 //曝光条件超过多久才算曝光，例如2秒(2000)
 
     /**
-     * 添加到视图时添加OnPreDrawListener
+     * 视图view进入window
+     */
+    fun onAttachedToWindow() {
+        if (isBindView() == false) {
+            return
+        }
+        addViewToExposure()
+    }
+
+    /**
+     * 视图view移除window
+     */
+    fun onDetachedFromWindow() {
+        if (isBindView() == true && isRecyclerView) {
+            removeExposeCache()
+        }
+    }
+
+    /**
+     * 添加视图到曝光区域
      * RecyclerView
      * 1、有数据情况，需要判断
      *      已经曝光过，则不进行任何操作
@@ -34,118 +50,105 @@ class ExposureHandler(private val view: View) {
      * 2、没有数据到情况下，什么都不做
      * View 其他情况，添加操作
      */
-    fun onAttachedToWindow() {
-        if (isBindView() == false) {
-            return
-        }
+    private fun addViewToExposure() {
+        val pageName = if (exposePara?.contains("pageName") == true) {
+            exposePara?.get("pageName") as String
+        } else ""
 
-        if (isRecyclerView && page != null) {
-            val eventId = exposePara?.get("eventId") as String
-            val isExpose = ExposureManager.instance.isExposed(page!!, eventId)
-            LogUtil.d("添加到视图时添加 eventId : $eventId, isExpose : $isExpose")
-            ExposureManager.instance.add(
-                page!!,
-                ExposureViewTraceBean(page!!,eventId, view, 0, mShowRatio, mTimeLimit, isExpose!!)
-            )
-            if (isExpose) {
-                ExposureManager.instance.addEvent(eventId)
+        val exposureId = if (exposePara?.contains("exposureId") == true) {
+            exposePara?.get("exposureId") as String
+        } else ""
+
+        if (pageName.isNotEmpty() && exposureId.isNotEmpty()) {
+            val isExposeAble = if (isRecyclerView) {
+                ExposureManager.instance.checkExposed(pageName, exposureId)
+            } else {
+                exposePara?.get("isExposeAble") == true
             }
-            return
-        }
-
-        page?.let {
-            val isExpose = exposePara?.get("isExpose") as Boolean
-            val eventId = exposePara?.get("eventId") as String
-            LogUtil.d("添加到视图时添加 eventId : $eventId, isExpose : $isExpose")
-            ExposureManager.instance.add(
-                it,
-                ExposureViewTraceBean(page!!, eventId, view, 0, mShowRatio, mTimeLimit, isExpose)
-            )
-
-            if (isExpose) {
-                ExposureManager.instance.addEvent(eventId)
-            }
+            LogUtil.i("线程 --- ${Thread.currentThread().name} 曝光 exposureId = $exposureId , isExposeAble = $isExposeAble")
+            addExposure(exposureId, isExposeAble, pageName)
         }
     }
 
     /**
-     * 从视图中移除时去掉OnPreDrawListener
-     * 尝试取消曝光
+     * 移除缓存区域里数据
      */
-    fun onDetachedFromWindow() {
+    private fun removeExposeCache() {
 
-        if (isRecyclerView && isBindView() == true && page != null) {
-            val eventId = exposePara?.get("eventId") as String
-            val isExposed = ExposureManager.instance.isExposed(page!!, eventId)
-            LogUtil.d("删除到视图时添加 eventId : $eventId, isExpose : $isExposed")
+        val pageName = if (exposePara?.contains("pageName") == true) {
+            exposePara?.get("pageName") as String
+        } else ""
 
-            if (isExposed && isRecyclerView) {//判断是否曝光过，若果没有曝光过，并且是 recyclerView, 进行解绑操作
+        val exposureId = if (exposePara?.contains("exposureId") == true) {
+            exposePara?.get("exposureId") as String
+        } else ""
+
+        if (pageName.isNotEmpty() && exposureId.isNotEmpty()) {
+            val isExposeAble = ExposureManager.instance.checkExposed(pageName, exposureId)
+            if (isExposeAble) { //判断是否曝光过，若果没有曝光过，并且是 recyclerView, 进行解绑操作
                 exposePara?.clear()
             }
         }
-
-    }
-
-    /**
-     * 视图焦点改变
-     * 尝试取消曝光
-     */
-    fun onWindowFocusChanged(hasWindowFocus: Boolean) {
-        mHasWindowFocus = hasWindowFocus
-    }
-
-    /**
-     * 可见性改变
-     * 尝试取消曝光
-     */
-    fun onVisibilityAggregated(isVisible: Boolean) {
-        mVisibilityAggregated = isVisible
     }
 
     /**
      * 设置曝光时间限制条件
      * 回调给主界面进行上报数据
-     * 如果是recyclerView 需要判断该数据是否还在绑定的view上面
      */
-    fun exposure(page: String, eventId: String) {
+    fun exposure(page: String, exposureId: String) {
 
         if (isRecyclerView && isBindView() == false && !isExposed.get()) {
-            LogUtil.d("重置操作 page : $page, eventId : $eventId")
-            ExposureManager.instance.resetEvent(page, eventId)
+            ExposureManager.instance.resetExposure(page, exposureId)
             return
         }
 
-        LogUtil.i("曝光操作: ${Thread.currentThread().name} 曝光完成")
-        val rxTimer = RxTimer()
-        rxTimer.interval(0, 500) { number ->
-//            LogUtil.i("曝光操作: ${Thread.currentThread().name} 第 $number 次")
-            if (number % 2 == 0L) {
-                view.setBackgroundColor(Color.parseColor("#00ff00"))
-            } else {
-                view.setBackgroundColor(Color.parseColor("#F0F0F0"))
-            }
-            if (number >= 5) {
-                rxTimer.cancel()
-                view.setBackgroundColor(Color.parseColor("#00F0F0F0"))
+        //调试模式下 曝光闪烁3次
+        if (BuildConfig.DEBUG) {
+            val rxTimer = RxTimer()
+            rxTimer.interval(0, 500) { number ->
+
+                if (number % 2 == 0L) {
+                    view.setBackgroundColor(Color.parseColor("#00ff00"))
+                } else {
+                    view.setBackgroundColor(Color.parseColor("#F0F0F0"))
+                }
+                if (number >= 5) {
+                    rxTimer.cancel()
+                    view.setBackgroundColor(Color.parseColor("#00F0F0F0"))
+                }
             }
         }
+
+        LogUtil.i("线程 --- ${Thread.currentThread().name} 完成曝光数据上报成功 --> $exposePara")
 
         mExposureCallback?.exposure()
         isExposed.set(true)
     }
 
     /**
-     * 设置要曝光的页面
+     * 添加曝光
      */
-    fun setPage(pageName: String) {
-        page = pageName
-    }
-
-    /**
-     * 设置曝光面积条件
-     */
-    fun setShowRatio(area: Float) {
-        mShowRatio = area
+    private fun addExposure(
+        exposureId: String,
+        isExposeAble: Boolean,
+        pageName: String
+    ) {
+        if (exposureId.isNotEmpty()) {
+            val bean = ExposureTraceBean(
+                pageName,
+                exposureId,
+                view,
+                0,
+                mShowRatio,
+                mTimeLimit,
+                isExposeAble
+            )
+            ExposureManager.instance.add(
+                pageName,
+                bean
+            )
+            if (isExposeAble) ExposureManager.instance.addExposureId(exposureId)
+        }
     }
 
     /**
@@ -153,6 +156,13 @@ class ExposureHandler(private val view: View) {
      */
     fun setTimeLimit(index: Int) {
         this.mTimeLimit = index
+    }
+
+    /**
+     * 设置曝光面积占比
+     */
+    fun setShowRatio(ratio: Float) {
+        this.mShowRatio = ratio
     }
 
     /**

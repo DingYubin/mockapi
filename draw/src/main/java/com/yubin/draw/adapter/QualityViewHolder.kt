@@ -26,12 +26,12 @@ class QualityViewHolder(itemView: View) : BaseQuotationViewHolder(itemView) {
 //        if (data.dataId == "event_7") {
         LogUtil.d("ExposureHandler position = $position, num = ${data.index}, dataId = ${data.dataId}")
         exposureLayout.run {
-            setPage("exposure_activity")
             setShowRatio(0.5f) //需要暴露大于50%才能曝光
             setTimeLimit(2000) //曝光的时间2000
             val map = ArrayMap<String, Any>()
-            map["eventId"] = data.dataId
-            map["isExpose"] = true
+            map["pageName"] = "exposure_activity"
+            map["exposureId"] = data.dataId
+            map["isExposeAble"] = true
             bindViewData(map, true)
 //            }
 

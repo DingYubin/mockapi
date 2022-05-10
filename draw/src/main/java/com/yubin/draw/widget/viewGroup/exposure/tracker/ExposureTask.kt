@@ -3,7 +3,7 @@ package com.yubin.draw.widget.viewGroup.exposure.tracker
 import android.graphics.Rect
 import android.os.Handler
 import android.view.View
-import com.yubin.draw.bean.ExposureViewTraceBean
+import com.yubin.draw.widget.viewGroup.exposure.bean.ExposureTraceBean
 import com.yubin.draw.widget.viewGroup.exposure.manager.ExposureManager
 import com.yubin.draw.widget.viewGroup.exposure.tracker.ExposureTracker.Companion.EXPOSURE_DATA
 import com.yubin.draw.widget.viewGroup.exposure.utils.ExposureHelper
@@ -26,7 +26,7 @@ class ExposureTask(private val handler: Handler, private val page: String) : Run
 
         val exposure = ExposureManager.instance.query(page)
         exposure.forEach {
-            exposureView(it)
+            exposureView(it, page)
         }
 
         // 每5s重复一次
@@ -37,21 +37,22 @@ class ExposureTask(private val handler: Handler, private val page: String) : Run
      * 曝光操作
      * 对于没有曝光的数据，在面积区域内，则进行数据更新操作，否则步长(time)重新开始计算
      */
-    private fun exposureView(it: ExposureViewTraceBean) {
+    private fun exposureView(it: ExposureTraceBean, page: String) {
 
-        if (it.isExpose) {
+        if (it.isExposeAble) {
             //在面积区域内，则进行数据更新操作，否则步长重新开始计算
             if (isExposureArea(it)) {
+//                RdLog.i("线程 --- ${Thread.currentThread().name} 曝光 it = $it ")
                 //不满足条件的，更新数据
-                if (it.time < it.mTimeLimit) {
-                    it.time = (it.time + 300)
+                if (it.timeStep < it.mTimeLimit) {
+                    it.timeStep = (it.timeStep + 300)
                 } else {
                     //曝光条件满足，执行曝光任务
                     handler.obtainMessage(EXPOSURE_DATA, it).sendToTarget()
-                    it.isExpose = false
+                    it.isExposeAble = false
                 }
             } else {
-                it.time = 0
+                it.timeStep = 0
             }
             ExposureManager.instance.update(page, it)
         }
@@ -61,7 +62,7 @@ class ExposureTask(private val handler: Handler, private val page: String) : Run
      * 判断是否在曝光区域内
      * 检查曝光数据是否还存在
      */
-    private fun isExposureArea(bean: ExposureViewTraceBean): Boolean {
+    private fun isExposureArea(bean: ExposureTraceBean): Boolean {
         val view = bean.view
         val mShowRatio = bean.area
         val mRect = Rect()

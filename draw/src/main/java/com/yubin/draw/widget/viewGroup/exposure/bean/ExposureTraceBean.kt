@@ -1,4 +1,4 @@
-package com.yubin.draw.bean
+package com.yubin.draw.widget.viewGroup.exposure.bean
 
 import android.net.Uri
 import android.os.Bundle
@@ -6,14 +6,14 @@ import android.view.View
 import com.yubin.draw.widget.recyclerView.adapter.protocol.ICECDiffData
 import java.io.Serializable
 
-data class ExposureViewTraceBean(
+data class ExposureTraceBean(
     val page: String,
-    val eventId: String,
+    val exposureId: String,//曝光id
     val view: View,
-    var time: Int,
+    var timeStep: Int, //时间步长
     val area: Float,
     val mTimeLimit: Int,
-    var isExpose: Boolean = true //默认需要曝光
+    var isExposeAble: Boolean = true //默认能曝光
 ) : Serializable, ICECDiffData {
 
     override fun getItemSameId(): String {

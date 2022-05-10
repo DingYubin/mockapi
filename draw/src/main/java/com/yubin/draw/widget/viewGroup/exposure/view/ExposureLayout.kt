@@ -44,33 +44,10 @@ class ExposureLayout : FrameLayout {
     }
 
     /**
-     * 视图焦点改变
-     */
-    override fun onWindowFocusChanged(hasWindowFocus: Boolean) {
-        super.onWindowFocusChanged(hasWindowFocus)
-        mExposureHandler.onWindowFocusChanged(hasWindowFocus)
-    }
-
-    /**
-     * 视图可见性
-     */
-    override fun onVisibilityAggregated(isVisible: Boolean) {
-        super.onVisibilityAggregated(isVisible)
-        mExposureHandler.onVisibilityAggregated(isVisible)
-    }
-
-    /**
      * 设置曝光条件 曝光区域大小，例如展示超过50%才算曝光
      */
     fun setShowRatio(ratio: Float) {
         mExposureHandler.setShowRatio(ratio)
-    }
-
-    /**
-     * 设置要曝光的页面
-     */
-    fun setPage(pageName: String) {
-        mExposureHandler.setPage(pageName)
     }
 
     /**

@@ -14,6 +14,7 @@ import com.yubin.draw.adapter.QualityAdapter.Companion.VIEW_TYPE_CONTENT
 import com.yubin.draw.adapter.QualityAdapter.Companion.VIEW_TYPE_MAIN
 import com.yubin.draw.bean.QualityBean
 import com.yubin.draw.databinding.ActivityExposureBinding
+import com.yubin.draw.widget.viewGroup.exposure.manager.ExposureManager
 import com.yubin.draw.widget.viewGroup.exposure.tracker.ExposureTracker
 import com.yubin.draw.widget.viewGroup.exposure.utils.ExposureHelper
 import com.yubin.draw.widget.viewGroup.exposure.utils.HomePageExposeUtil
@@ -89,13 +90,13 @@ class ExposureActivity : NativeActivity<ActivityExposureBinding>() {
         LogUtil.i("x = ${location2[0]}, y = ${location2[1]}")
 
         //相对父控件位置而言
-        LogUtil.i("left = ${view.left}, top = ${view.top}, right = ${view.right}, bottom = ${view.bottom}" )
+        LogUtil.i("left = ${view.left}, top = ${view.top}, right = ${view.right}, bottom = ${view.bottom}")
 
         //view可见部分 相对于 屏幕的坐标
         val globalRect = Rect()
         view.getGlobalVisibleRect(globalRect)
-        LogUtil.i("left = ${globalRect.left}, top = ${globalRect.top}, right = ${globalRect.right}, bottom = ${globalRect.bottom}" )
-        LogUtil.i("rect.width = ${globalRect.width()}, rect.height = ${globalRect.height()}" )
+        LogUtil.i("left = ${globalRect.left}, top = ${globalRect.top}, right = ${globalRect.right}, bottom = ${globalRect.bottom}")
+        LogUtil.i("rect.width = ${globalRect.width()}, rect.height = ${globalRect.height()}")
 
 
         ExposureHelper.exposureTopHigh = location2[1]
@@ -108,8 +109,7 @@ class ExposureActivity : NativeActivity<ActivityExposureBinding>() {
         binding.myRecycler.adapter = mAdapter
         updateQualities(false)
         binding.srl.setOnRefreshListener {
-//            tracker.reset()
-            tracker.refresh()
+            ExposureManager.instance.reset("exposure_activity")
             updateQualities(true)
         }
     }
@@ -140,8 +140,11 @@ class ExposureActivity : NativeActivity<ActivityExposureBinding>() {
 
 
     override fun onNewDestroy() {
-        super.onNewDestroy()
+        ExposureManager.instance.remove("exposure_activity")
         tracker.release()
+        ExposureManager.instance.clear()
+        super.onNewDestroy()
+
     }
 
 }

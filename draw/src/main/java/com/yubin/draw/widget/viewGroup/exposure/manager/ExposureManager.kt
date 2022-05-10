@@ -1,14 +1,17 @@
 package com.yubin.draw.widget.viewGroup.exposure.manager
 
-import com.yubin.baselibrary.util.LogUtil
-import com.yubin.draw.bean.ExposureViewTraceBean
+import com.yubin.draw.widget.viewGroup.exposure.bean.ExposureTraceBean
+import com.yubin.draw.widget.viewGroup.exposure.tracker.ExposureTracker
 import java.util.concurrent.ConcurrentHashMap
+import java.util.concurrent.CopyOnWriteArrayList
 
 class ExposureManager private constructor() {
 
-    private val exposeMap: MutableMap<String, MutableList<ExposureViewTraceBean>> =
+    private val exposeMap: MutableMap<String, CopyOnWriteArrayList<ExposureTraceBean>> =
         ConcurrentHashMap()
-    private val event: MutableSet<String> = HashSet()
+    private val exposureIds: MutableSet<String> = HashSet()
+    private val tracker = ExposureTracker("exposure_activity")
+    private var isRunning: Boolean = false
 
     companion object {
         val instance = Helper.instance
@@ -23,16 +26,17 @@ class ExposureManager private constructor() {
      * @param pageName 曝光的页面
      * @param bean 曝光数据源
      */
-    fun add(pageName: String, bean: ExposureViewTraceBean) {
+    fun add(pageName: String, bean: ExposureTraceBean) {
         val exposures = query(pageName)
         exposures.forEach {
-            if (it.eventId == bean.eventId) {
+            if (it.exposureId == bean.exposureId) {
                 return
             }
         }
         exposures.add(bean)
         exposeMap[pageName] = exposures
-        LogUtil.i("线程${Thread.currentThread().name} ---- add : $exposeMap")
+
+//        startTracker()
     }
 
     /**
@@ -42,28 +46,10 @@ class ExposureManager private constructor() {
     fun remove(pageName: String) {
         val exposures = query(pageName)
         if (exposures.isNotEmpty()) {
+            removeExposureIds(exposures)
             exposeMap.remove(pageName)
         }
-        LogUtil.i("线程${Thread.currentThread().name} ----  remove1 : $exposeMap")
-    }
-
-
-    /**
-     * 删除对应页面的曝光组件的某个元素
-     * @param pageName 曝光页面
-     * @param eventId 曝光数据源id
-     */
-    fun remove(pageName: String, eventId: String) {
-        val exposures = query(pageName)
-        if (exposures.isNotEmpty()) {
-            exposures.find {
-                it.eventId == eventId
-            }.let {
-                exposures.remove(it)
-            }
-        }
-
-        LogUtil.i("线程${Thread.currentThread().name} ----  remove2 : $exposeMap")
+//        stopTracker()
     }
 
     /**
@@ -71,32 +57,30 @@ class ExposureManager private constructor() {
      * @param pageName 曝光的页面
      * @param bean 曝光数据源
      */
-    fun update(pageName: String, bean: ExposureViewTraceBean) {
+    fun update(pageName: String, bean: ExposureTraceBean) {
         val exposures = query(pageName)
         if (exposures.isNotEmpty()) {
             exposures.find {
-                it.eventId == bean.eventId
+                it.exposureId == bean.exposureId
             }.let {
-                it?.time = bean.time
-                it?.isExpose = bean.isExpose
+                it?.timeStep = bean.timeStep
+                it?.isExposeAble = bean.isExposeAble
             }
         }
-        LogUtil.i("线程${Thread.currentThread().name} ----  update : $exposeMap")
     }
 
     /**
      * 查询是否已经曝光过
      */
-    fun isExposed(pageName: String, eventId: String): Boolean {
+    fun checkExposed(pageName: String, exposureId: String): Boolean {
         val exposures = query(pageName)
         if (exposures.isNotEmpty()) {
             exposures.find {
-                it.eventId == eventId
+                it.exposureId == exposureId
             }.let {
-                return it?.isExpose ?: true
+                return it?.isExposeAble ?: true
             }
         }
-
         return true
     }
 
@@ -104,9 +88,9 @@ class ExposureManager private constructor() {
      * 查找相应页面的曝光组件
      * @param pageName 曝光的页面
      */
-    fun query(pageName: String): MutableList<ExposureViewTraceBean> {
+    fun query(pageName: String): CopyOnWriteArrayList<ExposureTraceBean> {
 
-        return exposeMap[pageName] ?: mutableListOf()
+        return exposeMap[pageName] ?: CopyOnWriteArrayList()
     }
 
     /**
@@ -116,29 +100,12 @@ class ExposureManager private constructor() {
         val exposures = query(pageName)
         if (exposures.isNotEmpty()) {
             exposures.filter {
-                event.contains(it.eventId)
+                exposureIds.contains(it.exposureId)
             }.forEach {
-                it.time = 0
-                it.isExpose = true
+                it.timeStep = 0
+                it.isExposeAble = true
             }
         }
-        LogUtil.i("线程${Thread.currentThread().name} ----  reset : $exposeMap")
-    }
-
-    /**
-     * 重置某个事件
-     */
-    fun resetEvent(pageName: String, eventId: String) {
-        val exposures = query(pageName)
-        if (exposures.isNotEmpty()) {
-            exposures.find {
-                it.eventId == eventId
-            }.let {
-                it?.time = 0
-                it?.isExpose = true
-            }
-        }
-        LogUtil.i("线程${Thread.currentThread().name} ----  resetEvent : $exposeMap")
     }
 
     /**
@@ -148,39 +115,74 @@ class ExposureManager private constructor() {
         if (exposeMap.isEmpty()) return
         exposeMap.map {
             it.value
-        }.flatten().filter { event.contains(it.eventId) }
+        }.flatten().filter { exposureIds.contains(it.exposureId) }
             .forEach {
-                it.time = 0
-                it.isExpose = true
+                it.timeStep = 0
+                it.isExposeAble = true
             }
     }
 
     /**
-     * 添加需要曝光的事件
+     * 重置某个事件
      */
-    fun addEvent(eventId: String) {
-        event.add(eventId)
+    fun resetExposure(pageName: String, exposureId: String) {
+        val exposures = query(pageName)
+        if (exposures.isNotEmpty()) {
+            exposures.find {
+                it.exposureId == exposureId
+            }.let {
+                it?.timeStep = 0
+                it?.isExposeAble = true
+            }
+        }
     }
 
     /**
-     * 删除需要曝光的事件
+     * 添加需要曝光的事件Id
      */
-    fun removeEvent(eventId: String) {
-        event.remove(eventId)
+    fun addExposureId(exposureId: String) {
+        exposureIds.add(exposureId)
+    }
+
+
+    /**
+     * 退出app的时候清理所有需要曝光的事件
+     */
+    fun clear() {
+        exposeMap.clear()
+        exposureIds.clear()
+//        tracker.release()
     }
 
     /**
-     * 判断是否存在曝光数据
+     * 开启轮询器
      */
-    fun isExistExposureId(bean: ExposureViewTraceBean): Boolean {
-
-        return event.contains(bean.eventId)
+    private fun startTracker() {
+        if (exposureIds.size == 1 && !isRunning) {//当曝光组件当个数为1当时候，开启曝光轮询组件
+            tracker.startTask()
+            isRunning = true
+        }
     }
 
     /**
-     * 推出app的时候清理所有需要曝光的事件
+     * 停止轮询器
      */
-    fun clearEvent() {
-        event.clear()
+    private fun stopTracker() {
+        if (exposureIds.isEmpty() && isRunning) {//当曝光组件为空的时候，停止曝光组件
+            tracker.clearTask()
+            isRunning = false
+        }
     }
+
+    /**
+     * 清除页面对应的曝光id
+     */
+    private fun removeExposureIds(bean: MutableList<ExposureTraceBean>) {
+        bean.forEach {
+            if (exposureIds.contains(it.exposureId)) {
+                exposureIds.remove(it.exposureId)
+            }
+        }
+    }
+
 }
