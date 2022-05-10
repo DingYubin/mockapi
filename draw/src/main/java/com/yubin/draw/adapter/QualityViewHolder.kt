@@ -9,7 +9,7 @@ import com.yubin.baselibrary.router.path.RouterPath
 import com.yubin.baselibrary.util.LogUtil
 import com.yubin.draw.R
 import com.yubin.draw.bean.QualityBean
-import com.yubin.draw.widget.viewGroup.exposure.ExposureLayout
+import com.yubin.draw.widget.viewGroup.exposure.view.ExposureLayout
 
 class QualityViewHolder(itemView: View) : BaseQuotationViewHolder(itemView) {
 

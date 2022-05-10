@@ -1,9 +1,11 @@
-package com.yubin.draw.widget.viewGroup.exposure
+package com.yubin.draw.widget.viewGroup.exposure.view
 
 import android.content.Context
 import android.util.AttributeSet
 import android.widget.FrameLayout
 import androidx.collection.ArrayMap
+import com.yubin.draw.widget.viewGroup.exposure.handler.ExposureHandler
+import com.yubin.draw.widget.viewGroup.exposure.protocol.IExposureCallback
 
 /**
  * 定义一个Layout作为曝光组件的父布局

@@ -1,10 +1,11 @@
-package com.yubin.draw.widget.viewGroup.exposure
+package com.yubin.draw.widget.viewGroup.exposure.tracker
 
 import android.graphics.Rect
 import android.os.Handler
 import android.view.View
 import com.yubin.draw.bean.ExposureViewTraceBean
-import com.yubin.draw.widget.viewGroup.exposure.ExposureTracker.Companion.EXPOSURE_DATA
+import com.yubin.draw.widget.viewGroup.exposure.manager.ExposureManager
+import com.yubin.draw.widget.viewGroup.exposure.tracker.ExposureTracker.Companion.EXPOSURE_DATA
 import com.yubin.draw.widget.viewGroup.exposure.utils.ExposureHelper
 
 /**

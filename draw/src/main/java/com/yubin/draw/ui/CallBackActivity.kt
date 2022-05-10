@@ -8,7 +8,7 @@ import com.yubin.baselibrary.util.LogUtil
 import com.yubin.draw.R
 import com.yubin.draw.databinding.ActivityCallbackBinding
 import com.yubin.draw.widget.viewGroup.Bubble.*
-import com.yubin.draw.widget.viewGroup.exposure.ExposureManager
+import com.yubin.draw.widget.viewGroup.exposure.manager.ExposureManager
 
 /**
  * 1、回调java 通过接口形式

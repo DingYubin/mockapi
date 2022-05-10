@@ -1,4 +1,4 @@
-package com.yubin.draw.widget.viewGroup.exposure
+package com.yubin.draw.widget.viewGroup.exposure.handler
 
 import android.graphics.Color
 import android.view.View
@@ -6,6 +6,8 @@ import androidx.collection.ArrayMap
 import com.yubin.baselibrary.util.LogUtil
 import com.yubin.baselibrary.util.RxTimer
 import com.yubin.draw.bean.ExposureViewTraceBean
+import com.yubin.draw.widget.viewGroup.exposure.manager.ExposureManager
+import com.yubin.draw.widget.viewGroup.exposure.protocol.IExposureCallback
 import java.util.concurrent.atomic.AtomicBoolean
 
 /**

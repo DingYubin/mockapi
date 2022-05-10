@@ -14,7 +14,7 @@ import com.yubin.draw.adapter.QualityAdapter.Companion.VIEW_TYPE_CONTENT
 import com.yubin.draw.adapter.QualityAdapter.Companion.VIEW_TYPE_MAIN
 import com.yubin.draw.bean.QualityBean
 import com.yubin.draw.databinding.ActivityExposureBinding
-import com.yubin.draw.widget.viewGroup.exposure.ExposureTracker
+import com.yubin.draw.widget.viewGroup.exposure.tracker.ExposureTracker
 import com.yubin.draw.widget.viewGroup.exposure.utils.ExposureHelper
 import com.yubin.draw.widget.viewGroup.exposure.utils.HomePageExposeUtil
 

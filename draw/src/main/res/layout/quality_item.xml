@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:background="@color/bg_common_white">
 
-    <com.yubin.draw.widget.viewGroup.exposure.ExposureLayout
+    <com.yubin.draw.widget.viewGroup.exposure.view.ExposureLayout
         android:id="@+id/layout_exposure"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -24,5 +24,5 @@
             android:textColor="@color/st_text_master_common_white"
             android:textSize="16sp"
             tools:text="1" />
-    </com.yubin.draw.widget.viewGroup.exposure.ExposureLayout>
+    </com.yubin.draw.widget.viewGroup.exposure.view.ExposureLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

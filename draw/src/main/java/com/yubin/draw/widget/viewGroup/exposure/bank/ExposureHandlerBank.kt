@@ -4,7 +4,7 @@ import android.graphics.Rect
 import android.view.View
 import android.view.ViewTreeObserver
 import com.yubin.baselibrary.util.LogUtil
-import com.yubin.draw.widget.viewGroup.exposure.IExposureCallback
+import com.yubin.draw.widget.viewGroup.exposure.protocol.IExposureCallback
 
 class ExposureHandlerBank(private val view: View) : ViewTreeObserver.OnPreDrawListener {
 

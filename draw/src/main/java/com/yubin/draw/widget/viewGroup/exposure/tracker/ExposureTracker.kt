@@ -1,7 +1,9 @@
-package com.yubin.draw.widget.viewGroup.exposure
+package com.yubin.draw.widget.viewGroup.exposure.tracker
 
 import com.yubin.baselibrary.util.HandlerHelper
 import com.yubin.draw.bean.ExposureViewTraceBean
+import com.yubin.draw.widget.viewGroup.exposure.manager.ExposureManager
+import com.yubin.draw.widget.viewGroup.exposure.view.ExposureLayout
 
 
 /**

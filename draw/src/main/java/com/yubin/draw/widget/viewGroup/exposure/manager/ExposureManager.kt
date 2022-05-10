@@ -1,4 +1,4 @@
-package com.yubin.draw.widget.viewGroup.exposure
+package com.yubin.draw.widget.viewGroup.exposure.manager
 
 import com.yubin.baselibrary.util.LogUtil
 import com.yubin.draw.bean.ExposureViewTraceBean

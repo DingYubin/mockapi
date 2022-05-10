@@ -3,7 +3,7 @@ package com.yubin.draw.widget.viewGroup.exposure.bank
 import android.content.Context
 import android.util.AttributeSet
 import android.widget.FrameLayout
-import com.yubin.draw.widget.viewGroup.exposure.IExposureCallback
+import com.yubin.draw.widget.viewGroup.exposure.protocol.IExposureCallback
 
 class ExxposureLayoutBank : FrameLayout {
 
