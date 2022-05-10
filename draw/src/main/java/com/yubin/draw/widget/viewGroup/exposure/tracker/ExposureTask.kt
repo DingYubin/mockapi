@@ -85,45 +85,6 @@ class ExposureTask(private val handler: Handler, private val page: String) : Run
             return visibleHeightEnough && visibleWidthEnough
         }
 
-//        LogUtil.i(
-//            "线程${Thread.currentThread().name} --曝光--  ExposureHelper.exposureBottomHigh : ${
-//                ExposureHelper.exposureBottomHigh
-//            }"
-//        )
-//
-//        LogUtil.i(
-//            "线程${Thread.currentThread().name} --曝光--  kotlin.math.abs(mRect.bottom - mRect.top) : ${
-//                kotlin.math.abs(
-//                    mRect.bottom - mRect.top
-//                )
-//            } , view.height = ${view.height * mShowRatio}"
-//        )
-//
-//        LogUtil.i(
-//            "线程${Thread.currentThread().name} --曝光--  kotlin.math.abs(mRect.bottom - mRect.top) : ${
-//                kotlin.math.abs(
-//                    mRect.bottom - mRect.top
-//                )
-//            } , view.height = ${view.height * mShowRatio}"
-//        )
-
-//        LogUtil.i(
-//            "线程${Thread.currentThread().name} --曝光--  kotlin.math.abs(mRect.right - mRect.left) : ${
-//                kotlin.math.abs(
-//                    mRect.right - mRect.left
-//                )
-//            }, view.width = ${view.width}"
-//        )
-
-
-//        if (bean.area > 0) {
-//
-//            if (kotlin.math.abs(mRect.bottom - mRect.top) > view.height * mShowRatio
-//                && kotlin.math.abs(mRect.right - mRect.left) > view.width * mShowRatio
-//            ) {
-//                return true
-//            }
-//        }
         return false
     }
 }
