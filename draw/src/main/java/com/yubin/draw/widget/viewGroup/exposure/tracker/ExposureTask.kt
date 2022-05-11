@@ -76,7 +76,7 @@ class ExposureTask(private val handler: Handler, private val page: String) : Run
         if (mShowRatio > 0) {
 
             val visibleHeightEnough = if (ExposureHelper.exposureTopHigh > 0) {
-                ExposureHelper.exposureTopHigh > kotlin.math.abs(mRect.bottom - view.measuredHeight * mShowRatio)
+                ExposureHelper.exposureTopHigh > kotlin.math.abs(mRect.top + view.measuredHeight * mShowRatio)
             } else {
                 kotlin.math.abs(mlRect.bottom - mlRect.top) > view.height * mShowRatio
             }
