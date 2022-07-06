@@ -35,4 +35,7 @@
 
     <string name="exposure">曝光</string>
 
+    <string name="test">查看图片 %s</string>
+
+
 </resources>

@@ -4,6 +4,11 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.text.SpannableStringBuilder
+import android.text.Spanned
+import android.text.TextPaint
+import android.text.method.LinkMovementMethod
+import android.text.style.ClickableSpan
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
@@ -18,6 +23,7 @@ import com.yubin.baselibrary.ui.basemvvm.NativeActivity
 import com.yubin.baselibrary.util.EmptyUtil
 import com.yubin.baselibrary.util.HandlerHelper
 import com.yubin.baselibrary.util.MockUtil
+import com.yubin.baselibrary.util.ResourceUtil
 import com.yubin.draw.R
 import com.yubin.draw.bean.StoreList
 import com.yubin.draw.databinding.ActivityUiBinding
@@ -48,6 +54,7 @@ class UiActivity : NativeActivity<ActivityUiBinding>() {
             activity.startActivity(intent)
         }
     }
+
     override fun getViewBinding(): ActivityUiBinding =
         ActivityUiBinding.inflate(layoutInflater)
 
@@ -65,7 +72,27 @@ class UiActivity : NativeActivity<ActivityUiBinding>() {
     }
 
     private fun testHandler() {
+        val tips =
+            "你好周杰伦，你好周杰伦，你好周杰伦，你好周杰伦，你好周杰伦，你好周杰伦，你好周杰伦，你好周杰伦，你好周杰伦，你好周杰伦，你好周杰伦，你好周杰伦，你好周杰伦，你好周杰伦，你好周杰伦，你好周杰伦，"
+        val message = String.format(getString(R.string.test), tips)
+        val spanBuilder = SpannableStringBuilder.valueOf(message)
 
+        spanBuilder.setSpan(
+            object : ClickableSpan() {
+                override fun onClick(view: View) {
+                    Log.d("TagX", "========   $message")
+                }
+
+                override fun updateDrawState(ds: TextPaint) {
+                    ds.isUnderlineText = true
+                    ds.color = ResourceUtil.getColor(R.color.st_bg_common_deep_blue)
+                    ds.clearShadowLayer()
+                }
+            }, 0, 4,
+            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+        binding.orderText.movementMethod = LinkMovementMethod.getInstance()
+        binding.orderText.text = spanBuilder
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -142,7 +169,20 @@ class UiActivity : NativeActivity<ActivityUiBinding>() {
             }
         }
 
+        setStorePic()
+    }
 
+    private fun setStorePic() {
+        binding.itemContainer.removeAllViews()
+
+        for (i in 0 until 6) {
+
+            val view = layoutInflater.inflate(R.layout.product_inquiry_item_layout, null)
+            binding.itemContainer.addView(view)
+            view.setOnClickListener {
+                Log.d("stores", "onClick item num: $i")
+            }
+        }
     }
 
     private fun showNotification() {
@@ -152,7 +192,7 @@ class UiActivity : NativeActivity<ActivityUiBinding>() {
             "询价单B00000001，客户补充了旧件图/零件号，请及时调整报价",
             "让汽配采购更放心",
             SnackBar.LENGTH_LONG
-        )   .setTimes("未来")
+        ).setTimes("未来")
             .setIconLeft(R.drawable.notice_icon, 33.0f)
             .setBackground(R.drawable.notice_bg)
             .setIconPadding(1)

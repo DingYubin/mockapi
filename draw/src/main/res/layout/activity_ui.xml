@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="ScrollViewCount">
 
         <LinearLayout
@@ -34,14 +34,14 @@
                 android:layout_width="32dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:singleLine="false"
+                android:layout_marginEnd="12dp"
                 android:background="@color/bg_common_white"
                 android:ems="1"
-                android:text="@string/guide"
-                android:textSize="10sp"
-                android:layout_marginEnd="12dp"
                 android:paddingEnd="12dp"
+                android:singleLine="false"
+                android:text="@string/guide"
                 android:textColor="@color/color_cec_grey_646566"
+                android:textSize="10sp"
                 app:drawableEndCompat="@drawable/ic_forward"
                 tools:ignore="RtlSymmetry,SmallSp" />
 
@@ -96,14 +96,14 @@
                         android:layout_width="32dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:singleLine="false"
+                        android:layout_marginEnd="12dp"
                         android:background="@color/bg_common_white"
                         android:ems="1"
-                        android:text="@string/store_more"
-                        android:textSize="10sp"
                         android:paddingEnd="12dp"
-                        android:layout_marginEnd="12dp"
+                        android:singleLine="false"
+                        android:text="@string/store_more"
                         android:textColor="@color/color_cec_grey_646566"
+                        android:textSize="10sp"
                         app:drawableEndCompat="@drawable/ic_forward"
                         tools:ignore="RtlSymmetry,SmallSp" />
                 </LinearLayout>
@@ -177,8 +177,8 @@
                     android:id="@+id/inquiry_ll_other_requirements_quality_check_single"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
                     android:layout_marginStart="37dp"
+                    android:gravity="center_vertical"
                     android:orientation="horizontal"
                     android:paddingTop="5dp"
                     android:paddingBottom="5dp"
@@ -206,12 +206,12 @@
                 <com.yubin.draw.widget.view.text.TextImageView
                     android:layout_width="92dp"
                     android:layout_height="32dp"
-                    android:text="@string/inquiry_quality_other"
-                    android:textColor="@color/color_cec_black_222222"
                     android:layout_marginStart="41dp"
                     android:drawableStart="@drawable/inquiry_icon_invoice_unchecked"
                     android:drawablePadding="6dp"
                     android:gravity="center_vertical"
+                    android:text="@string/inquiry_quality_other"
+                    android:textColor="@color/color_cec_black_222222"
                     android:textSize="13sp"
                     app:drawableStartHeight="15dp"
                     app:drawableStartWidth="15dp"
@@ -223,10 +223,10 @@
                 android:id="@+id/callback_activity"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
+                android:layout_marginTop="10dp"
                 android:background="@color/st_portfolio_switch_down_color"
                 android:gravity="center_vertical"
                 android:paddingStart="15dp"
-                android:layout_marginTop="10dp"
                 android:text="@string/go_callback_activity"
                 android:textColor="@color/color_cec_black_222222"
                 android:textSize="14sp"
@@ -236,15 +236,39 @@
                 android:id="@+id/exposure_activity"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
+                android:layout_marginTop="10dp"
                 android:background="@color/color_cec_red_ff4e33"
                 android:gravity="center_vertical"
                 android:paddingStart="15dp"
-                android:layout_marginTop="10dp"
                 android:text="@string/exposure"
                 android:textColor="@color/color_cec_black_222222"
                 android:textSize="14sp"
                 tools:ignore="RtlSymmetry" />
 
+            <com.google.android.flexbox.FlexboxLayout
+                android:id="@+id/item_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:alignItems="center"
+                app:flexDirection="row"
+                app:flexWrap="nowrap"
+                app:justifyContent="space_between"
+                app:layout_constraintLeft_toLeftOf="parent" />
+
+            <TextView
+                android:id="@+id/order_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical"
+                android:maxLines="3"
+                android:ellipsize="end"
+                android:paddingStart="15dp"
+                android:text="@string/product_visible_after_certification"
+                android:textColor="@color/color_cec_black_222222"
+                android:textSize="14sp"
+                tools:ignore="RtlSymmetry" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
