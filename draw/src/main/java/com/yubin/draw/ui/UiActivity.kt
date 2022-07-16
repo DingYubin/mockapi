@@ -175,7 +175,7 @@ class UiActivity : NativeActivity<ActivityUiBinding>() {
     private fun setStorePic() {
         binding.itemContainer.removeAllViews()
 
-        for (i in 0 until 6) {
+        for (i in 0 until 15) {
 
             val view = layoutInflater.inflate(R.layout.product_inquiry_item_layout, null)
             binding.itemContainer.addView(view)

@@ -253,7 +253,6 @@
                 app:alignItems="center"
                 app:flexDirection="row"
                 app:flexWrap="nowrap"
-                app:justifyContent="space_between"
                 app:layout_constraintLeft_toLeftOf="parent" />
 
             <TextView
