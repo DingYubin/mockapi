@@ -1,6 +1,11 @@
 <resources>
     <string name="rx_merge">merge 操作</string>
     <string name="concat_map">concatMap 操作</string>
+    <string name="flat_map">flatMap 操作</string>
     <string name="collect">collect 操作</string>
     <string name="reduce">reduce 操作</string>
+    <string name="executor">executor 操作</string>
+    <string name="concurrency">concurrency 并行操作</string>
+    <string name="concurrency_executor">concurrency executor 并行操作</string>
+    <string name="concurrency_computation">concurrency computation 并行操作</string>
 </resources>

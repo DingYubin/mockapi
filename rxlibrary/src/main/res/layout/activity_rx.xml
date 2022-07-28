@@ -17,7 +17,13 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/concatMap"
+                android:id="@+id/flat_map"
+                style="@style/develop_setting_style"
+                android:text="@string/flat_map"
+                android:textColor="@color/st_text_master_common_white" />
+
+            <TextView
+                android:id="@+id/concat_map"
                 style="@style/develop_setting_style"
                 android:text="@string/concat_map"
                 android:textColor="@color/st_text_master_common_white" />
@@ -32,6 +38,30 @@
                 android:id="@+id/reduce"
                 style="@style/develop_setting_style"
                 android:text="@string/reduce"
+                android:textColor="@color/st_text_master_common_white" />
+
+            <TextView
+                android:id="@+id/executor"
+                style="@style/develop_setting_style"
+                android:text="@string/executor"
+                android:textColor="@color/st_text_master_common_white" />
+
+            <TextView
+                android:id="@+id/concurrency"
+                style="@style/develop_setting_style"
+                android:text="@string/concurrency"
+                android:textColor="@color/st_text_master_common_white" />
+
+            <TextView
+                android:id="@+id/concurrency_executor"
+                style="@style/develop_setting_style"
+                android:text="@string/concurrency_executor"
+                android:textColor="@color/st_text_master_common_white" />
+
+            <TextView
+                android:id="@+id/concurrency_computation"
+                style="@style/develop_setting_style"
+                android:text="@string/concurrency_computation"
                 android:textColor="@color/st_text_master_common_white" />
 
         </LinearLayout>

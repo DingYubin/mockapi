@@ -17,13 +17,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
 
 import io.reactivex.Observable;
+import io.reactivex.ObservableSource;
 import io.reactivex.Observer;
+import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Action;
 import io.reactivex.functions.BiFunction;
+import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
@@ -62,6 +68,13 @@ public class RxActivity extends NativeActivity<ActivityRxBinding> {
      */
     private void testRxjava() {
 
+        getBinding().flatMap.setOnClickListener(view -> {
+            long startTime = System.currentTimeMillis();
+            testFlatMap();
+            long endTime = System.currentTimeMillis();
+            LogUtil.i("thread : " + Thread.currentThread().getName() + ", spent time : " + (endTime - startTime));
+        });
+
         getBinding().concatMap.setOnClickListener(view -> {
             textConcatMap();
         });
@@ -71,9 +84,235 @@ public class RxActivity extends NativeActivity<ActivityRxBinding> {
         });
 
         getBinding().reduce.setOnClickListener(view -> {
+            long startTime = System.currentTimeMillis();
             textReduce();
-//            textCollect();
+            long endTime = System.currentTimeMillis();
+            LogUtil.i("thread : " + Thread.currentThread().getName() + ", spent time : " + (endTime - startTime));
         });
+
+        getBinding().executor.setOnClickListener(view -> {
+            textExecutor();
+        });
+
+        getBinding().concurrency.setOnClickListener(view -> {
+            long startTime = System.currentTimeMillis();
+            textConcurrencyExecutor();
+            long endTime = System.currentTimeMillis();
+            LogUtil.i("thread : " + Thread.currentThread().getName() + ", spent time : " + (endTime - startTime));
+
+        });
+
+        getBinding().concurrencyComputation.setOnClickListener(view -> {
+            long startTime = System.currentTimeMillis();
+            textConcurrencyComputation();
+            long endTime = System.currentTimeMillis();
+            LogUtil.i("thread : " + Thread.currentThread().getName() + ", spent time : " + (endTime - startTime));
+
+        });
+    }
+
+    private void textConcurrencyComputation(){
+
+        List<UserEntity> users = getUsers();
+        List<List<UserEntity>> lists = getLists(users);
+
+        Observable.fromIterable(lists)
+                .flatMap(new Function<List<UserEntity>, Observable<BaseResponse<List<UserEntity>>>>() {
+                    @Override
+                    public Observable<BaseResponse<List<UserEntity>>> apply(List<UserEntity> quoteResults) throws Exception {
+//                        LogUtil.i("thread : " + Thread.currentThread().getName());
+                        return getTmsObservable(quoteResults)
+                                .subscribeOn(Schedulers.io());
+                    }
+                }).collect(new Callable<BaseResponse<List<UserEntity>>>() {
+                    @Override
+                    public BaseResponse<List<UserEntity>> call() throws Exception {
+                        return new BaseResponse(0, "success", users, 200);
+                    }
+                }, (listBaseResponse, listBaseResponse2) -> {
+                    LogUtil.i("collect thread : " + Thread.currentThread().getName());
+                }).toObservable()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<BaseResponse<List<UserEntity>>>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(BaseResponse<List<UserEntity>> listBaseResponse) {
+                        if (listBaseResponse.isSuccessful(0)) {
+                            LogUtil.i( "onNext thread : " + Thread.currentThread().getName() + ", baseResponseObservable = " + listBaseResponse.getData().toString());
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+
+    }
+
+    private void textConcurrencyExecutor(){
+        int threadNum = Runtime.getRuntime().availableProcessors() + 1;
+
+        final ExecutorService executorService = Executors.newFixedThreadPool(threadNum);
+
+        final Scheduler scheduler = Schedulers.from(executorService);
+
+        List<UserEntity> users = getUsers();
+        List<List<UserEntity>> lists = getLists(users);
+
+        Observable.fromIterable(lists)
+                .flatMap(new Function<List<UserEntity>, Observable<BaseResponse<List<UserEntity>>>>() {
+                    @Override
+                    public Observable<BaseResponse<List<UserEntity>>> apply(List<UserEntity> quoteResults) throws Exception {
+//                        LogUtil.i("thread : " + Thread.currentThread().getName());
+                        return getTmsObservable(quoteResults)
+                                .subscribeOn(scheduler);
+                    }
+                }).collect(new Callable<BaseResponse<List<UserEntity>>>() {
+                    @Override
+                    public BaseResponse<List<UserEntity>> call() throws Exception {
+                        return new BaseResponse(0, "success", users, 200);
+                    }
+                }, (listBaseResponse, listBaseResponse2) -> {
+                    LogUtil.i("thread : " + Thread.currentThread().getName());
+                }).toObservable()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doFinally(new Action() {
+                    @Override
+                    public void run() throws Exception {
+                        executorService.shutdown();
+                    }
+                })
+                .subscribe(new Observer<BaseResponse<List<UserEntity>>>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(BaseResponse<List<UserEntity>> listBaseResponse) {
+                        if (listBaseResponse.isSuccessful(0)) {
+                            LogUtil.i( "onNext thread : " + Thread.currentThread().getName() + ", baseResponseObservable = " + listBaseResponse.getData().toString());
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+
+    }
+
+    private void textExecutor(){
+        int threadNum = Runtime.getRuntime().availableProcessors() + 1;
+
+        final ExecutorService executorService = Executors.newFixedThreadPool(threadNum);
+
+        final Scheduler scheduler = Schedulers.from(executorService);
+
+        Observable.range(1, 100)
+                .flatMap(new Function<Integer, ObservableSource<String>>() {
+                    @Override
+                    public ObservableSource<String> apply(Integer integer) throws Exception {
+                        return Observable.just(integer)
+                                .subscribeOn(scheduler)
+                                .map(new Function<Integer, String>() {
+                                    @Override
+                                    public String apply(Integer integer) throws Exception {
+                                        LogUtil.i( "Observable thread : " + Thread.currentThread().getName() );
+                                        return integer.toString();
+                                    }
+                                });
+                    }
+                })
+                .doFinally(new Action() {
+                    @Override
+                    public void run() throws Exception {
+                        executorService.shutdown();
+                    }
+                })
+                .subscribe(new Consumer<String>() {
+                    @Override
+                    public void accept(String s) throws Exception {
+                        LogUtil.i( "accept Next thread : " + Thread.currentThread().getName() + ", Next: " + s);
+
+                        LogUtil.i( "Next: " + s);
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+//                        LogUtil.i("Error.");
+                    }
+                }, new Action() {
+                    @Override
+                    public void run() throws Exception {
+                        LogUtil.i("Complete.");
+                    }
+                });
+    }
+
+    private void testFlatMap(){
+        List<UserEntity> users = getUsers();
+        List<List<UserEntity>> lists = getLists(users);
+
+        Observable.fromIterable(lists)
+                .flatMap(new Function<List<UserEntity>, Observable<BaseResponse<List<UserEntity>>>>() {
+                    @Override
+                    public Observable<BaseResponse<List<UserEntity>>> apply(List<UserEntity> quoteResults) throws Exception {
+                        LogUtil.i("thread : " + Thread.currentThread().getName());
+                        return getTmsObservable(quoteResults);
+                    }
+                }).collect(new Callable<BaseResponse<List<UserEntity>>>() {
+                    @Override
+                    public BaseResponse<List<UserEntity>> call() throws Exception {
+                        return new BaseResponse(0, "success", users, 200);
+                    }
+                }, (listBaseResponse, listBaseResponse2) -> {
+                    LogUtil.i("thread : " + Thread.currentThread().getName());
+                }).toObservable()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<>() {
+
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(BaseResponse<List<UserEntity>> listBaseResponse) {
+                        if (listBaseResponse.isSuccessful(0)) {
+                            LogUtil.i( "onNext thread : " + Thread.currentThread().getName() + ", baseResponseObservable = " + listBaseResponse.getData().toString());
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
 
     }
 
@@ -85,17 +324,16 @@ public class RxActivity extends NativeActivity<ActivityRxBinding> {
 
                     @Override
                     public Observable<BaseResponse<List<UserEntity>>> apply(List<UserEntity> quoteResults) throws Exception {
-                        LogUtil.i("thread : " + Thread.currentThread().getName() + ", quoteResults = " + quoteResults.toString());
 
                         return getTmsObservable(quoteResults);
                     }
                 }).collect(new Callable<BaseResponse<List<UserEntity>>>() {
-
                     @Override
                     public BaseResponse<List<UserEntity>> call() throws Exception {
                         return new BaseResponse(0, "success", users, 200);
                     }
                 }, (listBaseResponse, listBaseResponse2) -> {
+//                    LogUtil.i("thread : " + Thread.currentThread().getName() + ", spent time : " + (System.currentTimeMillis() - startTime));
                 }).toObservable()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -214,7 +452,7 @@ public class RxActivity extends NativeActivity<ActivityRxBinding> {
     private List<UserEntity> getUsers() {
 
         List<UserEntity> quoteResults = new ArrayList<>();
-        for (int i = 0; i < 21; i ++) {
+        for (int i = 0; i < 51; i ++) {
             quoteResults.add(new UserEntity("accessToken"+i, "xiaohong" + i, true));
         }
         //备用
@@ -235,11 +473,11 @@ public class RxActivity extends NativeActivity<ActivityRxBinding> {
         int lastNumber = result.size() % pageSize;
         for (int pageIndex = 0; pageIndex <= pageNumber; pageIndex++) {
             if (pageIndex < pageNumber) {//满数组
-                LogUtil.i( "start = " + pageIndex * pageSize + ", end = " + (pageIndex * pageSize + pageSize));
+//                LogUtil.i( "start = " + pageIndex * pageSize + ", end = " + (pageIndex * pageSize + pageSize));
                 lists.add(result.subList(pageIndex * pageSize, pageIndex * pageSize + pageSize));
             } else {
                 if (lastNumber > 0) {
-                    LogUtil.i("start = " + pageIndex * pageSize + ", end = " + result.size());
+//                    LogUtil.i("start = " + pageIndex * pageSize + ", end = " + result.size());
                     lists.add(result.subList(pageIndex * pageSize, result.size()));
                 }
             }
