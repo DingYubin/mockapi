@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/st_bg_common_normal"
+    android:orientation="vertical">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/concatMap"
+                style="@style/develop_setting_style"
+                android:text="@string/concat_map"
+                android:textColor="@color/st_text_master_common_white" />
+
+            <TextView
+                android:id="@+id/collect"
+                style="@style/develop_setting_style"
+                android:text="@string/collect"
+                android:textColor="@color/st_text_master_common_white" />
+
+            <TextView
+                android:id="@+id/reduce"
+                style="@style/develop_setting_style"
+                android:text="@string/reduce"
+                android:textColor="@color/st_text_master_common_white" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

@@ -1,0 +1,6 @@
+<resources>
+    <string name="rx_merge">merge 操作</string>
+    <string name="concat_map">concatMap 操作</string>
+    <string name="collect">collect 操作</string>
+    <string name="reduce">reduce 操作</string>
+</resources>

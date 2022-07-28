@@ -83,9 +83,14 @@ class MainActivity : NativeActivity<ActivityMainBinding>() {
         }
 
         findViewById<View>(R.id.draw).setOnClickListener {
-//            UiActivity.openUiActivity(this)
             ARouter.getInstance()
                 .build(RouterPath.UiPage.PATH_UI_DRAW)
+                .navigation()
+        }
+
+        findViewById<View>(R.id.rxjava).setOnClickListener {
+            ARouter.getInstance()
+                .build(RouterPath.RxPage.PATH_RX_JAVA)
                 .navigation()
         }
 

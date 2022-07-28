@@ -111,6 +111,7 @@ dependencies {
     implementation project(':mvx')
     implementation project(':medialibrary')
     implementation project(':draw')
+    implementation project(':rxlibrary')
 
 
     //**************崩溃报告**************//

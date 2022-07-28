@@ -56,6 +56,11 @@
                 style="@style/develop_setting_style"
                 android:text="@string/draw" />
 
+            <TextView
+                android:id="@+id/rxjava"
+                style="@style/develop_setting_style"
+                android:text="@string/rxjava" />
+
             <ImageView
                 android:id="@+id/my_img"
                 android:layout_width="wrap_content"

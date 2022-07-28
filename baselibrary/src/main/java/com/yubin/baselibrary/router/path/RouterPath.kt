@@ -42,6 +42,15 @@ object RouterPath {
         }
     }
 
+    class RxPage {
+        companion object {
+            /**
+             * rxjava测试页面
+             */
+            const val PATH_RX_JAVA = "/rx/java"
+        }
+    }
+
     class UiPage {
         companion object {
             /**
@@ -58,6 +67,7 @@ object RouterPath {
              * 曝光页面
              */
             const val PATH_UI_EXPOSURE = "/ui/exposure"
+
         }
     }
 }
