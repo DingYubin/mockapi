@@ -6,6 +6,7 @@
     <string name="reduce">reduce 操作</string>
     <string name="executor">executor 操作</string>
     <string name="concurrency">concurrency 并行操作</string>
+    <string name="concurrency0">concurrency0 并行操作</string>
     <string name="concurrency_executor">concurrency executor 并行操作</string>
     <string name="concurrency_computation">concurrency computation 并行操作</string>
 </resources>

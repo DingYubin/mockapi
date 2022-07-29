@@ -53,6 +53,12 @@
                 android:textColor="@color/st_text_master_common_white" />
 
             <TextView
+                android:id="@+id/concurrency0"
+                style="@style/develop_setting_style"
+                android:text="@string/concurrency0"
+                android:textColor="@color/st_text_master_common_white" />
+
+            <TextView
                 android:id="@+id/concurrency_executor"
                 style="@style/develop_setting_style"
                 android:text="@string/concurrency_executor"

@@ -12,6 +12,8 @@ import com.yubin.baselibrary.util.LogUtil;
 import com.yubin.httplibrary.mockapi.BaseResponse;
 import com.yubin.rxlibrary.bean.UserEntity;
 import com.yubin.rxlibrary.databinding.ActivityRxBinding;
+import com.yubin.rxlibrary.executor.ObservableExecutor;
+import com.yubin.rxlibrary.interfaces.list2x.List2List;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -96,6 +98,20 @@ public class RxActivity extends NativeActivity<ActivityRxBinding> {
 
         getBinding().concurrency.setOnClickListener(view -> {
             long startTime = System.currentTimeMillis();
+            textConcurrency();
+            long endTime = System.currentTimeMillis();
+            LogUtil.i("thread : " + Thread.currentThread().getName() + ", spent time : " + (endTime - startTime));
+        });
+
+        getBinding().concurrency0.setOnClickListener(view -> {
+            long startTime = System.currentTimeMillis();
+            textConcurrency0();
+            long endTime = System.currentTimeMillis();
+            LogUtil.i("thread : " + Thread.currentThread().getName() + ", spent time : " + (endTime - startTime));
+        });
+
+        getBinding().concurrencyExecutor.setOnClickListener(view -> {
+            long startTime = System.currentTimeMillis();
             textConcurrencyExecutor();
             long endTime = System.currentTimeMillis();
             LogUtil.i("thread : " + Thread.currentThread().getName() + ", spent time : " + (endTime - startTime));
@@ -111,19 +127,84 @@ public class RxActivity extends NativeActivity<ActivityRxBinding> {
         });
     }
 
+    private void textConcurrency(){
+
+        ObservableExecutor.INSTANCE().executeObservable(getUsers(), 10, new List2List<UserEntity, UserEntity>() {
+            @Override
+            public List<UserEntity> call(List<UserEntity> users) {
+                LogUtil.i( "call thread : " + Thread.currentThread().getName());
+                return getUsers(users);
+            }
+        }).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<List<UserEntity>>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(List<UserEntity> users) {
+                        LogUtil.i( "onNext thread : " + Thread.currentThread().getName() + ", userEntities = " + users.toString());
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+
+    }
+
+    private void textConcurrency0(){
+
+        ObservableExecutor.INSTANCE().executeObservable0(getUsers(), 10, new List2List<UserEntity, UserEntity>() {
+                    @Override
+                    public List<UserEntity> call(List<UserEntity> users) {
+                        LogUtil.i( "call thread : " + Thread.currentThread().getName());
+                        return getUsers(users);
+                    }
+                }).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<List<UserEntity>>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(List<UserEntity> users) {
+                        LogUtil.i( "onNext thread : " + Thread.currentThread().getName() + ", userEntities = " + users.toString());
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+
+    }
+
     private void textConcurrencyComputation(){
 
         List<UserEntity> users = getUsers();
         List<List<UserEntity>> lists = getLists(users);
 
         Observable.fromIterable(lists)
-                .flatMap(new Function<List<UserEntity>, Observable<BaseResponse<List<UserEntity>>>>() {
-                    @Override
-                    public Observable<BaseResponse<List<UserEntity>>> apply(List<UserEntity> quoteResults) throws Exception {
+                .flatMap((Function<List<UserEntity>, Observable<BaseResponse<List<UserEntity>>>>) quoteResults -> {
 //                        LogUtil.i("thread : " + Thread.currentThread().getName());
-                        return getTmsObservable(quoteResults)
-                                .subscribeOn(Schedulers.io());
-                    }
+                    return getTmsObservable(quoteResults)
+                            .subscribeOn(Schedulers.io());
                 }).collect(new Callable<BaseResponse<List<UserEntity>>>() {
                     @Override
                     public BaseResponse<List<UserEntity>> call() throws Exception {
@@ -176,7 +257,7 @@ public class RxActivity extends NativeActivity<ActivityRxBinding> {
                     public Observable<BaseResponse<List<UserEntity>>> apply(List<UserEntity> quoteResults) throws Exception {
 //                        LogUtil.i("thread : " + Thread.currentThread().getName());
                         return getTmsObservable(quoteResults)
-                                .subscribeOn(scheduler);
+                                .subscribeOn(scheduler).cache();
                     }
                 }).collect(new Callable<BaseResponse<List<UserEntity>>>() {
                     @Override
@@ -442,6 +523,10 @@ public class RxActivity extends NativeActivity<ActivityRxBinding> {
                     }
                 });
 
+    }
+
+    private List<UserEntity> getUsers(List<UserEntity> quoteResults) {
+        return quoteResults.stream().peek(userEntity -> userEntity.setLogin(false)).collect(Collectors.toList());
     }
 
     private Observable<BaseResponse<List<UserEntity>>> getTmsObservable(List<UserEntity> quoteResults) {
