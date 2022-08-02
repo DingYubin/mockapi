@@ -9,4 +9,5 @@
     <string name="camera">相机</string>
     <string name="draw">绘制</string>
     <string name="rxjava">rxjava</string>
+    <string name="kotlin_coroutine">coroutine</string>
 </resources>

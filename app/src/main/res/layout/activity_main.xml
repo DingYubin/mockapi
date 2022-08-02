@@ -61,6 +61,11 @@
                 style="@style/develop_setting_style"
                 android:text="@string/rxjava" />
 
+            <TextView
+                android:id="@+id/kotlin_coroutine"
+                style="@style/develop_setting_style"
+                android:text="@string/kotlin_coroutine" />
+
             <ImageView
                 android:id="@+id/my_img"
                 android:layout_width="wrap_content"

@@ -94,6 +94,12 @@ class MainActivity : NativeActivity<ActivityMainBinding>() {
                 .navigation()
         }
 
+        findViewById<View>(R.id.kotlin_coroutine).setOnClickListener {
+            ARouter.getInstance()
+                .build(RouterPath.KotlinPage.PATH_KOTLIN_COROUTINE)
+                .navigation()
+        }
+
         findViewById<View>(R.id.camera).setOnClickListener {
 //            ARouter.getInstance()
 //                .build(RouterPath.MediaPage.PATH_MEDIA_CAMERA)

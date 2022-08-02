@@ -112,6 +112,7 @@ dependencies {
     implementation project(':medialibrary')
     implementation project(':draw')
     implementation project(':rxlibrary')
+    implementation project(':coroutine')
 
 
     //**************崩溃报告**************//

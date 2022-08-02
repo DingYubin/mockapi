@@ -51,6 +51,15 @@ object RouterPath {
         }
     }
 
+    class KotlinPage {
+        companion object {
+            /**
+             * kotlin携程测试页面
+             */
+            const val PATH_KOTLIN_COROUTINE = "/kotlin/coroutine"
+        }
+    }
+
     class UiPage {
         companion object {
             /**
