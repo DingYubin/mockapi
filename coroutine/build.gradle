@@ -38,4 +38,6 @@ dependencies {
 
     implementation project(':httplibrary')
     implementation project(':baselibrary')
+    implementation dependency.retrofit2
+    implementation dependency.retrofit2_converter_gson
 }
