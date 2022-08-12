@@ -22,9 +22,7 @@ import com.tencent.tinker.entry.DefaultApplicationLike;
  *     version : 1.0
  * </pre>
  */
-//注解关联MainApplication：这里的applicaiton不能为MainApplication，否则会报已存在类。
-//@DefaultLifeCycle(application = "com.yubin.mockapi.Application",
-//        flags = ShareConstants.TINKER_ENABLE_ALL)
+
 public class TinkerApplicationLike extends DefaultApplicationLike {
     private static ApplicationLike tinkerPatchApplicationLike;
 
@@ -32,13 +30,6 @@ public class TinkerApplicationLike extends DefaultApplicationLike {
         super(application, tinkerFlags, tinkerLoadVerifyFlag, applicationStartElapsedTime, applicationStartMillisTime, tinkerResultIntent);
         setTinkerPatchApplicationLike(this);
     }
-
-//    @Override
-//    public void onBaseContextAttached(Context base) {
-//        super.onBaseContextAttached(base);
-//        MultiDex.install(base);
-//        TinkerManager.installDefaultTinker(this);
-//    }
 
     private static void setTinkerPatchApplicationLike(ApplicationLike applicationLike) {
         tinkerPatchApplicationLike = applicationLike;

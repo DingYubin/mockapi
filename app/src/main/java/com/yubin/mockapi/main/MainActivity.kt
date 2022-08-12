@@ -133,7 +133,6 @@ class MainActivity : NativeActivity<ActivityMainBinding>() {
         //加载补丁
         binding.loadTinker.setOnClickListener {
             TinkerManager.loadPatchPatch(getPatchPath())
-            finish()
         }
     }
 
@@ -141,9 +140,7 @@ class MainActivity : NativeActivity<ActivityMainBinding>() {
 
         mPatchDir = externalCacheDir?.absolutePath + "/tpatch/";
         LogUtil.i("Tinker mPatchDir update ======================= : $mPatchDir")
-        LogUtil.i("Tinker mPatchDir update ======================= : $mPatchDir")
-        LogUtil.i("Tinker mPatchDir update ======================= : $mPatchDir")
-        LogUtil.i("Tinker mPatchDir update ======================= : $mPatchDir")
+
         //创建文件夹
         val file = File(mPatchDir);
         if (!file.exists()) {

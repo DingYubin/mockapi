@@ -118,7 +118,7 @@ dependencies {
 }
 
 def bakPath = file("${buildDir}/bakApk")
-def baseInfo = "app-debug-0812-13-41-35"
+def baseInfo = "app-debug-0812-14-49-32"
 
 /**
  * you can use assembleRelease to build you base apk

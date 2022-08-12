@@ -71,9 +71,9 @@
                 style="@style/develop_setting_style"
                 android:text="@string/loading_patch" />
 
-<!--            <TextView-->
-<!--                style="@style/develop_setting_style"-->
-<!--                android:text="@string/loading_patch_show" />-->
+            <TextView
+                style="@style/develop_setting_style"
+                android:text="@string/loading_patch_show" />
 
             <ImageView
                 android:id="@+id/my_img"
