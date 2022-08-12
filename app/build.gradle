@@ -118,6 +118,7 @@ dependencies {
 }
 
 def bakPath = file("${buildDir}/bakApk")
+def baseInfo = "app-debug-0812-13-41-35"
 
 /**
  * you can use assembleRelease to build you base apk
@@ -128,13 +129,13 @@ ext {
     //是否使用Tinker(当你的项目处于开发阶段时，可以改为false)
     tinkerEnabled = true
     //基础包路径
-    tinkerOldApkPath = "${bakPath}/tinker-demo-debug-0809-11-02-40.apk"
+    tinkerOldApkPath = "${bakPath}/${baseInfo}.apk"
     //基础包的mapping.txt文件路径（用于辅助混淆布丁包的生成，一般在生成release版app时会使用到混淆）
-    tinkerApplyMappingPath = "${bakPath}/tinker-demo-debug-0809-11-02-40-mapping.txt"
+    tinkerApplyMappingPath = "${bakPath}/${baseInfo}-mapping.txt"
     //基础包的R.txt文件路径（如果你在安装包中资源文件有改动，则需要使用改R.txt文件来辅助生成布丁包）
-    tinkerApplyResourcePath = "${bakPath}/tinker-demo-debug-0809-11-02-40-R.txt"
+    tinkerApplyResourcePath = "${bakPath}/${baseInfo}-R.txt"
     //只用于构建所有flavor，如果没有，就忽略这个字段（多渠道打包路径）
-    tinkerBuildFlavorDirectory = "${bakPath}/"
+    tinkerBuildFlavorDirectory = "${bakPath}/app-0812-11-10-50"
 }
 
 def getOldApkPath() {
@@ -233,7 +234,8 @@ if (buildWithTinker()) {
              */
             loader = [
                     //use sample, let BaseBuildInfo unchangeable with tinker
-                    "com.yubin.mockapi.MainApplication"
+//                    "com.yubin.mockapi.MainApplication"
+                    "tinker.sample.android.app.BaseBuildInfo"
             ]
         }
 
@@ -321,22 +323,22 @@ if (buildWithTinker()) {
                         from variant.outputs.first().outputFile
                         into destPath
                         rename { String fileName ->
-//                            fileName.replace("${fileNamePrefix}.apk", "${newFileNamePrefix}.apk")
-                            fileName.replace("${fileNamePrefix}.apk", "tinker-demo-debug-0809-11-02-40.apk")
+                            fileName.replace("${fileNamePrefix}.apk", "${newFileNamePrefix}.apk")
+//                            fileName.replace("${fileNamePrefix}.apk", "tinker-demo-debug-0809-11-02-40.apk")
                         }
 
                         from "${buildDir}/outputs/mapping/${variant.dirName}/mapping.txt"
                         into destPath
                         rename { String fileName ->
-//                            fileName.replace("mapping.txt", "${newFileNamePrefix}-mapping.txt")
-                            fileName.replace("mapping.txt", "tinker-demo-debug-0809-11-02-40-mapping.txt")
+                            fileName.replace("mapping.txt", "${newFileNamePrefix}-mapping.txt")
+//                            fileName.replace("mapping.txt", "tinker-demo-debug-0809-11-02-40-mapping.txt")
                         }
 
                         from "${buildDir}/intermediates/symbols/${variant.dirName}/R.txt"
                         into destPath
                         rename { String fileName ->
-//                            fileName.replace("R.txt", "${newFileNamePrefix}-R.txt")
-                            fileName.replace("R.txt", "tinker-demo-debug-0809-11-02-40-R.txt")
+                            fileName.replace("R.txt", "${newFileNamePrefix}-R.txt")
+//                            fileName.replace("R.txt", "tinker-demo-debug-0809-11-02-40-R.txt")
                         }
                     }
                 }

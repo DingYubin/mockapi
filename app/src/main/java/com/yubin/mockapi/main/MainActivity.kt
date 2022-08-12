@@ -8,7 +8,6 @@ import android.widget.ImageView
 import com.alibaba.android.arouter.launcher.ARouter
 import com.bumptech.glide.Glide
 import com.yubin.account.user.ui.AccountActivity
-import com.yubin.baselibrary.core.BaseApplication.Companion.context
 import com.yubin.baselibrary.router.path.RouterPath
 import com.yubin.baselibrary.ui.basemvvm.NativeActivity
 import com.yubin.baselibrary.util.CECDeviceHelper
@@ -57,7 +56,7 @@ class MainActivity : NativeActivity<ActivityMainBinding>() {
 
         createPatchPath()
 
-        w = CECDeviceHelper.screenWidthWithContext(context) - 28.dp
+        w = CECDeviceHelper.screenWidthWithContext(this) - 28.dp
         h = 200.dp
 
         val config: MediaManager.Config = MediaManager.Config()
@@ -122,7 +121,7 @@ class MainActivity : NativeActivity<ActivityMainBinding>() {
                     cameraFinder = CameraFinder(true, w, h)
             ).apply {
                 selectedBtnText = "确定"
-            }, context,
+            }, this,
                 object : IMediaCallBack {
                     override fun result(medias: ArrayList<MediaInfo>) {
                         Log.d("camera", "url: ${medias[0].uri}")
@@ -161,7 +160,7 @@ class MainActivity : NativeActivity<ActivityMainBinding>() {
         val imageView = findViewById<ImageView>(R.id.my_img)
 
         // 从网络上拉取网络图片
-        Glide.with(context)
+        Glide.with(this)
             .load(uri)
             .into(imageView)
     }
