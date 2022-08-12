@@ -14,8 +14,10 @@ buildscript {
         classpath "com.alibaba:arouter-register:1.0.2"
 
         //bugly
-        classpath 'com.tencent.bugly:symtabfileuploader:2.2.1'
-        classpath "com.tencent.bugly:tinker-support:1.2.3"
+//        classpath 'com.tencent.bugly:symtabfileuploader:2.2.1'
+
+        //tinker
+        classpath 'com.tencent.tinker:tinker-patch-gradle-plugin:1.9.14.24'
     }
 }
 

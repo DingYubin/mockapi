@@ -66,6 +66,15 @@
                 style="@style/develop_setting_style"
                 android:text="@string/kotlin_coroutine" />
 
+            <TextView
+                android:id="@+id/load_tinker"
+                style="@style/develop_setting_style"
+                android:text="@string/loading_patch" />
+
+<!--            <TextView-->
+<!--                style="@style/develop_setting_style"-->
+<!--                android:text="@string/loading_patch_show" />-->
+
             <ImageView
                 android:id="@+id/my_img"
                 android:layout_width="wrap_content"

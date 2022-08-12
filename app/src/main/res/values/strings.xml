@@ -10,4 +10,6 @@
     <string name="draw">绘制</string>
     <string name="rxjava">rxjava</string>
     <string name="kotlin_coroutine">coroutine</string>
+    <string name="loading_patch">加载补丁</string>
+    <string name="loading_patch_show">加载补丁后显示出来</string>
 </resources>

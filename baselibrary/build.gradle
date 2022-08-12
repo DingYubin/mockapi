@@ -85,4 +85,6 @@ dependencies {
 
     implementation dependency.rxjava2
     implementation dependency.rxandroid2
+
+    api ("com.tencent.tinker:tinker-android-lib:${rootProject.ext.tinker.versionName}") { changing = true }
 }

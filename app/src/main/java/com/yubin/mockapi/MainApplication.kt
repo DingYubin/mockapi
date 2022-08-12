@@ -8,11 +8,13 @@ import com.yubin.baselibrary.appstart.IAppStartCallback
 import com.yubin.baselibrary.core.BaseApplication
 import com.yubin.baselibrary.router.CTRouteInitHelper
 import com.yubin.baselibrary.util.AutoSizeInitHelper
+import com.yubin.baselibrary.util.LogUtil
 import com.yubin.mockapi.common.ToolsInitUtils
+import com.yubin.mockapi.tinker.TinkerBeta
 import com.yubin.mvvm.net.NetworkInitHelper
 
-class MainApplication : BaseApplication() {
 
+class MainApplication : BaseApplication() {
 
     companion object {
         lateinit var application: MainApplication
@@ -21,11 +23,14 @@ class MainApplication : BaseApplication() {
     override fun attachBaseContext(base: Context?) {
         super.attachBaseContext(base)
         MultiDex.install(this)
-
+        // 安装tinker
+        TinkerBeta.installTinker()
+        LogUtil.i("Tinker === MainApplication attachBaseContext")
     }
 
     override fun onCreate() {
         super.onCreate()
+        LogUtil.i("Tinker === MainApplication onCreate")
         application = this
         AppStartInitializer.startUp(this, object : IAppStartCallback {
             override fun initInMainProcess(app: Application) {

@@ -10,9 +10,15 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStore
 import androidx.lifecycle.ViewModelStoreOwner
+import com.tencent.tinker.loader.app.TinkerApplication
+import com.tencent.tinker.loader.shareutil.ShareConstants
 import java.util.*
 
-open class BaseApplication : Application(), ViewModelStoreOwner {
+open class BaseApplication : TinkerApplication(
+    ShareConstants.TINKER_ENABLE_ALL,
+    "com.yubin.mockapi.tinker.TinkerApplicationLike",
+    "com.tencent.tinker.loader.TinkerLoader",
+false,false), ViewModelStoreOwner {
 
     private val appViewModelStore: ViewModelStore by lazy {
         ViewModelStore()

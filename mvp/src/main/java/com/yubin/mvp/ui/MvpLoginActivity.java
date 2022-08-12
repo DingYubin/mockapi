@@ -12,9 +12,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatEditText;
 
-import com.yubin.baselibrary.common.ChatType;
-import com.yubin.dblibrary.AppDataBase;
-import com.yubin.dblibrary.entity.Conversation;
 import com.yubin.mvp.R;
 import com.yubin.mvp.interfaces.LoginInterface;
 import com.yubin.mvp.presenter.LoginPresenter;
@@ -75,11 +72,11 @@ public class MvpLoginActivity extends AppCompatActivity implements LoginInterfac
     private void saveData() {
 
         new Thread(() -> {
-            Conversation conversation = new Conversation();
-            conversation.setSessionId("001");
-            conversation.setUnReadNum(10);
-            conversation.setChatType(ChatType.P);
-            AppDataBase.getInstance().conversationDao().save(conversation);
+//            Conversation conversation = new Conversation();
+//            conversation.setSessionId("001");
+//            conversation.setUnReadNum(10);
+//            conversation.setChatType(ChatType.P);
+//            AppDataBase.getInstance().conversationDao().save(conversation);
 //            Log.d(TAG, AppDataBase.getInstance().conversationDao().queryConversation("001", ChatType.P).toString());
 
         }).start();

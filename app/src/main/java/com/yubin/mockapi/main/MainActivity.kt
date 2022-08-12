@@ -13,6 +13,7 @@ import com.yubin.baselibrary.router.path.RouterPath
 import com.yubin.baselibrary.ui.basemvvm.NativeActivity
 import com.yubin.baselibrary.util.CECDeviceHelper
 import com.yubin.baselibrary.util.CMDisplayHelper.dp
+import com.yubin.baselibrary.util.LogUtil
 import com.yubin.medialibrary.camera.MediaManager
 import com.yubin.medialibrary.manager.CameraFinder
 import com.yubin.medialibrary.manager.CameraStrategy
@@ -21,7 +22,9 @@ import com.yubin.medialibrary.manager.MediaInfo
 import com.yubin.medialibrary.util.CMMediaUtil
 import com.yubin.mockapi.R
 import com.yubin.mockapi.databinding.ActivityMainBinding
+import com.yubin.mockapi.tinker.TinkerManager
 import com.yubin.mvp.ui.MvpLoginActivity
+import java.io.File
 
 class MainActivity : NativeActivity<ActivityMainBinding>() {
 
@@ -35,6 +38,11 @@ class MainActivity : NativeActivity<ActivityMainBinding>() {
      */
     var h = 0
 
+    //补丁文件后缀名
+    private val FILE_END = ".apk"
+
+    //apatch文件路径
+    private lateinit var mPatchDir: String
 
     override fun getViewBinding(): ActivityMainBinding {
         return ActivityMainBinding.inflate(layoutInflater)
@@ -46,6 +54,8 @@ class MainActivity : NativeActivity<ActivityMainBinding>() {
         if (this.supportActionBar != null) {
             this.supportActionBar!!.hide()
         }
+
+        createPatchPath()
 
         w = CECDeviceHelper.screenWidthWithContext(context) - 28.dp
         h = 200.dp
@@ -120,6 +130,31 @@ class MainActivity : NativeActivity<ActivityMainBinding>() {
                     }
                 })
         }
+
+        //加载补丁
+        binding.loadTinker.setOnClickListener {
+            TinkerManager.loadPatchPatch(getPatchPath())
+            finish()
+        }
+    }
+
+    private fun createPatchPath() {
+
+        mPatchDir = externalCacheDir?.absolutePath + "/tpatch/";
+        LogUtil.i("Tinker mPatchDir update ======================= : $mPatchDir")
+        LogUtil.i("Tinker mPatchDir update ======================= : $mPatchDir")
+        LogUtil.i("Tinker mPatchDir update ======================= : $mPatchDir")
+        LogUtil.i("Tinker mPatchDir update ======================= : $mPatchDir")
+        //创建文件夹
+        val file = File(mPatchDir);
+        if (!file.exists()) {
+            file.mkdir()
+        }
+    }
+
+    private fun getPatchPath(): String {
+
+        return "${mPatchDir}app-debug-patch_signed_7zip.apk"
     }
 
     private fun showView(uri: String) {

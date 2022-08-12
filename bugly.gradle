@@ -1,20 +1,20 @@
-apply plugin: 'bugly'
-
-android.applicationVariants.all { variant ->
-    def buglyAppId = 'cba1db8169'
-    def buglyAppKey = 'acdf3c9e-9265-4c30-ab11-486b987c7a28'
-
-//    if (variant.flavorName.contains("production")) {
-//        buglyAppId = 'ee56f06327'
-//        buglyAppKey = '038bbe75-0575-472a-b8c3-09ace18d591b'
-//    } else {
-//        buglyAppId = 'da805888dc'
-//        buglyAppKey = '9494891b-889f-4612-b926-82b17d4ab053'
+//apply plugin: 'bugly'
+//
+//android.applicationVariants.all { variant ->
+//    def buglyAppId = 'cba1db8169'
+//    def buglyAppKey = 'acdf3c9e-9265-4c30-ab11-486b987c7a28'
+//
+////    if (variant.flavorName.contains("production")) {
+////        buglyAppId = 'ee56f06327'
+////        buglyAppKey = '038bbe75-0575-472a-b8c3-09ace18d591b'
+////    } else {
+////        buglyAppId = 'da805888dc'
+////        buglyAppKey = '9494891b-889f-4612-b926-82b17d4ab053'
+////    }
+//    if (buglyAppId != null) {
+//        variant.ext.buglyAppId = buglyAppId
 //    }
-    if (buglyAppId != null) {
-        variant.ext.buglyAppId = buglyAppId
-    }
-    if (buglyAppKey != null) {
-        variant.ext.buglyAppKey = buglyAppKey
-    }
-}
+//    if (buglyAppKey != null) {
+//        variant.ext.buglyAppKey = buglyAppKey
+//    }
+//}

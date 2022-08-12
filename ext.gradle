@@ -7,7 +7,7 @@ ext {
             compileSdkVersion: 31,
             buildToolsVersion: "30.0.3",
             applicationId    : "com.yubin.mockapi",
-            minSdkVersion    : 26,
+            minSdkVersion    : 23,
             targetSdkVersion : 31,
             versionCode      : 1,
             versionName      : "1.0.0",
@@ -34,9 +34,11 @@ ext {
             logger                     : '2.1.1'
     ]
 
-    //热更版本号
-    tinkerId = "1"
-    tinkerEnabled = isRelease()
+    tinker = [
+            versionName : '1.9.14.24'
+    ]
+
+//    tinkerEnabled = isRelease()
 }
 
 /**
