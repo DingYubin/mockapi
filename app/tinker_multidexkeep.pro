@@ -23,7 +23,7 @@
 }
 
 #your dex.loader patterns here
--keep class com.yubin.mockapi.tinker.MyApplication {
+-keep class com.yubin.mockapi.MainApplication {
     <init>(...);
 }
 
