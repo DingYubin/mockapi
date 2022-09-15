@@ -78,41 +78,41 @@ public class RxActivity extends NativeActivity<ActivityRxBinding> {
         });
 
         getBinding().concatMap.setOnClickListener(view -> {
-            textConcatMap();
+            testConcatMap();
         });
 
         getBinding().collect.setOnClickListener(view -> {
-            textCollect();
+            testCollect();
         });
 
         getBinding().reduce.setOnClickListener(view -> {
             long startTime = System.currentTimeMillis();
-            textReduce();
+            testReduce();
             long endTime = System.currentTimeMillis();
             LogUtil.i("thread : " + Thread.currentThread().getName() + ", spent time : " + (endTime - startTime));
         });
 
         getBinding().executor.setOnClickListener(view -> {
-            textExecutor();
+            testExecutor();
         });
 
         getBinding().concurrency.setOnClickListener(view -> {
             long startTime = System.currentTimeMillis();
-            textConcurrency();
+            testConcurrency();
             long endTime = System.currentTimeMillis();
             LogUtil.i("thread : " + Thread.currentThread().getName() + ", spent time : " + (endTime - startTime));
         });
 
         getBinding().concurrency0.setOnClickListener(view -> {
             long startTime = System.currentTimeMillis();
-            textConcurrency0();
+            testConcurrency0();
             long endTime = System.currentTimeMillis();
             LogUtil.i("thread : " + Thread.currentThread().getName() + ", spent time : " + (endTime - startTime));
         });
 
         getBinding().concurrencyExecutor.setOnClickListener(view -> {
             long startTime = System.currentTimeMillis();
-            textConcurrencyExecutor();
+            testConcurrencyExecutor();
             long endTime = System.currentTimeMillis();
             LogUtil.i("thread : " + Thread.currentThread().getName() + ", spent time : " + (endTime - startTime));
 
@@ -120,14 +120,14 @@ public class RxActivity extends NativeActivity<ActivityRxBinding> {
 
         getBinding().concurrencyComputation.setOnClickListener(view -> {
             long startTime = System.currentTimeMillis();
-            textConcurrencyComputation();
+            testConcurrencyComputation();
             long endTime = System.currentTimeMillis();
             LogUtil.i("thread : " + Thread.currentThread().getName() + ", spent time : " + (endTime - startTime));
 
         });
     }
 
-    private void textConcurrency(){
+    private void testConcurrency(){
 
         ObservableExecutor.INSTANCE().executeObservable(getUsers(), 10, new List2List<UserEntity, UserEntity>() {
             @Override
@@ -161,7 +161,7 @@ public class RxActivity extends NativeActivity<ActivityRxBinding> {
 
     }
 
-    private void textConcurrency0(){
+    private void testConcurrency0(){
 
         ObservableExecutor.INSTANCE().executeObservable0(getUsers(), 10, new List2List<UserEntity, UserEntity>() {
                     @Override
@@ -195,7 +195,7 @@ public class RxActivity extends NativeActivity<ActivityRxBinding> {
 
     }
 
-    private void textConcurrencyComputation(){
+    private void testConcurrencyComputation(){
 
         List<UserEntity> users = getUsers();
         List<List<UserEntity>> lists = getLists(users);
@@ -241,7 +241,7 @@ public class RxActivity extends NativeActivity<ActivityRxBinding> {
 
     }
 
-    private void textConcurrencyExecutor(){
+    private void testConcurrencyExecutor(){
         int threadNum = Runtime.getRuntime().availableProcessors() + 1;
 
         final ExecutorService executorService = Executors.newFixedThreadPool(threadNum);
@@ -301,7 +301,7 @@ public class RxActivity extends NativeActivity<ActivityRxBinding> {
 
     }
 
-    private void textExecutor(){
+    private void testExecutor(){
         int threadNum = Runtime.getRuntime().availableProcessors() + 1;
 
         final ExecutorService executorService = Executors.newFixedThreadPool(threadNum);
@@ -360,14 +360,15 @@ public class RxActivity extends NativeActivity<ActivityRxBinding> {
                         LogUtil.i("thread : " + Thread.currentThread().getName());
                         return getTmsObservable(quoteResults);
                     }
-                }).collect(new Callable<BaseResponse<List<UserEntity>>>() {
-                    @Override
-                    public BaseResponse<List<UserEntity>> call() throws Exception {
-                        return new BaseResponse(0, "success", users, 200);
-                    }
-                }, (listBaseResponse, listBaseResponse2) -> {
-                    LogUtil.i("thread : " + Thread.currentThread().getName());
-                }).toObservable()
+                })
+//                .collect(new Callable<BaseResponse<List<UserEntity>>>() {
+//                    @Override
+//                    public BaseResponse<List<UserEntity>> call() throws Exception {
+//                        return new BaseResponse(0, "success", users, 200);
+//                    }
+//                }, (listBaseResponse, listBaseResponse2) -> {
+//                    LogUtil.i("thread : " + Thread.currentThread().getName());
+//                }).toObservable()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<>() {
@@ -397,7 +398,7 @@ public class RxActivity extends NativeActivity<ActivityRxBinding> {
 
     }
 
-    private void textReduce(){
+    private void testCollect(){
         List<UserEntity> users = getUsers();
         List<List<UserEntity>> lists = getLists(users);
 
@@ -411,9 +412,11 @@ public class RxActivity extends NativeActivity<ActivityRxBinding> {
                 }).collect(new Callable<BaseResponse<List<UserEntity>>>() {
                     @Override
                     public BaseResponse<List<UserEntity>> call() throws Exception {
+                        LogUtil.i( "BaseResponse<List<UserEntity>> call()");
                         return new BaseResponse(0, "success", users, 200);
                     }
                 }, (listBaseResponse, listBaseResponse2) -> {
+                    LogUtil.i( "(listBaseResponse, listBaseResponse2)");
 //                    LogUtil.i("thread : " + Thread.currentThread().getName() + ", spent time : " + (System.currentTimeMillis() - startTime));
                 }).toObservable()
                 .subscribeOn(Schedulers.io())
@@ -422,13 +425,12 @@ public class RxActivity extends NativeActivity<ActivityRxBinding> {
 
                     @Override
                     public void onSubscribe(Disposable d) {
-
                     }
 
                     @Override
                     public void onNext(BaseResponse<List<UserEntity>> listBaseResponse) {
                         if (listBaseResponse.isSuccessful(0)) {
-                            LogUtil.i( "onNext thread : " + Thread.currentThread().getName() + ", baseResponseObservable = " + listBaseResponse.getData().toString());
+//                            LogUtil.i( "onNext thread : " + Thread.currentThread().getName() + ", baseResponseObservable = " + listBaseResponse.getData().toString());
                         }
                     }
 
@@ -444,7 +446,7 @@ public class RxActivity extends NativeActivity<ActivityRxBinding> {
                 });
     }
 
-    private void textCollect(){
+    private void testReduce(){
         List<UserEntity> users = getUsers();
         List<UserEntity> result = getUsers();
         List<List<UserEntity>> lists = getLists(users);
@@ -500,7 +502,7 @@ public class RxActivity extends NativeActivity<ActivityRxBinding> {
     /**
      * 有序合并
      */
-    private void textConcatMap() {
+    private void testConcatMap() {
 
         List<UserEntity> users = getUsers();
         List<List<UserEntity>> lists = getLists(users);

@@ -118,7 +118,7 @@ dependencies {
 }
 
 def bakPath = file("${buildDir}/bakApk")
-def baseInfo = "app-debug-0812-14-49-32"
+def baseInfo = "app-debug-0812-16-46-25"
 
 /**
  * you can use assembleRelease to build you base apk
@@ -169,7 +169,7 @@ if (buildWithTinker()) {
     //所有Tinker相关的参数配置项
     tinkerPatch {
         oldApk = getOldApkPath()    //基准apk包的路径，必须输入，否则会报错
-        ignoreWarning = false       //是否忽略有风险的布丁包。这里选择不忽略，当布丁包风险时会中断编译
+        ignoreWarning = true       //是否忽略有风险的布丁包。这里选择不忽略，当布丁包风险时会中断编译
         useSign = true              //在允许过程中，我们需要验证基准包apk包与补丁包的签名是否一致，我们是否需要为其签名
         tinkerEnable = buildWithTinker() //是否打开tinker的功能
         allowLoaderInAnyDex = true

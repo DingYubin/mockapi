@@ -21,7 +21,6 @@ import com.yubin.medialibrary.manager.MediaInfo
 import com.yubin.medialibrary.util.CMMediaUtil
 import com.yubin.mockapi.R
 import com.yubin.mockapi.databinding.ActivityMainBinding
-import com.yubin.mockapi.tinker.TinkerManager
 import com.yubin.mvp.ui.MvpLoginActivity
 import java.io.File
 
@@ -131,14 +130,16 @@ class MainActivity : NativeActivity<ActivityMainBinding>() {
         }
 
         //加载补丁
-        binding.loadTinker.setOnClickListener {
-            TinkerManager.loadPatchPatch(getPatchPath())
-        }
+//        binding.loadTinker.setOnClickListener {
+//            TinkerManager.loadPatchPatch(getPatchPath())
+//        }
     }
 
     private fun createPatchPath() {
 
         mPatchDir = externalCacheDir?.absolutePath + "/tpatch/";
+        LogUtil.i("Tinker mPatchDir update ======================= : $mPatchDir")
+        LogUtil.i("Tinker mPatchDir update ======================= : $mPatchDir")
         LogUtil.i("Tinker mPatchDir update ======================= : $mPatchDir")
 
         //创建文件夹
