@@ -5,6 +5,7 @@
     <string name="mvx">mvx架构</string>
     <string name="im">IM沟通</string>
     <string name="environment_settings">环境设置</string>
+    <string name="click_get_so_library_data">点击获取so库中数据</string>
     <string name="goto_user_page">跳转用户页面</string>
     <string name="camera">相机</string>
     <string name="draw">绘制</string>

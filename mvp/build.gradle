@@ -24,6 +24,12 @@ android {
         sourceCompatibility rootProject.ext.android.javaCompatibility
         targetCompatibility rootProject.ext.android.javaCompatibility
     }
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['jniLibs']
+        }
+    }
 }
 
 dependencies {

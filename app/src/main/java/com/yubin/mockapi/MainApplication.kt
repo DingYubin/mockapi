@@ -22,9 +22,9 @@ class MainApplication : BaseApplication() {
 
     override fun attachBaseContext(base: Context?) {
         super.attachBaseContext(base)
-        MultiDex.install(base)
+//        MultiDex.install(base)
         // 安装tinker
-        TinkerBeta.installTinker()
+//        TinkerBeta.installTinker()
         LogUtil.i("Tinker === MainApplication attachBaseContext")
     }
 

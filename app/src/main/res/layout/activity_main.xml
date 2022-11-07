@@ -22,6 +22,12 @@
                 android:textColor="@color/st_text_master_common_white" />
 
             <TextView
+                android:id="@+id/click_get_so_library_data"
+                style="@style/develop_setting_style"
+                android:text="@string/click_get_so_library_data"
+                android:textColor="@color/st_text_master_common_white" />
+
+            <TextView
                 android:id="@+id/goto_user_page"
                 style="@style/develop_setting_style"
                 android:text="@string/goto_user_page" />
@@ -66,10 +72,15 @@
                 style="@style/develop_setting_style"
                 android:text="@string/kotlin_coroutine" />
 
-<!--            <TextView-->
-<!--                android:id="@+id/load_tinker"-->
-<!--                style="@style/develop_setting_style"-->
-<!--                android:text="@string/loading_patch" />-->
+            <TextView
+                android:id="@+id/load_tinker"
+                style="@style/develop_setting_style"
+                android:text="@string/loading_patch" />
+
+            <TextView
+                android:id="@+id/content_from_so"
+                style="@style/develop_setting_style"
+                android:text="so content" />
 
 <!--            <TextView-->
 <!--                style="@style/develop_setting_style"-->
@@ -79,7 +90,6 @@
                 android:id="@+id/my_img"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
-
 
         </LinearLayout>
     </ScrollView>

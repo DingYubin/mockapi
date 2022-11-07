@@ -1,12 +1,21 @@
 package com.yubin.mockapi.main
 
+import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
+import android.os.Environment
+import android.text.TextUtils
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
+import android.widget.TextView
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.alibaba.android.arouter.launcher.ARouter
 import com.bumptech.glide.Glide
+import com.keytop.ndkbuilddemo.MyNdk
 import com.yubin.account.user.ui.AccountActivity
 import com.yubin.baselibrary.router.path.RouterPath
 import com.yubin.baselibrary.ui.basemvvm.NativeActivity
@@ -21,6 +30,7 @@ import com.yubin.medialibrary.manager.MediaInfo
 import com.yubin.medialibrary.util.CMMediaUtil
 import com.yubin.mockapi.R
 import com.yubin.mockapi.databinding.ActivityMainBinding
+import com.yubin.mockapi.tinker.TinkerManager
 import com.yubin.mvp.ui.MvpLoginActivity
 import java.io.File
 
@@ -42,19 +52,19 @@ class MainActivity : NativeActivity<ActivityMainBinding>() {
     //apatch文件路径
     private lateinit var mPatchDir: String
 
+    private var mSoLibraryContentTv: TextView? = null
+
     override fun getViewBinding(): ActivityMainBinding {
         return ActivityMainBinding.inflate(layoutInflater)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         if (this.supportActionBar != null) {
             this.supportActionBar!!.hide()
         }
-
-        createPatchPath()
-
+        askForWriteRequiredPermissions()
+        askForRequiredPermissions()
         w = CECDeviceHelper.screenWidthWithContext(this) - 28.dp
         h = 200.dp
 
@@ -66,6 +76,7 @@ class MainActivity : NativeActivity<ActivityMainBinding>() {
             startActivity(intent)
         }
 
+        mSoLibraryContentTv = findViewById(R.id.content_from_so)
         findViewById<View>(R.id.mvp).setOnClickListener {
             MvpLoginActivity.openLoginActivity(
                 this
@@ -79,9 +90,9 @@ class MainActivity : NativeActivity<ActivityMainBinding>() {
         }
 
         findViewById<View>(R.id.mvx).setOnClickListener {
-//            ARouter.getInstance()
-//                .build(RouterPath.AccountPage.PATH_MVX_LOGIN)
-//                .navigation()
+            ARouter.getInstance()
+                .build(RouterPath.AccountPage.PATH_MVX_LOGIN)
+                .navigation()
         }
 
         findViewById<View>(R.id.im).setOnClickListener {
@@ -130,27 +141,41 @@ class MainActivity : NativeActivity<ActivityMainBinding>() {
         }
 
         //加载补丁
-//        binding.loadTinker.setOnClickListener {
-//            TinkerManager.loadPatchPatch(getPatchPath())
-//        }
+        binding.loadTinker.setOnClickListener {
+            createPatchPath()
+            val path = File(getPatchPath())
+            if (path.exists()){
+                Log.d("xsh", " path.length--> " + path.length())
+            }
+            TinkerManager.loadPatchPatch(getPatchPath())
+        }
+
+        binding.clickGetSoLibraryData.setOnClickListener {
+            getLibraryMsg()
+        }
+    }
+
+    private fun getLibraryMsg() {
+        val myNdk = MyNdk()
+        myNdk.hotUpdate(this)
+        if (!TextUtils.isEmpty(myNdk.myString)) {
+            mSoLibraryContentTv?.text = myNdk.myString
+        }
     }
 
     private fun createPatchPath() {
-
-        mPatchDir = externalCacheDir?.absolutePath + "/tpatch/";
-        LogUtil.i("Tinker mPatchDir update ======================= : $mPatchDir")
-        LogUtil.i("Tinker mPatchDir update ======================= : $mPatchDir")
+//        mPatchDir = externalCacheDir?.absolutePath + "/xsh/"
+        mPatchDir = Environment.getExternalStorageDirectory().absolutePath + "/xsh/"
         LogUtil.i("Tinker mPatchDir update ======================= : $mPatchDir")
 
         //创建文件夹
-        val file = File(mPatchDir);
+        val file = File(mPatchDir)
         if (!file.exists()) {
             file.mkdir()
         }
     }
 
     private fun getPatchPath(): String {
-
         return "${mPatchDir}app-debug-patch_signed_7zip.apk"
     }
 
@@ -161,6 +186,66 @@ class MainActivity : NativeActivity<ActivityMainBinding>() {
         Glide.with(this)
             .load(uri)
             .into(imageView)
+    }
+
+    private fun askForRequiredPermissions() {
+        if (Build.VERSION.SDK_INT < 23) {
+            return
+        }
+        if (!hasRequiredPermissions()) {
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
+                0
+            )
+        }
+    }
+
+    private fun hasRequiredPermissions(): Boolean {
+        return if (Build.VERSION.SDK_INT >= 16) {
+            val res = ContextCompat.checkSelfPermission(
+                this.applicationContext,
+                Manifest.permission.READ_EXTERNAL_STORAGE
+            )
+            res == PackageManager.PERMISSION_GRANTED
+        } else {
+            // When SDK_INT is below 16, READ_EXTERNAL_STORAGE will also be granted if WRITE_EXTERNAL_STORAGE is granted.
+            val res = ContextCompat.checkSelfPermission(
+                this.applicationContext,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
+            )
+            res == PackageManager.PERMISSION_GRANTED
+        }
+    }
+
+    private fun askForWriteRequiredPermissions() {
+        if (Build.VERSION.SDK_INT < 23) {
+            return
+        }
+        if (!hasRequiredWritePermissions()) {
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
+                0
+            )
+        }
+    }
+
+    private fun hasRequiredWritePermissions(): Boolean {
+        return if (Build.VERSION.SDK_INT >= 16) {
+            val res = ContextCompat.checkSelfPermission(
+                this.applicationContext,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
+            )
+            res == PackageManager.PERMISSION_GRANTED
+        } else {
+            // When SDK_INT is below 16, READ_EXTERNAL_STORAGE will also be granted if WRITE_EXTERNAL_STORAGE is granted.
+            val res = ContextCompat.checkSelfPermission(
+                this.applicationContext,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
+            )
+            res == PackageManager.PERMISSION_GRANTED
+        }
     }
 
 }

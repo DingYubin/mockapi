@@ -82,6 +82,9 @@ android {
         viewBinding true
     }
 
+    dexOptions {
+        jumboMode = true
+    }
 }
 
 dependencies {
@@ -118,7 +121,8 @@ dependencies {
 }
 
 def bakPath = file("${buildDir}/bakApk")
-def baseInfo = "app-debug-0812-16-46-25"
+def outputPath = file("${buildDir}/outputs")
+def baseInfo = "app-debug-1107-15-36-05"
 
 /**
  * you can use assembleRelease to build you base apk
@@ -136,6 +140,11 @@ ext {
     tinkerApplyResourcePath = "${bakPath}/${baseInfo}-R.txt"
     //只用于构建所有flavor，如果没有，就忽略这个字段（多渠道打包路径）
     tinkerBuildFlavorDirectory = "${bakPath}/app-0812-11-10-50"
+    tinkerOutputPath = "${outputPath}"
+}
+
+def getOutputPath() {
+    return ext.tinkerOutputPath
 }
 
 def getOldApkPath() {
@@ -174,6 +183,7 @@ if (buildWithTinker()) {
         tinkerEnable = buildWithTinker() //是否打开tinker的功能
         allowLoaderInAnyDex = true
         removeLoaderForAllDex = true
+        outputFolder = getOutputPath()
 
         //编译相关的配置项
         buildConfig {
@@ -235,7 +245,8 @@ if (buildWithTinker()) {
             loader = [
                     //use sample, let BaseBuildInfo unchangeable with tinker
 //                    "com.yubin.mockapi.MainApplication"
-                    "tinker.sample.android.app.BaseBuildInfo"
+//                    "tinker.sample.android.app.BaseBuildInfo"
+                    "com.tencent.tinker.loader.*"
             ]
         }
 

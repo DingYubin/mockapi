@@ -1,10 +1,14 @@
 package com.yubin.mockapi.tinker;
 
 import android.app.Application;
+import android.content.Context;
 import android.content.Intent;
+
+import androidx.multidex.MultiDex;
 
 import com.tencent.tinker.entry.ApplicationLike;
 import com.tencent.tinker.entry.DefaultApplicationLike;
+import com.tencent.tinker.lib.tinker.Tinker;
 
 /**
  * * 使用DefaultLifeCycle注解生成Application（这种方式是Tinker官方推荐的）
@@ -29,6 +33,20 @@ public class TinkerApplicationLike extends DefaultApplicationLike {
     public TinkerApplicationLike(Application application, int tinkerFlags, boolean tinkerLoadVerifyFlag, long applicationStartElapsedTime, long applicationStartMillisTime, Intent tinkerResultIntent) {
         super(application, tinkerFlags, tinkerLoadVerifyFlag, applicationStartElapsedTime, applicationStartMillisTime, tinkerResultIntent);
         setTinkerPatchApplicationLike(this);
+    }
+
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+    }
+
+    @Override
+    public void onBaseContextAttached(Context base) {
+        super.onBaseContextAttached(base);
+        MultiDex.install(base);
+        TinkerManager.installTinker(this);
+        Tinker tinker = Tinker.with(getApplication());
     }
 
     private static void setTinkerPatchApplicationLike(ApplicationLike applicationLike) {
