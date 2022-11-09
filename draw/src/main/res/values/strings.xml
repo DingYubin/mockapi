@@ -34,8 +34,12 @@
     <string name="inquiry_quality_other">其他</string>
 
     <string name="exposure">曝光</string>
+    <string name="window">视频浮窗</string>
 
     <string name="test">查看图片 %s</string>
+
+    <string name="show_floating_window">显示悬浮窗口</string>
+    <string name="dismiss_floating_window">隐藏悬浮窗口</string>
 
 
 </resources>

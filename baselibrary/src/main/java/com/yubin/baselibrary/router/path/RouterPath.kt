@@ -68,6 +68,11 @@ object RouterPath {
             const val PATH_UI_DRAW = "/ui/draw"
 
             /**
+             * window页面
+             */
+            const val PATH_UI_WINDOW = "/ui/window"
+
+            /**
              * 回调事例页面
              */
             const val PATH_UI_CALLBACK = "/ui/callback"

@@ -131,6 +131,12 @@ class UiActivity : NativeActivity<ActivityUiBinding>() {
                 .build(RouterPath.UiPage.PATH_UI_EXPOSURE)
                 .navigation()
         }
+
+        binding.windowActivity.setOnClickListener {
+            ARouter.getInstance()
+                .build(RouterPath.UiPage.PATH_UI_WINDOW)
+                .navigation()
+        }
     }
 
     private fun initView() {
