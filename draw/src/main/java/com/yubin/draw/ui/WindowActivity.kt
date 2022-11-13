@@ -145,7 +145,7 @@ class WindowActivity : NativeActivity<ActivityWindowBinding>(){
 
 
     /**
-     * 浮窗视频样式
+     * 浮窗样式
      */
     private fun initFloatRootView(): View {
         val view = View.inflate(this, R.layout.view_floating_root_window, null)
@@ -175,14 +175,16 @@ class WindowActivity : NativeActivity<ActivityWindowBinding>(){
      * 浮窗拉流样式
      */
     private fun initFloatRootVideo(): View {
-        val view = View.inflate(this, R.layout.view_floating_root_window, null)
+        val view = View.inflate(this, R.layout.view_video_floating_root_window, null)
         // 设置视频封面
         val mThumb = view.findViewById<View>(R.id.thumb_floating_view) as ImageView
         Glide.with(this).load(R.drawable.thumb).into(mThumb)
 
         val videoPlayer = view.findViewById<VideoPlayer>(R.id.video_view)
         //视频内容设置
-        videoPlayer.setPath("https://stream7.iqilu.com/10339/article/202002/18/2fca1c77730e54c7b500573c2437003f.mp4")
+        videoPlayer.setPath("https://vod01.zmengzhu.com/video/hls-hd/1636445926b4df7f1505720fe9665276_221109091144.m3u8")
+
+//        videoPlayer.setPath("https://stream7.iqilu.com/10339/article/202002/18/2fca1c77730e54c7b500573c2437003f.mp4")
 //        videoPlayer.initVideoView()
         try {
             videoPlayer.load()
