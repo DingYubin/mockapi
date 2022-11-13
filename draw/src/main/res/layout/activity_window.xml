@@ -5,22 +5,42 @@
     android:layout_height="match_parent">
 
     <Button
+        android:id="@+id/btn_show_inter_floating_window"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/show_inter_floating_window"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btn_dismiss_inter_floating_window"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/dismiss_inter_floating_window"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_show_inter_floating_window" />
+
+    <Button
         android:id="@+id/btn_show_floating_window"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/show_floating_window"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/btn_dismiss_inter_floating_window"  />
 
     <Button
         android:id="@+id/btn_dismiss_floating_window"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/dismiss_floating_window"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btn_show_floating_window" />
+
+    <!--    <com.yubin.draw.widget.view.video.CustomVideoView-->
+    <!--        android:id="@+id/video_view"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

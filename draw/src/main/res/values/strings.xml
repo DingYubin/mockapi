@@ -38,8 +38,10 @@
 
     <string name="test">查看图片 %s</string>
 
-    <string name="show_floating_window">显示悬浮窗口</string>
-    <string name="dismiss_floating_window">隐藏悬浮窗口</string>
+    <string name="show_inter_floating_window">显示悬浮窗口</string>
+    <string name="dismiss_inter_floating_window">隐藏悬浮窗口</string>
+    <string name="show_floating_window">显示外悬浮窗口</string>
+    <string name="dismiss_floating_window">隐藏外悬浮窗口</string>
 
 
 </resources>

@@ -1,5 +1,6 @@
 package com.yubin.draw.ui
 
+//import com.dou361.ijkplayer.widget.AndroidMediaController
 import android.app.Activity
 import android.content.Intent
 import android.net.Uri
@@ -16,12 +17,16 @@ import com.yubin.baselibrary.router.path.RouterPath
 import com.yubin.baselibrary.ui.basemvvm.NativeActivity
 import com.yubin.draw.R
 import com.yubin.draw.databinding.ActivityWindowBinding
+import com.yubin.draw.widget.window.FloatingRootWindow
 import com.yubin.draw.widget.window.FloatingWindow
+
 
 @Route(path = RouterPath.UiPage.PATH_UI_WINDOW)
 class WindowActivity : NativeActivity<ActivityWindowBinding>(){
 
     private var mFloatingWindow: FloatingWindow? = null
+
+    private var mFloatingRootWindow: FloatingRootWindow? = null
 
     override fun getViewBinding(): ActivityWindowBinding =
         ActivityWindowBinding.inflate(layoutInflater)
@@ -32,6 +37,15 @@ class WindowActivity : NativeActivity<ActivityWindowBinding>(){
     }
 
     private fun initView() {
+        binding.btnShowInterFloatingWindow.setOnClickListener {
+            showInterFloatingWindow()
+        }
+
+        binding.btnDismissFloatingWindow.setOnClickListener {
+            mFloatingRootWindow?.dismiss()
+        }
+
+
         binding.btnShowFloatingWindow.setOnClickListener {
             if (!requestOverlayPermission()) {
                 showFloatingWindow()
@@ -62,7 +76,7 @@ class WindowActivity : NativeActivity<ActivityWindowBinding>(){
         }
     }
 
-    var resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+    private var resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode == Activity.RESULT_OK) {
             // There are no request codes
             if (Settings.canDrawOverlays(this@WindowActivity)) {
@@ -79,6 +93,40 @@ class WindowActivity : NativeActivity<ActivityWindowBinding>(){
         mFloatingWindow?.showFloatingWindowView(this, view)
     }
 
+    private fun showInterFloatingWindow() {
+        mFloatingRootWindow = FloatingRootWindow()
+        val view: View = initFloatRootView()
+        mFloatingRootWindow?.showFloatingWindowView(this, view)
+    }
+
+
+    /**
+     * 浮窗样式
+     */
+    private fun initFloatRootView(): View {
+        val view = View.inflate(this, R.layout.view_floating_root_window, null)
+        // 设置视频封面
+        val mThumb = view.findViewById<View>(R.id.thumb_floating_view) as ImageView
+        Glide.with(this).load(R.drawable.thumb).into(mThumb)
+        // 悬浮窗关闭
+        view.findViewById<View>(R.id.close_floating_view)
+            .setOnClickListener { mFloatingRootWindow?.dismiss() }
+
+        val videoView = view.findViewById<VideoView>(R.id.video_view)
+        //视频内容设置
+        videoView.setVideoPath("https://stream7.iqilu.com/10339/article/202002/18/2fca1c77730e54c7b500573c2437003f.mp4")
+        // 视频准备完毕，隐藏正在加载封面，显示视频
+        videoView.setOnPreparedListener { mThumb.visibility = View.GONE }
+        // 循环播放
+        videoView.setOnCompletionListener { videoView.start() }
+        // 开始播放视频
+        videoView.start()
+        return view
+    }
+
+    /**
+     * 浮窗样式
+     */
     private fun initFloatView(): View {
         val view = View.inflate(this, R.layout.view_floating_window, null)
         // 设置视频封面
