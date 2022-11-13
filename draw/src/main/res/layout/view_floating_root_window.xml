@@ -16,10 +16,14 @@
             android:paddingEnd="7dp"
             android:paddingBottom="12dp">
 
-            <VideoView
+            <com.yubin.draw.widget.view.video.VideoPlayer
                 android:id="@+id/video_view"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"/>
+<!--            <VideoView-->
+<!--                android:id="@+id/video_view"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent" />-->
 
             <ImageView
                 android:id="@+id/thumb_floating_view"

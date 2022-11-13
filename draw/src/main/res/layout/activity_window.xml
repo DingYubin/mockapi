@@ -5,12 +5,29 @@
     android:layout_height="match_parent">
 
     <Button
+        android:id="@+id/btn_show_video_floating_window"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/show_video_floating_window"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btn_dismiss_video_floating_window"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/dismiss_video_floating_window"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_show_video_floating_window" />
+
+
+    <Button
         android:id="@+id/btn_show_inter_floating_window"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/show_inter_floating_window"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_dismiss_video_floating_window" />
 
     <Button
         android:id="@+id/btn_dismiss_inter_floating_window"

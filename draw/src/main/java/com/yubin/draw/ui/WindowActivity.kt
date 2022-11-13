@@ -1,6 +1,5 @@
 package com.yubin.draw.ui
 
-//import com.dou361.ijkplayer.widget.AndroidMediaController
 import android.app.Activity
 import android.content.Intent
 import android.net.Uri
@@ -15,10 +14,17 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.bumptech.glide.Glide
 import com.yubin.baselibrary.router.path.RouterPath
 import com.yubin.baselibrary.ui.basemvvm.NativeActivity
+import com.yubin.baselibrary.widget.ToastUtil
 import com.yubin.draw.R
 import com.yubin.draw.databinding.ActivityWindowBinding
+import com.yubin.draw.widget.view.video.VideoListener
+import com.yubin.draw.widget.view.video.VideoPlayer
 import com.yubin.draw.widget.window.FloatingRootWindow
 import com.yubin.draw.widget.window.FloatingWindow
+import com.yubin.medialibrary.permissionHelper.CECPermissionHelper
+import com.yubin.medialibrary.permissionHelper.CECPermissionListener
+import tv.danmaku.ijk.media.player.IMediaPlayer
+import java.io.IOException
 
 
 @Route(path = RouterPath.UiPage.PATH_UI_WINDOW)
@@ -27,6 +33,8 @@ class WindowActivity : NativeActivity<ActivityWindowBinding>(){
     private var mFloatingWindow: FloatingWindow? = null
 
     private var mFloatingRootWindow: FloatingRootWindow? = null
+
+    private var mVideoFloatingRootWindow: FloatingRootWindow? = null
 
     override fun getViewBinding(): ActivityWindowBinding =
         ActivityWindowBinding.inflate(layoutInflater)
@@ -37,7 +45,37 @@ class WindowActivity : NativeActivity<ActivityWindowBinding>(){
     }
 
     private fun initView() {
+
+        binding.btnShowVideoFloatingWindow.setOnClickListener {
+            //动态权限获取
+            CECPermissionHelper.requestForStorage(object : CECPermissionListener {
+                override fun onPermissionGranted() {
+                    //展示浮窗
+                    showVideoFloatingWindow()
+                }
+
+                override fun onPermissionDeclined(permission: String?) {
+                    ToastUtil.showToast(
+                        getString(R.string.permission_message_dialog_default),
+                        Toast.LENGTH_SHORT
+                    )
+                }
+
+                override fun onPermissionDenied(permission: String?) {
+                    ToastUtil.showToast(
+                        getString(R.string.permission_message_dialog_default),
+                        Toast.LENGTH_SHORT
+                    )
+                }
+            })
+        }
+
+        binding.btnDismissVideoFloatingWindow.setOnClickListener {
+            mVideoFloatingRootWindow?.dismiss()
+        }
+
         binding.btnShowInterFloatingWindow.setOnClickListener {
+            //展示浮窗
             showInterFloatingWindow()
         }
 
@@ -99,18 +137,21 @@ class WindowActivity : NativeActivity<ActivityWindowBinding>(){
         mFloatingRootWindow?.showFloatingWindowView(this, view)
     }
 
+    private fun showVideoFloatingWindow() {
+        mVideoFloatingRootWindow = FloatingRootWindow()
+        val view: View = initFloatRootVideo()
+        mVideoFloatingRootWindow?.showFloatingWindowView(this, view)
+    }
+
 
     /**
-     * 浮窗样式
+     * 浮窗视频样式
      */
     private fun initFloatRootView(): View {
         val view = View.inflate(this, R.layout.view_floating_root_window, null)
         // 设置视频封面
         val mThumb = view.findViewById<View>(R.id.thumb_floating_view) as ImageView
         Glide.with(this).load(R.drawable.thumb).into(mThumb)
-        // 悬浮窗关闭
-        view.findViewById<View>(R.id.close_floating_view)
-            .setOnClickListener { mFloatingRootWindow?.dismiss() }
 
         val videoView = view.findViewById<VideoView>(R.id.video_view)
         //视频内容设置
@@ -121,6 +162,56 @@ class WindowActivity : NativeActivity<ActivityWindowBinding>(){
         videoView.setOnCompletionListener { videoView.start() }
         // 开始播放视频
         videoView.start()
+
+        // 悬浮窗关闭
+        view.findViewById<View>(R.id.close_floating_view)
+            .setOnClickListener {
+                mFloatingRootWindow?.dismiss()
+            }
+        return view
+    }
+
+    /**
+     * 浮窗拉流样式
+     */
+    private fun initFloatRootVideo(): View {
+        val view = View.inflate(this, R.layout.view_floating_root_window, null)
+        // 设置视频封面
+        val mThumb = view.findViewById<View>(R.id.thumb_floating_view) as ImageView
+        Glide.with(this).load(R.drawable.thumb).into(mThumb)
+
+        val videoPlayer = view.findViewById<VideoPlayer>(R.id.video_view)
+        //视频内容设置
+        videoPlayer.setPath("https://stream7.iqilu.com/10339/article/202002/18/2fca1c77730e54c7b500573c2437003f.mp4")
+//        videoPlayer.initVideoView()
+        try {
+            videoPlayer.load()
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
+
+        videoPlayer.setVideoListener(object : VideoListener {
+
+            override fun onCompletion(iMediaPlayer: IMediaPlayer?) {
+//                videoPlayer.start()
+            }
+            override fun onPrepared(iMediaPlayer: IMediaPlayer?) {
+                mThumb.visibility = View.GONE
+                videoPlayer.start()
+            }
+
+            override fun onVideoSizeChanged(p0: IMediaPlayer?, p1: Int, p2: Int, p3: Int, p4: Int) {
+                TODO("Not yet implemented")
+            }
+
+        })
+
+        // 悬浮窗关闭
+        view.findViewById<View>(R.id.close_floating_view)
+            .setOnClickListener {
+                mVideoFloatingRootWindow?.dismiss()
+                videoPlayer.release()
+            }
         return view
     }
 
