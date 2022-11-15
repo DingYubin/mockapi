@@ -45,6 +45,10 @@
     <string name="dismiss_inter_floating_window">隐藏悬浮窗口</string>
     <string name="show_floating_window">显示外悬浮窗口</string>
     <string name="dismiss_floating_window">隐藏外悬浮窗口</string>
+    <string name="start">开始</string>
+    <string name="pause">暂停</string>
+    <string name="vertical_video">横屏</string>
+    <string name="horizontal_video">竖屏</string>
 
 
 </resources>

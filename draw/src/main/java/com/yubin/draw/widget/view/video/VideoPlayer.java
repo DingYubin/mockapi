@@ -135,12 +135,12 @@ public class VideoPlayer extends FrameLayout {
     private void setListener(IMediaPlayer player){
         player.setOnPreparedListener(iMediaPlayer -> {
             if(mListener != null){
-                mListener.onPrepared(iMediaPlayer);
+                mListener.onPrepared();
             }
         });
         player.setOnCompletionListener(iMediaPlayer -> {
             if(mListener != null){
-                mListener.onCompletion(iMediaPlayer);
+                mListener.onCompletion();
             }
         });
         player.setOnVideoSizeChangedListener(mVideoSizeChangedListener);

@@ -6,7 +6,7 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.view.WindowManager
-import com.yubin.draw.ui.WindowActivity
+import com.yubin.baselibrary.ui.basemvvm.BaseActivity
 import kotlin.math.abs
 
 class FloatingRootWindow {
@@ -19,7 +19,7 @@ class FloatingRootWindow {
         mFloatView = view
 
         //获取系统窗口管理服务
-        mWindowManager = (context as WindowActivity).windowManager
+        mWindowManager = (context as BaseActivity).windowManager
 
         //悬浮车口参数设置及返回
         mFloatParams = WindowManager.LayoutParams().apply {

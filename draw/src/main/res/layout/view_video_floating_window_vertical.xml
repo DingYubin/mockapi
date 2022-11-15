@@ -4,12 +4,12 @@
     android:layout_height="wrap_content">
 
     <RelativeLayout
-        android:layout_width="131dp"
-        android:layout_height="105dp">
+        android:layout_width="128.5dp"
+        android:layout_height="103dp">
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="85dp"
+            android:layout_height="83dp"
             android:layout_alignParentBottom="true"
             android:paddingStart="2dp"
             android:paddingTop="3dp"
@@ -36,11 +36,11 @@
 
         <ImageView
             android:id="@+id/close_floating_view"
-            android:layout_width="10dp"
-            android:layout_height="10dp"
+            android:layout_width="13.5dp"
+            android:layout_height="13.5dp"
+            android:layout_marginTop="4dp"
             android:layout_alignParentEnd="true"
-            android:padding="10dp"
-            android:scaleType="centerCrop"
+            android:scaleType="fitXY"
             android:src="@drawable/video_close" />
     </RelativeLayout>
 </RelativeLayout>
