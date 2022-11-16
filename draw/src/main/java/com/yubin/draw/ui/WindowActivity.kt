@@ -138,7 +138,7 @@ class WindowActivity : NativeActivity<ActivityWindowBinding>(){
             CECPermissionHelper.requestForStorage(object : CECPermissionListener {
                 override fun onPermissionGranted() {
                     //展示浮窗
-                    showVideoFloatingWindow("HORIZONTAL", horizontal_path)
+                    showVideoFloatingWindow("HORIZONTAL", path)
                 }
 
                 override fun onPermissionDeclined(permission: String?) {
@@ -299,7 +299,7 @@ class WindowActivity : NativeActivity<ActivityWindowBinding>(){
      * 浮窗拉流样式
      */
     private fun initFloatRootVideo(): View {
-        val view = View.inflate(this, R.layout.view_video_floating_window_vertical, null)
+        val view = View.inflate(this, R.layout.view_video_floating_window_horizontal, null)
 //        val view = View.inflate(this, R.layout.view_video_floating_window_horizontal, null)
         // 设置视频封面
         val mThumb = view.findViewById<View>(R.id.thumb_floating_view) as ImageView
