@@ -10,13 +10,13 @@ import com.yubin.library.mock.api.StandardMockApi
 import com.yubin.library.mock.constant.MockHttpMethod
 import com.yubin.mvvm.BuildConfig
 import com.yubin.mvvm.net.converter.GsonConverterFactory.Companion.create
+import com.yubin.mvvm.net.interceptor.CryptoInterceptor
 import com.yubin.mvvm.net.interceptor.NetworkInterceptor
 import com.yubin.mvvm.net.interceptor.ResponseInterceptor
 import com.yubin.mvvm.net.model.MockConfig
 import com.yubin.mvvm.net.util.MockUtil
 import com.yubin.net.NetOkHttpClient.Companion.init
 import com.yubin.net.NetworkConfigInitHelper.initWithApplication
-import retrofit2.Converter
 
 /**
  * description: 初始化网络
@@ -42,6 +42,7 @@ object NetworkInitHelper {
         config.interceptors = arrayOf(
             NetworkInterceptor(),
             ResponseInterceptor(),
+            CryptoInterceptor(),
             getMockApiInterceptor(application)
         )
 

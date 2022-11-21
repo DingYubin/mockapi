@@ -48,7 +48,7 @@ public class MockApiInterceptor implements Interceptor {
 
 	@Override
 	public Response intercept(Chain chain) throws IOException {
-		Log.d("NetworkInterceptor", "intercept() called with: chain = $chain");
+		Log.d("MockApiInterceptor", "intercept() called with: chain = $chain");
 		Request request = chain.request();
 		HttpUrl httpUrl = request.url();
 		String path = httpUrl.url().getPath();
