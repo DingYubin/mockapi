@@ -11,10 +11,15 @@ import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import com.yubin.baselibrary.util.LogUtil;
 
 import java.io.IOException;
 import java.util.Map;
@@ -39,6 +44,8 @@ public class VideoPlayer extends FrameLayout {
 
     private SurfaceView mSurfaceView;
 
+    public ImageView mImageViewWhenPaused;
+
     private Context mContext;
     private boolean mEnableMediaCodec;
 
@@ -46,6 +53,9 @@ public class VideoPlayer extends FrameLayout {
     private AudioManager mAudioManager;
     private AudioFocusHelper mAudioFocusHelper;
 
+    public SurfaceView getSurfaceView() {
+        return mSurfaceView;
+    }
 
     public VideoPlayer(@NonNull Context context) {
         this(context, null);
@@ -65,8 +75,27 @@ public class VideoPlayer extends FrameLayout {
         mContext = context;
         setBackgroundColor(Color.BLACK);
         createSurfaceView();
+//        createImageWhenPaused();
         mAudioManager = (AudioManager)mContext.getApplicationContext().getSystemService(Context.AUDIO_SERVICE);
         mAudioFocusHelper = new AudioFocusHelper();
+    }
+
+    public ImageView getImageViewWhenPaused() {
+        return mImageViewWhenPaused;
+    }
+
+    //暂停时候最后1帧画面
+    private void createImageWhenPaused() {
+        if (mImageViewWhenPaused == null) {
+            mImageViewWhenPaused = new ImageView(mContext);
+            mImageViewWhenPaused.setBackgroundColor(Color.BLUE);
+            mImageViewWhenPaused.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        } else {
+            removeView(mImageViewWhenPaused);
+        }
+
+        mImageViewWhenPaused.setVisibility(View.GONE);
+        addView(mImageViewWhenPaused);
     }
 
     //创建surfaceView
@@ -75,11 +104,12 @@ public class VideoPlayer extends FrameLayout {
         mSurfaceView.getHolder().addCallback(new SurfaceHolder.Callback() {
             @Override
             public void surfaceCreated(SurfaceHolder surfaceHolder) {
-
+                LogUtil.d("surfaceCreated : " + surfaceHolder.getSurface().toString());
             }
 
             @Override
             public void surfaceChanged(SurfaceHolder surfaceHolder, int i, int i1, int i2) {
+                LogUtil.d("surfaceChanged : " + surfaceHolder.getSurface().toString());
                 if (mMediaPlayer != null) {
                     mMediaPlayer.setDisplay(surfaceHolder);
                 }
@@ -87,7 +117,7 @@ public class VideoPlayer extends FrameLayout {
 
             @Override
             public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
-
+                LogUtil.d("surfaceDestroyed : " + surfaceHolder.getSurface().toString());
             }
         });
         LayoutParams layoutParams = new LayoutParams(LayoutParams.MATCH_PARENT
@@ -100,31 +130,68 @@ public class VideoPlayer extends FrameLayout {
     private IMediaPlayer createPlayer() {
         IjkMediaPlayer ijkMediaPlayer = new IjkMediaPlayer();
 
-        ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_FORMAT, "rtsp_transport", "tcp");
-        ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_PLAYER, "start-on-prepared", 0);
-        ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_FORMAT, "http-detect-range-support", 0);
-
-        ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_PLAYER, "mediacodec_mpeg4", 1);
+//        ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_FORMAT, "rtsp_transport", "tcp");
+//        ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_PLAYER, "start-on-prepared", 0);
+//        ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_FORMAT, "http-detect-range-support", 0);
+//
+//        ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_PLAYER, "mediacodec_mpeg4", 1);
 
         // 设置之后播放RTSP可以秒加载
+//        ijkMediaPlayer.setOption(1, "analyzemaxduration", 100L);
+//        ijkMediaPlayer.setOption(1, "probesize", 1024*16);
+//        ijkMediaPlayer.setOption(1, "flush_packets", 1L);
+//        ijkMediaPlayer.setOption(4, "packet-buffering", 0);
+//        ijkMediaPlayer.setOption(4, "framedrop", 1);
+
+        //指对指定帧不做环路滤波, 可以节省CPU. 48(AVDISCARD_ALL) 所有帧都不做环路滤波
+        ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_CODEC, "skip_loop_filter", 48);
+//抛弃所有非引用
+        ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_CODEC, "skip_loop_filter", 8);
+//设置播放前的探测时间 1,达到首屏秒开效果
+        ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_FORMAT, "analyzeduration", 1L);
+//设置播放前的最大探测时间
         ijkMediaPlayer.setOption(1, "analyzemaxduration", 100L);
-        ijkMediaPlayer.setOption(1, "probesize", 1024*16);
+//播放前的探测Size，默认是1M, 改小一点会出画面更快
+        ijkMediaPlayer.setOption(1, "probesize", 1024L * 32);
+//每处理一个packet之后刷新io上下文
         ijkMediaPlayer.setOption(1, "flush_packets", 1L);
-        ijkMediaPlayer.setOption(4, "packet-buffering", 0);
-        ijkMediaPlayer.setOption(4, "framedrop", 1);
+//是否开启预缓冲，一般直播项目会开启，达到秒开的效果，不过带来了播放丢帧卡顿的体验
+        ijkMediaPlayer.setOption(4, "packet-buffering", 0L);
+//跳帧处理,放CPU处理较慢时，进行跳帧处理，保证播放流程，画面和声音同步
+        ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_PLAYER, "framedrop", 5);
+//等待开始之后才渲染
+        ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_PLAYER, "render-wait-start", 1);
+// 设置播放最大帧数 （可以根据网速来动态设置）
+        ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_PLAYER, "max-fps", 60);
+        ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_FORMAT, "max_delay", 0);
+
+//        if (DeviceUtil.isDecoderSupport()) {
+//            ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_PLAYER, "mediacodec", 1);
+//        } else {
+//            ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_PLAYER, "mediacodec", 0);
+//        }
+
+        ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_FORMAT, "fpsprobesize", 60);
+//因为项目中多次调用播放器，有网络视频，resp，本地视频，还有wifi上http视频，所以得清空DNS才能播放WIFI上的视频
+        ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_FORMAT, "dns_cache_clear", 0);
+        ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_FORMAT, "dns_cache_timeout", -1);
+//如果是rtsp协议，可以优先用tcp(默认是用udp)
+        ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_FORMAT, "rtsp_transport", "tcp");
+        ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_PLAYER,"reconnect",5);
+
 
         ijkMediaPlayer.setVolume(1.0f, 1.0f);
 
-        setEnableMediaCodec(ijkMediaPlayer,mEnableMediaCodec);
+//        setEnableMediaCodec(ijkMediaPlayer,mEnableMediaCodec);
         return ijkMediaPlayer;
     }
 
     //设置是否开启硬解码
     private void setEnableMediaCodec(IjkMediaPlayer ijkMediaPlayer, boolean isEnable) {
         int value = isEnable ? 1 : 0;
-        ijkMediaPlayer.setOption(4, "mediacodec", value);//开启硬解码
-        ijkMediaPlayer.setOption(4, "mediacodec-auto-rotate", value);
-        ijkMediaPlayer.setOption(4, "mediacodec-handle-resolution-change", value);
+//        ijkMediaPlayer.setOption(4, "mediacodec", value);//开启硬解码
+//        ijkMediaPlayer.setOption(4, "mediacodec-auto-rotate", value);
+//        ijkMediaPlayer.setOption(4, "mediacodec-handle-resolution-change", value);
     }
 
     public void setEnableMediaCodec(boolean isEnable){
@@ -244,6 +311,7 @@ public class VideoPlayer extends FrameLayout {
         if(mMediaPlayer != null) {
             return mMediaPlayer.isPlaying();
         }
+
         return false;
     }
 
@@ -366,4 +434,17 @@ public class VideoPlayer extends FrameLayout {
             return AudioManager.AUDIOFOCUS_REQUEST_GRANTED == status;
         }
     }
+
+    /**
+     * 保存当前图片，
+     *
+     * @param savePath
+     * @return 1 成功，0 失败
+     * 其实这不是真正的状态
+     * 当 返回 0 时，肯定截图失败，可能是上次截图未完成，或者没在播放视频
+     * 当返回 1 时，只是给播放器截图设置了截图变量参数，设置成功后返回 1
+     */
+//    public void getCurrentFrame(String savePath) {
+//        mMediaPlayer.getCurrentFrame(savePath);
+//    }
 }

@@ -85,6 +85,56 @@
         app:layout_constraintStart_toEndOf="@id/pause"
         app:layout_constraintTop_toBottomOf="@id/vertical_video" />
 
+    <Button
+        android:id="@+id/cut_video"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/cut_video"
+        app:layout_constraintStart_toEndOf="@id/vertical_video"
+        app:layout_constraintTop_toBottomOf="@id/btn_dismiss_floating_window" />
+
+
+    <Button
+        android:id="@+id/stream_video"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/stream_video"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/pause" />
+
+    <Button
+        android:id="@+id/mp4_video"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/mp4_video"
+        app:layout_constraintStart_toEndOf="@id/stream_video"
+        app:layout_constraintTop_toBottomOf="@id/pause" />
+
+    <Button
+        android:id="@+id/replay_video"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/replay_video"
+        app:layout_constraintStart_toEndOf="@id/mp4_video"
+        app:layout_constraintTop_toBottomOf="@id/pause" />
+
+    <Button
+        android:id="@+id/btn_video_view_floating_window"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/show_video_view_floating_window"
+        app:layout_constraintStart_toEndOf="@id/btn_dismiss_floating_window"
+        app:layout_constraintTop_toBottomOf="@id/btn_show_floating_window" />
+
+    <ImageView
+        android:id="@+id/cut_image"
+        android:layout_width="131dp"
+        android:layout_height="85dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center_vertical"
+        app:layout_constraintStart_toEndOf="@id/cut_video"
+        app:layout_constraintTop_toBottomOf="@id/btn_dismiss_floating_window" />
+
     <FrameLayout
         android:id="@+id/video_float_window"
         android:layout_width="wrap_content"

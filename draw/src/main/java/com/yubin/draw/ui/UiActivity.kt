@@ -3,6 +3,8 @@ package com.yubin.draw.ui
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.Canvas
 import android.os.Bundle
 import android.text.SpannableStringBuilder
 import android.text.Spanned
@@ -137,6 +139,25 @@ class UiActivity : NativeActivity<ActivityUiBinding>() {
                 .build(RouterPath.UiPage.PATH_UI_WINDOW)
                 .navigation()
         }
+
+        binding.cut.setOnClickListener {
+            //截图
+            val bitmap = getCurrentFrame(binding.quality)
+            binding.callbackImage.setImageBitmap(bitmap)
+        }
+    }
+
+    private fun getCurrentFrame(viewGroup: View): Bitmap? {
+        // 创建对应大小的bitmap(重点)
+        var bitmap = Bitmap.createBitmap(viewGroup.width, viewGroup.height, Bitmap.Config.ARGB_8888)
+        val canvas = Canvas(bitmap)
+        viewGroup.draw(canvas)
+
+//        val matrix =  Matrix()
+//        matrix.setScale(0.7f, 0.7f);
+//        bitmap = Bitmap.createBitmap( bitmap, 0, 0,  bitmap.width, bitmap.height, matrix, false);
+
+        return bitmap
     }
 
     private fun initView() {
