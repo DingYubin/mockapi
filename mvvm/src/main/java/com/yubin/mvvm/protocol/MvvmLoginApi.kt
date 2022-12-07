@@ -11,7 +11,6 @@ import retrofit2.http.POST
 interface MvvmLoginApi {
 
     @Headers(ENCRYPT_HEADER_USER_QUERY)
-//    @Headers("local-encrypt:0")
     @POST("/api/login")
     suspend fun login(@Body body: RequestBody): BaseResponse<UserEntity>
 

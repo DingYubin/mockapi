@@ -5,10 +5,12 @@ import com.yubin.baselibrary.util.LogUtil
 import com.yubin.net.NetworkConstants.ENCRYPT_AVER
 import com.yubin.net.NetworkConstants.ENCRYPT_USER
 import com.yubin.net.NetworkConstants.X_CONTENT
+import com.yubin.net.NetworkConstants.X_LOCAL_DECRYPT
 import com.yubin.net.NetworkConstants.X_LOCAL_ENCRYPT
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.RequestBody.Companion.toRequestBody
+import okhttp3.ResponseBody.Companion.toResponseBody
 import okio.Buffer
 import java.io.IOException
 
@@ -24,7 +26,15 @@ class CryptoInterceptor : Interceptor {
         if (ENCRYPT_USER == encryptTag) {
             request = encryptUserReq(request)
         }
-        return chain.proceed(request)
+
+        var response = chain.proceed(request)
+        if (response.isSuccessful) {
+            val decryptTag = response.header(X_LOCAL_DECRYPT)
+            if (ENCRYPT_USER == decryptTag) {
+                response = decryptResp(response)
+            }
+        }
+        return response
     }
 
     private fun encryptUserReq(request: Request): Request {
@@ -36,6 +46,16 @@ class CryptoInterceptor : Interceptor {
 
         LogUtil.d("requestBody : ${bodyToString(requestBody)}")
         return request.newBuilder().method(request.method, requestBody).build()
+    }
+
+    private fun decryptResp(response: Response) : Response {
+        val responseBody = response.body
+        val bodyStr = response.body?.string()
+//        val bodyStr = "i6Xufs+E5p3upVhS0oNMbeFNmMQ/rmHXBKa6FJG0m9tMupHShVuH6ndPyxRpxWLJRzGhHxSCnrOH3NeO70Q9R6jFTsru+b+p6nB7IWZvO6cED3kcObHpQ5v536fbrkZoBOpMLS+X5inCG9KG98jizPI77tiuUE1KhdCiOwHPvFzkLy+gX+mf9cT6ziJdS7Wc"
+        LogUtil.d("responseBody : $bodyStr")
+        val bodyDecrypted = AESCBCUtil.decrypt(bodyStr)
+        LogUtil.d("responseBody : $bodyDecrypted")
+        return response.newBuilder().body(bodyDecrypted.toResponseBody(responseBody?.contentType())).build()
     }
 
     @Throws(IOException::class)
