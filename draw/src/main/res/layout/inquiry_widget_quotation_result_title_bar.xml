@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:background="@color/color_cec_white_ffffff"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivBack"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:paddingStart="14dp"
+            android:paddingEnd="14dp"
+            android:scaleType="center"
+            android:src="@drawable/uikit_icon_cec_tool_bar_back" />
+
+        <com.yubin.draw.widget.viewGroup.tab.CECTabLayout
+            android:id="@+id/tab_button"
+            style="@style/inquiry_quotation_result_tab"
+            android:layout_width="wrap_content"
+            android:layout_height="44dp"
+            android:layout_toEndOf="@id/ivBack"
+            android:background="@android:color/white"
+            android:layout_marginStart="-14dp"
+            app:tabBackground="@android:color/transparent"
+            app:tabGravity="center"
+            app:tabIndicator="@null"
+            app:tabMinWidth="68dp"
+            app:tabMode="scrollable"
+            app:tabRippleColor="@color/transparent" />
+
+    </RelativeLayout>
+
+</LinearLayout>

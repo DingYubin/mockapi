@@ -82,6 +82,11 @@ object RouterPath {
              */
             const val PATH_UI_EXPOSURE = "/ui/exposure"
 
+            /**
+             * tab
+             */
+            const val PATH_UI_TAB = "/ui/tab"
+
         }
     }
 }

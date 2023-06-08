@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/widget_cec_tab_view_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:textColor="@color/uikit_selector_cec_color_tab_text"
+        android:textSize="@dimen/dimen_text_32px" />
+
+    <View
+        android:id="@+id/widget_cec_tab_view_indicator"
+        android:layout_width="@dimen/dimen_tab_indicator_width"
+        android:layout_height="@dimen/dimen_tab_indicator_height"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/uikit_selector_cec_tab_indicator_drawable" />
+
+    <TextView
+        android:id="@+id/widget_cec_tab_view_dot"
+        android:layout_width="wrap_content"
+        android:layout_height="14dp"
+        android:layout_alignTop="@id/widget_cec_tab_view_text"
+        android:layout_toEndOf="@id/widget_cec_tab_view_text"
+        android:layout_marginLeft="-4dp"
+        android:background="@drawable/uikit_shape_cec_tab_view_dot_drawable"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:minWidth="14dp"
+        android:paddingStart="3dp"
+        android:paddingEnd="3dp"
+        android:textColor="@color/color_cec_white_ffffff"
+        android:textSize="9sp"
+        android:textStyle="bold"
+        android:visibility="invisible"
+        tools:ignore="SmallSp" />
+
+</RelativeLayout>

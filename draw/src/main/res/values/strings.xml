@@ -34,6 +34,8 @@
     <string name="inquiry_quality_other">其他</string>
 
     <string name="exposure">曝光</string>
+
+    <string name="tab">tabActivity</string>
     <string name="window">视频浮窗</string>
 
     <string name="test">查看图片 %s</string>

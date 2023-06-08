@@ -134,6 +134,12 @@ class UiActivity : NativeActivity<ActivityUiBinding>() {
                 .navigation()
         }
 
+        binding.tabActivity.setOnClickListener {
+            ARouter.getInstance()
+                .build(RouterPath.UiPage.PATH_UI_TAB)
+                .navigation()
+        }
+
         binding.windowActivity.setOnClickListener {
             ARouter.getInstance()
                 .build(RouterPath.UiPage.PATH_UI_WINDOW)

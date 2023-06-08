@@ -397,6 +397,11 @@
     <dimen name="mask_width">256dp</dimen>
     <dimen name="mask_height">395dp</dimen>
 
+    <dimen name="dimen_text_32px">16sp</dimen>
+    <dimen name="dimen_tab_indicator_width">20dp</dimen>
+    <dimen name="dimen_tab_indicator_height">4dp</dimen>
+    <dimen name="dimen_tab_indicator_radius">2dp</dimen>
+
     <dimen name="design_snack_bar_padding_vertical_2lines">24dp</dimen>
     <dimen name="design_snack_bar_padding_vertical">14dp</dimen>
     <!-- Market -->

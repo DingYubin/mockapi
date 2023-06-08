@@ -20,6 +20,10 @@
             android:exported="true" />
 
         <activity
+            android:name=".ui.TabActivity"
+            android:exported="true" />
+
+        <activity
             android:name=".ui.WindowActivity"
             android:exported="true" />
 

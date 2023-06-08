@@ -271,6 +271,19 @@
                 tools:ignore="RtlSymmetry" />
 
             <TextView
+                android:id="@+id/tab_activity"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/color_cec_grey_646566"
+                android:gravity="center_vertical"
+                android:paddingStart="15dp"
+                android:text="@string/tab"
+                android:textColor="@color/color_cec_black_222222"
+                android:textSize="14sp"
+                tools:ignore="RtlSymmetry" />
+
+            <TextView
                 android:id="@+id/window_activity"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
