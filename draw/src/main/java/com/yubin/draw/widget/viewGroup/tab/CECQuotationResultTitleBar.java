@@ -24,7 +24,7 @@ import com.yubin.draw.R;
  */
 public class CECQuotationResultTitleBar extends FrameLayout{
     private Context mContext;
-    public TabLayout tabLayout;
+    public CECTabLayout tabLayout;
 
     private ViewPager2 viewPager2;
 //    private OnOperateBtnClickListener mOperateBtnClickListener;
@@ -119,6 +119,7 @@ public class CECQuotationResultTitleBar extends FrameLayout{
             }
         }
     };
+
 
 
 //    public interface OnOperateBtnClickListener {

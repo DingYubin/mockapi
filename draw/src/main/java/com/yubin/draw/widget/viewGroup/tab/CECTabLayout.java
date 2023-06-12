@@ -22,7 +22,7 @@ public class CECTabLayout extends TabLayout {
 
     public CECTabLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-//        this.initWithContext(context);
+        this.initWithContext(context);
     }
 
     /**
