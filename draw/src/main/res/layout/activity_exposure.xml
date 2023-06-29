@@ -8,17 +8,32 @@
         android:id="@+id/srl"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:background="@color/bg_common_rl"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <com.yubin.draw.widget.recyclerView.CMRecyclerView
-            android:id="@+id/my_recycler"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="4dp"
-            android:fastScrollEnabled="true"
-            android:overScrollMode="never"
-            android:scrollbars="none" />
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/header"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="@color/st_bg_common_deep_blue"/>
+
+
+            <com.yubin.draw.widget.recyclerView.CMRecyclerView
+                android:id="@+id/my_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="9dp"
+                android:fastScrollEnabled="true"
+                android:overScrollMode="never"
+                android:scrollbars="none"/>
+
+        </LinearLayout>
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
