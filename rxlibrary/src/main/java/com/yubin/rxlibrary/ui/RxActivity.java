@@ -397,7 +397,7 @@ public class RxActivity extends NativeActivity<ActivityRxBinding> {
 
     }
 
-    private void textReduce(){
+    private void textCollect(){
         List<UserEntity> users = getUsers();
         List<List<UserEntity>> lists = getLists(users);
 
@@ -444,7 +444,7 @@ public class RxActivity extends NativeActivity<ActivityRxBinding> {
                 });
     }
 
-    private void textCollect(){
+    private void textReduce(){
         List<UserEntity> users = getUsers();
         List<UserEntity> result = getUsers();
         List<List<UserEntity>> lists = getLists(users);
