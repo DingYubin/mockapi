@@ -36,4 +36,6 @@
     <color name="color_cec_black_222222">#222222</color>
     <color name="color_cec_mask_70">#B3000000</color>
 
+    <color name="color_cec_black_ff2a2a2b">#ff2a2a2b</color>
+
 </resources>

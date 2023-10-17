@@ -19,6 +19,8 @@
     <string name="inquiry_quality_all">按整单选</string>
     <string name="inquiry_quality_single">按单个配件选</string>
 
+    <string name="snack_bar1">snackBar弹窗1</string>
+    <string name="snack_bar2">snackBar弹窗2</string>
     <string name="go_callback_activity">回调页面事例，几种写法，这里都有</string>
     <string name="callback_title">回调样例</string>
     <string name="callback_for_java">java回调样例</string>
@@ -32,6 +34,9 @@
     <string name="more">更多</string>
     <string name="callback_for_kotlin_internal">kotlin-internal回调样例</string>
     <string name="inquiry_quality_other">其他</string>
+
+    <string name="main_finish_task_notification">已完成【%s】任务，积分</string>
+    <string name="main_point">+%s</string>
 
     <string name="exposure">曝光</string>
 

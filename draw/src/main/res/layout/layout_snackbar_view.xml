@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="108dp"
+    android:background="@drawable/icon_cec_snackbar"
+    android:paddingHorizontal="24dp"
+    android:paddingTop="8dp"
+    android:paddingBottom="28dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="72dp">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/snackbar_iv_start"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/snackbar_point"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/snackbar_tv_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:textColor="@color/color_cec_black_ff2a2a2b"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/snackbar_iv_start"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="已完成【发布询价】任务，积分" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/snackbar_tv_point"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#FF863E0A"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/snackbar_tv_desc"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="+10" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

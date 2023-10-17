@@ -24,6 +24,7 @@ import com.yubin.baselibrary.ui.basemvvm.BaseActivity
 import com.yubin.baselibrary.ui.basemvvm.NativeActivity
 import com.yubin.baselibrary.util.EmptyUtil
 import com.yubin.baselibrary.util.HandlerHelper
+import com.yubin.baselibrary.util.LogUtil
 import com.yubin.baselibrary.util.MockUtil
 import com.yubin.baselibrary.util.ResourceUtil
 import com.yubin.draw.R
@@ -31,7 +32,10 @@ import com.yubin.draw.bean.StoreList
 import com.yubin.draw.databinding.ActivityUiBinding
 import com.yubin.draw.widget.dialog.GuideDialog
 import com.yubin.draw.widget.snackbar.SnackBar
+import com.yubin.draw.widget.snackbar.SnackBar.Callback
+import com.yubin.draw.widget.snackbar.SnackBar1
 import com.yubin.draw.widget.view.GoodsItemView
+import java.util.LinkedList
 
 
 /**
@@ -97,10 +101,30 @@ class UiActivity : NativeActivity<ActivityUiBinding>() {
         binding.orderText.text = spanBuilder
     }
 
+    val queue = LinkedList<String>()
+
     @SuppressLint("ClickableViewAccessibility")
     private fun addListener() {
         binding.snackBar.setOnClickListener {
             showNotification()
+        }
+
+        binding.snackBar1.setOnClickListener {
+            if (queue.isEmpty()) {
+                for (i in 0 until 6) {
+                    queue.add("商品$i")
+                }
+                showSnackBar()
+            } else {
+                queue.add("商品多余")
+            }
+
+        }
+
+
+        binding.snackBar2.setOnClickListener {
+            queue.add("你好周杰伦")
+//            SnackBar1().showSnackBar(window.decorView, "商品", "60")
         }
 
         binding.guide.setOnClickListener {
@@ -150,6 +174,16 @@ class UiActivity : NativeActivity<ActivityUiBinding>() {
             //截图
             val bitmap = getCurrentFrame(binding.quality)
             binding.callbackImage.setImageBitmap(bitmap)
+        }
+    }
+
+    private fun showSnackBar() {
+        if (queue.isNotEmpty()) {
+            val snackBar1 = SnackBar1()
+            snackBar1.showSnackBar(window.decorView, queue.removeFirst(), "60")
+            snackBar1.addCallback {
+                showSnackBar()
+            }
         }
     }
 
@@ -219,7 +253,7 @@ class UiActivity : NativeActivity<ActivityUiBinding>() {
     }
 
     private fun showNotification() {
-        binding.snackBar.isEnabled = false
+//        binding.snackBar.isEnabled = false
         val bar = SnackBar.make(
             this as BaseActivity,
             "询价单B00000001，客户补充了旧件图/零件号，请及时调整报价",
@@ -229,10 +263,23 @@ class UiActivity : NativeActivity<ActivityUiBinding>() {
             .setIconLeft(R.drawable.notice_icon, 33.0f)
             .setBackground(R.drawable.notice_bg)
             .setIconPadding(1)
+            .setCallback(object : Callback() {
+                override fun onDismissed(snackbar: SnackBar?, event: Int) {
+                    super.onDismissed(snackbar, event)
+                    LogUtil.i("Notification onDismissed")
+                }
+
+                override fun onShown(snackbar: SnackBar?) {
+                    super.onShown(snackbar)
+                    LogUtil.i("Notification onShown")
+                }
+            })
         bar.showNotification()
         bar.view.setOnClickListener {
             bar.dismiss()
-            binding.snackBar.isEnabled = true
+//            binding.snackBar.isEnabled = true
         }
     }
+
+
 }
