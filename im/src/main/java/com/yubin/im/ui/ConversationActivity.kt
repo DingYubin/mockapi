@@ -5,6 +5,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.yubin.baselibrary.router.path.RouterPath
 import com.yubin.baselibrary.ui.basemvvm.NativeActivity
 import com.yubin.im.databinding.ActivityImBinding
+import com.yubin.im.manager.ChatAndStaffLayoutManager
 
 /**
  * <pre>
@@ -18,6 +19,8 @@ import com.yubin.im.databinding.ActivityImBinding
 @Route(path = RouterPath.ImPage.PATH_IM_CONVERSATION)
 class ConversationActivity : NativeActivity<ActivityImBinding>() {
 
+    private var chatAndStaffLayoutManager: ChatAndStaffLayoutManager? = null
+
     override fun getViewBinding(): ActivityImBinding {
         return ActivityImBinding.inflate(layoutInflater)
     }
@@ -27,6 +30,10 @@ class ConversationActivity : NativeActivity<ActivityImBinding>() {
         if (this.supportActionBar != null) {
             this.supportActionBar!!.hide()
         }
+
+        chatAndStaffLayoutManager = ChatAndStaffLayoutManager(this)
+        binding.prtRecyclerView.layoutManager = chatAndStaffLayoutManager
+        binding.header.attachTo(binding.prtRecyclerView, true)
     }
 
 }
