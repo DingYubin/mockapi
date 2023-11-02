@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.PasswordTransformationMethod;
-import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -13,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatEditText;
 
 import com.yubin.baselibrary.common.ChatType;
+import com.yubin.baselibrary.util.LogUtil;
 import com.yubin.dblibrary.AppDataBase;
 import com.yubin.dblibrary.entity.Conversation;
 import com.yubin.mvp.R;
@@ -45,8 +45,7 @@ public class MvpLoginActivity extends AppCompatActivity implements LoginInterfac
         btnLogin.setEnabled(true);
 
         btnLogin.setOnClickListener(view -> {
-
-            Log.d("MvpLoginActivity", "account : " + account.getText().toString() + ", password : " + password.getText().toString());
+            LogUtil.d("account : " + account.getText().toString() + ", password : " + password.getText().toString());
             presenter.login(account.getText().toString(), password.getText().toString());
         });
 
@@ -80,7 +79,7 @@ public class MvpLoginActivity extends AppCompatActivity implements LoginInterfac
             conversation.setUnReadNum(10);
             conversation.setChatType(ChatType.P);
             AppDataBase.getInstance().conversationDao().save(conversation);
-//            Log.d(TAG, AppDataBase.getInstance().conversationDao().queryConversation("001", ChatType.P).toString());
+            LogUtil.d(AppDataBase.getInstance().conversationDao().queryConversation("001", ChatType.P).toString());
 
         }).start();
 
