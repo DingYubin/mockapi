@@ -87,6 +87,10 @@ object RouterPath {
              */
             const val PATH_UI_TAB = "/ui/tab"
 
+            /**
+             * im
+             */
+            const val PATH_UI_IM = "/ui/im"
         }
     }
 }

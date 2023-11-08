@@ -52,6 +52,14 @@ object CMUnitHelper {
         return (pxValue / density + 0.5f).toInt()
     }
 
+    fun getAppUsableScreenSize(context: Context): Point {
+        val windowManager = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
+        val display = windowManager.defaultDisplay
+        val size = Point()
+        display.getSize(size)
+        return size
+    }
+
     fun getRealScreenSize(context: Context): Point {
         val windowManager = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
         val display = windowManager.defaultDisplay

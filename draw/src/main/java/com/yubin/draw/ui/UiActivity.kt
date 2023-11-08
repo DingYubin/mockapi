@@ -175,6 +175,12 @@ class UiActivity : NativeActivity<ActivityUiBinding>() {
             val bitmap = getCurrentFrame(binding.quality)
             binding.callbackImage.setImageBitmap(bitmap)
         }
+
+        binding.im.setOnClickListener {
+            ARouter.getInstance()
+                .build(RouterPath.UiPage.PATH_UI_IM)
+                .navigation()
+        }
     }
 
     private fun showSnackBar() {

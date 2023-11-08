@@ -219,6 +219,19 @@
                     app:layout_constraintTop_toBottomOf="@+id/inquiry_ll_other_requirements_quality_check_single" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/im"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/st_bg_common_master_blue"
+                android:gravity="center_vertical"
+                android:paddingStart="15dp"
+                android:text="@string/im_style"
+                android:textColor="@color/color_cec_black_222222"
+                android:textSize="14sp"
+                tools:ignore="RtlSymmetry"/>
+
             <TextView
                 android:id="@+id/snack_bar1"
                 android:layout_width="match_parent"

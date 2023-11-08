@@ -113,7 +113,7 @@ dependencies {
     implementation project(':draw')
     implementation project(':rxlibrary')
     implementation project(':coroutine')
-
+    implementation project(':netlibrary')
 
     //**************崩溃报告**************//
     implementation 'com.tencent.bugly:crashreport_upgrade:1.5.23'

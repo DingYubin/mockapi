@@ -6,10 +6,12 @@ import androidx.multidex.MultiDex
 import com.yubin.baselibrary.appstart.AppStartInitializer
 import com.yubin.baselibrary.appstart.IAppStartCallback
 import com.yubin.baselibrary.core.BaseApplication
+import com.yubin.baselibrary.image.CECImageLoaderInitHelper
 import com.yubin.baselibrary.router.CTRouteInitHelper
 import com.yubin.baselibrary.util.AutoSizeInitHelper
 import com.yubin.mockapi.common.ToolsInitUtils
 import com.yubin.mvvm.net.NetworkInitHelper
+import com.yubin.net.NetOkHttpClient
 
 class MainApplication : BaseApplication() {
 
@@ -32,6 +34,11 @@ class MainApplication : BaseApplication() {
                 AutoSizeInitHelper.init()
                 NetworkInitHelper.initNetWork(app)
                 ToolsInitUtils.initBugly(app)
+                //图片
+                CECImageLoaderInitHelper.initWithApplication(
+                    application,
+                    NetOkHttpClient.instance
+                )
             }
 
             override fun initInMainProcessBackgroundThread(app: Application) {

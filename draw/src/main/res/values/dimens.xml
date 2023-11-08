@@ -405,4 +405,7 @@
     <dimen name="design_snack_bar_padding_vertical_2lines">24dp</dimen>
     <dimen name="design_snack_bar_padding_vertical">14dp</dimen>
     <!-- Market -->
+    <dimen name="dimen_divine_line_height">0.5dp</dimen>
+    <dimen name="dimen_action_bar_height">44dp</dimen>
+    <dimen name="dimen_action_bar_padding">11dp</dimen>
 </resources>

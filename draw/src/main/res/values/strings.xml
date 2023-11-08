@@ -19,6 +19,7 @@
     <string name="inquiry_quality_all">按整单选</string>
     <string name="inquiry_quality_single">按单个配件选</string>
 
+    <string name="im_style">im样式</string>
     <string name="snack_bar1">snackBar弹窗1</string>
     <string name="snack_bar2">snackBar弹窗2</string>
     <string name="go_callback_activity">回调页面事例，几种写法，这里都有</string>
@@ -62,5 +63,8 @@
     <string name="replay_video">回放</string>
     <string name="horizontal_video">横屏</string>
 
-
+    <string name="im_hint_message_input">请输入您要咨询的问题</string>
+    <string name="group_title">选择提醒的成员</string>
+    <string name="tv_search">搜索联系人</string>
+    <string name="all_member">所有人（%d）</string>
 </resources>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/color_cec_white_ffffff">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/im_person_info_layout"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.yubin.baselibrary.image.CECImageUrlView
+            android:id="@+id/im_person_avatar"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="14dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            fresco:actualImageScaleType="centerCrop"
+            fresco:placeholderImage="@drawable/im_ic_supplier_avatar_placeholder"
+            fresco:placeholderImageScaleType="centerCrop"
+            fresco:roundAsCircle="true" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/im_chat_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="10dp"
+            android:text="张店长"
+            android:textColor="@color/inquiry_color_2A2B2C"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/im_person_avatar"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/im_unit_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="深圳久久汽配"
+            android:textColor="@color/color_979899"
+            android:textSize="12sp"
+            app:layout_constraintStart_toEndOf="@+id/im_person_avatar"
+            app:layout_constraintTop_toBottomOf="@+id/im_chat_name" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_divine_line_height"
+            android:layout_marginStart="70dp"
+            android:layout_marginEnd="14dp"
+            android:background="@color/color_14000000"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/im_person_avatar" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

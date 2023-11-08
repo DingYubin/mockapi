@@ -24,18 +24,25 @@
     <color name="st_text_stock_back">#FF2A2A2B</color>
 
     <color name="inquiry_color_2A2A2B">#FF2A2A2B</color>
-
+    <color name="inquiry_color_2A2B2C">#FF2A2B2C</color>
     <color name="color_cec_red_ff4e33">#ff4e33</color>
     <color name="color_cec_red_f42c2c">#f42c2c</color>
     <color name="color_cec_grey_646566">#FF646566</color>
     <color name="color_cec_white_f8f8f8">#fff8f8f8</color>
     <color name="color_cec_white_ffffff">#ffffff</color>
-
+    <color name="color_979899">#FF979899</color>
     <color name="color_646566">#ff646566</color>
     <color name="color_cec_transparent">#00000000</color>
     <color name="color_cec_black_222222">#222222</color>
     <color name="color_cec_mask_70">#B3000000</color>
 
     <color name="color_cec_black_ff2a2a2b">#ff2a2a2b</color>
+    <color name="color_fafafa">#fafafa</color>
+    <color name="color_cec_gray_e4e4e4">#e4e4e4</color>
+    <color name="color_cec_grey_999999">#999999</color>
 
+    <color name="color_000000">#000000</color>
+    <color name="color_14000000">#14000000</color>
+
+    <color name="color_f2f3f5">#fff2f3f5</color>
 </resources>
