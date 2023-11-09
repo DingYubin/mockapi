@@ -11,7 +11,7 @@ import com.tencent.bugly.Bugly;
 import com.tencent.bugly.beta.Beta;
 import com.tencent.bugly.beta.interfaces.BetaPatchListener;
 import com.tencent.bugly.crashreport.CrashReport;
-import com.yubin.mockapi.common.utils.CECAppHelper;
+import com.yubin.baselibrary.util.CECAppHelper;
 
 import java.io.BufferedReader;
 import java.io.IOException;

@@ -6,6 +6,7 @@ import android.text.Spanned
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.yubin.baselibrary.router.path.RouterPath
 import com.yubin.baselibrary.ui.basemvvm.NativeActivity
+import com.yubin.baselibrary.util.KeyBoardHelper
 import com.yubin.baselibrary.util.LogUtil
 import com.yubin.draw.R
 import com.yubin.draw.databinding.ActivityUiImBinding
@@ -30,7 +31,7 @@ class ImActivity : NativeActivity<ActivityUiImBinding>() {
         super.onCreate(savedInstanceState)
 
         setTitleWithinToolBar(R.string.im_style)
-
+        supportActionBar?.hide()
         initView()
     }
 
@@ -73,5 +74,7 @@ class ImActivity : NativeActivity<ActivityUiImBinding>() {
 
     private fun showAtBottomView() {
         ImAtGroupMemberView(this).showImAtGroupMemberWindow(window.decorView)
+        KeyBoardHelper.hideKeyBoard(this)
     }
+
 }

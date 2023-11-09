@@ -1,6 +1,7 @@
 package com.yubin.draw.widget.viewGroup.im
 
 import android.content.Context
+import android.text.TextUtils
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +9,7 @@ import android.widget.FrameLayout
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
 import com.yubin.baselibrary.core.BaseApplication
@@ -20,6 +22,7 @@ import com.yubin.draw.adapter.MemberAdapter
 import com.yubin.draw.bean.MemberBean
 import com.yubin.draw.bean.MemberList
 import com.yubin.draw.extend.DrawHelper
+import com.yubin.draw.model.ImMemberViewModel
 import com.yubin.draw.ui.ImActivity
 import com.yubin.draw.widget.recyclerView.CMRecyclerView
 import com.yubin.ecwindow.ECPopWindow
@@ -34,6 +37,8 @@ class ImAtGroupMemberView(context: Context) : ConstraintLayout(context) {
     private var flContainer: FrameLayout? = null
     private var ivClose: AppCompatImageView? = null
     private var mAdapter: MemberAdapter? = null
+    private var mKeywordsBar: ImKeywordsSearch? = null
+    var mViewModel: ImMemberViewModel? = null
     private var mDataList: MutableList<MemberBean> = mutableListOf()
     private val maxShowHeight: Int
 
@@ -42,26 +47,52 @@ class ImAtGroupMemberView(context: Context) : ConstraintLayout(context) {
             ((CMUnitHelper.getAppUsableScreenSize(context).y * 0.8) - CMUnitHelper.dp2px(100f)).toInt()
         mActivity = context as? ImActivity
         initView()
+        initViewModel()
         initData()
     }
 
     private fun initView() {
 
         inflate(context, R.layout.inquiry_layout_at_group_member, this)
+        mKeywordsBar = findViewById(R.id.im_keywords_bar)
         rvMemberList = findViewById(R.id.cl_member_list)
         clContainer = findViewById(R.id.cl_area_container)
         flContainer = findViewById(R.id.fl_container)
         ivClose = findViewById(R.id.close)
         tvMemberNumber = findViewById(R.id.im_member_number)
 
-        ivClose?.onViewClick {
-            ecPopWindow?.dismiss()
-        }
-
         mAdapter = MemberAdapter()
         rvMemberList?.layoutManager = LinearLayoutManager(context)
         rvMemberList?.adapter = mAdapter
 
+        ivClose?.onViewClick {
+            ecPopWindow?.dismiss()
+        }
+
+        mKeywordsBar?.setKeywordsChangedListener { keywords ->
+//            mContactsSearchListViewModel?.editKeywords = keywords
+            if (TextUtils.isEmpty(keywords)) {
+                mAdapter?.submitListWithKeywords(mDataList, keywords)
+            } else {
+                fetchSearchContacts(keywords)
+            }
+        }
+    }
+
+    private fun fetchSearchContacts(keywords: String) {
+        mViewModel?.getSearchContactsList(keywords, mDataList)
+    }
+
+    private fun initViewModel() {
+        if (mActivity == null) return
+
+        if (mViewModel == null) {
+            mViewModel = ViewModelProvider(mActivity!!)[ImMemberViewModel::class.java]
+        }
+
+        mViewModel?.mSearchResultLD?.observe(mActivity!!) {
+            mAdapter?.submitListWithKeywords(it.list, it.keywords ?: "")
+        }
     }
 
     private fun initData() {
@@ -104,4 +135,5 @@ class ImAtGroupMemberView(context: Context) : ConstraintLayout(context) {
             rvMemberList?.layoutParams = lp
         }
     }
+
 }

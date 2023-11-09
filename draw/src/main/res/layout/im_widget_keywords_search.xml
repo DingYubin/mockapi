@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cec_im_keywords_frame"
+    android:layout_width="match_parent"
+    android:layout_height="35dp"
+    android:layout_centerVertical="true"
+    android:background="@drawable/uikit_shape_cec_search_frame_17"
+    tools:ignore="MissingDefaultResource">
+
+    <com.yubin.draw.widget.viewGroup.im.CustomAppCompatEditText
+        android:id="@+id/cec_im_keywords_input"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        android:layout_marginEnd="26dp"
+        android:background="@null"
+        android:ellipsize="end"
+        android:hint="@string/im_contacts_search_hint"
+        android:imeOptions="actionSearch"
+        android:includeFontPadding="false"
+        android:maxLength="50"
+        android:maxLines="1"
+        android:singleLine="true"
+        android:textColor="@color/color_cec_black_222222"
+        android:textColorHint="@color/color_cec_grey_bbbbbb"
+        android:textSize="13sp"
+        android:visibility="visible"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/cec_im_keywords_frame"
+        app:layout_constraintStart_toEndOf="@id/cec_im_keywords_icon"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/cec_im_keywords_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="11dp"
+        android:src="@drawable/search"
+        app:layout_constraintBottom_toBottomOf="@id/cec_im_keywords_input"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/cec_im_keywords_input" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/cec_im_keywords_clear"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="3dp"
+        android:padding="3dp"
+        android:src="@drawable/im_icon_clear_keywords"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

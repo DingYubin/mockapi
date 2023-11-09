@@ -65,6 +65,6 @@
 
     <string name="im_hint_message_input">请输入您要咨询的问题</string>
     <string name="group_title">选择提醒的成员</string>
-    <string name="tv_search">搜索联系人</string>
     <string name="all_member">所有人（%d）</string>
+    <string name="im_contacts_search_hint">搜索联系人</string>
 </resources>

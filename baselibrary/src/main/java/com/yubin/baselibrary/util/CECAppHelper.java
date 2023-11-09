@@ -1,4 +1,4 @@
-package com.yubin.mockapi.common.utils;
+package com.yubin.baselibrary.util;
 
 import android.app.Activity;
 import android.app.ActivityManager;
