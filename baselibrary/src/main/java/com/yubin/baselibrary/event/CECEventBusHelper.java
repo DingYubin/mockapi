@@ -1,15 +1,9 @@
-package com.casstime.base.event;
+package com.yubin.baselibrary.event;
 
 import org.greenrobot.eventbus.EventBus;
 
 /**
  * description: 开思是事件总线辅助类
- * <p>
- * email: jun.hou@casstime.com
- * <p>
- * date: created on 2019/3/6
- * <p>
- * author:   侯军(A01082)
  */
 public class CECEventBusHelper {
 

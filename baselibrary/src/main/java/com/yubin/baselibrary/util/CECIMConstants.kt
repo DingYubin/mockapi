@@ -1,4 +1,4 @@
-package com.casstime.ec.im.util
+package com.yubin.baselibrary.util
 
 object CECIMConstants {
 
@@ -7,6 +7,8 @@ object CECIMConstants {
     const val EVENT_IM_SHOW_SHARE_DIALOG = "event_im_show_share_dialog"
 
     const val EVENT_IM_SELECT_SHARE = "event_im_select_share"
+
+    const val EVENT_IM_SELECT_MEMBER = "event_im_select_member"
 
     const val EVENT_IM_SELECT_SHARE_MEDIA = "event_im_select_share_media"
 

@@ -1,15 +1,9 @@
-package com.casstime.base.event;
+package com.yubin.baselibrary.event;
 
 import java.util.Map;
 
 /**
- * description: 开思事件实体
- * <p>
- * email: jun.hou@casstime.com
- * <p>
- * date: created on 2019/3/6
- * <p>
- * author:   侯军(A01082)
+ * description: 事件
  */
 public class CECEvent {
 

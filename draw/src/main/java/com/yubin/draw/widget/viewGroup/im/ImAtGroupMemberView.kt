@@ -38,7 +38,7 @@ class ImAtGroupMemberView(context: Context) : ConstraintLayout(context) {
     private var ivClose: AppCompatImageView? = null
     private var mAdapter: MemberAdapter? = null
     private var mKeywordsBar: ImKeywordsSearch? = null
-    var mViewModel: ImMemberViewModel? = null
+    private var mViewModel: ImMemberViewModel? = null
     private var mDataList: MutableList<MemberBean> = mutableListOf()
     private val maxShowHeight: Int
 
@@ -70,7 +70,6 @@ class ImAtGroupMemberView(context: Context) : ConstraintLayout(context) {
         }
 
         mKeywordsBar?.setKeywordsChangedListener { keywords ->
-//            mContactsSearchListViewModel?.editKeywords = keywords
             if (TextUtils.isEmpty(keywords)) {
                 mAdapter?.submitListWithKeywords(mDataList, keywords)
             } else {
@@ -133,6 +132,12 @@ class ImAtGroupMemberView(context: Context) : ConstraintLayout(context) {
             val lp = rvMemberList?.layoutParams
             lp?.height = maxShowHeight
             rvMemberList?.layoutParams = lp
+        }
+    }
+
+    fun hideImAtGroupMemberWindow() {
+        if (ecPopWindow?.isShowing == true) {
+            ecPopWindow?.dismiss()
         }
     }
 

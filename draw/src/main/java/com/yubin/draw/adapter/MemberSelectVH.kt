@@ -6,8 +6,12 @@ import android.text.TextUtils
 import android.text.style.ForegroundColorSpan
 import android.view.View
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.collection.ArrayMap
 import androidx.constraintlayout.widget.ConstraintLayout
+import com.yubin.baselibrary.event.CECEvent
+import com.yubin.baselibrary.event.CECEventBusHelper
 import com.yubin.baselibrary.image.CECImageUrlView
+import com.yubin.baselibrary.util.CECIMConstants
 import com.yubin.baselibrary.util.LogUtil
 import com.yubin.baselibrary.util.ResourceUtil
 import com.yubin.draw.R
@@ -30,6 +34,10 @@ class MemberSelectVH(itemView: View, var keywordsValue: KeywordsValue = Keywords
         mPortraitImg.setImageUrl(data.imageUri)
         mPersonalInfoLayout.setOnClickListener {
             LogUtil.i("选择 member: $data")
+            val map = ArrayMap<String, MemberBean>()
+            map["data"] = data
+            val event = CECEvent(CECIMConstants.EVENT_IM_SELECT_MEMBER, map)
+            CECEventBusHelper.post(event)
         }
     }
 

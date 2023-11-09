@@ -94,6 +94,9 @@ dependencies {
         exclude group: 'com.facebook.soloader', module: 'soloader'
     })
 
+    //evenbus
+    api "org.greenrobot:eventbus:3.2.0"
+
     implementation dependency.rxjava2
     implementation dependency.rxandroid2
 }
