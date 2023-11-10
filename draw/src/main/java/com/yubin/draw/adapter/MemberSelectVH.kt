@@ -6,20 +6,21 @@ import android.text.TextUtils
 import android.text.style.ForegroundColorSpan
 import android.view.View
 import androidx.appcompat.widget.AppCompatTextView
-import androidx.collection.ArrayMap
 import androidx.constraintlayout.widget.ConstraintLayout
-import com.yubin.baselibrary.event.CECEvent
-import com.yubin.baselibrary.event.CECEventBusHelper
+import com.yubin.baselibrary.extension.onViewClick
 import com.yubin.baselibrary.image.CECImageUrlView
-import com.yubin.baselibrary.util.CECIMConstants
-import com.yubin.baselibrary.util.LogUtil
 import com.yubin.baselibrary.util.ResourceUtil
 import com.yubin.draw.R
 import com.yubin.draw.bean.KeywordsValue
 import com.yubin.draw.bean.MemberBean
 import com.yubin.draw.widget.recyclerView.adapter.CECViewHolder
+import com.yubin.draw.widget.viewGroup.im.IMMemberClickListener
 
-class MemberSelectVH(itemView: View, var keywordsValue: KeywordsValue = KeywordsValue()) :
+class MemberSelectVH(
+    itemView: View,
+    private var keywordsValue: KeywordsValue = KeywordsValue(),
+    private val memberClickListener: IMMemberClickListener
+) :
     CECViewHolder<MemberBean>(itemView) {
 
     private val mNameTv: AppCompatTextView = itemView.findViewById(R.id.im_chat_name)
@@ -32,13 +33,16 @@ class MemberSelectVH(itemView: View, var keywordsValue: KeywordsValue = Keywords
         mNameTv.text = formatDisplayName(keywordsValue.keywords, data.name ?: "")
         mUnitTv.text = data.unitName ?: ""
         mPortraitImg.setImageUrl(data.imageUri)
-        mPersonalInfoLayout.setOnClickListener {
-            LogUtil.i("选择 member: $data")
-            val map = ArrayMap<String, MemberBean>()
-            map["data"] = data
-            val event = CECEvent(CECIMConstants.EVENT_IM_SELECT_MEMBER, map)
-            CECEventBusHelper.post(event)
+        mPersonalInfoLayout.onViewClick {
+            memberClickListener.onItemClick(data, position, null)
         }
+//        mPersonalInfoLayout.setOnClickListener {
+//            LogUtil.i("选择 member: $data")
+//            val map = ArrayMap<String, MemberBean>()
+//            map["data"] = data
+//            val event = CECEvent(CECIMConstants.EVENT_IM_SELECT_MEMBER, map)
+//            CECEventBusHelper.post(event)
+//        }
     }
 
     override fun bindDiffData(data: MemberBean, payload: Bundle, position: Int, count: Int) {

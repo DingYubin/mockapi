@@ -81,7 +81,7 @@ class ImKeywordsSearch @JvmOverloads constructor(
                     }
 
                     mKeywordsBarClear?.visibility = VISIBLE
-                    mKeywordsChangedListener?.invoke(s.toString().trim { it <= ' ' })
+                    mKeywordsChangedListener?.invoke(s.toString())
                 }
             }
         })

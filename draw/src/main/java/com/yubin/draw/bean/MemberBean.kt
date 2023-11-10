@@ -9,7 +9,10 @@ data class MemberBean(
     val name: String? = null,
     val unitName: String? = null,
     val imageUri: String? = null,
+    var itemViewType: Int? = null,
 ) : Serializable, ICECDiffData {
+
+    var memberSize: Int = 0
 
     override fun getItemSameId(): String {
         return Uri.EMPTY.toString()

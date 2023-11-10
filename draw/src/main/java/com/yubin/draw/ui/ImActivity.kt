@@ -82,6 +82,11 @@ class ImActivity : NativeActivity<ActivityUiImBinding>() {
     private fun showAtBottomView() {
         atPopWindow = ImAtGroupMemberView(this)
         atPopWindow?.showImAtGroupMemberWindow(window.decorView)
+        atPopWindow?.setData()
+        atPopWindow?.selectMemberListener {
+            binding.etInput.text = binding.etInput.text?.append(it.name)
+            atPopWindow?.hideImAtGroupMemberWindow()
+        }
         KeyBoardHelper.hideKeyBoard(this)
     }
 

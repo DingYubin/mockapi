@@ -7,40 +7,35 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import androidx.appcompat.widget.AppCompatImageView
-import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.gson.Gson
-import com.yubin.baselibrary.core.BaseApplication
+import androidx.recyclerview.widget.RecyclerView
 import com.yubin.baselibrary.extension.onViewClick
 import com.yubin.baselibrary.util.CMUnitHelper
-import com.yubin.baselibrary.util.LogUtil
-import com.yubin.baselibrary.util.MockUtil
 import com.yubin.draw.R
 import com.yubin.draw.adapter.MemberAdapter
 import com.yubin.draw.bean.MemberBean
-import com.yubin.draw.bean.MemberList
 import com.yubin.draw.extend.DrawHelper
 import com.yubin.draw.model.ImMemberViewModel
 import com.yubin.draw.ui.ImActivity
 import com.yubin.draw.widget.recyclerView.CMRecyclerView
 import com.yubin.ecwindow.ECPopWindow
 
-class ImAtGroupMemberView(context: Context) : ConstraintLayout(context) {
+class ImAtGroupMemberView(context: Context) : ConstraintLayout(context), IMMemberClickListener {
 
     private var ecPopWindow: ECPopWindow? = null
     private var mActivity: ImActivity? = null
     private var rvMemberList: CMRecyclerView? = null
     private var clContainer: ConstraintLayout? = null
-    private var tvMemberNumber: AppCompatTextView? = null
     private var flContainer: FrameLayout? = null
     private var ivClose: AppCompatImageView? = null
-    private var mAdapter: MemberAdapter? = null
     private var mKeywordsBar: ImKeywordsSearch? = null
     private var mViewModel: ImMemberViewModel? = null
-    private var mDataList: MutableList<MemberBean> = mutableListOf()
+    private val mAdapter by lazy { MemberAdapter(this)}
     private val maxShowHeight: Int
+
+    private var mSelectedMemberListener: ((member: MemberBean) -> Unit)? = null
 
     init {
         maxShowHeight =
@@ -48,30 +43,27 @@ class ImAtGroupMemberView(context: Context) : ConstraintLayout(context) {
         mActivity = context as? ImActivity
         initView()
         initViewModel()
-        initData()
     }
 
     private fun initView() {
 
-        inflate(context, R.layout.inquiry_layout_at_group_member, this)
+        inflate(context, R.layout.im_layout_at_group_member, this)
         mKeywordsBar = findViewById(R.id.im_keywords_bar)
         rvMemberList = findViewById(R.id.cl_member_list)
         clContainer = findViewById(R.id.cl_area_container)
         flContainer = findViewById(R.id.fl_container)
         ivClose = findViewById(R.id.close)
-        tvMemberNumber = findViewById(R.id.im_member_number)
-
-        mAdapter = MemberAdapter()
         rvMemberList?.layoutManager = LinearLayoutManager(context)
         rvMemberList?.adapter = mAdapter
 
         ivClose?.onViewClick {
             ecPopWindow?.dismiss()
+            mViewModel = null
         }
 
         mKeywordsBar?.setKeywordsChangedListener { keywords ->
             if (TextUtils.isEmpty(keywords)) {
-                mAdapter?.submitListWithKeywords(mDataList, keywords)
+                mViewModel?.mDataList?.let { mAdapter.submitListWithKeywords(it, keywords) }
             } else {
                 fetchSearchContacts(keywords)
             }
@@ -79,7 +71,7 @@ class ImAtGroupMemberView(context: Context) : ConstraintLayout(context) {
     }
 
     private fun fetchSearchContacts(keywords: String) {
-        mViewModel?.getSearchContactsList(keywords, mDataList)
+        mViewModel?.mDataList?.let { mViewModel?.getSearchContactsList(keywords, it) }
     }
 
     private fun initViewModel() {
@@ -90,18 +82,13 @@ class ImAtGroupMemberView(context: Context) : ConstraintLayout(context) {
         }
 
         mViewModel?.mSearchResultLD?.observe(mActivity!!) {
-            mAdapter?.submitListWithKeywords(it.list, it.keywords ?: "")
+            mAdapter.submitListWithKeywords(it.list, it.keywords ?: "")
         }
     }
 
-    private fun initData() {
+    fun setData() {
         //mock 数据
-        val mockJson: String = MockUtil.stringFromAssets(BaseApplication.context, "member.json")
-        val data: MemberList = Gson().fromJson(mockJson, MemberList::class.java)
-        data.members?.let { mDataList.addAll(it) }
-        mAdapter?.submitListWithKeywords(mDataList, "")
-        tvMemberNumber?.text = String.format(context.getString(R.string.all_member), mDataList.size)
-        LogUtil.d("data: $mDataList")
+        mViewModel?.getMemberList()
     }
 
     /**
@@ -139,6 +126,14 @@ class ImAtGroupMemberView(context: Context) : ConstraintLayout(context) {
         if (ecPopWindow?.isShowing == true) {
             ecPopWindow?.dismiss()
         }
+    }
+
+    override fun onItemClick(member: MemberBean, position: Int, adapter: RecyclerView.Adapter<*>?) {
+        mSelectedMemberListener?.invoke(member)
+    }
+
+    fun selectMemberListener(listener: (str: MemberBean) -> Unit) {
+        this.mSelectedMemberListener = listener
     }
 
 }
