@@ -6,7 +6,7 @@ import com.yubin.draw.widget.recyclerView.adapter.protocol.ICECDiffData
 import java.io.Serializable
 
 data class MemberBean(
-    val name: String? = null,
+    var name: String? = null,
     val unitName: String? = null,
     val imageUri: String? = null,
     var itemViewType: Int? = null,
