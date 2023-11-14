@@ -33,6 +33,11 @@ public class UnitHelper {
         return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, value, displayMetrics);
     }
 
+    public static int dip2px(Context context, float dipValue) {
+        final float scale = context.getResources().getDisplayMetrics().density;
+        return (int) (dipValue * scale + 0.5f);
+    }
+
     /**
      * 获取屏幕Metrics参数
      *

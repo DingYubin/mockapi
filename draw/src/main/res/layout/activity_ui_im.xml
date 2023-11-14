@@ -9,20 +9,30 @@
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/et_input"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="45dp"
         android:background="@drawable/im_shape_bg_message_input"
         android:hint="@string/im_hint_message_input"
         android:importantForAutofill="no"
         android:maxLength="500"
         android:maxLines="4"
         android:paddingStart="15dp"
-        android:paddingTop="10dp"
-        android:paddingEnd="15dp"
-        android:layout_marginBottom="60dp"
+        android:layout_marginEnd="60dp"
+        android:gravity="center|start"
         android:textColorHint="@color/color_cec_grey_999999"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         tools:ignore="TextFields"
-        tools:visibility="visible"/>
+        tools:visibility="visible" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/send"
+        android:layout_width="60dp"
+        android:layout_height="45dp"
+        android:text="发送"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

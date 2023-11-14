@@ -43,6 +43,7 @@ class ImMemberViewModel(app: Application) : BaseViewModel(app) {
             mDataList.add(0, MemberBean())
             mDataList.forEachIndexed { index, it ->
                 if (index == 0) {
+                    it.id = "-1"
                     it.name = "所有人"
                     it.itemViewType = VIEW_TYPE_ALL
                     it.memberSize = mDataList.size - 1
