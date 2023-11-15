@@ -3,6 +3,7 @@ package com.yubin.draw.ui
 import android.os.Bundle
 import android.text.InputFilter
 import android.text.Spanned
+import android.text.TextUtils
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.yubin.baselibrary.event.CECEvent
 import com.yubin.baselibrary.event.CECEventBusHelper
@@ -13,6 +14,10 @@ import com.yubin.baselibrary.util.CECIMConstants
 import com.yubin.baselibrary.util.KeyBoardHelper
 import com.yubin.baselibrary.util.LogUtil
 import com.yubin.draw.R
+import com.yubin.draw.bean.AT_TYPE_ALL
+import com.yubin.draw.bean.AT_TYPE_NO
+import com.yubin.draw.bean.AT_TYPE_SINGLE
+import com.yubin.draw.bean.CECIMentionedInfo
 import com.yubin.draw.bean.MemberBean
 import com.yubin.draw.databinding.ActivityUiImBinding
 import com.yubin.draw.widget.view.text.RemindHandler
@@ -59,11 +64,58 @@ class ImActivity : NativeActivity<ActivityUiImBinding>() {
      * 发送消息
      */
     private fun sentText() {
+        val infos: ArrayList<CECIMentionedInfo> = arrayListOf()
+        val editable = binding.etInput.editableText
         val spans: Array<RemindHandler.RemindDynamicDrawableSpan>? = remindHandler?.reminds
-        LogUtil.d("sentText : ${spans.toString()}")
-        spans?.forEach {
-            LogUtil.d("spans : uid : ${it.uid}, nackname : ${it.nickname}, start : ${it.start}, end : ${it.end}, \n")
+        spans?.forEachIndexed { index, span ->
+            LogUtil.d("spans : uid : ${span.uid}, nackname : ${span.nickname}, start : ${span.start}, end : ${span.end}, \n")
+            val start = editable.getSpanStart(span)
+            val end = editable.getSpanEnd(span)
+            var preEnd = -1
+            if (index >= 1) {
+                preEnd = editable.getSpanEnd(spans[index - 1])
+            }
+            val spanMessageInfo = CECIMentionedInfo();
+            if (span.uid == "-1") {
+                spanMessageInfo.type = AT_TYPE_ALL
+                spanMessageInfo.id = ""
+            } else {
+                spanMessageInfo.type = AT_TYPE_SINGLE
+                spanMessageInfo.id = span.uid
+            }
+
+            spanMessageInfo.mentionedContent = span.nickname
+            if (index == 0) {
+                val preMessageInfo = CECIMentionedInfo()
+                preMessageInfo.type = AT_TYPE_NO
+                preMessageInfo.mentionedContent = editable.subSequence(0, start).toString()
+                if (!TextUtils.isEmpty(preMessageInfo.mentionedContent)) {
+                    preMessageInfo.id = ""
+                    infos.add(preMessageInfo)
+                }
+            }
+            //处理前面的字符串
+            if (start > 0 && preEnd != -1 && start > preEnd) {
+                val preMessageInfo = CECIMentionedInfo()
+                preMessageInfo.type = AT_TYPE_NO
+                preMessageInfo.mentionedContent = editable.subSequence(preEnd, start).toString()
+                preMessageInfo.id = ""
+                infos.add(preMessageInfo)
+            }
+            //处理span
+            infos.add(spanMessageInfo)
+            //处理最后一个span后面的字符串
+            if (index == spans.size - 1 && end < editable.length) {
+                val afterMessageInfo = CECIMentionedInfo()
+                afterMessageInfo.type = AT_TYPE_NO
+                afterMessageInfo.mentionedContent =
+                    editable.subSequence(end, editable.length).toString()
+                afterMessageInfo.id = ""
+                infos.add(afterMessageInfo)
+            }
         }
+        LogUtil.d("infos : $infos")
+        mTempGroupMembers.clear()
     }
 
     /**
