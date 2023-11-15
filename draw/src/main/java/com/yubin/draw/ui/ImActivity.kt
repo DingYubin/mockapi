@@ -78,10 +78,10 @@ class ImActivity : NativeActivity<ActivityUiImBinding>() {
             val spanMessageInfo = CECIMentionedInfo();
             if (span.uid == "-1") {
                 spanMessageInfo.type = AT_TYPE_ALL
-                spanMessageInfo.id = ""
+                spanMessageInfo.imId = ""
             } else {
                 spanMessageInfo.type = AT_TYPE_SINGLE
-                spanMessageInfo.id = span.uid
+                spanMessageInfo.imId = span.uid
             }
 
             spanMessageInfo.mentionedContent = span.nickname
@@ -90,7 +90,7 @@ class ImActivity : NativeActivity<ActivityUiImBinding>() {
                 preMessageInfo.type = AT_TYPE_NO
                 preMessageInfo.mentionedContent = editable.subSequence(0, start).toString()
                 if (!TextUtils.isEmpty(preMessageInfo.mentionedContent)) {
-                    preMessageInfo.id = ""
+                    preMessageInfo.imId = ""
                     infos.add(preMessageInfo)
                 }
             }
@@ -99,7 +99,7 @@ class ImActivity : NativeActivity<ActivityUiImBinding>() {
                 val preMessageInfo = CECIMentionedInfo()
                 preMessageInfo.type = AT_TYPE_NO
                 preMessageInfo.mentionedContent = editable.subSequence(preEnd, start).toString()
-                preMessageInfo.id = ""
+                preMessageInfo.imId = ""
                 infos.add(preMessageInfo)
             }
             //处理span
@@ -110,7 +110,7 @@ class ImActivity : NativeActivity<ActivityUiImBinding>() {
                 afterMessageInfo.type = AT_TYPE_NO
                 afterMessageInfo.mentionedContent =
                     editable.subSequence(end, editable.length).toString()
-                afterMessageInfo.id = ""
+                afterMessageInfo.imId = ""
                 infos.add(afterMessageInfo)
             }
         }

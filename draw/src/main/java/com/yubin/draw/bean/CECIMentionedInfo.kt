@@ -24,7 +24,7 @@ const val AT_TYPE_SINGLE: Int = 2
 data class CECIMentionedInfo(
 
     var type: Int? = null,
-    val userIdList: List<String>? = null,
+    var imId: String? = null,
     var mentionedContent: String? = null,
-    var id: String? = null
+
 ) : Serializable
