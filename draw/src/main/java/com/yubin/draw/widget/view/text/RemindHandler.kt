@@ -45,7 +45,7 @@ class RemindHandler(private val EDITOR: EditText) : TextWatcher {
     }
 
     fun insert(nickName: String, uid: String) {
-        val span: RemindDynamicDrawableSpan =
+        val span =
             RemindDynamicDrawableSpan(
                 uid,
                 nickName,

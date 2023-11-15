@@ -64,7 +64,7 @@ class ImActivity : NativeActivity<ActivityUiImBinding>() {
      * 发送消息
      */
     private fun sentText() {
-        val infos: ArrayList<CECIMentionedInfo> = arrayListOf()
+        val info: ArrayList<CECIMentionedInfo> = arrayListOf()
         val editable = binding.etInput.editableText
         val spans: Array<RemindHandler.RemindDynamicDrawableSpan>? = remindHandler?.reminds
         spans?.forEachIndexed { index, span ->
@@ -91,7 +91,7 @@ class ImActivity : NativeActivity<ActivityUiImBinding>() {
                 preMessageInfo.mentionedContent = editable.subSequence(0, start).toString()
                 if (!TextUtils.isEmpty(preMessageInfo.mentionedContent)) {
                     preMessageInfo.imId = ""
-                    infos.add(preMessageInfo)
+                    info.add(preMessageInfo)
                 }
             }
             //处理前面的字符串
@@ -100,10 +100,10 @@ class ImActivity : NativeActivity<ActivityUiImBinding>() {
                 preMessageInfo.type = AT_TYPE_NO
                 preMessageInfo.mentionedContent = editable.subSequence(preEnd, start).toString()
                 preMessageInfo.imId = ""
-                infos.add(preMessageInfo)
+                info.add(preMessageInfo)
             }
             //处理span
-            infos.add(spanMessageInfo)
+            info.add(spanMessageInfo)
             //处理最后一个span后面的字符串
             if (index == spans.size - 1 && end < editable.length) {
                 val afterMessageInfo = CECIMentionedInfo()
@@ -111,11 +111,11 @@ class ImActivity : NativeActivity<ActivityUiImBinding>() {
                 afterMessageInfo.mentionedContent =
                     editable.subSequence(end, editable.length).toString()
                 afterMessageInfo.imId = ""
-                infos.add(afterMessageInfo)
+                info.add(afterMessageInfo)
             }
         }
-        LogUtil.d("infos : $infos")
-        mTempGroupMembers.clear()
+        LogUtil.d("infos : $info")
+        info.clear()
     }
 
     /**
