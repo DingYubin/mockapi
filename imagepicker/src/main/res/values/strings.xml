@@ -1,0 +1,23 @@
+<resources>
+    <string name="ip_images">图片</string>
+    <string name="ip_all_images">所有图片</string>
+    <string name="ip_video">视频</string>
+    <string name="ip_folder_image_count">共%1$d张</string>
+    <string name="ip_preview_image_count">%1$d/%2$d</string>
+    <string name="ip_select_limit">最多选择%1$d张图片</string>
+    <string name="ip_complete">完成</string>
+    <string name="ip_select_complete">完成(%1$d/%2$d)</string>
+    <string name="ip_preview">预览</string>
+    <string name="ip_preview_count">预览(%1$d)</string>
+    <string name="ip_photo_crop">图片裁剪</string>
+    <string name="ip_origin">原图</string>
+    <string name="ip_origin_size">原图(%1$s)</string>
+    <string name="ip_all_video">所有视频</string>
+    <string name="ip_select_limit_video">最多选择%1$d个视频</string>
+    <string name="ip_folder_video_count">共%1$d个</string>
+    <string name="image_file_save_to">图片已保存到</string>
+    <string name="image_file_save_failed">图片保存失败</string>
+    <string name="tv_choose">选择</string>
+    <string name="tv_photo_pic">拍摄照片</string>
+
+</resources>

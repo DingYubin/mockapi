@@ -1,0 +1,23 @@
+<resources>
+  <string name="ip_all_images">All Images</string>
+  <string name="ip_images">Images</string>
+  <string name="ip_video">video</string>
+  <string name="ip_folder_image_count">total of %1$d picture</string>
+  <string name="ip_preview_image_count">%1$d/%2$d</string>
+  <string name="ip_select_limit">Most options %1$d images</string>
+  <string name="ip_complete">Complete</string>
+  <string name="ip_select_complete">Complete(%1$d/%2$d)</string>
+  <string name="ip_preview">previews</string>
+  <string name="ip_preview_count">previews(%1$d)</string>
+  <string name="ip_photo_crop">Image Cropping</string>
+  <string name="ip_origin">Full size</string>
+  <string name="ip_origin_size">Full size(%1$s)</string>
+  <string name="ip_all_video">All video</string>
+  <string name="ip_select_limit_video">Most options %1$d video</string>
+  <string name="ip_folder_video_count">共%1$d个</string>
+  <string name="image_file_save_to">Image saved to</string>
+  <string name="image_file_save_failed">Image save failed</string>
+  <string name="tv_choose">select</string>
+  <string name="tv_photo_pic">Take Photo</string>
+
+</resources>

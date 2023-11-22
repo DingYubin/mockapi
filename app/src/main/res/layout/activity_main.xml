@@ -57,6 +57,11 @@
                 android:text="@string/album" />
 
             <TextView
+                android:id="@+id/select_picture"
+                style="@style/develop_setting_style"
+                android:text="@string/select_picture" />
+
+            <TextView
                 android:id="@+id/draw"
                 style="@style/develop_setting_style"
                 android:text="@string/draw" />

@@ -15,6 +15,8 @@ import com.yubin.baselibrary.ui.basemvvm.NativeActivity
 import com.yubin.baselibrary.util.CECDeviceHelper
 import com.yubin.baselibrary.util.CMDisplayHelper.dp
 import com.yubin.baselibrary.util.LogUtil
+import com.yubin.imagepicker.ImagePicker
+import com.yubin.imagepicker.ui.ImageGridActivity
 import com.yubin.medialibrary.camera.MediaManager
 import com.yubin.medialibrary.manager.AlbumStrategy
 import com.yubin.medialibrary.manager.CameraFinder
@@ -24,6 +26,7 @@ import com.yubin.medialibrary.manager.MediaInfo
 import com.yubin.medialibrary.util.CMMediaUtil
 import com.yubin.mockapi.R
 import com.yubin.mockapi.databinding.ActivityMainBinding
+import com.yubin.mockapi.util.GlideImageLoader
 import com.yubin.mvp.ui.MvpLoginActivity
 
 class MainActivity : NativeActivity<ActivityMainBinding>() {
@@ -136,6 +139,19 @@ class MainActivity : NativeActivity<ActivityMainBinding>() {
                     }
                 })
         }
+
+        binding.selectPicture.onViewClick {
+            val imagePicker: ImagePicker = ImagePicker.getInstance()
+            imagePicker.imageLoader = GlideImageLoader()
+            imagePicker.isShowCamera = false
+            imagePicker.isCrop = false
+            imagePicker.isSaveRectangle = false
+            imagePicker.selectLimit = 9
+            val intent = Intent(this, ImageGridActivity::class.java)
+            startActivity(intent)
+        }
+
+
     }
 
 

@@ -1,0 +1,38 @@
+apply plugin: 'com.android.library'
+apply from: '../arouter.gradle'
+
+android {
+    compileSdk rootProject.ext.android.compileSdkVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility rootProject.ext.android.javaCompatibility
+        targetCompatibility rootProject.ext.android.javaCompatibility
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation project(':baselibrary')
+    api "com.google.code.gson:gson:2.8.9"
+    implementation('com.prolificinteractive:material-calendarview:1.4.3')
+    implementation 'org.apache.ant:ant:1.10.9'
+}
+

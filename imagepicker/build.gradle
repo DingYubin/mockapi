@@ -1,0 +1,61 @@
+apply plugin: 'com.android.library'
+apply from: '../arouter.gradle'
+
+android {
+    compileSdk rootProject.ext.android.compileSdkVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility rootProject.ext.android.javaCompatibility
+        targetCompatibility rootProject.ext.android.javaCompatibility
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    packagingOptions {
+        exclude 'META-INF/proguard/androidx-annotations.pro'
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+
+    implementation project(':baselibrary')
+
+    implementation('com.github.chrisbanes:PhotoView:2.1.3')
+
+
+    implementation 'com.shuyu:gsyVideoPlayer-java:6.0.3'
+    //是否需要ExoPlayer模式
+    implementation 'com.shuyu:GSYVideoPlayer-exo2:6.0.3'
+    //根据你的需求ijk模式的so
+    implementation 'com.shuyu:gsyVideoPlayer-armv5:6.0.3'
+    implementation 'com.shuyu:gsyVideoPlayer-armv7a:6.0.3'
+    implementation 'com.shuyu:gsyVideoPlayer-arm64:6.0.3'
+
+    implementation "top.zibin:Luban:1.1.8"
+    implementation "io.reactivex.rxjava2:rxjava:2.2.21"
+
+
+    implementation 'me.panpf:sketch:2.7.0'
+    implementation 'me.panpf:sketch-gif:2.7.0'
+
+    implementation project(':utils')
+    implementation project(':httphelper')
+
+}

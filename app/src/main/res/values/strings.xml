@@ -8,6 +8,7 @@
     <string name="goto_user_page">跳转用户页面</string>
     <string name="camera">相机</string>
     <string name="album">相册</string>
+    <string name="select_picture">挑选照片</string>
     <string name="draw">绘制</string>
     <string name="rxjava">rxjava</string>
     <string name="kotlin_coroutine">coroutine</string>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent">
+
+    <me.panpf.sketch.SketchImageView
+        android:id="@+id/photoView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerInside"/>
+
+    <ImageView
+        android:id="@+id/defaultImageView"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:src="@mipmap/default_image"/>
+
+    <FrameLayout
+        android:id="@+id/downloadProgressContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true">
+
+        <ProgressBar
+            android:id="@+id/downloadProgressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:indeterminateDrawable="@drawable/progressbar_indeterminate_spinner_blue"/>
+
+        <TextView
+            android:id="@+id/downloadProgressTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="10%"
+            android:textColor="@android:color/black"
+            android:textSize="12dp"/>
+    </FrameLayout>
+
+    <ImageView
+        android:id="@+id/cacheImage"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="right|bottom"
+        android:layout_marginBottom="50dp"
+        android:layout_marginRight="30dp"
+        android:clickable="true"
+        android:padding="10dp"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/icon_image_download"/>
+</FrameLayout>

@@ -1,5 +1,4 @@
 apply plugin: 'com.android.library'
-//apply plugin: 'maven'
 
 android {
     compileSdk rootProject.ext.android.compileSdkVersion
@@ -31,37 +30,6 @@ dependencies {
     api 'net.zetetic:android-database-sqlcipher:3.5.9@aar'
     implementation "com.orhanobut:logger:${baselib.logger}"
 }
-
-
-
-//打包上传task
-//uploadArchives {
-//    repositories {
-//        mavenDeployer {
-//            //snapshot版本上传网址以及密码
-//            snapshotRepository(url: 'http://10.128.60.21:8081/repository/mcloud-snapshots/') {
-//                authentication(userName: 'admin', password: 'getech')
-//            }
-//            //snapshot版本上传网址以及密码
-//            repository(url: 'http://10.128.60.21:8081/repository/mcloud-releases/') {
-//                authentication(userName: 'admin', password: 'getech')
-//            }
-//            //版本信息
-//            pom.project {
-//                //版本号，SNAPSHOT必须大写，如果为snapshot，则version为0.0.1-SNAPSHOT
-//                version '0.0.1-SNAPSHOT'
-//                //工程标识
-//                artifactId 'imdatabase'
-//                //工程组标识
-//                groupId 'com.getech.android'
-//                //包类型，aar
-//                packaging 'aar'
-//                //描述
-//                description 'database'
-//            }
-//        }
-//    }
-//}
 
 artifacts {
     //要打包的文件名称，必须跟Module名称相同。
