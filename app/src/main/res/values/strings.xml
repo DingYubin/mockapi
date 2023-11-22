@@ -7,6 +7,7 @@
     <string name="environment_settings">环境设置</string>
     <string name="goto_user_page">跳转用户页面</string>
     <string name="camera">相机</string>
+    <string name="album">相册</string>
     <string name="draw">绘制</string>
     <string name="rxjava">rxjava</string>
     <string name="kotlin_coroutine">coroutine</string>

@@ -52,6 +52,11 @@
                 android:text="@string/camera" />
 
             <TextView
+                android:id="@+id/album"
+                style="@style/develop_setting_style"
+                android:text="@string/album" />
+
+            <TextView
                 android:id="@+id/draw"
                 style="@style/develop_setting_style"
                 android:text="@string/draw" />

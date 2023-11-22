@@ -9,11 +9,14 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.bumptech.glide.Glide
 import com.yubin.account.user.ui.AccountActivity
 import com.yubin.baselibrary.core.BaseApplication.Companion.context
+import com.yubin.baselibrary.extension.onViewClick
 import com.yubin.baselibrary.router.path.RouterPath
 import com.yubin.baselibrary.ui.basemvvm.NativeActivity
 import com.yubin.baselibrary.util.CECDeviceHelper
 import com.yubin.baselibrary.util.CMDisplayHelper.dp
+import com.yubin.baselibrary.util.LogUtil
 import com.yubin.medialibrary.camera.MediaManager
+import com.yubin.medialibrary.manager.AlbumStrategy
 import com.yubin.medialibrary.manager.CameraFinder
 import com.yubin.medialibrary.manager.CameraStrategy
 import com.yubin.medialibrary.manager.IMediaCallBack
@@ -120,7 +123,21 @@ class MainActivity : NativeActivity<ActivityMainBinding>() {
                     }
                 })
         }
+
+        binding.album.onViewClick {
+            CMMediaUtil.startAlbum(
+                AlbumStrategy(isShowVideo = true).apply {
+                isEdit0 = true
+            },
+                this@MainActivity,
+                object : IMediaCallBack {
+                    override fun result(medias: ArrayList<MediaInfo>) {
+                        LogUtil.d("medias : $medias")
+                    }
+                })
+        }
     }
+
 
     private fun showView(uri: String) {
         val imageView = findViewById<ImageView>(R.id.my_img)
