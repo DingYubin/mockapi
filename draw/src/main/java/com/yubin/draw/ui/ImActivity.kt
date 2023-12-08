@@ -193,7 +193,7 @@ class ImActivity : NativeActivity<ActivityUiImBinding>() {
             if (curIndex >= 1) {
                 binding.etInput.text?.replace(curIndex - 1, curIndex, "")
             }
-            remindHandler?.insert("@${it.name}", it.id!!)
+            remindHandler?.insert("@${it.name} ", it.id!!)
 //            val result = binding.etInput.text?.append(it.name)
 //            binding.etInput.text = result
 //            result?.length?.let { length -> binding.etInput.setSelection(length) }

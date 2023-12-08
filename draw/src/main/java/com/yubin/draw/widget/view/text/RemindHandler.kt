@@ -65,7 +65,7 @@ class RemindHandler(private val EDITOR: EditText) : TextWatcher {
             userInfo.name = nickname.substring(1)
             mOnSpanDeletedListener.mSpanAdd?.invoke(userInfo, REMINDS.size)
         }
-        message.insert(end, " ")
+        message.insert(end, "")
     }
 
     override fun beforeTextChanged(text: CharSequence, start: Int, count: Int, after: Int) {
