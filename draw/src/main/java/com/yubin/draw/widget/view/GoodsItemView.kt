@@ -36,7 +36,7 @@ class GoodsItemView internal constructor(itemView: View) {
 
     /**
      * 商品头图容器宽度
-     */
+     */a
     private val goodsPicItemH: Int =
         (CECDeviceHelper.screenWidthWithContext(itemView.context) - dp2px(10f)
             .toInt() * 4) / 3
