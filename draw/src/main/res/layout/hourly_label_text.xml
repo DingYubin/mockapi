@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.AppCompatTextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="14dp"
+    android:background="@drawable/hourly_tag"
+    android:gravity="center"
+    android:paddingTop="2dp"
+    android:paddingBottom="2dp"
+    android:paddingStart="3dp"
+    android:paddingEnd="3dp"
+    android:textSize="10sp"
+    tools:ignore="SmallSp"
+    tools:text="距您1.1公里">
+</androidx.appcompat.widget.AppCompatTextView>

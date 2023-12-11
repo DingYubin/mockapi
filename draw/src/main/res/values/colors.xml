@@ -46,4 +46,8 @@
 
     <color name="color_f2f3f5">#fff2f3f5</color>
     <color name="color_cec_grey_bbbbbb">#bbbbbb</color>
+
+    <color name="color_download_progress_none">#dadada</color>
+    <color name="color_download_progress_start">#F01E1E</color>
+    <color name="color_download_progress_end">#F82915</color>
 </resources>

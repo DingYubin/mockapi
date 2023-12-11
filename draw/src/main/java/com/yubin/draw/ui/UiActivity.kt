@@ -75,8 +75,12 @@ class UiActivity : NativeActivity<ActivityUiBinding>() {
         initView()
         bindData()
         initFlipper()
+        initSeekBarView()
         addListener()
         testHandler()
+    }
+
+    private fun initSeekBarView() {
     }
 
     /**
