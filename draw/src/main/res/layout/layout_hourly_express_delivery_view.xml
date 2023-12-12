@@ -55,7 +55,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@null"
-            android:progress="0"
             android:progressDrawable="@drawable/hourly_progress"
             android:splitTrack="false"
             android:thumb="@drawable/ride_item"
@@ -75,7 +74,7 @@
             android:paddingBottom="2dp"
             android:text="距您1.1公里"
             android:textSize="9sp"
-            android:visibility="gone"
+            android:visibility="invisible"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
