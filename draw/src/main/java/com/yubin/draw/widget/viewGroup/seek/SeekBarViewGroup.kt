@@ -1,5 +1,6 @@
 package com.yubin.draw.widget.viewGroup.seek
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
@@ -9,7 +10,6 @@ import androidx.appcompat.widget.AppCompatSeekBar
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.yubin.baselibrary.util.CMDisplayHelper.dp
-import com.yubin.baselibrary.util.LogUtil
 import com.yubin.draw.R
 
 class SeekBarViewGroup : ConstraintLayout {
@@ -34,18 +34,16 @@ class SeekBarViewGroup : ConstraintLayout {
         initView()
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     private fun initView() {
         seekBar = findViewById(R.id.hourly_seek)
         val indicator: AppCompatTextView = findViewById(R.id.tv_indicator)
         hourlyLayout = findViewById(R.id.hourly_layout)
 
+        seekBar.setOnTouchListener { _, _ -> true }
         seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
                 post {
-
-                    LogUtil.d("onProgressChanged")
-                    LogUtil.d("indicator.measuredWidth : ${indicator.measuredWidth}")
-                    LogUtil.d("seekBar.measuredWidth : ${seekBar.measuredWidth}")
                     //进度百分比
                     val progressRatio = progress.toFloat() / seekBar.max
                     //文本宽度
@@ -75,9 +73,7 @@ class SeekBarViewGroup : ConstraintLayout {
                     } else {
                         indicator.visibility = VISIBLE
                     }
-
                 }
-
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar) {
