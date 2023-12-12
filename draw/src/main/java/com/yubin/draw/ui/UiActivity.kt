@@ -15,8 +15,6 @@ import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.widget.HorizontalScrollView
-import androidx.appcompat.widget.AppCompatTextView
-import androidx.constraintlayout.widget.ConstraintLayout
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.google.gson.Gson
@@ -91,21 +89,21 @@ class UiActivity : NativeActivity<ActivityUiBinding>() {
         //......................
         //..........此处省去初始化picList......
         //......................
-        binding.viewFlipper.removeAllViews()
-        goodsItemViews?.forEachIndexed { index, goodsItemView ->
-            val view = ConstraintLayout.inflate(
-                context,
-                R.layout.layout_hourly_express_delivery_view,
-                null
-            )
-            val textView: AppCompatTextView = view.findViewById(R.id.snackbar_tv_point)
-            textView.text = "积分 $index"
-            binding.viewFlipper.addView(view)
-            binding.viewFlipper.isAutoStart = true
-        }
+//        binding.viewFlipper.removeAllViews()
+//        goodsItemViews?.forEachIndexed { index, goodsItemView ->
+//            val view = ConstraintLayout.inflate(
+//                context,
+//                R.layout.layout_hourly_express_delivery_view,
+//                null
+//            )
+//            val textView: AppCompatTextView = view.findViewById(R.id.snackbar_tv_point)
+//            textView.text = "积分 $index"
+//            binding.viewFlipper.addView(view)
+//            binding.viewFlipper.isAutoStart = true
+//        }
 
-        binding.viewFlipper.flipInterval = 3 * 1000;
-        binding.viewFlipper.startFlipping();
+//        binding.viewFlipper.flipInterval = 3 * 1000;
+//        binding.viewFlipper.startFlipping();
 
     }
 

@@ -36,7 +36,7 @@ class SeekBarViewGroup : ConstraintLayout {
 
     @SuppressLint("ClickableViewAccessibility")
     private fun initView() {
-        seekBar = findViewById(R.id.hourly_seek)
+        seekBar = findViewById(R.id.delivery_seek)
         val indicator: AppCompatTextView = findViewById(R.id.tv_indicator)
         hourlyLayout = findViewById(R.id.hourly_layout)
 

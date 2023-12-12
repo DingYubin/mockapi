@@ -14,7 +14,7 @@
             android:drawable="@drawable/shape_progressbar_progress"
             android:scaleWidth="100%">
             <shape>
-                <corners android:radius="12dp" />
+                <corners android:radius="7dp" />
 
                 <gradient
                     android:endColor="@color/color_download_progress_end"
