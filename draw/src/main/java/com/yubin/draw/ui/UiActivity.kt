@@ -35,6 +35,7 @@ import com.yubin.draw.widget.snackbar.SnackBar
 import com.yubin.draw.widget.snackbar.SnackBar.Callback
 import com.yubin.draw.widget.snackbar.SnackBar1
 import com.yubin.draw.widget.view.GoodsItemView
+import com.yubin.draw.widget.viewGroup.seek.SeekBarViewGroup
 import java.util.LinkedList
 
 
@@ -89,21 +90,16 @@ class UiActivity : NativeActivity<ActivityUiBinding>() {
         //......................
         //..........此处省去初始化picList......
         //......................
-//        binding.viewFlipper.removeAllViews()
-//        goodsItemViews?.forEachIndexed { index, goodsItemView ->
-//            val view = ConstraintLayout.inflate(
-//                context,
-//                R.layout.layout_hourly_express_delivery_view,
-//                null
-//            )
-//            val textView: AppCompatTextView = view.findViewById(R.id.snackbar_tv_point)
-//            textView.text = "积分 $index"
-//            binding.viewFlipper.addView(view)
-//            binding.viewFlipper.isAutoStart = true
-//        }
+        binding.viewFlipper.removeAllViews()
+        goodsItemViews?.forEachIndexed { _, _ ->
+            val view = SeekBarViewGroup(this)
+            view.bindData("100000", "50000")
+            binding.viewFlipper.addView(view)
+            binding.viewFlipper.isAutoStart = true
+        }
 
-//        binding.viewFlipper.flipInterval = 3 * 1000;
-//        binding.viewFlipper.startFlipping();
+        binding.viewFlipper.flipInterval = 3 * 1000;
+        binding.viewFlipper.startFlipping();
 
     }
 

@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="@dimen/dp_10"
-        android:text="[配送中]"
+        android:text="@string/order_packages_delivery_status"
         android:textColor="#FC6405"
         android:textSize="14sp"
         android:textStyle="bold"
@@ -20,12 +20,12 @@
         tools:text="[配送中]" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/delivery_desc"
+        android:id="@+id/delivery_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginTop="@dimen/dp_10"
-        android:text="预计 11:50 前送达"
+        android:text="@string/order_packages_delivery_time"
         android:textColor="@color/color_cec_black_ff2a2a2b"
         android:textSize="14sp"
         android:textStyle="bold"
@@ -77,7 +77,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_indicator"
+            android:id="@+id/tv_distance_distance"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="29.5dp"
@@ -86,7 +86,7 @@
             android:paddingTop="2dp"
             android:paddingEnd="3dp"
             android:paddingBottom="2dp"
-            android:text="距您1.1公里"
+            android:text="@string/order_packages_delivery_distance"
             android:textSize="9sp"
             android:visibility="invisible"
             app:layout_constraintStart_toStartOf="parent"

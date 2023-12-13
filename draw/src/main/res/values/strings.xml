@@ -67,4 +67,8 @@
     <string name="group_title">选择提醒的成员</string>
     <string name="all_member">所有人（%d）</string>
     <string name="im_contacts_search_hint">搜索联系人</string>
+
+    <string name="order_packages_delivery_status">[%s]</string>
+    <string name="order_packages_delivery_time">预计 %s 前送达</string>
+    <string name="order_packages_delivery_distance">距您%s公里</string>
 </resources>
