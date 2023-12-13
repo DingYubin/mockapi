@@ -248,10 +248,6 @@ class UiActivity : NativeActivity<ActivityUiBinding>() {
             GoodsItemView(findViewById(R.id.goods_item7)),
             GoodsItemView(findViewById(R.id.goods_item8))
         )
-
-        binding.llContainerSeekBar.postDelayed({
-            binding.llContainerSeekBar.setProgress(50)
-        },500)
     }
 
     private fun bindData() {

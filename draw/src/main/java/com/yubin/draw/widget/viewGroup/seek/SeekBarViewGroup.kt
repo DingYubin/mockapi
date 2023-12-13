@@ -3,7 +3,6 @@ package com.yubin.draw.widget.viewGroup.seek
 import android.annotation.SuppressLint
 import android.content.Context
 import android.util.AttributeSet
-import android.view.LayoutInflater
 import android.view.View
 import android.widget.SeekBar
 import androidx.appcompat.widget.AppCompatSeekBar
@@ -24,10 +23,7 @@ class SeekBarViewGroup : ConstraintLayout {
         defStyleAttr
     )
 
-    private val mInflater = LayoutInflater.from(context)
-
     private lateinit var seekBar: AppCompatSeekBar
-    private lateinit var hourlyLayout: ConstraintLayout
 
     init {
         View.inflate(context, R.layout.layout_hourly_express_delivery_view, this)
@@ -38,7 +34,6 @@ class SeekBarViewGroup : ConstraintLayout {
     private fun initView() {
         seekBar = findViewById(R.id.delivery_seek)
         val indicator: AppCompatTextView = findViewById(R.id.tv_indicator)
-        hourlyLayout = findViewById(R.id.hourly_layout)
 
         seekBar.setOnTouchListener { _, _ -> true }
         seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
@@ -67,7 +62,6 @@ class SeekBarViewGroup : ConstraintLayout {
                     indicator.layoutParams = params
 //                val tv = "$progress%"
 //                indicator.text = tv
-//                hourlyLayout.addView(tag)
                     if (progress == seekBar.min) {
                         indicator.visibility = INVISIBLE
                     } else {
@@ -84,7 +78,7 @@ class SeekBarViewGroup : ConstraintLayout {
         })
 
 
-//        seekBar.progress = 20
+        seekBar.progress = 20
     }
 
     fun setProgress(progress: Int) {
