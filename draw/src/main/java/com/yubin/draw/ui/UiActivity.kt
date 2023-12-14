@@ -93,7 +93,7 @@ class UiActivity : NativeActivity<ActivityUiBinding>() {
         binding.viewFlipper.removeAllViews()
         goodsItemViews?.forEachIndexed { _, _ ->
             val view = SeekBarViewGroup(this)
-            view.bindData("100000", "50000")
+            view.bindData(null, "100000", false)
             binding.viewFlipper.addView(view)
             binding.viewFlipper.isAutoStart = true
         }

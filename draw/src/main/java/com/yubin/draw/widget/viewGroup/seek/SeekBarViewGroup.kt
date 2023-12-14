@@ -34,7 +34,8 @@ class SeekBarViewGroup : ConstraintLayout {
     )
 
     private lateinit var seekBar: AppCompatSeekBar
-    private var distance: String? = null
+
+    //    private var distance: String? = null
     private lateinit var distanceTv: AppCompatTextView
     private lateinit var deliveryStatus: AppCompatTextView
     private lateinit var deliveryTime: AppCompatTextView
@@ -90,31 +91,15 @@ class SeekBarViewGroup : ConstraintLayout {
             params.leftMargin = leftMargin
             distanceTv.layoutParams = params
 
-            if (progress == 0 || progress == 100) {
-                distanceTv.visibility = INVISIBLE
-            } else {
-                distanceTv.visibility = VISIBLE
-
-                val discount = String.format(
-                    ResourceUtil.getString(R.string.order_packages_delivery_distance),
-                    distance
-                )
-                val rmbIndex: Int? = distance?.let { discount.indexOf(it) }
-                val spannableString = SpannableString(discount)
-                if (rmbIndex != null) {
-                    spannableString.setSpan(
-                        ForegroundColorSpan(Color.parseColor("#FFE51E1E")),
-                        rmbIndex,
-                        discount.length - 2,
-                        Spanned.SPAN_INCLUSIVE_EXCLUSIVE
-                    )
-                }
-                distanceTv.text = spannableString
-            }
+//            if (progress == 0 || progress == 100) {
+//                distanceTv.visibility = INVISIBLE
+//            } else {
+//                distanceTv.visibility = VISIBLE
+//            }
         }
     }
 
-    fun bindData(totalDistance: String?, currentDistance: String?) {
+    fun bindData(totalDistance: String?, currentDistance: String?, isComplete: Boolean) {
 
         val discount = String.format(
             ResourceUtil.getString(R.string.order_packages_delivery_status), "配送中"
@@ -133,6 +118,32 @@ class SeekBarViewGroup : ConstraintLayout {
             "15:30"
         )
         seekBar.progress = getProgress(totalDistance, currentDistance)
+
+        setDistance(currentDistance, isComplete)
+    }
+
+    private fun setDistance(currentDistance: String?, isComplete: Boolean) {
+        val distance = currentDistance?.toDouble()?.div(1000)?.let { formatDistance(it) }
+        if (distance.isNullOrEmpty() || isComplete) {
+            distanceTv.visibility = INVISIBLE
+        } else {
+            distanceTv.visibility = VISIBLE
+            val discount = String.format(
+                ResourceUtil.getString(R.string.order_packages_delivery_distance),
+                distance
+            )
+            val rmbIndex: Int = discount.indexOf(distance)
+            val spannableString = SpannableString(discount)
+            spannableString.setSpan(
+                ForegroundColorSpan(Color.parseColor("#FFE51E1E")),
+                rmbIndex,
+                discount.length - 2,
+                Spanned.SPAN_INCLUSIVE_EXCLUSIVE
+            )
+            distanceTv.text = spannableString
+        }
+
+
     }
 
     private fun getProgress(totalDistance: String?, currentDistance: String?): Int {
@@ -140,9 +151,7 @@ class SeekBarViewGroup : ConstraintLayout {
         val currentD = currentDistance?.toDouble() ?: 0.00
         val progressRatio = if (totalD > 0.00) totalD.minus(currentD)
             .div(totalD) else 0.00
-        val progress = (progressRatio * 100).toInt()
-        distance = formatDistance(currentD.div(1000))
-        return progress
+        return (progressRatio * 100).toInt()
     }
 
     private fun formatDistance(num: Double): String? {
