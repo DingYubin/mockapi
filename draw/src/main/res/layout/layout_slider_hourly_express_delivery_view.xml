@@ -60,21 +60,19 @@
         android:layout_marginTop="8dp"
         app:layout_constraintTop_toBottomOf="@+id/delivery_query_arrow">
 
-        <androidx.appcompat.widget.AppCompatSeekBar
-            android:id="@+id/delivery_seek"
-            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@null"
-            android:paddingStart="0dp"
-            android:paddingEnd="0dp"
-            android:clipChildren="false"
-            android:progressDrawable="@drawable/hourly_progress"
-            android:splitTrack="false"
-            android:thumb="@drawable/rider"
-            android:thumbOffset="4dip"
+        <com.litao.slider.NiftySlider
+            android:id="@+id/delivery_slider"
+            android:layout_width="0dp"
+            android:layout_height="64dp"
+            android:padding="0dp"
+            android:valueFrom="0"
+            android:valueTo="100"
+            android:value="10"
+            app:enableDrawHalo="false"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:thumbRadius="16dp"
+            app:sliderTouchMode="normal"/>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_distance_distance"

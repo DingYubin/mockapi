@@ -10,13 +10,14 @@ import android.text.style.ForegroundColorSpan
 import android.util.AttributeSet
 import android.view.View
 import android.widget.SeekBar
-import androidx.appcompat.widget.AppCompatSeekBar
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.gif.GifDrawable
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
+import com.litao.slider.NiftySlider
 import com.yubin.baselibrary.util.CMDisplayHelper.dp
 import com.yubin.baselibrary.util.LogUtil
 import com.yubin.baselibrary.util.ResourceUtil
@@ -26,7 +27,7 @@ import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
 import java.util.Locale
 
-class SeekBarViewGroup : ConstraintLayout {
+class SliderViewGroup : ConstraintLayout {
 
     constructor(context: Context) : super(context)
 
@@ -38,7 +39,7 @@ class SeekBarViewGroup : ConstraintLayout {
         defStyleAttr
     )
 
-    private lateinit var seekBar: AppCompatSeekBar
+    private lateinit var seekBar: NiftySlider
 
     //    private var distance: String? = null
     private lateinit var distanceTv: AppCompatTextView
@@ -47,29 +48,49 @@ class SeekBarViewGroup : ConstraintLayout {
 
 
     init {
-        View.inflate(context, R.layout.layout_hourly_express_delivery_view, this)
+        View.inflate(context, R.layout.layout_slider_hourly_express_delivery_view, this)
         initView()
     }
 
     @SuppressLint("ClickableViewAccessibility")
     private fun initView() {
-        seekBar = findViewById(R.id.delivery_seek)
+        seekBar = findViewById(R.id.delivery_slider)
         distanceTv = findViewById(R.id.tv_distance_distance)
         deliveryStatus = findViewById(R.id.delivery_status)
         deliveryTime = findViewById(R.id.delivery_time)
 
-        seekBar.setOnTouchListener { _, _ -> true }
-        seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
-            override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
-                onProgressChanged(progress, seekBar)
-            }
+        seekBar.apply {
 
-            override fun onStartTrackingTouch(seekBar: SeekBar) {
-            }
+            setThumbCustomDrawable(R.drawable.rider)
+            setTrackTintList(
+                AppCompatResources.getColorStateList(
+                    context,
+                    R.color.color_download_progress_start
+                )
+            )
 
-            override fun onStopTrackingTouch(seekBar: SeekBar) {
-            }
-        })
+            setTrackInactiveTintList(
+                AppCompatResources.getColorStateList(
+                    context,
+                    R.color.color_download_progress_none
+                )
+            )
+            //vertical offset of thumb
+            setThumbVOffset((-8).dp)
+            setThumbWithinTrackBounds(true)
+        }
+//        seekBar.setOnTouchListener { _, _ -> true }
+//        seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+//            override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
+//                onProgressChanged(progress, seekBar)
+//            }
+//
+//            override fun onStartTrackingTouch(seekBar: SeekBar) {
+//            }
+//
+//            override fun onStopTrackingTouch(seekBar: SeekBar) {
+//            }
+//        })
 
         Glide.with(context).asGif().load(R.raw.demo).error(R.drawable.ride_item)
             .into(object : CustomTarget<GifDrawable>() {
@@ -77,12 +98,12 @@ class SeekBarViewGroup : ConstraintLayout {
                     resource: GifDrawable,
                     transition: Transition<in GifDrawable>?
                 ) {
-                    seekBar.thumb = resource
+//                    seekBar.thumb = resource
                     resource.start()
                 }
 
                 override fun onLoadCleared(placeholder: Drawable?) {
-                    seekBar.thumb = placeholder
+//                    seekBar.thumb = placeholder
                 }
 
             })
@@ -140,7 +161,7 @@ class SeekBarViewGroup : ConstraintLayout {
             ResourceUtil.getString(R.string.order_packages_delivery_time),
             "15:30"
         )
-        seekBar.progress = getProgress(totalDistance, currentDistance)
+//        seekBar.progress = getProgress(totalDistance, currentDistance)
 
         setDistance(currentDistance, isComplete)
     }
