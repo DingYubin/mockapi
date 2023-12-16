@@ -3,20 +3,17 @@ package com.yubin.draw.widget.viewGroup.seek
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
-import android.graphics.drawable.Drawable
 import android.text.SpannableString
 import android.text.Spanned
 import android.text.style.ForegroundColorSpan
 import android.util.AttributeSet
 import android.view.View
 import android.widget.SeekBar
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatSeekBar
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.gif.GifDrawable
-import com.bumptech.glide.request.target.CustomTarget
-import com.bumptech.glide.request.transition.Transition
 import com.yubin.baselibrary.util.CMDisplayHelper.dp
 import com.yubin.baselibrary.util.LogUtil
 import com.yubin.baselibrary.util.ResourceUtil
@@ -26,7 +23,7 @@ import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
 import java.util.Locale
 
-class SeekBarViewGroup : ConstraintLayout {
+class SeekBarViewGifGroup : ConstraintLayout {
 
     constructor(context: Context) : super(context)
 
@@ -44,16 +41,18 @@ class SeekBarViewGroup : ConstraintLayout {
     private lateinit var distanceTv: AppCompatTextView
     private lateinit var deliveryStatus: AppCompatTextView
     private lateinit var deliveryTime: AppCompatTextView
+    private lateinit var rider: AppCompatImageView
 
 
     init {
-        View.inflate(context, R.layout.layout_hourly_express_delivery_view, this)
+        View.inflate(context, R.layout.layout_gif_hourly_express_delivery_view, this)
         initView()
     }
 
     @SuppressLint("ClickableViewAccessibility")
     private fun initView() {
         seekBar = findViewById(R.id.delivery_seek)
+        rider = findViewById(R.id.rider_image)
         distanceTv = findViewById(R.id.tv_distance_distance)
         deliveryStatus = findViewById(R.id.delivery_status)
         deliveryTime = findViewById(R.id.delivery_time)
@@ -71,54 +70,32 @@ class SeekBarViewGroup : ConstraintLayout {
             }
         })
 
-        Glide.with(context).asGif().load(R.raw.hourse).centerInside().error(R.drawable.ride_item)
-            .into(object : CustomTarget<GifDrawable>() {
-                override fun onResourceReady(
-                    resource: GifDrawable,
-                    transition: Transition<in GifDrawable>?
-                ) {
-                    seekBar.thumb = resource
-                    resource.start()
-                }
-
-                override fun onLoadCleared(placeholder: Drawable?) {
-                    seekBar.thumb = placeholder
-                }
-
-            })
-
-
+        Glide.with(context).asGif().load(R.raw.hourse).centerInside().error(R.drawable.ride_item).into(rider)
     }
 
     private fun onProgressChanged(progress: Int, seekBar: SeekBar) {
         post {
             //进度百分比
             val progressRatio = progress.toFloat() / seekBar.max
-            //文本宽度
-            val indicatorW = distanceTv.measuredWidth / 2
-            // thumb偏移量
-            val thumbOffset = seekBar.thumbOffset
-            // 拖动图片宽度
-            val thumbW = seekBar.thumb.intrinsicWidth / 2
-            val with = seekBar.measuredWidth - thumbW - thumbOffset - 44.dp
+
+            val with = seekBar.measuredWidth - rider.measuredWidth
             val s = seekBar.measuredWidth - (progressRatio * seekBar.measuredWidth)
-            val leftMargin = if (s >= distanceTv.measuredWidth) {
-                val left = (progress * with) / seekBar.max + indicatorW + thumbW
-                if (left < 0) 0 else left
+
+            val riderLeftMargin = (progress * with) / seekBar.max
+            val riderParams = rider.layoutParams as LayoutParams
+            riderParams.leftMargin = riderLeftMargin
+            rider.layoutParams = riderParams
+            LogUtil.d("剩余距离：$s ,riderLeftMargin = $riderLeftMargin")
+
+            val tvLeftMargin = if (s >= distanceTv.measuredWidth) {
+                (-6).dp
             } else {
-                val left = (progress * with) / seekBar.max - indicatorW - thumbW
-                if (left < 0) 0 else left
+                -rider.measuredWidth - distanceTv.measuredWidth - 6.dp
             }
 
-            val params = distanceTv.layoutParams as LayoutParams
-            params.leftMargin = leftMargin
-            distanceTv.layoutParams = params
-
-//            if (progress == 0 || progress == 100) {
-//                distanceTv.visibility = INVISIBLE
-//            } else {
-//                distanceTv.visibility = VISIBLE
-//            }
+            val tvParams = distanceTv.layoutParams as LayoutParams
+            tvParams.leftMargin = tvLeftMargin
+            distanceTv.layoutParams = tvParams
         }
     }
 
