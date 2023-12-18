@@ -68,7 +68,7 @@
             android:layout_height="wrap_content"
             android:paddingStart="3dp"
             android:paddingEnd="3dp"
-            android:layout_marginBottom="2dp"
+            android:layout_marginBottom="1dp"
             android:progressDrawable="@drawable/hourly_progress"
             android:thumb="@null"
             android:splitTrack="false"
@@ -79,9 +79,11 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/rider_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/rider"
+            android:layout_width="39.5dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="-3dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ride"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -92,9 +94,7 @@
             android:background="@drawable/hourly_tag"
             android:layout_marginStart="-6dp"
             android:paddingStart="3dp"
-            android:paddingTop="2dp"
             android:paddingEnd="3dp"
-            android:paddingBottom="2dp"
             android:text="@string/order_packages_delivery_distance"
             android:textSize="9sp"
             app:layout_constraintStart_toEndOf="@+id/rider_image"

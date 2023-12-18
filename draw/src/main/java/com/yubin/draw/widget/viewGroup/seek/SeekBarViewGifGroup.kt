@@ -3,6 +3,7 @@ package com.yubin.draw.widget.viewGroup.seek
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
+import android.graphics.drawable.Drawable
 import android.text.SpannableString
 import android.text.Spanned
 import android.text.style.ForegroundColorSpan
@@ -13,7 +14,14 @@ import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatSeekBar
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.vectordrawable.graphics.drawable.Animatable2Compat
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.load.resource.gif.GifDrawable
+import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.RequestOptions
+import com.bumptech.glide.request.target.Target
 import com.yubin.baselibrary.util.CMDisplayHelper.dp
 import com.yubin.baselibrary.util.LogUtil
 import com.yubin.baselibrary.util.ResourceUtil
@@ -70,7 +78,44 @@ class SeekBarViewGifGroup : ConstraintLayout {
             }
         })
 
-        Glide.with(context).asGif().load(R.raw.hourse).centerInside().error(R.drawable.ride_item).into(rider)
+        Glide.with(context).asGif().load(R.raw.ride_begin).centerCrop()
+            .listener(object : RequestListener<GifDrawable> {
+                override fun onLoadFailed(
+                    e: GlideException?,
+                    model: Any?,
+                    target: Target<GifDrawable>?,
+                    isFirstResource: Boolean
+                ): Boolean {
+                    return false
+                }
+
+                override fun onResourceReady(
+                    resource: GifDrawable?,
+                    model: Any?,
+                    target: Target<GifDrawable>?,
+                    dataSource: DataSource?,
+                    isFirstResource: Boolean
+                ): Boolean {
+                    resource?.setLoopCount(1)
+                    resource?.registerAnimationCallback(object :
+                        Animatable2Compat.AnimationCallback() {
+                        override fun onAnimationEnd(drawable: Drawable?) {
+                            show2RiderGif()
+                        }
+                    })
+
+                    return false
+                }
+            })
+            .error(R.drawable.ride)
+            .into(rider)
+    }
+
+    private fun show2RiderGif() {
+        Glide.with(context).asGif()
+            .apply(RequestOptions().skipMemoryCache(true))
+            .load(R.raw.riding).centerCrop()
+            .error(R.drawable.ride).into(rider)
     }
 
     private fun onProgressChanged(progress: Int, seekBar: SeekBar) {
@@ -81,11 +126,14 @@ class SeekBarViewGifGroup : ConstraintLayout {
             val with = seekBar.measuredWidth - rider.measuredWidth
             val s = seekBar.measuredWidth - (progressRatio * seekBar.measuredWidth)
 
-            val riderLeftMargin = (progress * with) / seekBar.max
+            val riderLeftMargin = if (progress > 0) {
+                (progress * with) / seekBar.max
+            } else {
+                (-3).dp
+            }
             val riderParams = rider.layoutParams as LayoutParams
             riderParams.leftMargin = riderLeftMargin
             rider.layoutParams = riderParams
-            LogUtil.d("剩余距离：$s ,riderLeftMargin = $riderLeftMargin")
 
             val tvLeftMargin = if (s >= distanceTv.measuredWidth) {
                 (-6).dp

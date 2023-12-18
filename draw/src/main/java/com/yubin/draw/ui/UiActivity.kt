@@ -35,7 +35,7 @@ import com.yubin.draw.widget.snackbar.SnackBar
 import com.yubin.draw.widget.snackbar.SnackBar.Callback
 import com.yubin.draw.widget.snackbar.SnackBar1
 import com.yubin.draw.widget.view.GoodsItemView
-import com.yubin.draw.widget.viewGroup.seek.SeekBarViewGroup
+import com.yubin.draw.widget.viewGroup.seek.SeekBarViewGifGroup
 import java.util.LinkedList
 
 
@@ -92,7 +92,7 @@ class UiActivity : NativeActivity<ActivityUiBinding>() {
         //......................
         binding.viewFlipper.removeAllViews()
         goodsItemViews?.forEachIndexed { _, _ ->
-            val view = SeekBarViewGroup(this)
+            val view = SeekBarViewGifGroup(this)
             view.bindData(null, "100000", false)
             binding.viewFlipper.addView(view)
             binding.viewFlipper.isAutoStart = true

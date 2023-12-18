@@ -3,7 +3,6 @@ package com.yubin.draw.widget.viewGroup.seek
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
-import android.graphics.drawable.Drawable
 import android.text.SpannableString
 import android.text.Spanned
 import android.text.style.ForegroundColorSpan
@@ -13,10 +12,6 @@ import android.widget.SeekBar
 import androidx.appcompat.widget.AppCompatSeekBar
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.gif.GifDrawable
-import com.bumptech.glide.request.target.CustomTarget
-import com.bumptech.glide.request.transition.Transition
 import com.yubin.baselibrary.util.CMDisplayHelper.dp
 import com.yubin.baselibrary.util.LogUtil
 import com.yubin.baselibrary.util.ResourceUtil
@@ -70,24 +65,6 @@ class SeekBarViewGroup : ConstraintLayout {
             override fun onStopTrackingTouch(seekBar: SeekBar) {
             }
         })
-
-        Glide.with(context).asGif().load(R.raw.hourse).centerInside().error(R.drawable.ride_item)
-            .into(object : CustomTarget<GifDrawable>() {
-                override fun onResourceReady(
-                    resource: GifDrawable,
-                    transition: Transition<in GifDrawable>?
-                ) {
-                    seekBar.thumb = resource
-                    resource.start()
-                }
-
-                override fun onLoadCleared(placeholder: Drawable?) {
-                    seekBar.thumb = placeholder
-                }
-
-            })
-
-
     }
 
     private fun onProgressChanged(progress: Int, seekBar: SeekBar) {
