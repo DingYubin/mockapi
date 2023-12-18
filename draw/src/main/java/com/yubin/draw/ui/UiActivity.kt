@@ -98,8 +98,8 @@ class UiActivity : NativeActivity<ActivityUiBinding>() {
             binding.viewFlipper.isAutoStart = true
         }
 
-        binding.viewFlipper.flipInterval = 3 * 1000;
-        binding.viewFlipper.startFlipping();
+        binding.viewFlipper.flipInterval = 5 * 1000
+        binding.viewFlipper.startFlipping()
 
     }
 

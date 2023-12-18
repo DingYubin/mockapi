@@ -77,7 +77,6 @@ class SeekBarViewGifGroup : ConstraintLayout {
             override fun onStopTrackingTouch(seekBar: SeekBar) {
             }
         })
-
         Glide.with(context).asGif().load(R.raw.ride_begin).centerCrop()
             .listener(object : RequestListener<GifDrawable> {
                 override fun onLoadFailed(
@@ -97,6 +96,7 @@ class SeekBarViewGifGroup : ConstraintLayout {
                     isFirstResource: Boolean
                 ): Boolean {
                     resource?.setLoopCount(1)
+
                     resource?.registerAnimationCallback(object :
                         Animatable2Compat.AnimationCallback() {
                         override fun onAnimationEnd(drawable: Drawable?) {
@@ -107,7 +107,7 @@ class SeekBarViewGifGroup : ConstraintLayout {
                     return false
                 }
             })
-            .error(R.drawable.ride)
+            .placeholder(R.drawable.ride)
             .into(rider)
     }
 
