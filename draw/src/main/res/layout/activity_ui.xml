@@ -30,6 +30,19 @@
                 android:textColor="@color/tab_selector_color" />
 
             <ViewFlipper
+                android:id="@+id/vf_activity_banner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="#F2F2F2"
+                android:layout_marginStart="@dimen/dp_10"
+                android:layout_marginEnd="@dimen/dp_10"
+                android:flipInterval="5000"
+                android:inAnimation="@anim/right_anim_marquee_in"
+                android:outAnimation="@anim/left_anim_marquee_out"
+                />
+
+            <ViewFlipper
                 android:id="@+id/view_flipper"
                 android:layout_width="match_parent"
                 android:layout_height="72dp"

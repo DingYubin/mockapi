@@ -14,9 +14,14 @@ import android.text.style.ClickableSpan
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
+import android.view.ViewGroup
+import android.widget.FrameLayout
 import android.widget.HorizontalScrollView
+import android.widget.ImageView
+import androidx.appcompat.widget.AppCompatImageView
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
+import com.bumptech.glide.Glide
 import com.google.gson.Gson
 import com.yubin.baselibrary.core.BaseApplication.Companion.context
 import com.yubin.baselibrary.router.path.RouterPath
@@ -74,9 +79,35 @@ class UiActivity : NativeActivity<ActivityUiBinding>() {
         initView()
         bindData()
         initFlipper()
+        initRightFlipper()
         initSeekBarView()
         addListener()
         testHandler()
+    }
+
+    private fun initRightFlipper() {
+        // 轮播的图片集合
+        //......................
+        //..........此处省去初始化picList......
+        //......................
+        binding.vfActivityBanner.removeAllViews()
+        goodsItemViews?.forEachIndexed { _, _ ->
+            val view = AppCompatImageView(this)
+//            ViewGroup.LayoutParams.WRAP_CONTENT
+            view.layoutParams = FrameLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT)
+            view.scaleType = ImageView.ScaleType.FIT_XY
+//            view.setBackgroundResource(R.color.text_common_stock_red)
+//            view.adjustViewBounds = true
+            Glide.with(this)
+                .load("https://pic-market.cassmall.com/mall/hwbeta/2022-7/1657592026160_K5nF5KpJGcxTRyzyd46iWmpw5R4SkRWP.png")
+                .into(view)
+            binding.vfActivityBanner.addView(view)
+        }
+        binding.vfActivityBanner.isAutoStart = true
+        binding.vfActivityBanner.flipInterval = 5 * 1000
+        binding.vfActivityBanner.startFlipping()
     }
 
     private fun initSeekBarView() {
