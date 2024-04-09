@@ -1,0 +1,38 @@
+apply plugin: 'com.android.library'
+
+version = '0.0.1'
+
+android {
+    compileSdk rootProject.ext.android.compileSdkVersion
+
+    defaultConfig {
+        minSdk rootProject.ext.android.minSdkVersion
+        targetSdk rootProject.ext.android.targetSdkVersion
+
+        versionName version
+        consumerProguardFiles 'proguard-rules.pro'
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+    compileOptions {
+        sourceCompatibility rootProject.ext.android.javaCompatibility
+        targetCompatibility rootProject.ext.android.javaCompatibility
+    }
+}
+
+dependencies {
+//    implementation "androidx.viewpager2:viewpager2:1.1.0-beta02"
+    implementation project(':baselibrary')
+}
+
+tasks.register('androidSourcesJar', Jar) {
+    archiveClassifier.set("sources")
+    from android.sourceSets.main.java.source
+    exclude "**/R.class"
+    exclude "**/BuildConfig.class"
+}
+
+

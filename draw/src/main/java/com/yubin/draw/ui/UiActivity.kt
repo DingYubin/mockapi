@@ -22,16 +22,17 @@ import androidx.appcompat.widget.AppCompatImageView
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners
-import com.bumptech.glide.request.RequestOptions
 import com.google.gson.Gson
 import com.youth.banner.adapter.BannerImageAdapter
 import com.youth.banner.holder.BannerImageHolder
 import com.youth.banner.indicator.CircleIndicator
+import com.youth.banner.indicator.RectangleIndicator
+import com.youth.banner.util.BannerUtils
 import com.yubin.baselibrary.core.BaseApplication.Companion.context
 import com.yubin.baselibrary.router.path.RouterPath
 import com.yubin.baselibrary.ui.basemvvm.BaseActivity
 import com.yubin.baselibrary.ui.basemvvm.NativeActivity
+import com.yubin.baselibrary.util.CMDisplayHelper.dp
 import com.yubin.baselibrary.util.EmptyUtil
 import com.yubin.baselibrary.util.HandlerHelper
 import com.yubin.baselibrary.util.LogUtil
@@ -118,9 +119,11 @@ class UiActivity : NativeActivity<ActivityUiBinding>() {
 
         //—————————————————————————如果你想偷懒，而又只是图片轮播————————————————————————
         val dataBean = mutableListOf<DataBean>()
-        dataBean.add(DataBean("https://pic-market.cassmall.com/mall/hwbeta/2022-7/1657592026160_K5nF5KpJGcxTRyzyd46iWmpw5R4SkRWP.png"))
-        dataBean.add(DataBean("https://pic-market.cassmall.com/mall/hwbeta/2022-7/1657592026160_K5nF5KpJGcxTRyzyd46iWmpw5R4SkRWP.png"))
-        dataBean.add(DataBean("https://pic-market.cassmall.com/mall/hwbeta/2022-7/1657592026160_K5nF5KpJGcxTRyzyd46iWmpw5R4SkRWP.png"))
+        dataBean.add(DataBean("https://img.zcool.cn/community/01b72057a7e0790000018c1bf4fce0.png"))
+        dataBean.add(DataBean("https://img.zcool.cn/community/016a2256fb63006ac7257948f83349.jpg"))
+        dataBean.add(DataBean("https://img.zcool.cn/community/01233056fb62fe32f875a9447400e1.jpg"))
+        dataBean.add(DataBean("https://img.zcool.cn/community/01700557a7f42f0000018c1bd6eb23.jpg"))
+
         binding.banner.setAdapter(object : BannerImageAdapter<DataBean>(dataBean) {
 
             override fun onBindView(
@@ -132,12 +135,15 @@ class UiActivity : NativeActivity<ActivityUiBinding>() {
                 //图片加载自己实现
                 Glide.with(holder.itemView)
                     .load(data.imageUrl)
-                    .apply(RequestOptions.bitmapTransform(RoundedCorners(30)))
                     .into(holder.imageView);
             }
         })
             .addBannerLifecycleObserver(this)//添加生命周期观察者
-            .setIndicator(CircleIndicator(this), false)
+//            .setIndicator(DrawableIndicator(this, R.drawable.alert_icon, R.drawable.alert_red_sm))
+            .setIndicator(RectangleIndicator(this))
+            .setIndicatorSpace(BannerUtils.dp2px(2f))
+            .setIndicatorSelectedWidth(10.dp)
+            .setBannerRound(20f)
         //更多使用方法仔细阅读文档，或者查看demo
     }
 
