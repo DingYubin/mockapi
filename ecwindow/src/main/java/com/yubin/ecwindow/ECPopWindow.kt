@@ -6,7 +6,10 @@ import android.content.Context
 import android.graphics.Color
 import android.graphics.RectF
 import android.graphics.drawable.ColorDrawable
-import android.view.*
+import android.view.Gravity
+import android.view.KeyEvent
+import android.view.MotionEvent
+import android.view.View
 import android.view.ViewTreeObserver.OnPreDrawListener
 import android.widget.FrameLayout
 import android.widget.PopupWindow
@@ -72,10 +75,10 @@ class ECPopWindow(context: Context) : PopupWindow(context) {
         // 找到在屏幕中的位置
         val locationOnScreen = intArrayOf(0, 0)
         parent.getLocationOnScreen(locationOnScreen)
-        rectF.left = rectF.left + locationOnScreen[0]
-        rectF.top = rectF.top + locationOnScreen[1]
-        rectF.right = rectF.right + locationOnScreen[0]
-        rectF.bottom = rectF.bottom + locationOnScreen[1]
+        rectF.left += locationOnScreen[0]
+        rectF.top += locationOnScreen[1]
+        rectF.right += locationOnScreen[0]
+        rectF.bottom += locationOnScreen[1]
 
         this.anchorRectF = rectF
         this.anchor = parent

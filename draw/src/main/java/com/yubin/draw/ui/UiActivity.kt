@@ -107,7 +107,7 @@ class UiActivity : NativeActivity<ActivityUiBinding>() {
     }
 
     override fun onNewDestroy() {
-        super.onDestroy()
+        super.onNewDestroy()
         //销毁
         binding.banner.destroy()
     }
