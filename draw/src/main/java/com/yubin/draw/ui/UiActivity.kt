@@ -42,6 +42,7 @@ import com.yubin.draw.R
 import com.yubin.draw.bean.DataBean
 import com.yubin.draw.bean.StoreList
 import com.yubin.draw.databinding.ActivityUiBinding
+import com.yubin.draw.widget.dialog.AdvertisementDialog
 import com.yubin.draw.widget.dialog.GuideDialog
 import com.yubin.draw.widget.snackbar.SnackBar
 import com.yubin.draw.widget.snackbar.SnackBar.Callback
@@ -87,6 +88,7 @@ class UiActivity : NativeActivity<ActivityUiBinding>() {
         bindData()
         initBanner()
         initFlipper()
+        initAd()
         initRightFlipper()
         initSeekBarView()
         addListener()
@@ -337,6 +339,23 @@ class UiActivity : NativeActivity<ActivityUiBinding>() {
             GoodsItemView(findViewById(R.id.goods_item7)),
             GoodsItemView(findViewById(R.id.goods_item8))
         )
+    }
+
+    private fun initAd(){
+        binding.ad.setOnClickListener {
+            Log.d("UiActivity", "Ad onClick")
+            val imgUrl = "https://pic-market.cassmall.com/mall/hwbeta/2022-7/1657592026160_K5nF5KpJGcxTRyzyd46iWmpw5R4SkRWP.png"
+            val adDialog = AdvertisementDialog.newInstance(imgUrl, "bottom", false)
+            adDialog.closeListener {
+                Log.d("UiActivity", "Ad closeListener")
+            }
+            adDialog.imageClickListener {
+                Log.d("UiActivity", "Ad imageClickListener")
+            }
+            adDialog.show(supportFragmentManager, "AdvertisementDialog")
+
+
+        }
     }
 
     private fun bindData() {

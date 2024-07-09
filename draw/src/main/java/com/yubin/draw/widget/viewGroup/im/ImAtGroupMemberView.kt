@@ -33,13 +33,11 @@ class ImAtGroupMemberView(context: Context) : ConstraintLayout(context), IMMembe
     private var mKeywordsBar: ImKeywordsSearch? = null
     private var mViewModel: ImMemberViewModel? = null
     private val mAdapter by lazy { MemberAdapter(this)}
-    private val maxShowHeight: Int
+    private val maxShowHeight: Int = ((CMUnitHelper.getAppUsableScreenSize(context).y * 0.8) - CMUnitHelper.dp2px(100f)).toInt()
 
     private var mSelectedMemberListener: ((member: MemberBean) -> Unit)? = null
 
     init {
-        maxShowHeight =
-            ((CMUnitHelper.getAppUsableScreenSize(context).y * 0.8) - CMUnitHelper.dp2px(100f)).toInt()
         mActivity = context as? ImActivity
         initView()
         initViewModel()

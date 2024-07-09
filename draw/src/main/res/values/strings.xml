@@ -20,6 +20,7 @@
     <string name="inquiry_quality_single">按单个配件选</string>
 
     <string name="im_style">im样式</string>
+    <string name="ad_style">广告弹窗</string>
     <string name="snack_bar1">snackBar弹窗1</string>
     <string name="snack_bar2">snackBar弹窗2</string>
     <string name="go_callback_activity">回调页面事例，几种写法，这里都有</string>
