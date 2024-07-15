@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import androidx.appcompat.widget.AppCompatImageView
+import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,6 +18,7 @@ import com.yubin.draw.R
 import com.yubin.draw.adapter.MemberAdapter
 import com.yubin.draw.bean.MemberBean
 import com.yubin.draw.extend.DrawHelper
+import com.yubin.draw.extend.QuotationWindowHelper
 import com.yubin.draw.model.ImMemberViewModel
 import com.yubin.draw.ui.ImActivity
 import com.yubin.draw.widget.recyclerView.CMRecyclerView
@@ -32,6 +34,7 @@ class ImAtGroupMemberView(context: Context) : ConstraintLayout(context), IMMembe
     private var ivClose: AppCompatImageView? = null
     private var mKeywordsBar: ImKeywordsSearch? = null
     private var mViewModel: ImMemberViewModel? = null
+    private var title: AppCompatTextView? = null
     private val mAdapter by lazy { MemberAdapter(this)}
     private val maxShowHeight: Int = ((CMUnitHelper.getAppUsableScreenSize(context).y * 0.8) - CMUnitHelper.dp2px(100f)).toInt()
 
@@ -46,6 +49,7 @@ class ImAtGroupMemberView(context: Context) : ConstraintLayout(context), IMMembe
     private fun initView() {
 
         inflate(context, R.layout.im_layout_at_group_member, this)
+        title = findViewById(R.id.group_title)
         mKeywordsBar = findViewById(R.id.im_keywords_bar)
         rvMemberList = findViewById(R.id.cl_member_list)
         clContainer = findViewById(R.id.cl_area_container)
@@ -57,6 +61,14 @@ class ImAtGroupMemberView(context: Context) : ConstraintLayout(context), IMMembe
         ivClose?.onViewClick {
             ecPopWindow?.dismiss()
             mViewModel = null
+        }
+
+        title?.onViewClick {
+            QuotationWindowHelper.showQuotationCouponWindow(
+                context,
+                title,
+                "选择提醒的成员"
+            )
         }
 
         mKeywordsBar?.setKeywordsChangedListener { keywords ->

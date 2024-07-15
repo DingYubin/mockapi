@@ -5,20 +5,24 @@ import android.content.DialogInterface
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.text.TextUtils
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatImageView
+import androidx.appcompat.widget.AppCompatTextView
 import androidx.fragment.app.DialogFragment
 import com.bumptech.glide.Glide
 import com.yubin.baselibrary.extension.onViewClick
 import com.yubin.draw.R
+import com.yubin.draw.extend.QuotationWindowHelper
 
 class AdvertisementDialog : DialogFragment() {
 
     private var topClose: AppCompatImageView? = null
     private var bottomClose: AppCompatImageView? = null
     private var ivAdvertisement: AppCompatImageView? = null
+    private var kkkkk: AppCompatTextView? = null
 
     private var closeListener: (() -> Unit)? = null
     private var imageClickListener: (() -> Unit)? = null
@@ -31,13 +35,14 @@ class AdvertisementDialog : DialogFragment() {
         val window = dialog?.window
         val params = window?.attributes
         window?.attributes = params
+        window?.setGravity(Gravity.BOTTOM)
         window?.setBackgroundDrawable(ColorDrawable())
 
         val view = inflater.inflate(R.layout.dialog_advertisement, container, false)
         topClose = view.findViewById(R.id.iv_top_close)
         bottomClose = view.findViewById(R.id.iv_bottom_close)
         ivAdvertisement = view.findViewById(R.id.iv_advertisement)
-
+        kkkkk = view.findViewById(R.id.iv_bottom)
         return view
     }
 
@@ -67,6 +72,14 @@ class AdvertisementDialog : DialogFragment() {
 
         ivAdvertisement?.onViewClick {
             imageClickListener?.invoke()
+        }
+
+        kkkkk?.onViewClick{
+            QuotationWindowHelper.showQuotationCouponWindow(
+                context,
+                kkkkk,
+                "选择提醒的成员"
+            )
         }
     }
 

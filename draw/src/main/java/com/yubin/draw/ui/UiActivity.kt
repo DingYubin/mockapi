@@ -354,7 +354,6 @@ class UiActivity : NativeActivity<ActivityUiBinding>() {
             }
             adDialog.show(supportFragmentManager, "AdvertisementDialog")
 
-
         }
     }
 
