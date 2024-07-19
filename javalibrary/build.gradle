@@ -1,0 +1,7 @@
+apply plugin: 'java'
+apply plugin: 'application'
+mainClassName = 'java.MainRun'
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
