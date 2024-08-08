@@ -5,8 +5,8 @@
             <solid android:color="@android:color/transparent" />
             <stroke android:width="0.75dp" android:color="@color/color_cec_red_e51e1e" />
             <size
-                android:width="14dp"
-                android:height="14dp" />
+                android:width="15dp"
+                android:height="15dp" />
         </shape>
     </item>
 </layer-list>

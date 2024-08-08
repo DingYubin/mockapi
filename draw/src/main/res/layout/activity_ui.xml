@@ -278,7 +278,7 @@
                     android:background="@drawable/cicle_red_bg"
                     android:textColor="@color/color_cec_red_e51e1e"
                     android:textSize="8sp"
-                    android:text="50"
+                    android:text="500"
                     app:layout_constraintStart_toEndOf="@+id/inquiry_other_requirements_quality_detail_img"
                     app:layout_constraintTop_toBottomOf="@+id/image" />
 
