@@ -254,6 +254,7 @@
                 </LinearLayout>
 
                 <com.yubin.draw.widget.view.text.TextImageView
+                    android:id="@+id/image"
                     android:layout_width="92dp"
                     android:layout_height="32dp"
                     android:layout_marginStart="41dp"
@@ -267,6 +268,20 @@
                     app:drawableStartWidth="15dp"
                     app:layout_constraintStart_toEndOf="@+id/inquiry_other_requirements_quality_detail_img"
                     app:layout_constraintTop_toBottomOf="@+id/inquiry_ll_other_requirements_quality_check_single" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/circle_number_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="41dp"
+                    android:gravity="center"
+                    android:background="@drawable/cicle_red_bg"
+                    android:textColor="@color/color_cec_red_e51e1e"
+                    android:textSize="8sp"
+                    android:text="50"
+                    app:layout_constraintStart_toEndOf="@+id/inquiry_other_requirements_quality_detail_img"
+                    app:layout_constraintTop_toBottomOf="@+id/image" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.appcompat.widget.AppCompatTextView

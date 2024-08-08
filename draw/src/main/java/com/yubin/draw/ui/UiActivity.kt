@@ -380,6 +380,7 @@ class UiActivity : NativeActivity<ActivityUiBinding>() {
         }
 
         setStorePic()
+
     }
 
     private fun setStorePic() {

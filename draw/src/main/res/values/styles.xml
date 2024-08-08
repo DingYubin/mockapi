@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <style name="login_register_rr_et_container" parent="login_register_container">
         <item name="android:layout_marginTop">20dp</item>
         <item name="android:focusable">true</item>
@@ -74,5 +75,4 @@
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowNoTitle">true</item>
     </style>
-
 </resources>
