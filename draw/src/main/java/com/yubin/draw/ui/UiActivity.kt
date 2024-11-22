@@ -5,12 +5,16 @@ import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Canvas
+import android.graphics.Color
 import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableString
 import android.text.SpannableStringBuilder
 import android.text.Spanned
 import android.text.TextPaint
 import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
+import android.text.style.ForegroundColorSpan
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
@@ -93,6 +97,25 @@ class UiActivity : NativeActivity<ActivityUiBinding>() {
         initSeekBarView()
         addListener()
         testHandler()
+        test()
+    }
+
+    private fun test() {
+        binding.orderText.text = getDisplayDispatch()
+    }
+
+    private fun getDisplayDispatch(): CharSequence {
+        val targetString = java.lang.String.format(
+            ResourceUtil.getString(R.string.title_dispatch_time),
+           "广州云仓",
+            "4"
+        )
+        val displayDispatch = SpannableString(targetString)
+        displayDispatch.setSpan(
+            ForegroundColorSpan(Color.parseColor("#ff666666")), 0, 5,
+            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+        return displayDispatch
     }
 
 
