@@ -6,5 +6,8 @@
         <activity
             android:name=".ui.MvvmLoginActivity"
             android:exported="true" />
+        <activity
+            android:name=".ui.OeActivity"
+            android:exported="true" />
     </application>
 </manifest>

@@ -12,4 +12,5 @@
     <string name="draw">绘制</string>
     <string name="rxjava">rxjava</string>
     <string name="kotlin_coroutine">coroutine</string>
+    <string name="kotlin_room_db">room数据库</string>
 </resources>

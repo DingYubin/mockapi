@@ -11,6 +11,11 @@ object RouterPath {
              * 登录页面
              */
             const val PATH_MVVM_LOGIN = "/mvvm/login"
+
+            /**
+             * OE页面
+             */
+            const val PATH_MVVM_OE = "/mvvm/oe"
         }
     }
 
@@ -57,6 +62,15 @@ object RouterPath {
              * kotlin携程测试页面
              */
             const val PATH_KOTLIN_COROUTINE = "/kotlin/coroutine"
+        }
+    }
+
+    class RoomPage {
+        companion object {
+            /**
+             * kotlin携程测试页面
+             */
+            const val PATH_ROOM_DB = "/room/db"
         }
     }
 

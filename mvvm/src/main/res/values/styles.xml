@@ -43,4 +43,16 @@
         <item name="android:textColor">@color/st_text_master_common_white</item>
         <item name="android:textSize">20sp</item>
     </style>
+
+    <style name="or_params_edit">
+        <item name="android:layout_width">100dp</item>
+        <item name="android:layout_height">30dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/text_common_edit</item>
+        <item name="android:textColorHint">@color/text_common_hint</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:background">@drawable/edt_blue_pressed</item>
+        <item name="android:dropDownVerticalOffset">1px</item>
+    </style>
 </resources>
