@@ -1,4 +1,8 @@
-apply plugin: 'com.android.library'
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+}
 
 android {
     compileSdk rootProject.ext.android.compileSdkVersion
@@ -22,13 +26,16 @@ android {
 
 dependencies {
     def database = rootProject.ext.database
-    def baselib = rootProject.ext.baselib
+    def base = rootProject.ext.baselib
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "com.google.guava:guava:${database.guava}"
-    api "android.arch.persistence.room:rxjava2:${baselib.arach}"
-    api "android.arch.persistence.room:runtime:${baselib.arach}"
-    api 'net.zetetic:android-database-sqlcipher:3.5.9@aar'
-    implementation "com.orhanobut:logger:${baselib.logger}"
+    api "android.arch.persistence.room:rxjava2:${base.arach}"
+    api "android.arch.persistence.room:runtime:${base.arach}"
+    implementation "com.orhanobut:logger:${base.logger}"
+
+    //Room components
+    implementation "androidx.room:room-ktx:${database.roomVersion}"
+    kapt "androidx.room:room-compiler:$database.roomVersion"
 }
 
 artifacts {

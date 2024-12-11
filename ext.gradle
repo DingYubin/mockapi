@@ -26,7 +26,8 @@ ext {
     ]
 
     database = [
-            guava                      : '27.0.1-android'
+            guava                      : '27.1-android',
+            roomVersion                : '2.4.0'
     ]
 
     baselib = [

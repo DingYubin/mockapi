@@ -1,49 +1,46 @@
 package com.yubin.kotlindb
 
 import android.util.Log
+import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import com.yubin.baselibrary.global.AppGlobals
-import com.yubin.kotlindb.dao.ChatRecordDao
-import com.yubin.kotlindb.dao.ConversationDao
+import com.yubin.kotlindb.convert.Converters
+import com.yubin.kotlindb.dao.OERecordDao
+import com.yubin.kotlindb.entity.OERecord
 
+@Database(
+    entities = [OERecord::class
+    ], version = 1
+)
+@TypeConverters(Converters::class)
 abstract class AppDataBase : RoomDatabase() {
-    abstract fun conversationDao(): ConversationDao?
 
-    abstract fun chatRecordDao(): ChatRecordDao?
+    abstract fun oeRecordDao(): OERecordDao
 
-    private var appDataBase: AppDataBase? = null
+    companion object {
+        @Volatile
+        private var instance: AppDataBase? = null
 
-    @Synchronized
-    open fun getInstance(): AppDataBase? {
-        if (appDataBase == null || !appDataBase!!.isOpen) {
-            open()
+        fun getInstance(): AppDataBase {
+            return instance ?: synchronized(this) {
+                instance ?: buildDatabase().also { instance = it }
+            }
         }
-        return appDataBase
+
+        private fun buildDatabase(): AppDataBase {
+            return Room.databaseBuilder(
+                AppGlobals.getApplication(),
+                AppDataBase::class.java,
+                "my_room"
+            ).addMigrations(DatabaseMigration.MIGRATION_1_2).build()
+        }
     }
 
-    @Synchronized
-    open fun open() {
-        release()
-        //从缓存里取
-        val uid = "dyb001"
-        //这里做加密处理
-//        val factory = SafeHelperFactory(uid.toCharArray())
-        appDataBase = Room.databaseBuilder(
-            AppGlobals.getApplication(),
-            AppDataBase::class.java, uid
-        ) //                .openHelperFactory(factory)
-            .addMigrations(DatabaseMigration.MIGRATION_1_2)
-            .allowMainThreadQueries()
-            .build()
-    }
-
-    open fun release() {
-
-        if (appDataBase?.isOpen == true) {
-            appDataBase?.close()
-            appDataBase = null
-            Log.d("AppDataBase", "==========   release   ===========")
-        }
+    fun release() {
+        instance?.close()
+        instance = null
+        Log.d("AppDataBase", "==========   release   ===========")
     }
 }

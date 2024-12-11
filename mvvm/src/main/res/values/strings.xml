@@ -4,6 +4,7 @@
     <string name="mvvm_oe">配件信息采集</string>
     <string name="export">导出数据</string>
     <string name="scan">扫码</string>
+    <string name="today_num">今日共%d条数据</string>
     <string name="long_flg">长：</string>
     <string name="width_flg">宽：</string>
     <string name="high_flg">高：</string>

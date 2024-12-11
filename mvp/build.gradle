@@ -37,5 +37,5 @@ dependencies {
 
     implementation project(':httplibrary')
     implementation project(':baselibrary')
-    implementation project(':dblibrary')
+//    implementation project(':dblibrary')
 }

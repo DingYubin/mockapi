@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.yubin.baselibrary.extension.onViewClick
 import com.yubin.baselibrary.router.path.RouterPath
@@ -13,6 +14,7 @@ import com.yubin.mvvm.databinding.ActivityPartBinding
 import com.yubin.mvvm.model.MvvmLoginViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.launch
 
 @Route(path = RouterPath.MvvmPage.PATH_MVVM_OE)
 class OeActivity : NativeActivity<ActivityPartBinding>(), CoroutineScope by MainScope() {
@@ -63,6 +65,9 @@ class OeActivity : NativeActivity<ActivityPartBinding>(), CoroutineScope by Main
 
         binding.save.onViewClick{
             //保存数据
+            lifecycleScope.launch {
+                viewModel.saveOeRecord()
+            }
 
         }
 

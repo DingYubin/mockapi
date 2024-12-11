@@ -53,6 +53,22 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title" />
 
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/today_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:background="@drawable/btn_blue_pressed"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="155dp"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/st_portfolio_switch_down_color"
+        android:padding="6dp"
+        android:textSize="18sp"
+        android:text="@string/today_num"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/line" />
+
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/oe"
         style="@style/login_register_edit"
@@ -63,7 +79,7 @@
         android:layout_marginTop="30dp"
         android:hint="@string/oe"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/line" />
+        app:layout_constraintTop_toBottomOf="@+id/today_num" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/scan"
@@ -78,7 +94,7 @@
         android:textSize="18sp"
         android:text="@string/scan"
         app:layout_constraintStart_toEndOf="@+id/oe"
-        app:layout_constraintTop_toBottomOf="@+id/line" />
+        app:layout_constraintTop_toBottomOf="@+id/today_num" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/long_flag"

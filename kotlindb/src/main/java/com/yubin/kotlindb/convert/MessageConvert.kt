@@ -1,7 +1,7 @@
 package com.yubin.kotlindb.convert
 
 import androidx.room.TypeConverter
-import com.yubin.baselibrary.common.ChatType
+import java.util.Date
 
 /**
  * <pre>
@@ -12,14 +12,24 @@ import com.yubin.baselibrary.common.ChatType
  * version : 1.0
 </pre> *
  */
-object MessageConvert {
+object Converters {
     @TypeConverter
-    fun parseChatType(status: Int): ChatType {
-        return ChatType.valueOf(status)
+    fun fromTimestamp(value: Long?): Date? {
+        return value?.let { Date(it) }
     }
 
     @TypeConverter
-    fun parseChatType(chatType: ChatType): Int {
-        return chatType.value
+    fun dateToTimestamp(date: Date?): Long? {
+        return date?.time
+    }
+
+    @TypeConverter
+    fun fromStringArray(images: Array<String>?): String? {
+        return images?.joinToString(",")
+    }
+
+    @TypeConverter
+    fun toStringArray(imagesString: String?): Array<String>? {
+        return imagesString?.split(",")?.toTypedArray()
     }
 }

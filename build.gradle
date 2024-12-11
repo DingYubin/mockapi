@@ -6,6 +6,7 @@ buildscript {
         maven {url 'https://maven.aliyun.com/repository/google/'}
         maven {url 'https://maven.aliyun.com/repository/public/'}
         maven {url 'https://maven.aliyun.com/repository/gradle-plugin/'}
+        google()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:7.1.2'
@@ -27,6 +28,7 @@ allprojects {
 
         //cookie持久化jar包 添加以下语句
         maven { url "https://jitpack.io" }
+        google()
     }
 }
 

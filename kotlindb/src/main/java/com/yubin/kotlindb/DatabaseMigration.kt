@@ -14,10 +14,10 @@ import androidx.sqlite.db.SupportSQLiteDatabase
  */
 object DatabaseMigration {
     val MIGRATION_1_2: Migration = object : Migration(1, 2) {
-        override fun migrate(database: SupportSQLiteDatabase) {
-            database.execSQL("delete from conversation")
-            database.execSQL("delete from chat_record")
-            database.execSQL("ALTER TABLE chat_record ADD COLUMN msg_seq INTEGER NOT NULL DEFAULT -1")
+        override fun migrate(db: SupportSQLiteDatabase) {
+//            db.execSQL("delete from conversation")
+            db.execSQL("delete from oe_record")
+//            db.execSQL("ALTER TABLE oe_record ADD COLUMN msg_seq INTEGER NOT NULL DEFAULT -1")
         }
     }
 }
