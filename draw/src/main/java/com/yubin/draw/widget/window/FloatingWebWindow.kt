@@ -4,7 +4,6 @@ import android.app.ActivityManager
 import android.app.ActivityManager.RunningTaskInfo
 import android.content.Context
 import android.graphics.PixelFormat
-import android.view.Gravity
 import android.view.MotionEvent
 import android.view.View
 import android.view.View.OnTouchListener
@@ -28,7 +27,7 @@ class FloatingWebWindow {
         //悬浮车口参数设置及返回
         mFloatParams = getParams()
         //设置窗口触摸移动事件
-        mShowView?.setOnTouchListener(FloatViewMoveListener())
+        this.mShowView?.setOnTouchListener(FloatViewMoveListener())
         //悬浮窗生成
         mWindowManager?.addView(mShowView, mFloatParams)
     }
@@ -46,12 +45,12 @@ class FloatingWebWindow {
         //设置悬浮窗口透明
         layoutParams.format = PixelFormat.TRANSLUCENT
         //设置悬浮窗口长宽数据
-        layoutParams.width = 600
-        layoutParams.height = 340
+        layoutParams.width = 340
+        layoutParams.height = 600
         //设置悬浮窗显示位置
-        layoutParams.gravity = Gravity.START or Gravity.TOP
-        layoutParams.x = 100
-        layoutParams.y = 100
+        layoutParams.x = 600
+        layoutParams.y = 500
+
         return layoutParams
     }
 

@@ -33,7 +33,7 @@ class CameraFinderView : View {
         p.color = Color.parseColor("#cc000000")
     }
 
-    override fun onDraw(canvas: Canvas?) {
+    override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
         top.left = 0f

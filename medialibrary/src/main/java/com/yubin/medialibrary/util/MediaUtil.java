@@ -33,7 +33,7 @@ public class MediaUtil {
                 });
     }
 
-    public static Bitmap decodeVideoThumb(String videoFilePath) {
+    public static Bitmap decodeVideoThumb(String videoFilePath) throws IOException {
         MediaMetadataRetriever mmr = null;
         try {
             mmr = new MediaMetadataRetriever();

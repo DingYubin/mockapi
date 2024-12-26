@@ -68,7 +68,7 @@ public class ApiDemo {
         // 1. 组装参数
         Map<String, Object> paramsMap = assembleParams();
         paramsMap.put("method", "app.upload.apk.app");
-        paramsMap.put("packageName", "com.casstime.ec");
+        paramsMap.put("packageName", "com.yubin.ec");
         paramsMap.put("fileMd5", "8115b90f00c9d8cecb9108c313c71b14");
 
         // 2. 计算签名

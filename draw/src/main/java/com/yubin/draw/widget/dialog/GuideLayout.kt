@@ -3,7 +3,15 @@ package com.yubin.draw.widget.dialog
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.Resources
-import android.graphics.*
+import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.Paint
+import android.graphics.Point
+import android.graphics.PorterDuff
+import android.graphics.PorterDuffXfermode
+import android.graphics.Rect
+import android.graphics.RectF
 import android.view.MotionEvent
 import android.view.View
 import android.widget.FrameLayout
@@ -67,12 +75,12 @@ class GuideLayout (context: Context, anchorView: View) : FrameLayout(context) {
     }
 
     @SuppressLint("DrawAllocation")
-    override fun onDraw(canvas: Canvas?) {
+    override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         if (mBitmap != null) {
-            canvas?.drawBitmap(mBitmap!!, 0f, 0f, null)
+            canvas.drawBitmap(mBitmap!!, 0f, 0f, null)
         } else {
-            canvas?.also {
+            canvas.also {
                 mBitmap = Bitmap.createBitmap(mRectF.width().toInt(), mRectF.height().toInt(), Bitmap.Config.ARGB_8888)
                 mBitmap?.let {
                     mCanvas = Canvas(it)
@@ -81,12 +89,12 @@ class GuideLayout (context: Context, anchorView: View) : FrameLayout(context) {
                     bitmap.eraseColor(Color.TRANSPARENT)
                     mCanvas?.also { _canvas ->
                         _canvas.drawColor(ResourceUtil.getColor(R.color.color_cec_mask_70))
-//                        val roundedCornerRadiusPx = CMUnitHelper.dp2px(15f)
-//                        _canvas.drawRect(rect, mAnchorPaint)
-//                        val cx = mAnchorRectF.right - roundedCornerRadiusPx
-//                        val cy = (mAnchorRectF.bottom + mAnchorRectF.top) / 2
-//                        val cRadius = (mAnchorRectF.bottom - mAnchorRectF.top) / 2
-//                        _canvas.drawCircle(cx, cy, cRadius, mAnchorPaint)
+        //                        val roundedCornerRadiusPx = CMUnitHelper.dp2px(15f)
+        //                        _canvas.drawRect(rect, mAnchorPaint)
+        //                        val cx = mAnchorRectF.right - roundedCornerRadiusPx
+        //                        val cy = (mAnchorRectF.bottom + mAnchorRectF.top) / 2
+        //                        val cRadius = (mAnchorRectF.bottom - mAnchorRectF.top) / 2
+        //                        _canvas.drawCircle(cx, cy, cRadius, mAnchorPaint)
                         val rect = Rect(mAnchorRectF.left.toInt(), mAnchorRectF.top.toInt() - ScreenUtils.getStatusBarHeight(), mAnchorRectF.right.toInt(), mAnchorRectF.bottom.toInt()- ScreenUtils.getStatusBarHeight())
 
                         _canvas.drawRect(rect, mAnchorPaint)

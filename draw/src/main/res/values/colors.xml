@@ -51,4 +51,8 @@
     <color name="color_download_progress_none">#dadada</color>
     <color name="color_download_progress_start">#F01E1E</color>
     <color name="color_download_progress_end">#F82915</color>
+    <color name="color_2970fd">#2970fd</color>
+
+    <color name="cass_ffffff">#FFFFFF</color>
+    <color name="im_color_f42c2c">#f42c2c</color>
 </resources>

@@ -63,6 +63,7 @@ dependencies {
     implementation project(path: ':medialibrary')
     implementation project(path: ':ecwindow' )
     implementation project(path: ':slider' )
+    implementation project(path: ':Casswebview' )
 
     dependencies {
         implementation "org.permissionsdispatcher:permissionsdispatcher:4.7.0"

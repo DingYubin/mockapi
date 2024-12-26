@@ -15,68 +15,56 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.bumptech.glide.Glide
 import com.yubin.baselibrary.router.path.RouterPath
-import com.yubin.baselibrary.ui.basemvvm.NativeActivity
+import com.yubin.baselibrary.ui.mvvm.CassNativeActivity
+import com.yubin.baselibrary.util.CMStatusBarUtil
+import com.yubin.baselibrary.util.resColor
 import com.yubin.draw.R
 import com.yubin.draw.databinding.ActivityWebWindowBinding
-import com.yubin.draw.widget.view.video.VideoListener
-import com.yubin.draw.widget.view.video.VideoPlayer
 import com.yubin.draw.widget.window.FloatingWebWindow
-import java.io.IOException
 
 
 @Route(path = RouterPath.UiPage.PATH_UI_WEB_WINDOW)
-class WebWindowActivity : NativeActivity<ActivityWebWindowBinding>(){
-
-//    private var mFloatingWindow: FloatingWebWindow? = null
-
-    private var videoPlayer: VideoPlayer?= null
-
-    private var videoView: VideoView?= null
+class WebWindowActivity : CassNativeActivity<ActivityWebWindowBinding>(){
 
     private var mThumb: ImageView?= null
 
-    override fun getViewBinding(): ActivityWebWindowBinding =
-        ActivityWebWindowBinding.inflate(layoutInflater)
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        initView()
+        CMStatusBarUtil.setStatusColor(this, false, true, R.color.color_2970fd.resColor())
+        supportActionBar?.hide()
+        this.initWebView()
+//        initView()
     }
+
+    private fun initWebView() {
+        val url = "https://www.baidu.com/"
+
+        val fragmentManager = supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.add(
+            R.id.workSpaceFragmentContainer,
+            CAWorkSpaceFragment.newInstance(url, "", false)
+        )
+        fragmentTransaction.commit()
+    }
+
 
     private fun initView() {
 
-        binding.btnShowWebFloatingWindow.setOnClickListener {
-            //展示浮窗
-            if (!requestOverlayPermission()) {
-                showFloatingWindow()
-            } else {
-                Toast.makeText(this, "请开启悬浮窗权限", Toast.LENGTH_SHORT).show()
-            }
-        }
+//        binding.btnShowWebFloatingWindow.setOnClickListener {
+//            //展示浮窗
+//            if (!requestOverlayPermission()) {
+//                showFloatingWindow()
+//            } else {
+//                Toast.makeText(this, "请开启悬浮窗权限", Toast.LENGTH_SHORT).show()
+//            }
+//        }
     }
 
     private fun showFloatingWindow() {
         val mFloatingWindow = FloatingWebWindow()
         val view: View = initFloatRootView(mFloatingWindow)
         mFloatingWindow.showFloatingWindowView(this, view)
-    }
-
-    override fun onResume() {
-        super.onResume()
-        videoPlayer?.start()
-
-    }
-
-    override fun onPause() {
-        super.onPause()
-        if (videoPlayer?.isPlaying == true) {
-            videoPlayer?.pause()
-            //保留暂停时最后一帧数画面
-        }
-
-        if (videoView?.isPlaying == true) {
-            videoView?.pause()
-        }
     }
 
     /**
@@ -118,28 +106,6 @@ class WebWindowActivity : NativeActivity<ActivityWebWindowBinding>(){
         mThumb = view.findViewById<View>(R.id.thumb_floating_view) as ImageView
         Glide.with(this).load(R.drawable.thumb).into(mThumb!!)
 
-        videoPlayer = view.findViewById(R.id.video_view)
-        //视频内容设置
-//        videoPlayer.initVideoView()
-        videoPlayer?.setPath(path)
-        try {
-            videoPlayer?.load()
-        } catch (e: IOException) {
-            e.printStackTrace()
-        }
-
-        videoPlayer?.setVideoListener(object : VideoListener {
-
-            override fun onCompletion() {
-//                videoPlayer.start()
-            }
-            override fun onPrepared() {
-                mThumb?.visibility = View.GONE
-                videoPlayer?.start()
-            }
-
-        })
-
         // 跳转操作
         view.findViewById<FrameLayout>(R.id.ad)
             .setOnClickListener {
@@ -155,7 +121,7 @@ class WebWindowActivity : NativeActivity<ActivityWebWindowBinding>(){
      * 浮窗样式
      */
     private fun initFloatRootView(window: FloatingWebWindow): View {
-        val view = View.inflate(this, R.layout.view_floating_root_window, null)
+        val view = View.inflate(this, R.layout.view_video_view_floating_web, null)
         // 设置视频封面
         val mThumb = view.findViewById<View>(R.id.thumb_floating_view) as ImageView
         Glide.with(this).load(R.drawable.thumb).into(mThumb)

@@ -1,6 +1,15 @@
 package com.yubin.medialibrary.util
 
-import android.graphics.*
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.Matrix
+import android.graphics.Paint
+import android.graphics.PorterDuff
+import android.graphics.PorterDuffXfermode
+import android.graphics.Rect
+import android.graphics.RectF
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
@@ -40,7 +49,7 @@ object BitmapCompressUtil {
     fun compressBitmap2File(
         bitmap: Bitmap?,
         desPath: String,
-        compressFormat: Bitmap.CompressFormat?
+        compressFormat: Bitmap.CompressFormat
     ): String? {
         try {
             val fos = FileOutputStream(File(desPath))

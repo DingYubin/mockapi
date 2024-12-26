@@ -28,7 +28,7 @@ class ArrowView @JvmOverloads constructor(
         mPaint.color = Color.BLUE
     }
 
-    override fun onDraw(canvas: Canvas?) {
+    override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
         val width = measuredWidth.toFloat()
