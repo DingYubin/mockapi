@@ -28,6 +28,10 @@
             android:exported="true" />
 
         <activity
+            android:name=".ui.WebWindowActivity"
+            android:exported="true" />
+
+        <activity
             android:name=".ui.ImActivity"
             android:exported="false" />
 

@@ -314,6 +314,12 @@ class UiActivity : NativeActivity<ActivityUiBinding>() {
                 .navigation()
         }
 
+        binding.webWindow.setOnClickListener {
+            ARouter.getInstance()
+                .build(RouterPath.UiPage.PATH_UI_WEB_WINDOW)
+                .navigation()
+        }
+
         binding.cut.setOnClickListener {
             //截图
             val bitmap = getCurrentFrame(binding.quality)
