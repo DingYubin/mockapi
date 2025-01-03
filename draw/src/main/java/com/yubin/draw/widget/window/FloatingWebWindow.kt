@@ -1,133 +1,378 @@
 package com.yubin.draw.widget.window
 
-import android.app.ActivityManager
-import android.app.ActivityManager.RunningTaskInfo
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.PixelFormat
+import android.util.DisplayMetrics
 import android.view.MotionEvent
 import android.view.View
-import android.view.View.OnTouchListener
+import android.view.ViewGroup
 import android.view.WindowManager
+import android.widget.FrameLayout
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.yubin.baselibrary.util.LogUtil
 import kotlin.math.abs
 
 /**
  * 悬浮窗
  */
-class FloatingWebWindow {
+class FloatingWebWindow private constructor() {
+    private var windowManager: WindowManager? = null
+    private var containerView: FloatingContainer? = null
+    private var recyclerView: RecyclerView? = null
+    private var showView: View? = null
+    private var layoutParams: WindowManager.LayoutParams? = null
+    private var isExpanded = false
+    private var isWindowShowing = false  // 添加标志位跟踪窗口状态
+    private var onItemClickListener: ((String) -> Unit)? = null
 
-     private var mWindowManager: WindowManager? = null
-     private var mShowView: View ?= null
-     private var mFloatParams: WindowManager.LayoutParams? = null
+    companion object {
+        private const val COLLAPSED_WIDTH = 340
+        private const val COLLAPSED_HEIGHT = 600
+        private const val DEFAULT_X = 600
+        private const val DEFAULT_Y = 500
+        private const val TOUCH_SLOP = 5
+        private const val ANIMATION_DURATION = 300L
 
-    fun showFloatingWindowView(context: Context, view : View) {
-        //悬浮窗显示视图
-        mShowView = view
-        //获取系统窗口管理服务
-        mWindowManager = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager?
-        //悬浮车口参数设置及返回
-        mFloatParams = getParams()
-        //设置窗口触摸移动事件
-        this.mShowView?.setOnTouchListener(FloatViewMoveListener())
-        //悬浮窗生成
-        mWindowManager?.addView(mShowView, mFloatParams)
+        @Volatile
+        private var instance: FloatingWebWindow? = null
+
+        fun getInstance(): FloatingWebWindow {
+            return instance ?: synchronized(this) {
+                instance ?: FloatingWebWindow().also { instance = it }
+            }
+        }
     }
 
+    fun showFloatingWindow(context: Context, recyclerView: RecyclerView) {
+//        if (isWindowShowing) {
+//            // 如果窗口已经显示，直接返回
+//            return
+//        }
 
-    private fun getParams(): WindowManager.LayoutParams {
-        val layoutParams = WindowManager.LayoutParams()
-        //设置悬浮窗口类型
-        layoutParams.type = WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY
-        //设置悬浮窗口属性
-        layoutParams.flags = (WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
-                or WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL
-                or WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN
-                or WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH)
-        //设置悬浮窗口透明
-        layoutParams.format = PixelFormat.TRANSLUCENT
-        //设置悬浮窗口长宽数据
-        layoutParams.width = 340
-        layoutParams.height = 600
-        //设置悬浮窗显示位置
-        layoutParams.x = 600
-        layoutParams.y = 500
+        try {
+            // 确保清理旧的窗口
+//            dismiss()
 
-        return layoutParams
+            this.windowManager = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
+            this.recyclerView = recyclerView
+
+            // 创建容器视图
+            val containerView = FloatingContainer(context).apply {
+                layoutParams = ViewGroup.LayoutParams(
+                    COLLAPSED_WIDTH,
+                    COLLAPSED_HEIGHT
+                )
+
+                // 设置点击和移动回调
+                onSingleItemClick = {
+                    if (recyclerView.adapter?.itemCount == 1) {
+                        LogUtil.d("web view 单机事件")
+//                        (recyclerView.adapter as? WebViewScreenshotAdapter)?.getItem(0)?.url?.let { url ->
+//                            onItemClickListener?.invoke(url)
+//                        }
+                    }
+                }
+
+                onExpandClick = {
+                    LogUtil.d("单机事件")
+                    if (recyclerView.adapter?.itemCount == 1) {
+                        LogUtil.d("web view 单机事件")
+                    } else {
+                        toggleExpandCollapse(context)
+                    }
+
+                }
+
+                onMove = { deltaX, deltaY ->
+                    updatePosition(deltaX.toInt(), deltaY.toInt())
+                }
+
+                // 根据item数量设置是否可拖动
+                setDraggable(recyclerView.adapter?.itemCount == 1)
+            }
+
+            containerView.addView(recyclerView, FrameLayout.LayoutParams(
+                COLLAPSED_WIDTH,
+                COLLAPSED_HEIGHT
+            ))
+
+            this.layoutParams = createLayoutParams()
+
+            // 添加窗口
+            windowManager?.addView(containerView, layoutParams)
+            this.showView = containerView
+            isWindowShowing = true  // 设置窗口显示标志
+
+            // 初始状态设置为收缩状态
+            updateRecyclerViewState(false)
+
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 
-    /**
-     * 将本应用置顶到最前端
-     * 当本应用位于后台时，则将它切换到最前端
-     *
-     * @param context 上下文
-     */
-    fun setTopApp(context: Context) {
-        //获取ActivityManager
-        val activityManager = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
-        //获得当前运行的task(任务)
-        val taskInfoList: List<RunningTaskInfo>? = activityManager.getRunningTasks(100)
-        if (taskInfoList != null) {
-            for (taskInfo in taskInfoList) {
-                //找到本应用的 task，并将它切换到前台
-                if (taskInfo.topActivity != null && taskInfo.topActivity!!.packageName == context.packageName) {
-                    activityManager.moveTaskToFront(taskInfo.id, 0)
-                    break
+    private fun updatePosition(deltaX: Int, deltaY: Int) {
+        try {
+            layoutParams?.let { params ->
+                params.x += deltaX
+                params.y += deltaY
+
+                val view = showView?: return
+                val wm = windowManager?: return
+
+                if (view.isAttachedToWindow) {
+                    wm.updateViewLayout(view, params)
+                }
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+    private fun toggleExpandCollapse(context: Context) {
+        try {
+//            isExpanded = !isExpanded
+
+            // 获取当前窗口的位置
+            val currentX = layoutParams?.x ?: DEFAULT_X
+            val currentY = layoutParams?.y ?: DEFAULT_Y
+
+            // 更新布局参数
+            layoutParams?.apply {
+//                if (isExpanded) {
+                    // 展开时使用屏幕宽度
+//                    val metrics = context.resources.displayMetrics
+                    width = WindowManager.LayoutParams.MATCH_PARENT
+                    // 保持在原位置
+                    x = currentX
+                    y = currentY
+//                } else {
+//                    // 收缩时恢复原始宽度
+//                    width = COLLAPSED_WIDTH
+//                    // 保持在原位置
+//                    x = currentX
+//                    y = currentY
+//                }
+
+                // 更新窗口布局
+                containerView?.let { container ->
+                    windowManager?.updateViewLayout(container, this)
+//                    if (container.isAttachedToWindow) {
+//                        windowManager?.updateViewLayout(container, this)
+//                    }
+                }
+            }
+
+            // 更新RecyclerView状态
+            updateRecyclerViewState(isExpanded)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+    private fun updateRecyclerViewState(expanded: Boolean) {
+        recyclerView?.let { rv ->
+            val adapter = rv.adapter
+            val itemCount = adapter?.itemCount ?: 0
+
+            if (itemCount > 1) {
+                // 收缩状态：滚动到最后一个项目并禁用滑动
+                if (!expanded) {
+                    rv.scrollToPosition(itemCount - 1)
+                    disableRecyclerViewScroll(rv)
+                } else {
+                    // 展开状态：启用滑动
+                    enableRecyclerViewScroll(rv)
                 }
             }
         }
     }
 
-    fun dismiss() {
-        if (mShowView?.isAttachedToWindow == true) {
-            mWindowManager?.removeView(mShowView)
+    private fun disableRecyclerViewScroll(recyclerView: RecyclerView) {
+        // 禁用所有触摸事件
+        recyclerView.setOnTouchListener { _, _ -> true }
+
+        // 禁用滑动
+        recyclerView.layoutManager = object : LinearLayoutManager(
+            recyclerView.context,
+            LinearLayoutManager.HORIZONTAL,
+            false
+        ) {
+            override fun canScrollHorizontally(): Boolean = false
+            override fun canScrollVertically(): Boolean = false
         }
     }
 
-    /**
-     * 浮窗移动/点击监听
-     */
-    private inner class FloatViewMoveListener : OnTouchListener {
-        //开始触控的坐标，移动时的坐标（相对于屏幕左上角的坐标）
-        private var mTouchStartX = 0
-        private var mTouchStartY = 0
+    private fun enableRecyclerViewScroll(recyclerView: RecyclerView) {
+        // 移除触摸事件拦截
+        recyclerView.setOnTouchListener(null)
 
-        //开始时的坐标和结束时的坐标（相对于自身控件的坐标）
-        private var mStartX = 0
-        private var mStartY = 0
+        // 启用滑动
+        recyclerView.layoutManager = LinearLayoutManager(
+            recyclerView.context,
+            LinearLayoutManager.HORIZONTAL,
+            false
+        )
+    }
 
-        //判断悬浮窗口是否移动，这里做个标记，防止移动后松手触发了点击事件
+    // 单个item时的触摸监听器
+    private inner class SingleItemTouchListener : View.OnTouchListener {
+        private var touchStartX = 0f
+        private var touchStartY = 0f
+        private var startX = 0f
+        private var startY = 0f
         private var isMove = false
 
-        override fun onTouch(view: View, motionEvent: MotionEvent): Boolean {
-            val action = motionEvent.action
-            val x = motionEvent.x.toInt()
-            val y = motionEvent.y.toInt()
-            when (action) {
+        @SuppressLint("ClickableViewAccessibility")
+        override fun onTouch(view: View, event: MotionEvent): Boolean {
+            when (event.action) {
                 MotionEvent.ACTION_DOWN -> {
                     isMove = false
-                    mTouchStartX = motionEvent.rawX.toInt()
-                    mTouchStartY = motionEvent.rawY.toInt()
-                    mStartX = x
-                    mStartY = y
+                    touchStartX = event.rawX
+                    touchStartY = event.rawY
+                    startX = event.x
+                    startY = event.y
                 }
+
                 MotionEvent.ACTION_MOVE -> {
-                    val mTouchCurrentX = motionEvent.rawX.toInt()
-                    val mTouchCurrentY = motionEvent.rawY.toInt()
-                    mFloatParams?.x = mFloatParams?.x?.plus(mTouchCurrentX - mTouchStartX)
-                    mFloatParams?.y = mFloatParams?.y?.plus(mTouchCurrentY - mTouchStartY)
-                    mWindowManager?.updateViewLayout(mShowView, mFloatParams)
-                    mTouchStartX = mTouchCurrentX
-                    mTouchStartY = mTouchCurrentY
-                    val deltaX = (x - mStartX).toFloat()
-                    val deltaY = (y - mStartY).toFloat()
-                    if (abs(deltaX) >= 5 || abs(deltaY) >= 5) {
+                    val deltaX = event.rawX - touchStartX
+                    val deltaY = event.rawY - touchStartY
+
+                    try {
+                        layoutParams?.let { params ->
+                            params.x = (params.x + deltaX).toInt()
+                            params.y = (params.y + deltaY).toInt()
+
+                            val currentView = showView?: return@let
+                            val wm = windowManager?: return@let
+
+                            if (currentView.isAttachedToWindow) {
+                                wm.updateViewLayout(currentView, params)
+                            }
+                        }
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                    }
+
+                    touchStartX = event.rawX
+                    touchStartY = event.rawY
+
+                    if (abs(event.x - startX) >= 5 || abs(event.y - startY) >= 5) {
                         isMove = true
                     }
                 }
-                MotionEvent.ACTION_UP -> {}
-                else -> {}
+
+                MotionEvent.ACTION_UP -> {
+                    if (!isMove) {
+                        // 单击时触发回调
+                        recyclerView?.let { rv ->
+                            val adapter = rv.adapter
+                            if (adapter?.itemCount == 1) {
+                                LogUtil.d("SingleItemTouchListener 单机事件")
+//                                (adapter as? WebViewScreenshotAdapter)?.getItem(0)?.url?.let { url ->
+//                                    onItemClickListener?.invoke(url)
+//                                }
+                            }
+                        }
+                    }
+                }
             }
-            //如果是移动事件不触发OnClick事件，防止移动的时候一放手形成点击事件
-            return isMove
+            return true
+        }
+    }
+
+    // 多个item时的触摸监听器
+    private inner class MultiItemTouchListener : View.OnTouchListener {
+        @SuppressLint("ClickableViewAccessibility")
+        override fun onTouch(view: View, event: MotionEvent): Boolean {
+            when (event.action) {
+                MotionEvent.ACTION_UP -> {
+                    // 直接触发展开/收缩
+                    LogUtil.d("MultiItemTouchListener 单机事件")
+//                    toggleExpandCollapse()
+                }
+            }
+            return true
+        }
+    }
+
+    private fun createLayoutParams() = WindowManager.LayoutParams().apply {
+        type = WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY
+        flags = (WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
+                or WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL
+                or WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN
+                or WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH)
+        format = PixelFormat.TRANSLUCENT
+        width = COLLAPSED_WIDTH
+        height = COLLAPSED_HEIGHT
+        x = DEFAULT_X
+        y = DEFAULT_Y
+    }
+
+    private fun createLayoutParams2() = WindowManager.LayoutParams().apply {
+        type = WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY
+        flags = (WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
+                or WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL
+                or WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN
+                or WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH)
+        format = PixelFormat.TRANSLUCENT
+        width = WindowManager.LayoutParams.MATCH_PARENT
+        height = COLLAPSED_HEIGHT
+        x = DEFAULT_X
+        y = DEFAULT_Y
+    }
+
+    fun dismiss() {
+        try {
+            if (isWindowShowing && containerView?.isAttachedToWindow == true) {
+                windowManager?.removeView(containerView)
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        } finally {
+            // 清理所有资源
+            containerView = null
+            windowManager = null
+            recyclerView = null
+            isExpanded = false
+            isWindowShowing = false  // 重置窗口显示标志
+        }
+    }
+
+    fun isShowing(): Boolean = isWindowShowing
+
+
+
+    // 添加位置限制
+    private fun constrainPosition(x: Int, y: Int): Pair<Int, Int> {
+        val displayMetrics = DisplayMetrics()
+        windowManager?.defaultDisplay?.getMetrics(displayMetrics)
+
+        val maxX = displayMetrics.widthPixels - COLLAPSED_WIDTH
+        val maxY = displayMetrics.heightPixels - COLLAPSED_HEIGHT
+
+        return Pair(
+            x.coerceIn(0, maxX),
+            y.coerceIn(0, maxY)
+        )
+    }
+
+    // 添加动画效果
+    private fun animateView(view: View, toAlpha: Float) {
+        view.animate()
+            .alpha(toAlpha)
+            .setDuration(200)
+            .start()
+    }
+
+    // 添加大小调整功能
+    fun updateSize(width: Int, height: Int) {
+        layoutParams?.let { params ->
+            params.width = width
+            params.height = height
+            windowManager?.updateViewLayout(showView, params)
         }
     }
 

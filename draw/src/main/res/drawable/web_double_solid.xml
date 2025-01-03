@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 灰色阴影 -->
+    <item android:bottom="1dp">
+        <shape>
+            <stroke
+                android:width="4dp"
+                android:color="@color/st_bg_common_master_blue" />
+            <corners android:radius="10dp" />
+        </shape>
+    </item>
+    <!-- 绿色前景 -->
+    <item
+        android:top="1dp"
+        android:bottom="2dp"
+        android:left="2dp">
+        <shape>
+            <stroke
+                android:width="2dp"
+                android:color="@color/st_portfolio_switch_down_color" />
+            <corners android:radius="10dp" />
+        </shape>
+    </item>
+
+    <item
+        android:top="2dp"
+        android:left="4dp">
+        <shape>
+            <stroke
+                android:width="2dp"
+                android:color="#FFFFFF" />
+            <corners android:radius="10dp" />
+        </shape>
+    </item>
+</layer-list>

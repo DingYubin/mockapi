@@ -1,4 +1,4 @@
-package com.yubin.draw.ui
+package com.yubin.draw.web
 
 import android.app.Activity
 import android.content.Intent
@@ -9,7 +9,6 @@ import android.view.View
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.Toast
-import android.widget.VideoView
 import androidx.activity.result.contract.ActivityResultContracts
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
@@ -20,7 +19,7 @@ import com.yubin.baselibrary.util.CMStatusBarUtil
 import com.yubin.baselibrary.util.resColor
 import com.yubin.draw.R
 import com.yubin.draw.databinding.ActivityWebWindowBinding
-import com.yubin.draw.widget.window.FloatingWebWindow
+import com.yubin.draw.manager.FloatingWebWindowManager
 
 
 @Route(path = RouterPath.UiPage.PATH_UI_WEB_WINDOW)
@@ -32,6 +31,7 @@ class WebWindowActivity : CassNativeActivity<ActivityWebWindowBinding>(){
         super.onCreate(savedInstanceState)
         CMStatusBarUtil.setStatusColor(this, false, true, R.color.color_2970fd.resColor())
         supportActionBar?.hide()
+        FloatingWebWindowManager.initialize(this)
         this.initWebView()
 //        initView()
     }
@@ -48,24 +48,6 @@ class WebWindowActivity : CassNativeActivity<ActivityWebWindowBinding>(){
         fragmentTransaction.commit()
     }
 
-
-    private fun initView() {
-
-//        binding.btnShowWebFloatingWindow.setOnClickListener {
-//            //展示浮窗
-//            if (!requestOverlayPermission()) {
-//                showFloatingWindow()
-//            } else {
-//                Toast.makeText(this, "请开启悬浮窗权限", Toast.LENGTH_SHORT).show()
-//            }
-//        }
-    }
-
-    private fun showFloatingWindow() {
-        val mFloatingWindow = FloatingWebWindow()
-        val view: View = initFloatRootView(mFloatingWindow)
-        mFloatingWindow.showFloatingWindowView(this, view)
-    }
 
     /**
      * 判断是否开启悬浮窗口权限，否则，跳转开启页
@@ -117,32 +99,5 @@ class WebWindowActivity : CassNativeActivity<ActivityWebWindowBinding>(){
         return view
     }
 
-    /**
-     * 浮窗样式
-     */
-    private fun initFloatRootView(window: FloatingWebWindow): View {
-        val view = View.inflate(this, R.layout.view_video_view_floating_web, null)
-        // 设置视频封面
-        val mThumb = view.findViewById<View>(R.id.thumb_floating_view) as ImageView
-        Glide.with(this).load(R.drawable.thumb).into(mThumb)
-
-        val videoView = view.findViewById<VideoView>(R.id.video_view)
-        //视频内容设置
-        videoView.setVideoPath("https://stream7.iqilu.com/10339/article/202002/18/2fca1c77730e54c7b500573c2437003f.mp4")
-        // 视频准备完毕，隐藏正在加载封面，显示视频
-        videoView.setOnPreparedListener { mThumb.visibility = View.GONE }
-        // 循环播放
-        videoView.setOnCompletionListener { videoView.start() }
-        // 开始播放视频
-        videoView.start()
-
-        // 悬浮窗关闭
-        view.findViewById<View>(R.id.close_floating_view)
-            .setOnClickListener {
-                window.dismiss()
-            }
-
-        return view
-    }
 
 }

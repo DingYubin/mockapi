@@ -2,24 +2,34 @@ package com.yubin.draw.manager
 
 import android.content.Context
 import android.graphics.PixelFormat
+import android.view.View
 import android.view.WindowManager
 import android.webkit.WebView
-import java.util.Stack
 
 object FloatingWebWindowManager {
     private var windowManager: WindowManager? = null
-    private var webViewStack: Stack<WebView> = Stack()
+    var webViews: MutableList<View> = arrayListOf()
 
     fun initialize(context: Context) {
         windowManager = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
     }
 
-    fun addWebView(webView: WebView) {
-        webViewStack.add(webView)
+    fun addView(view: View) {
+        webViews.add(view)
     }
 
-    fun showFloatingWebWindow(context: Context) {
-        if (webViewStack.isEmpty()) {
+    fun removeView() : View {
+        val view = webViews.last()
+        webViews.remove(view)
+        return view
+    }
+
+    fun isEmpty(): Boolean {
+        return webViews.isEmpty()
+    }
+
+    fun showFloatingWebWindow(context: Context, webView: View, isfirst: Boolean) {
+        if (webViews.isEmpty()) {
             return
         }
         val displayMetrics = context.resources.displayMetrics
@@ -27,16 +37,25 @@ object FloatingWebWindowManager {
         val screenHeight = displayMetrics.heightPixels
 
         val params = getParams()
-        for ((index, webView) in webViewStack.withIndex()) {
-            val offsetX = if (index > 0) index * 50 else 0
-            val offsetY = if (index > 0) index * 50 else 0
 
-            params.x = offsetX
-            params.y = screenHeight - offsetY - 200 // Adjust this value based on your needs
 
-            windowManager?.addView(webView, params)
-        }
+//        for ((index, webView) in webViews.withIndex()) {
+//            val offsetX = if (index > 0) index * 50 else 0
+//            val offsetY = if (index > 0) index * 50 else 0
+//
+//            params.x = offsetX // Adjust this value based on your needs
+//            params.y = screenHeight - offsetY - 200 // Adjust this value based on your needs
+////            windowManager?.addView(webView, params)
+//        }
+        windowManager?.addView(webView, params)
+//        if (isfirst) {
+//            windowManager?.addView(webView, params)
+//        } else {
+//            windowManager?.updateViewLayout(webView, params)
+//        }
+
     }
+
 
     private fun getParams(): WindowManager.LayoutParams {
         val layoutParams = WindowManager.LayoutParams()
@@ -64,10 +83,10 @@ object FloatingWebWindowManager {
     }
 
     fun destroy() {
-        for (webView in webViewStack) {
-            webView.destroy()
+        for (webView in webViews) {
+//            webView.destroy()
         }
-        webViewStack.clear()
+        webViews.clear()
         windowManager = null
     }
 }

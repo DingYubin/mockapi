@@ -28,7 +28,7 @@
             android:exported="true" />
 
         <activity
-            android:name=".ui.WebWindowActivity"
+            android:name=".web.WebWindowActivity"
             android:exported="true" />
 
         <activity
