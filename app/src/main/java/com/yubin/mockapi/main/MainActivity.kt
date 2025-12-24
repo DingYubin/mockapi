@@ -25,6 +25,7 @@ import com.yubin.medialibrary.manager.IMediaCallBack
 import com.yubin.medialibrary.manager.MediaInfo
 import com.yubin.medialibrary.util.CMMediaUtil
 import com.yubin.mockapi.R
+import com.yubin.mockapi.bluetooth.BluetoothWakeActivity
 import com.yubin.mockapi.databinding.ActivityMainBinding
 import com.yubin.mockapi.util.GlideImageLoader
 import com.yubin.mvp.ui.MvpLoginActivity
@@ -149,6 +150,11 @@ class MainActivity : NativeActivity<ActivityMainBinding>() {
             imagePicker.selectLimit = 9
             val intent = Intent(this, ImageGridActivity::class.java)
             startActivity(intent)
+        }
+
+        // 蓝牙唤醒演示入口
+        findViewById<View>(R.id.bluetooth_wake).setOnClickListener {
+            startActivity(Intent(this, BluetoothWakeActivity::class.java))
         }
 
 

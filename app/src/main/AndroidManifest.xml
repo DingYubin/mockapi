@@ -3,15 +3,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.yubin.mockapi">
 
+    <!-- 网络相关权限 -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+    <!-- 系统权限 -->
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+    <!-- 蓝牙相关权限 - 用于蓝牙设备检测唤醒APP -->
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <!-- Android 12+ (API 31+) 需要的蓝牙权限 -->
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+    <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
+    <!-- Android 14+ (API 34+) 前台服务权限 -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_CONNECTED_DEVICE" />
 
     <application
         android:name="com.yubin.mockapi.MainApplication"
@@ -33,6 +46,20 @@
         <meta-data
             android:name="design_height_in_dp"
             android:value="640" />
+
+        <!-- 蓝牙唤醒演示Activity -->
+        <activity
+            android:name="com.yubin.mockapi.bluetooth.BluetoothWakeActivity"
+            android:screenOrientation="fullSensor"
+            android:exported="true"
+            android:launchMode="singleTask" />
+
+        <!-- 蓝牙唤醒服务 - Android 14+ 需要指定 foregroundServiceType -->
+        <service
+            android:name="com.yubin.mockapi.bluetooth.BluetoothWakeService"
+            android:enabled="true"
+            android:exported="false"
+            android:foregroundServiceType="connectedDevice" />
 
         <activity
             android:name="com.yubin.mockapi.main.MainActivity"
