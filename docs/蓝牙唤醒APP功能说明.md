@@ -159,21 +159,58 @@ startActivity(Intent(context, BluetoothWakeActivity::class.java))
 **华为/荣耀：**
 - 打开「设置」→「电池」→「启动管理」→ 找到本应用 → 关闭「自动管理」→ 开启「手动管理」下的所有选项
 
-#### 方案2: 定期轮询检查（备选）
+#### 方案2: 使用全屏通知（Full Screen Intent）✅ 已实现
+**这是官方推荐的后台唤醒方式，可以绕过大部分后台启动限制。**
+
+实现要点：
+1. 在 `AndroidManifest.xml` 中添加权限：
+   ```xml
+   <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
+   ```
+
+2. 创建高优先级通知渠道，使用 `IMPORTANCE_HIGH`
+
+3. 在通知中设置 `setFullScreenIntent()`：
+   ```kotlin
+   NotificationCompat.Builder(context, channelId)
+       .setFullScreenIntent(fullScreenIntent, true)  // 关键设置
+       .setCategory(NotificationCompat.CATEGORY_CALL) // 使用CALL类别
+       .setPriority(NotificationCompat.PRIORITY_HIGH)
+       .build()
+   ```
+
+**优点**：
+- 可以在锁屏和后台状态下直接弹出页面
+- 不受大部分后台启动限制影响
+- Android 官方推荐用于来电、闹钟等场景
+
+**限制**：
+- 国产手机仍可能限制（需要用户设置权限）
+- Android 12+ 首次使用需要用户授权全屏通知权限
+
+#### 方案3: 定期轮询检查（备选，不推荐）
 如果广播无法接收，可以考虑定期检查已连接设备列表，但此方法会增加耗电。
 
-#### 方案3: 接受限制，前台唤醒
+#### 方案4: 接受限制，前台唤醒
 - 如果应用在前台，可以正常接收广播
 - 如果应用在后台，用户需要手动打开应用后才能接收后续的连接事件
 
 ---
 
+## 已实现的功能
+
+1. ✅ **前台服务** - 保持后台监听蓝牙连接
+2. ✅ **全屏通知唤醒** - 使用 Full Screen Intent 后台唤醒APP
+3. ✅ **应用前后台状态检测** - 实时检测并打印应用状态
+4. ✅ **详细日志追踪** - 便于调试和排查问题
+5. ✅ **vivo等国产手机提示** - 检测并提示用户设置后台权限
+
 ## 下一步优化建议
 
-1. **添加通知栏提示** - 后台服务显示前台通知
-2. **白名单引导** - 引导用户将 APP 加入省电白名单
-3. **设备过滤** - 只响应特定设备（如指定 MAC 地址）
-4. **历史记录** - 保存唤醒历史记录
+1. **白名单引导界面** - 自动跳转到vivo等手机的后台权限设置页面
+2. **设备过滤** - 只响应特定设备（如指定 MAC 地址）
+3. **历史记录** - 保存唤醒历史记录
+4. **用户引导教程** - 首次使用时显示权限设置引导
 
 ---
 
@@ -189,9 +226,3 @@ export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-11.0.12.jdk/Contents/Home
 # 安装到设备
 ./gradlew :app:installDebug
 ```
-
----
-
-## 作者
-
-Claude (AI Assistant)

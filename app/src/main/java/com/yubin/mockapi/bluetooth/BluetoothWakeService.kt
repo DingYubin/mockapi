@@ -16,7 +16,7 @@ import android.os.IBinder
 import android.util.Log
 import androidx.core.app.NotificationCompat
 import com.yubin.mockapi.R
-import com.yubin.mockapi.bluetooth.VivoBackgroundHelper
+
 
 /**
  * 蓝牙唤醒服务
@@ -199,6 +199,7 @@ class BluetoothWakeService : Service() {
      */
     private fun createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            // 普通前台服务通知渠道
             val channel = NotificationChannel(
                 CHANNEL_ID,
                 "蓝牙唤醒服务",
@@ -209,8 +210,21 @@ class BluetoothWakeService : Service() {
                 setSound(null, null)
             }
 
+            // 高优先级全屏通知渠道（用于后台唤醒）
+            val wakeChannel = NotificationChannel(
+                "${CHANNEL_ID}_wake",
+                "蓝牙设备连接提醒",
+                NotificationManager.IMPORTANCE_HIGH
+            ).apply {
+                description = "蓝牙设备连接时立即提醒"
+                setShowBadge(true)
+                enableVibration(true)
+                vibrationPattern = longArrayOf(0, 200, 100, 200)
+            }
+
             val notificationManager = getSystemService(NotificationManager::class.java)
             notificationManager.createNotificationChannel(channel)
+            notificationManager.createNotificationChannel(wakeChannel)
         }
     }
 
@@ -251,44 +265,55 @@ class BluetoothWakeService : Service() {
     }
 
     /**
-     * 更新通知 - 检测到设备连接时调用
+     * 更新通知 - 检测到设备连接时调用（使用全屏Intent后台唤醒）
      */
-    private fun updateNotification(deviceName: String) {
+    private fun updateNotification(deviceName: String, deviceAddress: String) {
         val intent = BluetoothWakeActivity.createIntent(this).apply {
-            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or 
+                    Intent.FLAG_ACTIVITY_CLEAR_TOP or
+                    Intent.FLAG_ACTIVITY_SINGLE_TOP
             putExtra(BluetoothWakeActivity.EXTRA_DEVICE_NAME, deviceName)
+            putExtra(BluetoothWakeActivity.EXTRA_DEVICE_ADDRESS, deviceAddress)
         }
 
-        val pendingIntent = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            android.app.PendingIntent.getActivity(
-                this,
-                System.currentTimeMillis().toInt(),
-                intent,
-                android.app.PendingIntent.FLAG_UPDATE_CURRENT or android.app.PendingIntent.FLAG_IMMUTABLE
-            )
+        val pendingIntentFlags = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            android.app.PendingIntent.FLAG_UPDATE_CURRENT or android.app.PendingIntent.FLAG_IMMUTABLE
         } else {
             @Suppress("DEPRECATION")
-            android.app.PendingIntent.getActivity(
-                this,
-                System.currentTimeMillis().toInt(),
-                intent,
-                android.app.PendingIntent.FLAG_UPDATE_CURRENT
-            )
+            android.app.PendingIntent.FLAG_UPDATE_CURRENT
         }
 
-        val notification = NotificationCompat.Builder(this, CHANNEL_ID)
+        val contentIntent = android.app.PendingIntent.getActivity(
+            this,
+            System.currentTimeMillis().toInt(),
+            intent,
+            pendingIntentFlags
+        )
+
+        // 创建全屏Intent（用于后台唤醒）
+        val fullScreenIntent = android.app.PendingIntent.getActivity(
+            this,
+            System.currentTimeMillis().toInt() + 1,
+            intent,
+            pendingIntentFlags
+        )
+
+        val notification = NotificationCompat.Builder(this, "${CHANNEL_ID}_wake")
             .setContentTitle("🔵 蓝牙设备已连接")
-            .setContentText("点击打开APP: $deviceName")
+            .setContentText("设备: $deviceName - 点击查看详情")
             .setSmallIcon(R.mipmap.ic_launcher)
-            .setContentIntent(pendingIntent)
-            .setOngoing(false)
+            .setContentIntent(contentIntent)
+            // 关键：设置全屏Intent，可以在后台直接唤醒页面
+            .setFullScreenIntent(fullScreenIntent, true)
             .setPriority(NotificationCompat.PRIORITY_HIGH)
+            .setCategory(NotificationCompat.CATEGORY_CALL)  // 使用CALL类别，提高优先级
             .setAutoCancel(true)
-            .setVibrate(longArrayOf(0, 200, 100))
+            .setVibrate(longArrayOf(0, 200, 100, 200))
             .build()
 
         val notificationManager = getSystemService(NotificationManager::class.java)
         notificationManager.notify(NOTIFICATION_ID + 1, notification)
+        Log.d(TAG, "✅ 全屏通知已发送，设备: $deviceName")
     }
 
     // 保存最近连接的设备名称
@@ -369,27 +394,44 @@ class BluetoothWakeService : Service() {
 
         Log.d(TAG, "✅ 准备唤醒APP，设备: ${device.name}，当前应用状态: $appStatus")
 
-        // 方案1: 显示通知，用户点击打开APP（Android 12+ 推荐）
-        updateNotification(device.name ?: "未知设备")
-        Log.d(TAG, "📢 已更新通知，设备: ${device.name}")
+        // 使用全屏通知唤醒APP（官方推荐方式，可绕过后台启动限制）
+        updateNotification(device.name ?: "未知设备", device.address)
+        Log.d(TAG, "📢 已发送全屏通知，设备: ${device.name}")
+        
+        // 如果在前台，可以尝试直接启动（作为备用）
+        if (appInForeground) {
+            try {
+                val wakeIntent = BluetoothWakeActivity.createIntent(context).apply {
+                    flags = Intent.FLAG_ACTIVITY_NEW_TASK or
+                            Intent.FLAG_ACTIVITY_CLEAR_TOP or
+                            Intent.FLAG_ACTIVITY_SINGLE_TOP
+                    putExtra(BluetoothWakeActivity.EXTRA_DEVICE_NAME, device.name)
+                    putExtra(BluetoothWakeActivity.EXTRA_DEVICE_ADDRESS, device.address)
+                }
+                context.startActivity(wakeIntent)
+                Log.d(TAG, "✅ 前台直接启动成功: ${device.name}")
+            } catch (e: Exception) {
+                Log.w(TAG, "前台启动失败: ${e.message}")
+            }
+        }
 
         // 方案2: 尝试直接启动Activity
         // 注意：不要用 CLEAR_TASK，会清除整个任务栈导致Activity被销毁
-        val wakeIntent = BluetoothWakeActivity.createIntent(context).apply {
-            flags = Intent.FLAG_ACTIVITY_NEW_TASK or
-                    Intent.FLAG_ACTIVITY_CLEAR_TOP or
-                    Intent.FLAG_ACTIVITY_SINGLE_TOP
-            putExtra(BluetoothWakeActivity.EXTRA_DEVICE_NAME, device.name)
-            putExtra(BluetoothWakeActivity.EXTRA_DEVICE_ADDRESS, device.address)
-        }
-
-        try {
-            context.startActivity(wakeIntent)
-            Log.d(TAG, "✅ APP已直接启动: ${device.name}")
-            BluetoothWakeReceiver.isLastConnected = true
-        } catch (e: Exception) {
-            Log.w(TAG, "⚠️ 直接启动被阻止，请点击通知打开: ${e.message}")
-            // Android 12+ 后台启动被阻止是正常的，用户需要点击通知
-        }
+//        val wakeIntent = BluetoothWakeActivity.createIntent(context).apply {
+//            flags = Intent.FLAG_ACTIVITY_NEW_TASK or
+//                    Intent.FLAG_ACTIVITY_CLEAR_TOP or
+//                    Intent.FLAG_ACTIVITY_SINGLE_TOP
+//            putExtra(BluetoothWakeActivity.EXTRA_DEVICE_NAME, device.name)
+//            putExtra(BluetoothWakeActivity.EXTRA_DEVICE_ADDRESS, device.address)
+//        }
+//
+//        try {
+//            context.startActivity(wakeIntent)
+//            Log.d(TAG, "✅ APP已直接启动: ${device.name}")
+//            BluetoothWakeReceiver.isLastConnected = true
+//        } catch (e: Exception) {
+//            Log.w(TAG, "⚠️ 直接启动被阻止，请点击通知打开: ${e.message}")
+//            // Android 12+ 后台启动被阻止是正常的，用户需要点击通知
+//        }
     }
 }
